@@ -1,7 +1,7 @@
 -- =============================================================================
 -- AQMI — Aviation Quality & Maintenance Intelligence
 -- File:    sql/schema/01_tables.sql
--- Purpose: Creates the 24 tables of the operational database (SQLite).
+-- Purpose: Creates the 25 tables of the operational database (SQLite).
 -- Source:  documentation/02_diccionario_de_datos.md (Phase 2 data dictionary)
 --
 -- Notes
@@ -503,6 +503,54 @@ CREATE TABLE CAPA_Progress_Updates (
     created_by           INTEGER NOT NULL REFERENCES Employees (employee_id)   -- who reported the progress
 ) STRICT;
 
+-- Lessons learned (added in Phase 9). A lesson is what the organisation learned
+-- from a closed and verified action, and the change it recommends. The
+-- non-conformity is reached through the action (it is not stored twice).
+-- General quality-management practice; not presented as a regulatory requirement.
+-- Life cycle: PROPOSED -> APPROVED -> INCORPORATED, or PROPOSED -> REJECTED.
+CREATE TABLE Lessons_Learned (
+    lesson_id                INTEGER PRIMARY KEY,
+    lesson_number            TEXT    NOT NULL UNIQUE
+                             CHECK (lesson_number GLOB 'LL-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'),
+    action_id                INTEGER NOT NULL REFERENCES CAPA_Actions (action_id),
+    title                    TEXT    NOT NULL CHECK (length(title) <= 120),
+    lesson_text              TEXT    NOT NULL,        -- what was learned
+    recommendation           TEXT    NOT NULL,        -- what should change
+    department_id            INTEGER NOT NULL REFERENCES Departments (department_id),  -- owner of the lesson
+    scope                    TEXT    NOT NULL CHECK (scope IN ('DEPARTMENT', 'COMPANY')),
+    status                   TEXT    NOT NULL
+                             CHECK (status IN ('PROPOSED', 'APPROVED', 'INCORPORATED', 'REJECTED')),
+    proposed_date            TEXT    NOT NULL CHECK (date(proposed_date) IS proposed_date),
+    proposed_by              INTEGER NOT NULL REFERENCES Employees (employee_id),
+    approved_date            TEXT    CHECK (approved_date IS NULL OR date(approved_date) IS approved_date),
+    approved_by              INTEGER REFERENCES Employees (employee_id),
+    rejected_date            TEXT    CHECK (rejected_date IS NULL OR date(rejected_date) IS rejected_date),
+    rejected_by              INTEGER REFERENCES Employees (employee_id),
+    rejection_reason         TEXT,
+    incorporated_date        TEXT    CHECK (incorporated_date IS NULL
+                                            OR date(incorporated_date) IS incorporated_date),
+    incorporated_revision_id INTEGER REFERENCES Document_Revisions (revision_id),
+    created_at               TEXT    NOT NULL CHECK (datetime(created_at) IS created_at),
+    created_by               INTEGER NOT NULL REFERENCES Employees (employee_id),
+    updated_at               TEXT    CHECK (updated_at IS NULL OR datetime(updated_at) IS updated_at),
+    updated_by               INTEGER REFERENCES Employees (employee_id),
+    -- L03: the status matches the decision recorded
+    CHECK ((status IN ('APPROVED', 'INCORPORATED')) = (approved_by IS NOT NULL)),
+    CHECK ((approved_by IS NULL) = (approved_date IS NULL)),
+    CHECK ((status = 'REJECTED') = (rejected_by IS NOT NULL)),
+    CHECK ((rejected_by IS NULL) = (rejected_date IS NULL)),
+    CHECK ((status = 'REJECTED') = (rejection_reason IS NOT NULL)),                 -- reason is mandatory
+    CHECK ((status = 'INCORPORATED') = (incorporated_revision_id IS NOT NULL)),
+    CHECK ((incorporated_revision_id IS NULL) = (incorporated_date IS NULL)),
+    -- L02: the decision is taken by someone other than the proposer
+    CHECK (approved_by IS NULL OR approved_by <> proposed_by),
+    CHECK (rejected_by IS NULL OR rejected_by <> proposed_by),
+    -- L04: proposal <= decision <= incorporation
+    CHECK (approved_date IS NULL OR approved_date >= proposed_date),
+    CHECK (rejected_date IS NULL OR rejected_date >= proposed_date),
+    CHECK (incorporated_date IS NULL OR incorporated_date >= approved_date)
+) STRICT;
+
 
 -- -----------------------------------------------------------------------------
 -- 8. MODULE D — STOCK COUNTS AND INVENTORY MOVEMENTS
@@ -597,8 +645,8 @@ CREATE TABLE Audit_Log (
                                                'Purchase_Order_Lines', 'Quality_Incidents',
                                                'Maintenance_Order_Holds', 'Document_Verifications',
                                                'Root_Cause_Analyses', 'CAPA_Actions',
-                                               'CAPA_Progress_Updates', 'Stock_Counts',
-                                               'Inventory_Movements')),
+                                               'CAPA_Progress_Updates', 'Lessons_Learned',
+                                               'Stock_Counts', 'Inventory_Movements')),
     record_id            INTEGER NOT NULL,
     action               TEXT    NOT NULL CHECK (action IN ('INSERT', 'UPDATE', 'DELETE')),
     field_name           TEXT,

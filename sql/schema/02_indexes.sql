@@ -86,6 +86,14 @@ CREATE INDEX ix_capa_department                 ON CAPA_Actions (department_id);
 CREATE INDEX ix_capa_verified_by                ON CAPA_Actions (verified_by);
 CREATE INDEX ix_capa_updates_action             ON CAPA_Progress_Updates (action_id);
 
+-- Lessons learned (Phase 9)
+CREATE INDEX ix_lessons_action                  ON Lessons_Learned (action_id);
+CREATE INDEX ix_lessons_department              ON Lessons_Learned (department_id);
+CREATE INDEX ix_lessons_proposed_by             ON Lessons_Learned (proposed_by);
+CREATE INDEX ix_lessons_approved_by             ON Lessons_Learned (approved_by);
+CREATE INDEX ix_lessons_rejected_by             ON Lessons_Learned (rejected_by);
+CREATE INDEX ix_lessons_revision                ON Lessons_Learned (incorporated_revision_id);
+
 -- Stock counts and inventory movements
 CREATE INDEX ix_stock_counts_material           ON Stock_Counts (material_id, count_datetime);
 CREATE INDEX ix_stock_counts_counted_by         ON Stock_Counts (counted_by);

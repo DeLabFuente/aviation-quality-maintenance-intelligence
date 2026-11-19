@@ -1561,6 +1561,127 @@ END;
 
 
 -- ----------------------------------------------------------------------------
+-- Lessons_Learned
+-- ----------------------------------------------------------------------------
+
+CREATE TRIGGER trg_lessons_learned_no_delete
+BEFORE DELETE ON Lessons_Learned
+BEGIN
+    SELECT RAISE(ABORT, 'AQMI G09: physical deletes are not allowed on Lessons_Learned. Cancel or deactivate the record instead.');
+END;
+
+CREATE TRIGGER trg_lessons_learned_audit_insert
+AFTER INSERT ON Lessons_Learned
+BEGIN
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action, changed_by, source)
+    VALUES (NEW.created_at, 'Lessons_Learned', NEW.lesson_id, 'INSERT', NEW.created_by, 'TRIGGER');
+END;
+
+CREATE TRIGGER trg_lessons_learned_update_guard
+BEFORE UPDATE ON Lessons_Learned
+WHEN NEW.updated_at IS NULL
+  OR NEW.updated_by IS NULL
+  OR NEW.updated_at < NEW.created_at
+  OR (OLD.updated_at IS NOT NULL AND NEW.updated_at < OLD.updated_at)
+  OR NEW.created_at IS NOT OLD.created_at
+  OR NEW.created_by IS NOT OLD.created_by
+  OR NEW.lesson_id IS NOT OLD.lesson_id
+BEGIN
+    SELECT RAISE(ABORT, 'AQMI: every update of Lessons_Learned must set updated_at and updated_by in chronological order, and must not change the id or the creation data.');
+END;
+
+CREATE TRIGGER trg_lessons_learned_audit_update
+AFTER UPDATE ON Lessons_Learned
+BEGIN
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'lesson_number',
+           CAST(OLD.lesson_number AS TEXT), CAST(NEW.lesson_number AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.lesson_number IS NOT NEW.lesson_number;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'action_id',
+           CAST(OLD.action_id AS TEXT), CAST(NEW.action_id AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.action_id IS NOT NEW.action_id;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'title',
+           CAST(OLD.title AS TEXT), CAST(NEW.title AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.title IS NOT NEW.title;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'lesson_text',
+           CAST(OLD.lesson_text AS TEXT), CAST(NEW.lesson_text AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.lesson_text IS NOT NEW.lesson_text;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'recommendation',
+           CAST(OLD.recommendation AS TEXT), CAST(NEW.recommendation AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.recommendation IS NOT NEW.recommendation;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'department_id',
+           CAST(OLD.department_id AS TEXT), CAST(NEW.department_id AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.department_id IS NOT NEW.department_id;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'scope',
+           CAST(OLD.scope AS TEXT), CAST(NEW.scope AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.scope IS NOT NEW.scope;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'status',
+           CAST(OLD.status AS TEXT), CAST(NEW.status AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.status IS NOT NEW.status;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'proposed_date',
+           CAST(OLD.proposed_date AS TEXT), CAST(NEW.proposed_date AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.proposed_date IS NOT NEW.proposed_date;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'proposed_by',
+           CAST(OLD.proposed_by AS TEXT), CAST(NEW.proposed_by AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.proposed_by IS NOT NEW.proposed_by;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'approved_date',
+           CAST(OLD.approved_date AS TEXT), CAST(NEW.approved_date AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.approved_date IS NOT NEW.approved_date;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'approved_by',
+           CAST(OLD.approved_by AS TEXT), CAST(NEW.approved_by AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.approved_by IS NOT NEW.approved_by;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'rejected_date',
+           CAST(OLD.rejected_date AS TEXT), CAST(NEW.rejected_date AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.rejected_date IS NOT NEW.rejected_date;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'rejected_by',
+           CAST(OLD.rejected_by AS TEXT), CAST(NEW.rejected_by AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.rejected_by IS NOT NEW.rejected_by;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'rejection_reason',
+           CAST(OLD.rejection_reason AS TEXT), CAST(NEW.rejection_reason AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.rejection_reason IS NOT NEW.rejection_reason;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'incorporated_date',
+           CAST(OLD.incorporated_date AS TEXT), CAST(NEW.incorporated_date AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.incorporated_date IS NOT NEW.incorporated_date;
+    INSERT INTO Audit_Log (event_datetime, table_name, record_id, action,
+                           field_name, old_value, new_value, changed_by, source)
+    SELECT NEW.updated_at, 'Lessons_Learned', NEW.lesson_id, 'UPDATE', 'incorporated_revision_id',
+           CAST(OLD.incorporated_revision_id AS TEXT), CAST(NEW.incorporated_revision_id AS TEXT), NEW.updated_by, 'TRIGGER'
+    WHERE OLD.incorporated_revision_id IS NOT NEW.incorporated_revision_id;
+END;
+
+
+-- ----------------------------------------------------------------------------
 -- Stock_Counts
 -- ----------------------------------------------------------------------------
 

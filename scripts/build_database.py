@@ -5,7 +5,7 @@ What it does, in order:
     1. Checks that the installed SQLite supports STRICT tables.
     2. Deletes the previous database/aqmi.db, if it exists (it is always rebuilt
        from the SQL files, so nothing is lost).
-    3. Creates the 24 tables          (sql/schema/01_tables.sql)
+    3. Creates the 25 tables          (sql/schema/01_tables.sql)
     4. Creates the indexes            (sql/schema/02_indexes.sql)
     5. Generates and creates triggers (sql/schema/03_triggers.sql)
     6. Loads the reference catalogues (sql/schema/04_reference_data.sql)

@@ -46,7 +46,7 @@ PERIOD_START = "2024-11-01"   # first day of simulated activity
 AS_OF_DATE = "2026-10-31"     # cut-off date: "overdue" and "expired" are measured against it
 RANDOM_SEED = 145             # fixed seed: same seed => exactly the same synthetic data
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"   # 1.1.0: Lessons_Learned table (Phase 9)
 
 DATA_DISCLAIMER = (
     "AEROQ MRO is a fictitious company. All data in this database is synthetic "

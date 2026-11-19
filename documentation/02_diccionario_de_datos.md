@@ -4,7 +4,7 @@
 **Empresa ficticia:** AEROQ MRO
 **Documento:** `documentation/02_diccionario_de_datos.md`
 **Documento relacionado:** `documentation/03_reglas_de_negocio.md`
-**Estado:** Aprobado el 17/11/2026 (actualizado en la Fase 3: `CAPA_Progress_Updates.created_by` y origen de la auditoría; en la Fase 4: tipo de recuento `OPENING`)
+**Estado:** Aprobado el 17/11/2026 (actualizado en la Fase 3: `CAPA_Progress_Updates.created_by` y origen de la auditoría; en la Fase 4: tipo de recuento `OPENING`; en la Fase 9: tabla `Lessons_Learned`, sección 6.5)
 **Fecha:** 17/11/2026
 
 > AEROQ MRO es una empresa ficticia y todos sus datos son sintéticos. Los objetivos, plazos y políticas internas descritos aquí son **ficticios** y no representan requisitos normativos.
@@ -18,7 +18,7 @@
 3. Tipos de datos (SQLite → PostgreSQL)
 4. Lo que se guarda y lo que se calcula
 5. Diagrama entidad-relación
-6. Diccionario de datos (24 tablas)
+6. Diccionario de datos (25 tablas)
 7. Índices
 8. Formatos de los códigos de negocio
 9. Orden de carga de las tablas
@@ -40,6 +40,8 @@ Durante el diseño detallado han aparecido **dos tablas nuevas** y algunos **cam
 | **Los movimientos de almacén no se modifican ni se borran** | Un error se corrige con un movimiento inverso, como en un registro contable. Así el historial nunca se pierde. |
 
 **Total: 24 tablas** (22 de la Fase 1 + 2 nuevas).
+
+**Ampliación de la Fase 9:** tabla `Lessons_Learned` (registro de lecciones aprendidas, sección 6.5). **Total actual: 25 tablas.**
 
 ---
 
@@ -149,6 +151,9 @@ erDiagram
     QUALITY_INCIDENTS |o--o{ CAPA_ACTIONS : "genera"
     CAPA_ACTIONS |o--o{ CAPA_ACTIONS : "acción de seguimiento"
     CAPA_ACTIONS ||--o{ CAPA_PROGRESS_UPDATES : "registra"
+    CAPA_ACTIONS ||--o{ LESSONS_LEARNED : "deja"
+    DEPARTMENTS ||--o{ LESSONS_LEARNED : "es responsable de"
+    DOCUMENT_REVISIONS |o--o{ LESSONS_LEARNED : "incorpora"
 
     SUPPLIERS ||--o{ PURCHASE_ORDERS : "recibe"
     PURCHASE_ORDERS ||--|{ PURCHASE_ORDER_LINES : "contiene"
@@ -507,6 +512,46 @@ Solo puede haber **un bloqueo activo por motivo** en cada orden (índice único 
 
 Los avances no se modifican ni se borran (regla G08).
 
+#### `Lessons_Learned` — Lecciones aprendidas *(nueva en la Fase 9)*
+
+Una lección recoge **qué se aprendió** al tratar una acción correctiva o preventiva y **qué se recomienda cambiar** para que el problema no se repita en otro sitio. Es el último paso del ciclo de mejora: no conformidad → causa raíz → acción → verificación de eficacia → **lección** → documento controlado revisado.
+
+Es una **práctica general de gestión de la calidad** que AEROQ MRO aplica de forma voluntaria. **No se presenta como un requisito normativo.**
+
+| Campo | Tipo | Oblig. | Clave / restricción | Descripción |
+|---|---|---|---|---|
+| lesson_id | ID | Sí | PK | |
+| lesson_number | CODE | Sí | UQ; `LL-AAAA-0000` | Identificador. `AAAA` es el año de la propuesta |
+| action_id | ID | Sí | FK → CAPA_Actions | Acción de la que nace la lección. La no conformidad se obtiene **a través de la acción** (`CAPA_Actions.incident_id`); no se guarda dos veces |
+| title | TEXT | Sí | Máx. 120 caracteres | Título corto |
+| lesson_text | TEXT | Sí | | Qué se aprendió |
+| recommendation | TEXT | Sí | | Qué se recomienda cambiar |
+| department_id | ID | Sí | FK → Departments | Departamento responsable de la lección y de incorporarla |
+| scope | ENUM | Sí | DEPARTMENT, COMPANY | A quién afecta: solo a ese departamento o a toda la empresa |
+| status | ENUM | Sí | PROPOSED, APPROVED, INCORPORATED, REJECTED | Ver el ciclo de estados más abajo |
+| proposed_date | DATE | Sí | | Fecha de la propuesta |
+| proposed_by | ID | Sí | FK → Employees | Quién la propone |
+| approved_date | DATE | No | Obligatoria si APPROVED o INCORPORATED; `≥ proposed_date` | Fecha de la aprobación |
+| approved_by | ID | No | FK → Employees; obligatorio si APPROVED o INCORPORATED; **distinto de `proposed_by`** | Quién la aprueba |
+| rejected_date | DATE | No | Obligatoria si REJECTED; `≥ proposed_date` | Fecha del rechazo |
+| rejected_by | ID | No | FK → Employees; obligatorio si REJECTED; **distinto de `proposed_by`** | Quién la rechaza |
+| rejection_reason | TEXT | No | **Obligatorio si REJECTED** y vacío en caso contrario | Motivo del rechazo |
+| incorporated_date | DATE | No | Obligatoria si INCORPORATED; `≥ approved_date` | Fecha en que se registra la incorporación |
+| incorporated_revision_id | ID | No | FK → Document_Revisions; **obligatorio si INCORPORATED** y vacío en caso contrario | Revisión del documento controlado que recoge la lección |
+| [AUD] | | | | `created_by` obligatorio |
+
+**Ciclo de estados:** PROPOSED → APPROVED → INCORPORATED, o PROPOSED → REJECTED (con motivo obligatorio). Una lección aprobada que todavía no está en ningún documento queda **pendiente de incorporar**.
+
+**Reglas principales** (detalle en `03_reglas_de_negocio.md`, grupo L):
+
+- Solo se propone una lección cuando su acción está **cerrada y con la eficacia verificada** (L01). Las acciones verificadas como **no eficaces** (`NOT_EFFECTIVE`) también dejan lección: lo que no funcionó también se aprende.
+- Quien aprueba o rechaza no es quien propone (L02).
+- La revisión incorporada pertenece a un **documento controlado** (procedimiento, instrucción de trabajo o formulario) (L05), estaba **en vigor** en la fecha de incorporación y entró en vigor **después de la aprobación** de la lección (L06).
+- Todos los cambios quedan en `Audit_Log`, igual que en el resto de tablas: los triggers se generan automáticamente.
+- Los registros no se borran (G09).
+
+> **Pendiente de decisión (Fase 9):** la lección de NC-2025-0021 está incorporada en FRM-PRD-004 R01, que entró en vigor **antes** de que se verificara la acción, porque el rediseño del formulario era la propia acción correctiva. La regla L06 admite provisionalmente esta excepción: la revisión producida por la propia acción (en vigor entre la creación y el cierre de la acción). Ver `09b_fase9_lecciones_aprendidas.md`.
+
 ### 6.6 Módulo D — Materiales y almacén
 
 #### `Purchase_Orders` — Pedidos a proveedores
@@ -633,6 +678,8 @@ SQLite **no crea índices automáticamente para las claves externas**. Sin ellos
 | Compuestos para el cálculo de stock | `Inventory_Movements(material_id, movement_datetime)` · `Inventory_Movements(mo_id, material_id)` |
 | Auditoría | `Audit_Log(table_name, record_id, event_datetime)` |
 
+La tabla `Lessons_Learned` (Fase 9) tiene un índice por cada clave externa: acción, departamento, revisión incorporada y las tres personas (propone, aprueba, rechaza).
+
 ---
 
 ## 8. Formatos de los códigos de negocio
@@ -642,6 +689,7 @@ SQLite **no crea índices automáticamente para las claves externas**. Sin ellos
 | Orden de mantenimiento | `WO-AAAA-0000` | WO-2025-0137 |
 | No conformidad | `NC-AAAA-0000` | NC-2025-0042 |
 | Acción correctiva / preventiva | `CA-AAAA-0000` / `PA-AAAA-0000` | CA-2025-0051 |
+| Lección aprendida | `LL-AAAA-0000` | LL-2025-0001 |
 | Verificación documental | `DV-AAAA-0000` | DV-2026-0310 |
 | Pedido | `PO-AAAA-0000` | PO-2025-0088 |
 | Movimiento de almacén | `MV-AAAA-00000` | MV-2026-01544 |
@@ -668,7 +716,8 @@ Una tabla solo puede cargarse cuando ya existen las tablas a las que apunta:
 7. `Quality_Incidents`
 8. `Maintenance_Order_Holds`, `Document_Verifications`, `Root_Cause_Analyses`, `Stock_Counts`
 9. `CAPA_Actions`, `CAPA_Progress_Updates`, `Inventory_Movements`
-10. `Audit_Log`
+10. `Lessons_Learned` (Fase 9; se generan después de la simulación, ver sección 6.5)
+11. `Audit_Log`
 
 En la práctica, el generador simula día a día e inserta cada registro cuando "ocurre". Este orden es el de dependencias.
 
@@ -709,6 +758,7 @@ Cada requisito del enunciado, con la tabla y el campo que lo cubren.
 | Verificar la eficacia | `effectiveness_check_date`, `effectiveness_result`, `verified_by` |
 | Cierre formal | `status = CLOSED`, `closed_date` |
 | 5 porqués / Ishikawa / tendencias | `Root_Cause_Analyses` (`why_1…5`, `ishikawa_category`) · `origin = TREND_ANALYSIS` |
+| Mejora continua: lecciones aprendidas e incorporación a documentos controlados *(Fase 9)* | `Lessons_Learned` (`status`, `incorporated_revision_id`) · KPI LRN-01 |
 
 ### Módulo C — Document Control
 
