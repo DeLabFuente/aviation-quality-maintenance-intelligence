@@ -159,7 +159,7 @@ Sin Python también se puede: en Power BI, *Transformar datos → Editar paráme
 
 Varios documentos contenían rutas del tipo `C:\Users\<tu usuario>\Dropbox\…\<tu carpeta>\…`. Al publicarlas se habrían visto tu usuario de Windows y la estructura de tus carpetas. Se han sustituido por `C:\Users\<usuario>\…` o por "la carpeta del proyecto". La regla R05 impide que vuelvan a aparecer.
 
-Los datos de autor que aparecen en el repositorio son solo los que tú decidas: el nombre de la licencia y del apartado *About the author* del README. Hasta que me los indiques, la regla R04 bloquea la publicación.
+Los únicos datos de autor del repositorio son los que elegiste: el nombre **DeLabFuente** en la licencia y en el apartado *About the author* del README. Antes de publicar, el parámetro `DataFolder` también se cambió a una ruta neutra (`C:\Proyectos\aviation-quality-maintenance-intelligence\data\processed\`). Cada persona escribe la suya con `set_powerbi_data_folder.py`.
 
 ---
 
@@ -181,6 +181,8 @@ En la Fase 1 se aprobó la decisión **D7: el repositorio irá fuera de Dropbox 
 | 6 | Tú | La carpeta de Dropbox queda como copia antigua: puedes archivarla o borrarla cuando compruebes que la nueva funciona |
 
 Ventajas: no tienes que manejar Git para la primera publicación, el contenido subido es exactamente el que se ha comprobado aquí y el problema de Dropbox desaparece desde el primer momento.
+
+**Resultado (19/11/2026):** se eligió la opción A. El repositorio `DeLabFuente/aviation-quality-maintenance-intelligence` se publicó con el *commit* `AQMI v1.0`. La primera ejecución de GitHub Actions terminó **en verde en Linux y en Windows**: pipeline, 151 pruebas y comprobación previa.
 
 ### 8.3 Opción B: lo publicas tú con GitHub Desktop
 
@@ -212,7 +214,7 @@ Son ajustes de la página del repositorio que solo puede hacer el propietario (r
 | Archivo o carpeta | Novedad |
 |---|---|
 | `README.md` | Reescrito por completo, en inglés |
-| `LICENSE` | Nombre del autor (pendiente de que me lo indiques) |
+| `LICENSE` | Autor: DeLabFuente |
 | `requirements.txt` | Añadidos `jsonschema` y `referencing` |
 | `.gitignore` | Añadidos los archivos locales de Power BI (`.pbi/localSettings.json`, `.pbi/cache.abf`) |
 | `.github/workflows/tests.yml` | Nuevo: integración continua en Linux y Windows |
