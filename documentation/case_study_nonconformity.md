@@ -2,7 +2,7 @@
 
 > **Synthetic data.** AEROQ MRO is a fictitious company and every person, aircraft and record below is synthetic. This document is generated from the AQMI database by `scripts/build_case_study.py`; every date and figure can be checked with the queries indicated.
 
-This case follows one non-conformity through the whole quality cycle: detection, investigation, root-cause analysis, corrective action, effectiveness verification and formal closure. It also checks, with data, whether the action worked.
+This case follows one non-conformity through the whole quality cycle: detection, investigation, root-cause analysis, corrective action, effectiveness verification, formal closure and the lesson learned that changed a controlled document. It also checks, with data, whether the action worked.
 
 ## 1. The finding
 
@@ -48,9 +48,26 @@ Record-versus-source checks of work order closure records, by revision of form F
 
 The discrepancy rate fell by about two thirds after the redesigned form came into force. In this synthetic dataset the pattern was introduced on purpose, so that the dashboards have a documented cause and effect to show (see section 4 of the [Phase 4 document](05_fase4_datos_sinteticos.md), in Spanish). In a real organisation the same comparison is the evidence that the action was effective.
 
-## 6. Full audit trail
+## 6. The lesson learned
 
-The creation and every field change of the non-conformity and of its action come from `Audit_Log`, which database triggers write on every insert and update, so no change can bypass the log. The root-cause analysis and the progress updates come from their own tables.
+Closing the non-conformity is not the end of the cycle. What was learned is recorded as a lesson, approved by someone other than its author and incorporated into a controlled document, so that the improvement reaches other forms and procedures. This is a general quality-management practice that AEROQ MRO applies voluntarily; it is not presented as a regulatory requirement.
+
+| Field | Value |
+|---|---|
+| Lesson | **LL-2025-0015** — Mandatory fields must be evident on forms |
+| From action | CA-2025-0028 · scope: company |
+| What was learned | Recording errors on work order closure records fell after the form was redesigned to make mandatory fields evident (CA-2025-0028). |
+| Recommendation | Apply the same design rule to every form when it is revised: highlight mandatory fields and brief the users. |
+| Proposed | 29 May 2025, by Andrés García Martínez |
+| Approved | 18 Jun 2025, by Beatriz Garrido Ramos |
+| Status | Incorporated |
+| Incorporated in | FRM-PRD-004 R01 (Form – Work order closure record), in force since 07 May 2025; recorded on 18 Jun 2025 |
+
+Here the redesigned form **was** the corrective action: FRM-PRD-004 R01 came into force before the action was verified, so the lesson was already incorporated when it was approved. For every other lesson, the revision that incorporates it must come into force after the approval (rule L06).
+
+## 7. Full audit trail
+
+The creation and every field change of the non-conformity, of its action and of its lesson come from `Audit_Log`, which database triggers write on every insert and update, so no change can bypass the log. The root-cause analysis and the progress updates come from their own tables.
 
 | When | Item | Reference | Event | Who |
 |---|---|---|---|---|
@@ -77,9 +94,16 @@ The creation and every field change of the non-conformity and of its action come
 | 2025-05-20 12:05 | Non-conformity | NC-2025-0021 | closed_date: — → 2025-05-20 | Pablo López Garrido |
 | 2025-05-20 12:05 | Non-conformity | NC-2025-0021 | closed_by: — → 5 | Pablo López Garrido |
 | 2025-05-20 12:05 | Non-conformity | NC-2025-0021 | closure_summary: — → Measures adopted: Redesign the work order closure record FRM-PRD-004. | Pablo López Garrido |
+| 2025-05-29 09:42 | Lesson learned | LL-2025-0015 | Proposed: Mandatory fields must be evident on forms | Andrés García Martínez |
+| 2025-06-18 15:24 | Lesson learned | LL-2025-0015 | status: PROPOSED → APPROVED | Beatriz Garrido Ramos |
+| 2025-06-18 15:24 | Lesson learned | LL-2025-0015 | approved_date: — → 2025-06-18 | Beatriz Garrido Ramos |
+| 2025-06-18 15:24 | Lesson learned | LL-2025-0015 | approved_by: — → 4 | Beatriz Garrido Ramos |
+| 2025-06-18 15:59 | Lesson learned | LL-2025-0015 | status: APPROVED → INCORPORATED | Laura Suárez Ramírez |
+| 2025-06-18 15:59 | Lesson learned | LL-2025-0015 | incorporated_date: — → 2025-06-18 | Laura Suárez Ramírez |
+| 2025-06-18 15:59 | Lesson learned | LL-2025-0015 | incorporated_revision_id: — → 516 | Laura Suárez Ramírez |
 
-## 7. How to reproduce it
+## 8. How to reproduce it
 
 - **SQL:** run [`sql/queries/01_nonconformity_full_history.sql`](../sql/queries/01_nonconformity_full_history.sql) on `database/aqmi.db` (for example in DB Browser for SQLite). Write another number in the first lines to follow any other non-conformity.
-- **Power BI:** page *Audit & Traceability*: choose *Quality_Incidents* in the *Table* filter and NC-2025-0021 in the *Record* filter. The *Audit trail* table shows the history of the non-conformity record.
+- **Power BI:** page *Audit & Traceability*: choose *Quality_Incidents* in the *Table* filter and NC-2025-0021 in the *Record* filter. The *Audit trail* table shows the history of the non-conformity record. The *Lessons learned* block of the *Corrective Actions* page lists its lesson.
 - **Regenerate this document:** `python scripts/build_case_study.py`.

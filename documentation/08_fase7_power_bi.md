@@ -131,6 +131,7 @@ Las 81 medidas están en la tabla `_Measures`, organizadas en carpetas:
 | `1. Quality` · `2. CAPA` · `3. Documents` · `4. Inventory` · `5. Maintenance` | Los 18 indicadores y las medidas de apoyo de cada página |
 | `6. Aircraft` · `7. Audit & Data Quality` | Medidas de flota y de calidad de los datos |
 | `9. Helpers` | Fecha de corte, fecha seleccionada y fecha de la foto mensual |
+| `8. Lessons Learned` *(Fase 9)* | Lecciones propuestas, aprobadas, incorporadas y pendientes, y el indicador LRN-01. Con ellas el modelo tiene **87 medidas** |
 
 ### Tres patrones que conviene entender
 

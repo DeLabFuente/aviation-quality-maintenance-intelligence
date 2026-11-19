@@ -7,7 +7,7 @@
 |---|---|
 | Period | 2024-11 to 2026-10 (24 months) |
 | Cut-off date | 2026-10-31 |
-| Report run | 2026-11-19 22:16 |
+| Report run | 2026-11-19 22:20 |
 | Indicators | 19 |
 | **KPI checks (K rules)** | **✅ PASSED** |
 

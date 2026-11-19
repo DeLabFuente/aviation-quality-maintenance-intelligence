@@ -371,9 +371,28 @@ Cada ficha responde a las seis preguntas del encargo: qué mide, fórmula exacta
 
 ---
 
+### CONTINUOUS IMPROVEMENT *(añadido en la Fase 9)*
+
+#### LRN-01 — Lesson Incorporation Rate (Lecciones aprendidas incorporadas)
+
+| | |
+|---|---|
+| **Qué mide** | De las lecciones aprendidas aprobadas hasta la fecha, qué porcentaje está ya incorporado a un documento controlado |
+| **Fórmula** | Lecciones con `incorporated_date` ≤ fecha ÷ lecciones con `approved_date` ≤ fecha × 100. Tipo *foto a fecha* (SNAPSHOT); el TOTAL es la situación en la fecha de corte |
+| **Tablas** | `Lessons_Learned` (y `Document_Revisions` para la revisión incorporada) |
+| **Archivo** | `sql/kpi/LRN01_lesson_incorporation_rate.sql` |
+| **Frecuencia** | Mensual |
+| **Interpretación** | Si lo aprendido llega de verdad a los procedimientos, instrucciones y formularios, o se queda en el registro. Un valor bajo indica lecciones aprobadas que nadie ha llevado a un documento |
+| **Objetivo ficticio** | ≥ 80 % (alerta por debajo de 60 %). **Objetivo interno ficticio de AEROQ MRO**, no un requisito normativo |
+| **Limitaciones** | Las lecciones rechazadas o aún sin decidir no cuentan. Una lección aprobada al final del periodo baja el valor aunque todavía esté en plazo razonable: por eso la regla L07 solo avisa a partir de 90 días. No mide la calidad del cambio introducido en el documento |
+
+Definición completa y diseño del registro: `09b_fase9_lecciones_aprendidas.md`. La regla K05 compara la situación reconstruida en la fecha de corte con el estado actual de `Lessons_Learned`.
+
+---
+
 ### Indicador complementario: Data Quality Score
 
-Definido en la Fase 5 (documento 06): **reglas de validación superadas ÷ reglas ejecutadas × 100**. Valor actual: **90,2 %**. No mide a AEROQ MRO, sino la calidad de los datos del propio sistema. Se mostrará en la página *Audit & Traceability* de Power BI.
+Definido en la Fase 5 (documento 06): **reglas de validación superadas ÷ reglas ejecutadas × 100**. Valor en la Fase 6: **90,2 %** (82 reglas). Tras la Fase 9: **89,9 %** (89 reglas). No mide a AEROQ MRO, sino la calidad de los datos del propio sistema. Se mostrará en la página *Audit & Traceability* de Power BI.
 
 ---
 

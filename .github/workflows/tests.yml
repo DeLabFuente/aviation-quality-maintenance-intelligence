@@ -2,8 +2,8 @@
 #
 # On every push and pull request, GitHub runs the whole pipeline on a clean
 # machine (Linux and Windows): database, synthetic data, quality gate, KPIs,
-# Power BI export and project check, the automated tests and the
-# pre-publication check. The badge at the top of the README shows the result.
+# Power BI export and project check, the automated tests, that the stored data
+# matches the generator (Linux) and the pre-publication check. The badge at the top of the README shows the result.
 name: tests
 
 on:
@@ -43,6 +43,13 @@ jobs:
 
       - name: Run the automated tests
         run: python -m pytest -q
+
+      # Phase 9: the lessons learned must leave every v1.0 record unchanged (a test checks it),
+      # and the CSV files stored in the repository must be exactly what the generator produces.
+      # Only Model_Info.csv is excluded: it records the time of the run.
+      - name: Check that the data in the repository matches the generator
+        if: runner.os == 'Linux'
+        run: git diff --exit-code --stat -- data/synthetic data/processed ':(exclude)data/processed/Model_Info.csv'
 
       - name: Run the pre-publication check
         run: python scripts/check_release.py

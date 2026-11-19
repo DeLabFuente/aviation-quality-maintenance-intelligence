@@ -23,7 +23,7 @@
 
 ## Contents
 
-[Overview](#overview) · [What this project demonstrates](#what-this-project-demonstrates) · [Objectives](#objectives) · [Features](#features) · [Architecture](#architecture) · [Tech stack](#tech-stack) · [Data model](#data-model) · [Quality controls](#quality-controls) · [KPIs](#kpis) · [Dashboards](#dashboards-screenshots) · [Case study](#case-study) · [What the data shows](#what-the-data-shows) · [Regulatory context](#regulatory-context) · [Getting started](#getting-started-installation) · [Repository structure](#repository-structure) · [Methodology](#methodology) · [Limitations](#limitations) · [Disclaimer](#synthetic-data-and-disclaimer) · [About the author](#about-the-author)
+[Overview](#overview) · [What this project demonstrates](#what-this-project-demonstrates) · [Objectives](#objectives) · [Features](#features) · [Architecture](#architecture) · [Tech stack](#tech-stack) · [Data model](#data-model) · [Quality controls](#quality-controls) · [KPIs](#kpis) · [Dashboards](#dashboards-screenshots) · [Case study](#case-study) · [Improvement cycle](#improvement-cycle-lessons-learned) · [What the data shows](#what-the-data-shows) · [Regulatory context](#regulatory-context) · [Getting started](#getting-started-installation) · [Repository structure](#repository-structure) · [Methodology](#methodology) · [Limitations](#limitations) · [Disclaimer](#synthetic-data-and-disclaimer) · [About the author](#about-the-author)
 
 ## Overview
 
@@ -31,6 +31,7 @@
 
 - non-conformities are detected, classified, investigated and closed;
 - every non-conformity can lead to corrective and preventive actions (CAPA) whose effectiveness is verified before closure;
+- what was learned from an action is recorded as a lesson, approved and incorporated into a controlled document;
 - controlled documents have revisions, review dates and verifications;
 - stores receive, reserve, block and issue materials against maintenance orders;
 - maintenance orders are followed from opening to closure, including the holds caused by missing material or documentation;
@@ -45,12 +46,12 @@ It is **not just a dashboard**. A relational database enforces the business rule
 | Non-conformity management: classification, severity, ownership, status workflow | `Quality_Incidents` table and its rules · [case study](documentation/case_study_nonconformity.md) |
 | Root-cause analysis (5 Why, Ishikawa) and CAPA follow-up up to effectiveness verification | `Root_Cause_Analyses`, `CAPA_Actions` · *Corrective Actions* page |
 | Document control: revisions, validity, expired documents still in use | `Documents`, `Document_Revisions` · [query 06](sql/queries/06_expired_documents_in_use.sql) · *Document Control* page |
-| Data verification: checking records against their source and requesting corrections | `Document_Verifications` · 82 [validation rules](sql/validation) |
+| Data verification: checking records against their source and requesting corrections | `Document_Verifications` · 89 [validation rules](sql/validation) |
 | Traceability from supplier to aircraft | [query 02](sql/queries/02_lot_traceability.sql) · `Audit_Log` · *Audit & Traceability* page |
 | Stores and materials control: stock by status, minimum stock, pending orders, shortages | `Inventory_Movements`, `Purchase_Orders` · *Materials & Inventory* page |
 | Maintenance-order follow-up: delays, holds by material or documentation | `Maintenance_Orders`, `Maintenance_Order_Holds` · *Maintenance Production* page |
-| KPI design and reporting for management | [18 KPI definitions](documentation/07_fase6_indicadores.md) · [KPI report](reports/kpi_report.md) · 8 dashboards |
-| Continuous improvement: measuring whether an action worked | [What the data shows](#what-the-data-shows) |
+| KPI design and reporting for management | [19 KPI definitions](documentation/07_fase6_indicadores.md) · [KPI report](reports/kpi_report.md) · 8 dashboards |
+| Continuous improvement: measuring whether an action worked, and turning what was learned into a document change | [What the data shows](#what-the-data-shows) · [Improvement cycle](#improvement-cycle-lessons-learned) · `Lessons_Learned` |
 
 ## Objectives
 
@@ -67,22 +68,22 @@ It is **not just a dashboard**. A relational database enforces the business rule
 | Module | What it does |
 |---|---|
 | **A — Quality management** | Non-conformities with unique number (`NC-YYYY-NNNN`), 8 categories, severity (observation / minor / major / critical), priority, responsible department and owner, containment, target closure date and closure summary. Status workflow from *open* to *closed*. |
-| **B — Corrective and preventive actions** | Actions linked to the non-conformity, responsible person, due date and rescheduling history, progress updates, overdue detection, independent effectiveness verification and formal closure. Root-cause analysis by 5 Why or Ishikawa category. |
+| **B — Corrective and preventive actions** | Actions linked to the non-conformity, responsible person, due date and rescheduling history, progress updates, overdue detection, independent effectiveness verification and formal closure. Root-cause analysis by 5 Why or Ishikawa category. **Lessons learned** register: lessons from closed and verified actions, approved by someone other than the proposer and incorporated into a controlled document revision. |
 | **C — Document control** | 250 controlled documents with 602 revisions: issue, effective and review dates, superseded revisions, verifications and who performed them. Detects expired documents and documents used after expiry. |
 | **D — Materials and inventory** | 100 part numbers, 40 suppliers, purchase orders and lines, receipts with release certificate, stock by status (available, reserved, quarantine, blocked, non-conforming), stock counts and minimum stock. Stock is always calculated from movements, never stored. |
 | **E — Maintenance and production control** | 491 maintenance orders (scheduled and unscheduled): planned and actual dates, documents and materials required, holds by material or documentation. No engineering or airworthiness calculations: only administrative control. |
-| **F — Audit and traceability** | 86 triggers write every insert and update into `Audit_Log` (17,383 events): who, when, which field, old and new value. Any record's history can be rebuilt, and incomplete records are detected by the validation rules. |
+| **F — Audit and traceability** | 90 triggers write every insert and update into `Audit_Log` (17,746 events): who, when, which field, old and new value. Any record's history can be rebuilt, and incomplete records are detected by the validation rules. |
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    SIM["Python simulator<br/>24 months · fixed seed"] --> DB[("SQLite database<br/>24 tables · 14 views · 86 triggers")]
-    DB --> GATE{"Quality gate<br/>82 validation rules"}
+    SIM["Python simulator<br/>24 months · fixed seed"] --> DB[("SQLite database<br/>25 tables · 15 views · 90 triggers")]
+    DB --> GATE{"Quality gate<br/>89 validation rules"}
     GATE -- "fails" --> STOP["Stop<br/>nothing is exported"]
-    GATE -- "passes" --> KPI["KPI engine<br/>18 KPIs · consistency checks"]
-    KPI --> EXP["Star schema export<br/>27 CSV files"]
-    EXP --> PBI["Power BI project (.pbip)<br/>81 DAX measures · 8 pages"]
+    GATE -- "passes" --> KPI["KPI engine<br/>19 KPIs · consistency checks"]
+    KPI --> EXP["Star schema export<br/>28 CSV files"]
+    EXP --> PBI["Power BI project (.pbip)<br/>87 DAX measures · 8 pages"]
     DB --> REP["Reports<br/>validation · KPIs"]
     KPI --> REP
 ```
@@ -97,14 +98,14 @@ One command runs the whole chain: `python scripts/run_pipeline.py`. Every step i
 | **SQL / SQLite** | Relational database with `STRICT` tables, constraints, triggers and views | A single file, nothing to install, real SQL; the schema can move to PostgreSQL later |
 | **Power BI Desktop + DAX** | Semantic model (star schema) and 8 dashboards | The reporting tool most used in industry |
 | **Power BI Project (.pbip): TMDL + PBIR** | Model and report stored as text files | Every measure and visual can be reviewed in Git, unlike a binary `.pbix` |
-| **pytest** | 150+ automated tests | Proves that rules, KPIs and exports behave as documented |
+| **pytest** | 175+ automated tests | Proves that rules, KPIs and exports behave as documented |
 | **GitHub Actions** | Runs the pipeline and the tests on Linux and Windows on every push | Anyone can see that the project works on a clean machine |
 | **Markdown + Mermaid** | Documentation and diagrams | Rendered directly by GitHub |
 | **CSV / Excel** | Data exchange (synthetic tables, Power BI source) | Open formats any office can read |
 
 ## Data model
 
-24 tables in third normal form, organised by module. Every foreign key is enforced, every status has a `CHECK` constraint, and dates are validated (for example, an action cannot be verified before it is completed, and the verifier cannot be the person responsible for the action). Simplified core:
+25 tables in third normal form, organised by module. Every foreign key is enforced, every status has a `CHECK` constraint, and dates are validated (for example, an action cannot be verified before it is completed, and the verifier cannot be the person responsible for the action). Simplified core:
 
 ```mermaid
 erDiagram
@@ -125,10 +126,12 @@ erDiagram
     QUALITY_INCIDENTS ||--o{ ROOT_CAUSE_ANALYSES : "is analysed in"
     QUALITY_INCIDENTS ||--o{ CAPA_ACTIONS : "triggers"
     CAPA_ACTIONS ||--o{ CAPA_PROGRESS_UPDATES : "reports"
+    CAPA_ACTIONS ||--o{ LESSONS_LEARNED : "leaves"
+    DOCUMENT_REVISIONS |o--o{ LESSONS_LEARNED : "incorporates"
     EMPLOYEES ||--o{ AUDIT_LOG : "performs"
 ```
 
-Full definitions: [data dictionary](documentation/02_diccionario_de_datos.md) and [business rules](documentation/03_reglas_de_negocio.md) (Spanish). For Power BI the data is reshaped into a **star schema**: 9 dimensions, 17 fact tables (including monthly snapshots of actions, stock, purchase orders and documents) and 41 single-direction relationships.
+Full definitions: [data dictionary](documentation/02_diccionario_de_datos.md) and [business rules](documentation/03_reglas_de_negocio.md) (Spanish). For Power BI the data is reshaped into a **star schema**: 9 dimensions, 18 fact tables (including monthly snapshots of actions, stock, purchase orders and documents) and 43 single-direction relationships.
 
 ## Quality controls
 
@@ -137,16 +140,16 @@ The project applies to its own data the controls a quality office applies to rea
 | Control | What it checks | Result |
 |---|---|---|
 | **Database constraints** | Keys, allowed values, date order, closure prerequisites | Invalid records cannot be saved |
-| **Quality gate** — [82 rules](sql/validation) | Integrity, completeness, duplicates, coherence between modules, process compliance | 0 critical failures · Data Quality Score 90.2 % · [report](reports/validation_report.md) |
+| **Quality gate** — [89 rules](sql/validation) | Integrity, completeness, duplicates, coherence between modules, process compliance | 0 critical failures · Data Quality Score 89.9 % · [report](reports/validation_report.md) |
 | **Planted discrepancies** | The simulator plants 9 known errors; the rules must find exactly those 9 | 9 of 9 detected, no false positives in those rules |
 | **KPI checks** (K01–K05) | Monthly values add up to the totals, rebuilt history matches the current state, Power BI matches SQL | All passed · [report](reports/kpi_report.md) |
 | **Power BI project check** | TMDL syntax, every DAX reference, unambiguous relationships, every field used by every visual, official Microsoft JSON schemas | `POWER BI PROJECT OK` |
-| **Automated tests** | 150+ tests, including negative tests that inject defects and expect them to be caught | Run on every push by GitHub Actions |
+| **Automated tests** | 175+ tests, including negative tests that inject defects and expect them to be caught | Run on every push by GitHub Actions |
 | **Pre-publication check** | Required files, README sections, broken links, placeholders, personal paths, file sizes | `python scripts/check_release.py` |
 
 ## KPIs
 
-18 indicators in four areas. Each one is defined once, as an SQL query in [`sql/kpi`](sql/kpi), with what it measures, exact formula, tables, frequency, interpretation and limitations ([full definitions](documentation/07_fase6_indicadores.md), Spanish). Values for the whole period (Nov 2024 – Oct 2026), or at the cut-off date (31 Oct 2026) for state indicators:
+18 indicators in four areas, plus one continuous-improvement indicator added in Phase 9. Each one is defined once, as an SQL query in [`sql/kpi`](sql/kpi), with what it measures, exact formula, tables, frequency, interpretation and limitations ([full definitions](documentation/07_fase6_indicadores.md), Spanish). Values for the whole period (Nov 2024 – Oct 2026), or at the cut-off date (31 Oct 2026) for state indicators:
 
 | Area | KPI | Value | Target* | Status |
 |---|---|---:|---:|:---:|
@@ -168,6 +171,7 @@ The project applies to its own data the controls a quality office applies to rea
 | Maintenance | Average Maintenance Delay | 2.3 days | ≤ 2 | 🟠 |
 | Maintenance | Work Orders Blocked by Material | 4 | — | — |
 | Maintenance | Work Orders Blocked by Documentation | 0 | — | — |
+| Continuous improvement | Lesson Incorporation Rate | 76.9 % | ≥ 80 % | 🟠 |
 
 \* **Fictitious internal targets of AEROQ MRO**, set before the values were calculated. They are not regulatory thresholds. 🟠 = within the fictitious warning band, 🔴 = beyond it.
 
@@ -176,12 +180,12 @@ The project applies to its own data the controls a quality office applies to rea
 
 ## Dashboards (screenshots)
 
-The Power BI report has 8 pages with a common layout: navigation bar, page filters, KPI cards, and charts and tables that answer one question each. The model behind them is a star schema with 81 documented DAX measures. A PDF export of the whole report is in [`assets/AQMI_report.pdf`](assets/AQMI_report.pdf).
+The Power BI report has 8 pages with a common layout: navigation bar, page filters, KPI cards, and charts and tables that answer one question each. The model behind them is a star schema with 87 documented DAX measures. A PDF export of the whole report is in [`assets/AQMI_report.pdf`](assets/AQMI_report.pdf).
 
 <table>
   <tr>
     <td width="50%"><img src="assets/screenshots/02_quality_performance.png" alt="Quality Performance"><br><b>Quality Performance</b> — non-conformities per month by severity, recurring problems by category, root causes (Ishikawa 6M), resolution time by department.</td>
-    <td width="50%"><img src="assets/screenshots/03_corrective_actions.png" alt="Corrective Actions"><br><b>Corrective Actions</b> — open actions and their owners, actions by status and type, backlog at each month end.</td>
+    <td width="50%"><img src="assets/screenshots/03_corrective_actions.png" alt="Corrective Actions"><br><b>Corrective Actions</b> — open actions and their owners, actions by status and type, backlog at each month end, and the lessons learned with their incorporation into controlled documents.</td>
   </tr>
   <tr>
     <td><img src="assets/screenshots/04_document_control.png" alt="Document Control"><br><b>Document Control</b> — compliance at each month end, documents past their review date, verifications with discrepancies.</td>
@@ -192,14 +196,35 @@ The Power BI report has 8 pages with a common layout: navigation bar, page filte
     <td><img src="assets/screenshots/07_aircraft_overview.png" alt="Aircraft Overview"><br><b>Aircraft Overview</b> — fleet comparison, work orders by aircraft and maintenance type, monthly activity.</td>
   </tr>
   <tr>
-    <td><img src="assets/screenshots/08_audit_traceability.png" alt="Audit and Traceability"><br><b>Audit &amp; Traceability</b> — audit trail of any record, validation findings and the Power BI vs SQL reconciliation of the 18 KPIs.</td>
+    <td><img src="assets/screenshots/08_audit_traceability.png" alt="Audit and Traceability"><br><b>Audit &amp; Traceability</b> — audit trail of any record, validation findings and the Power BI vs SQL reconciliation of the 19 KPIs.</td>
     <td><img src="assets/screenshots/01_executive_overview.png" alt="Executive Overview"><br><b>Executive Overview</b> — KPI scorecard against the fictitious targets, non-conformities per month, open non-conformities.</td>
   </tr>
 </table>
 
 ## Case study
 
-**[NC-2025-0021 — from detection to verified closure](documentation/case_study_nonconformity.md).** A recording error found during a document verification is followed step by step: investigation, Ishikawa analysis (cause: *method*), corrective action to redesign a work-order closure form, independent effectiveness check and closure in 60 days. The document then checks with data that the measure worked: discrepancies on the closure record fell from 16.5 % to 5.1 % after the new form revision. It is generated from the database, and a test keeps it identical to the data.
+**[NC-2025-0021 — from detection to verified closure](documentation/case_study_nonconformity.md).** A recording error found during a document verification is followed step by step: investigation, Ishikawa analysis (cause: *method*), corrective action to redesign a work-order closure form, independent effectiveness check and closure in 60 days. The document then checks with data that the measure worked: discrepancies on the closure record fell from 16.5 % to 5.1 % after the new form revision. Finally, the lesson learned (*mandatory fields must be evident on forms*) is approved and recorded as incorporated into that form revision. It is generated from the database, and a test keeps it identical to the data.
+
+## Improvement cycle (lessons learned)
+
+Closing a non-conformity is not the end of the cycle. AQMI records what was learned and checks that it reached a controlled document:
+
+```mermaid
+flowchart LR
+    NC["Non-conformity"] --> RCA["Root cause<br/>5 Why · Ishikawa"] --> CAPA["Corrective / preventive action"]
+    CAPA --> EFF{"Effectiveness<br/>verified"}
+    EFF -- "effective or not" --> LL["Lesson learned<br/>proposed"]
+    LL --> DEC{"Approved by<br/>another person?"}
+    DEC -- "rejected (reason required)" --> END["Recorded, no change"]
+    DEC -- "approved" --> DOC["Controlled document<br/>new revision in force"]
+```
+
+- **Register.** `Lessons_Learned` links each lesson to its action (and, through it, to the non-conformity): what was learned, what should change, owner department and scope (one department or the whole company). Status *proposed → approved → incorporated*, or *rejected* with a mandatory reason.
+- **Rules.** A lesson is proposed only after the action is closed and its effectiveness verified; actions found *not effective* also leave a lesson. The approver is never the proposer. The incorporated revision belongs to a controlled procedure, work instruction or form and was in force when the incorporation was recorded. Seven validation rules (L01–L07) and the audit trail cover the whole life cycle.
+- **Indicator.** *Lesson Incorporation Rate* (LRN-01): approved lessons already incorporated into a controlled document, 76.9 % at the cut-off date against a **fictitious internal target** of 80 %. Approved lessons still waiting appear on the *Corrective Actions* page.
+- **Data.** The 59 lessons were generated after the simulation with a separate random generator, so no record of v1.0 changed (a test checks it).
+
+Lessons learned are presented as a **general quality-management practice** that the fictitious company applies voluntarily, **not as a regulatory requirement**. Details (Spanish): [lessons-learned document](documentation/09b_fase9_lecciones_aprendidas.md).
 
 ## What the data shows
 
@@ -248,7 +273,7 @@ python scripts/set_powerbi_data_folder.py   # points Power BI to data/processed 
 Then open `powerbi/AQMI.pbip` in Power BI Desktop and press **Refresh**.
 
 - **Only the dashboards, without Python:** the CSV files are already in [`data/processed`](data/processed). Open `powerbi/AQMI.pbip`, go to *Transform data → Edit parameters*, set `DataFolder` to the full path of `data\processed\` (ending with a backslash) and press **Refresh**.
-- **Only the data:** the 24 tables of the database are also in [`data/synthetic`](data/synthetic) as CSV files.
+- **Only the data:** the 25 tables of the database are also in [`data/synthetic`](data/synthetic) as CSV files.
 - A beginner-friendly, step-by-step guide (Spanish) is in the [Phase 3 document](documentation/04_fase3_entorno_y_base_de_datos.md).
 
 ## Repository structure
@@ -256,8 +281,8 @@ Then open `powerbi/AQMI.pbip` in Power BI Desktop and press **Refresh**.
 ```text
 ├── config/            settings.py (paths, cut-off date, seed) and simulator parameters
 ├── data/
-│   ├── synthetic/     the 24 database tables as CSV, plus the list of planted discrepancies
-│   └── processed/     star schema exported for Power BI (27 CSV files)
+│   ├── synthetic/     the 25 database tables as CSV, plus the list of planted discrepancies
+│   └── processed/     star schema exported for Power BI (28 CSV files)
 ├── database/          aqmi.db, rebuilt by the pipeline (not stored in Git)
 ├── documentation/     one document per phase, case study, data dictionary, business rules
 ├── powerbi/           AQMI.pbip: semantic model (TMDL) and report (PBIR)
@@ -265,11 +290,11 @@ Then open `powerbi/AQMI.pbip` in Power BI Desktop and press **Refresh**.
 ├── scripts/           pipeline, simulator, validation and KPI engines, exports, checks
 ├── sql/
 │   ├── schema/        tables, indexes, triggers and reference data
-│   ├── views/         14 business views
-│   ├── validation/    82 validation rules, one file each
+│   ├── views/         15 business views
+│   ├── validation/    89 validation rules, one file each
 │   ├── queries/       8 business queries a quality office would ask
-│   ├── kpi/           18 KPI reference queries
-│   └── analytics/     22 star-schema queries for Power BI
+│   ├── kpi/           19 KPI reference queries
+│   └── analytics/     23 star-schema queries for Power BI
 ├── tests/             automated tests and Microsoft's official Power BI JSON schemas
 └── assets/            screenshots and PDF export of the dashboards
 ```
@@ -288,7 +313,7 @@ The project was built in nine phases, each closed with its own document, its tes
 | 6 | KPIs | [07](documentation/07_fase6_indicadores.md) |
 | 7 | Power BI model and dashboards | [08](documentation/08_fase7_power_bi.md) |
 | 8 | Documentation and GitHub presentation | [09](documentation/09_fase8_documentacion_y_github.md) |
-| 9 | Final tests and professional review | — |
+| 9 | Final tests, professional review and lessons-learned register | [09b](documentation/09b_fase9_lecciones_aprendidas.md) |
 
 Principles applied throughout:
 

@@ -6,7 +6,7 @@
 |---|---|
 | Database | `aqmi.db` |
 | Data cut-off date | 2026-10-31 |
-| Validation run | 2026-11-19 22:16 |
+| Validation run | 2026-11-19 22:20 |
 | Rules executed | 89 |
 | **Quality gate** | **✅ PASSED** |
 | Critical failures | 0 |

@@ -2,7 +2,8 @@
 -- AQMI — Query 01: full history of a non-conformity (module F, traceability)
 -- Question: "What happened with this non-conformity, who did it and when?"
 -- Rebuilds the complete timeline from the audit log: creation, every status
--- change, root-cause analysis, actions, progress and effectiveness checks.
+-- change, root-cause analysis, actions, progress and effectiveness checks,
+-- and the lessons learned from its actions (Phase 9).
 --
 -- How to use it: change the number in the first lines (params). By default it
 -- shows the non-conformity that led to the redesign of the closure form.
@@ -32,6 +33,14 @@ timeline AS (
     UNION ALL
     SELECT u.created_at, 'Progress', x.action_number, u.progress_pct || ' % — ' || u.comment, u.created_by
     FROM CAPA_Progress_Updates u JOIN actions x USING (action_id)
+    UNION ALL
+    SELECT a.event_datetime, 'Lesson learned', l.lesson_number,
+           CASE a.action WHEN 'INSERT' THEN 'Proposed: ' || l.title
+                WHEN 'UPDATE' THEN a.field_name || ': ' || COALESCE(a.old_value, '—') || ' → ' || COALESCE(a.new_value, '—') END,
+           a.changed_by
+    FROM Audit_Log a
+    JOIN Lessons_Learned l ON a.table_name = 'Lessons_Learned' AND a.record_id = l.lesson_id
+    JOIN actions x ON x.action_id = l.action_id
 )
 SELECT t.moment, t.item, t.reference, t.event, e.first_name || ' ' || e.last_name AS who
 FROM timeline t LEFT JOIN Employees e ON e.employee_id = t.changed_by
