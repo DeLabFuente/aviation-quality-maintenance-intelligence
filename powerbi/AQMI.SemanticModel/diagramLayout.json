@@ -371,6 +371,19 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4038.549260421516,
+            "y": 1113.3496462772582
+          },
+          "nodeIndex": "Fact_Lessons",
+          "nodeLineageTag": "f97984da-a0eb-5b1f-9fb2-06cafab245db",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas las tablas",

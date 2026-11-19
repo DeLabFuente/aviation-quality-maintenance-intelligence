@@ -1,20 +1,20 @@
 kpi_id,kpi_name,kpi_name_es,area,area_order,kpi_order,kpi_type,unit,direction,target,warning,target_label,sql_value,sql_numerator,sql_denominator,sql_status
-DOC-01,Document Compliance Rate,Cumplimiento documental,Document control,2,1,SNAPSHOT,%,HIGHER_IS_BETTER,95,90,≥ 95 %,94.4,202,214,AMBER
-DOC-02,Documentation Error Rate,Tasa de errores documentales,Document control,2,2,FLOW,%,LOWER_IS_BETTER,5,8,≤ 5 %,8.3,64,767,RED
-DOC-03,Expired Documents,Documentos caducados,Document control,2,3,SNAPSHOT,count,LOWER_IS_BETTER,0,5,≤ 0,12,12,,RED
-DOC-04,Traceability Compliance,Cumplimiento de trazabilidad,Document control,2,4,FLOW,%,HIGHER_IS_BETTER,100,99,≥ 100 %,99.2,1341,1352,AMBER
-INV-01,Inventory Accuracy,Exactitud de inventario,Inventory,3,5,FLOW,%,HIGHER_IS_BETTER,95,90,≥ 95 %,89.9,374,416,RED
-INV-02,Stock Availability,Disponibilidad de stock,Inventory,3,6,SNAPSHOT,%,HIGHER_IS_BETTER,95,90,≥ 95 %,93,93,100,AMBER
-INV-03,Material Shortage Rate,Tasa de faltas de material,Inventory,3,7,FLOW,%,LOWER_IS_BETTER,5,8,≤ 5 %,6.6,77,1169,AMBER
-INV-04,Pending Purchase Orders,Pedidos pendientes,Inventory,3,8,SNAPSHOT,count,NEUTRAL,,,—,9,9,,NO_TARGET
-MNT-01,Maintenance Order Completion Rate,Órdenes completadas en plazo,Maintenance,4,9,FLOW,%,HIGHER_IS_BETTER,85,75,≥ 85 %,60.8,290,477,RED
-MNT-02,Average Maintenance Delay,Retraso medio de las órdenes,Maintenance,4,10,FLOW,days,LOWER_IS_BETTER,2,4,≤ 2 days,2.3,1079,473,AMBER
-MNT-03,Work Orders Blocked by Material,Órdenes bloqueadas por material,Maintenance,4,11,SNAPSHOT,count,LOWER_IS_BETTER,,,—,4,4,,NO_TARGET
-MNT-04,Work Orders Blocked by Documentation,Órdenes bloqueadas por documentación,Maintenance,4,12,SNAPSHOT,count,LOWER_IS_BETTER,,,—,0,0,,NO_TARGET
-QUA-01,Total Quality Incidents,Total de no conformidades,Quality,1,13,FLOW,count,NEUTRAL,,,—,141,141,,NO_TARGET
-QUA-02,Open Non-Conformities,No conformidades abiertas,Quality,1,14,SNAPSHOT,count,LOWER_IS_BETTER,,,—,13,13,,NO_TARGET
-QUA-03,Non-Conformity Rate,Tasa de no conformidades,Quality,1,15,FLOW,per 100 orders,LOWER_IS_BETTER,,,—,29.8,141,473,NO_TARGET
-QUA-04,Corrective Action Closure Rate,Cierre de acciones correctivas en plazo,Quality,1,16,FLOW,%,HIGHER_IS_BETTER,85,75,≥ 85 %,69.1,96,139,RED
-QUA-05,Average Resolution Time,Tiempo medio de resolución,Quality,1,17,FLOW,days,LOWER_IS_BETTER,75,90,≤ 75 days,82,10493,128,AMBER
-QUA-06,Overdue Corrective Actions,Acciones correctivas vencidas,Quality,1,18,SNAPSHOT,count,LOWER_IS_BETTER,0,2,≤ 0,2,2,,AMBER
+DOC-01,Document Compliance Rate,Cumplimiento documental,Document control,2,7,SNAPSHOT,%,HIGHER_IS_BETTER,95,90,≥ 95 %,94.4,202,214,AMBER
+DOC-02,Documentation Error Rate,Tasa de errores documentales,Document control,2,8,FLOW,%,LOWER_IS_BETTER,5,8,≤ 5 %,8.3,64,767,RED
+DOC-03,Expired Documents,Documentos caducados,Document control,2,9,SNAPSHOT,count,LOWER_IS_BETTER,0,5,≤ 0,12,12,,RED
+DOC-04,Traceability Compliance,Cumplimiento de trazabilidad,Document control,2,10,FLOW,%,HIGHER_IS_BETTER,100,99,≥ 100 %,99.2,1341,1352,AMBER
+INV-01,Inventory Accuracy,Exactitud de inventario,Inventory,3,11,FLOW,%,HIGHER_IS_BETTER,95,90,≥ 95 %,89.9,374,416,RED
+INV-02,Stock Availability,Disponibilidad de stock,Inventory,3,12,SNAPSHOT,%,HIGHER_IS_BETTER,95,90,≥ 95 %,93,93,100,AMBER
+INV-03,Material Shortage Rate,Tasa de faltas de material,Inventory,3,13,FLOW,%,LOWER_IS_BETTER,5,8,≤ 5 %,6.6,77,1169,AMBER
+INV-04,Pending Purchase Orders,Pedidos pendientes,Inventory,3,14,SNAPSHOT,count,NEUTRAL,,,—,9,9,,NO_TARGET
+MNT-01,Maintenance Order Completion Rate,Órdenes completadas en plazo,Maintenance,4,15,FLOW,%,HIGHER_IS_BETTER,85,75,≥ 85 %,60.8,290,477,RED
+MNT-02,Average Maintenance Delay,Retraso medio de las órdenes,Maintenance,4,16,FLOW,days,LOWER_IS_BETTER,2,4,≤ 2 days,2.3,1079,473,AMBER
+MNT-03,Work Orders Blocked by Material,Órdenes bloqueadas por material,Maintenance,4,17,SNAPSHOT,count,LOWER_IS_BETTER,,,—,4,4,,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Órdenes bloqueadas por documentación,Maintenance,4,18,SNAPSHOT,count,LOWER_IS_BETTER,,,—,0,0,,NO_TARGET
+QUA-01,Total Quality Incidents,Total de no conformidades,Quality,1,1,FLOW,count,NEUTRAL,,,—,141,141,,NO_TARGET
+QUA-02,Open Non-Conformities,No conformidades abiertas,Quality,1,2,SNAPSHOT,count,LOWER_IS_BETTER,,,—,13,13,,NO_TARGET
+QUA-03,Non-Conformity Rate,Tasa de no conformidades,Quality,1,3,FLOW,per 100 orders,LOWER_IS_BETTER,,,—,29.8,141,473,NO_TARGET
+QUA-04,Corrective Action Closure Rate,Cierre de acciones correctivas en plazo,Quality,1,4,FLOW,%,HIGHER_IS_BETTER,85,75,≥ 85 %,69.1,96,139,RED
+QUA-05,Average Resolution Time,Tiempo medio de resolución,Quality,1,5,FLOW,days,LOWER_IS_BETTER,75,90,≤ 75 days,82,10493,128,AMBER
+QUA-06,Overdue Corrective Actions,Acciones correctivas vencidas,Quality,1,6,SNAPSHOT,count,LOWER_IS_BETTER,0,2,≤ 0,2,2,,AMBER
 LRN-01,Lesson Incorporation Rate,Lecciones aprendidas incorporadas,Continuous improvement,5,19,SNAPSHOT,%,HIGHER_IS_BETTER,80,60,≥ 80 %,76.9,40,52,AMBER

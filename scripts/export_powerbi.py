@@ -113,8 +113,12 @@ def export(db_path: Path = settings.DATABASE_PATH, out_dir: Path = settings.POWE
 
     # --- the indicators, as calculated by the SQL reference queries (Phase 6)
     valid = [k for k in kpis["kpis"] if not k.error]
+    # kpi_order follows the areas (Quality first), as in the KPI report and the README
+    ordered = sorted(valid, key=lambda k: AREAS.index(k.area))
+    order_of = {k.kpi_id: n for n, k in enumerate(ordered, start=1)}
     rows = []
-    for order, k in enumerate(valid, start=1):
+    for k in valid:
+        order = order_of[k.kpi_id]
         total = k.total
         symbol = "" if k.target is None else ("≥ " if k.direction == "HIGHER_IS_BETTER" else "≤ ")
         unit = {"%": " %", "days": " days", "count": "", "per 100 orders": ""}[k.unit]

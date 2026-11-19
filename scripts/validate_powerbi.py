@@ -260,16 +260,48 @@ def schema_validator():
         return Resource.from_contents(json.loads(path.read_text(encoding="utf-8")))
 
     registry = Registry(retrieve=retrieve)
+    unchecked: set = set()          # $schema versions with no local copy (reported, not hidden)
+    fallbacks: set = set()          # versions checked against the newest published one
+
+    def local_schema(url: str) -> Path | None:
+        """The schema file of that version or, if Microsoft has not published it yet, the newest
+        published version of the same major version (Power BI Desktop can be ahead of the public
+        repository: in Phase 9 it saved visualContainer 2.14.0 while 2.13.0 was the latest)."""
+        local = SCHEMA_DIR / url.replace(SCHEMA_URL, "")
+        if local.exists():
+            return local
+        version_dir = local.parent
+        try:
+            major, minor, patch = (int(x) for x in version_dir.name.split("."))
+        except ValueError:
+            return None
+        candidates = []
+        for other in version_dir.parent.glob("*/schema.json") if version_dir.parent.exists() else []:
+            try:
+                v = tuple(int(x) for x in other.parent.name.split("."))
+            except ValueError:
+                continue
+            if v[0] == major and v < (major, minor, patch):
+                candidates.append((v, other))
+        return max(candidates)[1] if candidates else None
 
     def validate(document: dict) -> list[str] | None:
         url = document.get("$schema", "")
-        local = SCHEMA_DIR / url.replace(SCHEMA_URL, "")
-        if not url.startswith(SCHEMA_URL) or not local.exists():
+        if not url:
+            return None                                       # the file declares no schema
+        local = local_schema(url) if url.startswith(SCHEMA_URL) else None
+        if local is None:
+            unchecked.add(url)
             return None                                       # schema not available offline
+        if local != SCHEMA_DIR / url.replace(SCHEMA_URL, ""):
+            fallbacks.add(f"{url.replace(SCHEMA_URL, '')} -> {local.relative_to(SCHEMA_DIR).as_posix()}")
+            document = dict(document, **{"$schema": SCHEMA_URL + local.relative_to(SCHEMA_DIR).as_posix()})
         schema = json.loads(local.read_text(encoding="utf-8"))
         validator = Draft7Validator(schema, registry=registry)
         return [f"{'/'.join(map(str, e.absolute_path)) or '(root)'}: {e.message[:160]}"
                 for e in validator.iter_errors(document)]
+    validate.unchecked = unchecked
+    validate.fallbacks = fallbacks
     return validate
 
 
@@ -384,7 +416,9 @@ def validate_project(project_dir: Path = settings.POWERBI_DIR, data_dir: Path | 
     stats = check_report(report_dir, model, problems, validate)
     stats.update(tables=len(model["tables"]), measures=len(model["measures"]),
                  columns=sum(len(t["columns"]) for t in model["tables"].values()),
-                 schemas="official schemas" if validate else "not available (schema check skipped)")
+                 schemas="official schemas" if validate else "not available (schema check skipped)",
+                 schema_unchecked=sorted(validate.unchecked) if validate else [],
+                 schema_fallbacks=sorted(validate.fallbacks) if validate else [])
     return {"problems": problems, "stats": stats}
 
 
@@ -400,6 +434,10 @@ def main() -> int:
         logger.info("Model: %d tables, %d columns, %d measures", s["tables"], s["columns"], s["measures"])
         logger.info("Report: %d pages, %d visuals; JSON files checked against %s: %d",
                     s["pages"], s["visuals"], s["schemas"], s["schema_checked"])
+        for item in s.get("schema_fallbacks", []):
+            logger.info("Schema not yet published by Microsoft, checked against the newest one: %s", item)
+        for item in s.get("schema_unchecked", []):
+            logger.warning("No local copy of schema %s: those files were not checked", item)
     if result["problems"]:
         logger.error("POWER BI PROJECT HAS %d PROBLEM(S)", len(result["problems"]))
         return 1

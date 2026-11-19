@@ -1120,7 +1120,8 @@ def v_chart(kind: str, category: tuple, y: list, title: str, subtitle: str | Non
 
 
 def v_table(fields: list, title: str, subtitle: str | None = None, sort: tuple | None = None, descending: bool = True,
-            color_rules: list | None = None) -> dict:
+            color_rules: list | None = None, widths: dict | None = None) -> dict:
+    """widths: {field ref: width in px}. Fixed widths with text wrap, so every column fits (Phase 9)."""
     query = {"queryState": {"Values": role(fields)}}
     if sort:
         query["sortDefinition"] = {"sort": [{"field": field_expr(sort), "direction": "Descending" if descending else "Ascending"}],
@@ -1131,6 +1132,10 @@ def v_table(fields: list, title: str, subtitle: str | None = None, sort: tuple |
                               "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}],
                                            "metadata": f"{MEASURES_TABLE}.{target}"}}
                              for target, colour_measure in color_rules]
+    if widths:
+        objects.setdefault("values", []).append({"properties": {"wordWrap": boolean(True)}})
+        objects["columnWidth"] = [{"properties": {"value": num(width)}, "selector": {"metadata": f"{ref[1]}.{ref[2]}"}}
+                                  for ref, width in widths.items()]
     return {"visualType": "tableEx", "query": query, "objects": objects,
             "visualContainerObjects": title_objects(title, subtitle)}
 
@@ -1182,11 +1187,14 @@ def page_content(page: str) -> list[tuple]:
                 "Non-conformities per month", "Columns: detected · Line: per 100 completed work orders",
                 y2=[M("Non-Conformity Rate")])),
             ("scorecard", RIGHT_X, MAIN_Y, RIGHT_W, MAIN_H + 12 + BOTTOM_H, v_table(
-                [L_(C("Dim_KPI", "kpi_id"), "KPI"), L_(C("Dim_KPI", "kpi_name"), "Indicator"),
+                [L_(C("Dim_KPI", "kpi_name"), "Indicator"),
                  L_(M("KPI Display Value"), "Value"), L_(C("Dim_KPI", "target_label"), "Target*"),
                  L_(M("KPI Status Label"), "Status")],
                 "KPI scorecard", "*Fictitious internal targets of AEROQ MRO, not regulatory thresholds",
-                color_rules=[("KPI Status Label", "KPI Status Color")])),
+                sort=C("Dim_KPI", "kpi_name"), descending=False,      # kpi_name is sorted by kpi_order (by area)
+                color_rules=[("KPI Status Label", "KPI Status Color")],
+                widths={C("Dim_KPI", "kpi_name"): 166, M("KPI Display Value"): 62, C("Dim_KPI", "target_label"): 64,
+                        M("KPI Status Label"): 90})),
             ("openNC", X0, BOTTOM_Y, LEFT_W, BOTTOM_H, v_table(
                 [L_(C("Fact_Incidents", "incident_number"), "Non-conformity"), C("Fact_Incidents", "severity"),
                  C("Fact_Incidents", "status"), L_(C("Dim_IncidentCategory", "category_name"), "Category"),
@@ -1234,9 +1242,11 @@ def page_content(page: str) -> list[tuple]:
             ("openActions", X0, BOTTOM_Y, LEFT_W, BOTTOM_H, v_table(
                 [L_(C("Fact_CAPA", "action_number"), "Action"),
                  C("Fact_CAPA", "title"), L_(C("Dim_Employee", "full_name"), "Responsible"),
-                 L_(C("Dim_Department", "department_code"), "Dept."), C("Fact_CAPA", "due_date"),
-                 L_(M("Open Action Progress"), "Progress"), L_(M("Open Action Days Overdue"), "Days overdue")],
-                "Open actions", "At the cut-off date · most overdue first", sort=M("Open Action Days Overdue"))),
+                 L_(C("Fact_CAPA", "due_date"), "Due"), L_(M("Open Action Days Overdue"), "Overdue (d)")],
+                "Open actions", "At the cut-off date · most overdue first", sort=M("Open Action Days Overdue"),
+                widths={C("Fact_CAPA", "action_number"): 94, C("Fact_CAPA", "title"): 214,
+                        C("Dim_Employee", "full_name"): 124, C("Fact_CAPA", "due_date"): 84,
+                        M("Open Action Days Overdue"): 76})),
             # Lessons learned block (Phase 9): the last step of the improvement cycle
             ("lessonCards", RIGHT_X, BOTTOM_Y, RIGHT_W, LESSON_CARDS_H, v_cards(
                 [L_(M("Lesson Incorporation Rate"), "Incorporation Rate"),

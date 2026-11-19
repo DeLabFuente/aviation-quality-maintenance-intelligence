@@ -273,6 +273,21 @@ def _broken_copy(project, tmp_path, relative, old, new):
     return validate_project(copy, project["data"])["problems"]
 
 
+def test_unpublished_schema_version_is_checked_against_the_newest_one(project, tmp_path):
+    """Power BI Desktop can save a schema version that Microsoft has not published yet
+    (Phase 9: visualContainer 2.14.0). Those files must still be checked, not skipped."""
+    copy = tmp_path / "pbip"
+    shutil.copytree(project["pbip"], copy)
+    target = copy / "AQMI.Report/definition/pages/p03capa/visuals/lessons/visual.json"
+    content = target.read_text(encoding="utf-8").replace("visualContainer/2.1.0/", "visualContainer/2.99.0/")
+    target.write_text(content, encoding="utf-8")
+    result = validate_project(copy, project["data"])
+    assert result["problems"] == []
+    assert any("2.99.0" in f for f in result["stats"]["schema_fallbacks"])
+    target.write_text(content.replace('"position": {', '"position": {"colour": 1,', 1), encoding="utf-8")
+    assert any("SCHEMA" in p for p in validate_project(copy, project["data"])["problems"])
+
+
 @pytest.mark.parametrize("relative, old, new, expected", [
     ("AQMI.SemanticModel/definition/tables/_Measures.tmdl", "Fact_Incidents[Is Cancelled]",
      "Fact_Incidents[Is Canceled]", "unknown column"),

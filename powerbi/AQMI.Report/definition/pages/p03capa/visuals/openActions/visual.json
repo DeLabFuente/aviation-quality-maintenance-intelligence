@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "openActions",
   "position": {
     "x": 216,
@@ -64,21 +64,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Department"
-                    }
-                  },
-                  "Property": "Department Code"
-                }
-              },
-              "queryRef": "Dim_Department.Department Code",
-              "nativeQueryRef": "Department Code",
-              "displayName": "Dept."
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Fact_CAPA"
                     }
                   },
@@ -86,22 +71,8 @@
                 }
               },
               "queryRef": "Fact_CAPA.Due Date",
-              "nativeQueryRef": "Due Date"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Open Action Progress"
-                }
-              },
-              "queryRef": "_Measures.Open Action Progress",
-              "nativeQueryRef": "Open Action Progress",
-              "displayName": "Progress"
+              "nativeQueryRef": "Due Date",
+              "displayName": "Due"
             },
             {
               "field": {
@@ -116,7 +87,7 @@
               },
               "queryRef": "_Measures.Open Action Days Overdue",
               "nativeQueryRef": "Open Action Days Overdue",
-              "displayName": "Days overdue"
+              "displayName": "Overdue (d)"
             }
           ]
         }
@@ -152,6 +123,96 @@
               }
             }
           }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_CAPA.Action Number"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "214D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_CAPA.Title"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Dim_Employee.Full Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_CAPA.Due Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Open Action Days Overdue"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
         }
       ]
     },
