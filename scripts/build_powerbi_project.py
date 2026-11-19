@@ -85,7 +85,7 @@ TABLE_DESCRIPTIONS = {
     "Dim_Supplier": "Suppliers and their approval status at the cut-off date.",
     "Dim_Document": "Controlled documents and records, with their current revision and validity.",
     "Dim_IncidentCategory": "Categories of non-conformity.",
-    "Dim_KPI": "The 18 indicators: definition, fictitious internal target and SQL reference value.",
+    "Dim_KPI": "The 19 indicators: definition, fictitious internal target and SQL reference value.",
     "Fact_Incidents": "One row per non-conformity.",
     "Fact_CAPA": "One row per corrective or preventive action.",
     "Fact_CAPA_Snapshot": "Actions not yet implemented at each month end (periodic snapshot).",
@@ -100,8 +100,9 @@ TABLE_DESCRIPTIONS = {
     "Fact_DocumentVerifications": "One row per verification of a document or record.",
     "Fact_DocumentSnapshot": "Controlled documents in force at each month end (periodic snapshot).",
     "Fact_AuditEvents": "The audit trail: one row per recorded change.",
+    "Fact_Lessons": "One row per lesson learned, from its proposal to its incorporation into a controlled document.",
     "Fact_KPI_Monthly": "Monthly KPI values as calculated by the SQL reference queries.",
-    "Fact_ValidationResults": "Result of each of the 82 validation rules.",
+    "Fact_ValidationResults": "Result of each of the 89 validation rules.",
     "Fact_ValidationFindings": "Records flagged by the validation rules.",
     "Model_Info": "One row: cut-off date, quality gate status and disclaimer.",
 }
@@ -115,6 +116,7 @@ SORT_BY = [
     ("Fact_Incidents", "status", "status_order"),
     ("Fact_CAPA", "status", "status_order"),
     ("Fact_MaintenanceOrders", "status", "status_order"),
+    ("Fact_Lessons", "status", "status_order"),
     ("Dim_KPI", "area", "area_order"),
     ("Dim_KPI", "kpi_name", "kpi_order"),
 ]
@@ -160,6 +162,8 @@ RELATIONSHIPS = [
     ("Fact_DocumentSnapshot", "owner_department_id", "Dim_Department", "department_id", True),
     ("Fact_AuditEvents", "event_date", "Dim_Date", "date", True),
     ("Fact_AuditEvents", "changed_by", "Dim_Employee", "employee_id", True),
+    ("Fact_Lessons", "proposed_date", "Dim_Date", "date", True),
+    ("Fact_Lessons", "department_id", "Dim_Department", "department_id", True),
     ("Fact_KPI_Monthly", "kpi_id", "Dim_KPI", "kpi_id", True),
     ("Fact_ValidationFindings", "rule_id", "Fact_ValidationResults", "rule_id", True),
 ]
@@ -612,6 +616,48 @@ RETURN
     ("7. Audit & Data Quality", "Validation Findings", "#,0", "Records flagged by the WARNING rules.",
      "COALESCE ( COUNTROWS ( Fact_ValidationFindings ), 0 )"),
 
+    # ------------------------------------------------------------------ lessons learned (Phase 9)
+    ("8. Lessons Learned", "Lessons Proposed", "#,0", "Lessons learned proposed in the period.",
+     "COALESCE ( COUNTROWS ( Fact_Lessons ), 0 )"),
+    ("8. Lessons Learned", "Lessons Approved", "#,0",
+     "Lessons approved (incorporated or not) at the end of the selected period. A rejected lesson is never approved.",
+     """VAR _d = [Selected Date]
+RETURN
+    COALESCE (
+        CALCULATE (
+            COUNTROWS ( Fact_Lessons ),
+            REMOVEFILTERS ( Dim_Date ),
+            NOT ISBLANK ( Fact_Lessons[Approved Date] ),
+            Fact_Lessons[Approved Date] <= _d
+        ),
+        0
+    )"""),
+    ("8. Lessons Learned", "Lessons Incorporated", "#,0",
+     "Approved lessons already incorporated into a controlled document at the end of the selected period.",
+     """VAR _d = [Selected Date]
+RETURN
+    COALESCE (
+        CALCULATE (
+            COUNTROWS ( Fact_Lessons ),
+            REMOVEFILTERS ( Dim_Date ),
+            NOT ISBLANK ( Fact_Lessons[Incorporated Date] ),
+            Fact_Lessons[Incorporated Date] <= _d
+        ),
+        0
+    )"""),
+    ("8. Lessons Learned", "Lesson Incorporation Rate", "0.0%",
+     "LRN-01. Approved lessons already incorporated into a controlled document (fictitious internal target: 80%).",
+     "DIVIDE ( [Lessons Incorporated], [Lessons Approved] )"),
+    ("8. Lessons Learned", "Lessons Pending Incorporation", "#,0",
+     "Approved lessons not yet incorporated into a controlled document at the end of the selected period.",
+     "[Lessons Approved] - [Lessons Incorporated]"),
+    ("8. Lessons Learned", "Lesson Days Pending", "#,0",
+     "Days each approved lesson has been waiting for incorporation at the cut-off date.",
+     """CALCULATE (
+    IF ( MAX ( Fact_Lessons[Is Pending Incorporation] ) = 1, MAX ( Fact_Lessons[Days Pending] ) ),
+    REMOVEFILTERS ( Dim_Date )
+)"""),
+
     # ------------------------------------------------------------------ KPI framework
     ("0. KPI Framework", "KPI Value (Power BI)", "0.0",
      "Value of the KPI selected in Dim_KPI, calculated by the DAX measures (percentages as 0-100).",
@@ -634,7 +680,8 @@ RETURN
     "MNT-01", [Maintenance Order Completion Rate] * 100,
     "MNT-02", [Average Maintenance Delay],
     "MNT-03", [Work Orders Blocked by Material],
-    "MNT-04", [Work Orders Blocked by Documentation]
+    "MNT-04", [Work Orders Blocked by Documentation],
+    "LRN-01", [Lesson Incorporation Rate] * 100
 )"""),
     ("0. KPI Framework", "KPI Value (SQL)", "0.0", "Value of the KPI for the whole period, from its SQL reference query (Phase 6).",
      "SELECTEDVALUE ( Dim_KPI[SQL Value] )"),
@@ -1114,6 +1161,7 @@ LEFT_W, RIGHT_X, RIGHT_W = 628, 856, 408
 CARDS_Y, CARDS_H = 76, 96
 MAIN_Y, MAIN_H = 184, 260
 BOTTOM_Y, BOTTOM_H = 456, 252
+LESSON_CARDS_H = 84                       # lessons learned block, Corrective Actions page (Phase 9)
 
 
 def page_content(page: str) -> list[tuple]:
@@ -1179,12 +1227,21 @@ def page_content(page: str) -> list[tuple]:
             ("backlog", RIGHT_X, MAIN_Y, RIGHT_W, MAIN_H, v_chart(
                 "lineChart", month, [M("Actions Pending Implementation"), M("Overdue Corrective Actions")],
                 "Action backlog at each month end", "Pending implementation · overdue corrective actions")),
-            ("openActions", X0, BOTTOM_Y, W, BOTTOM_H, v_table(
-                [L_(C("Fact_CAPA", "action_number"), "Action"), L_(C("Fact_CAPA", "action_type"), "Type"),
+            ("openActions", X0, BOTTOM_Y, LEFT_W, BOTTOM_H, v_table(
+                [L_(C("Fact_CAPA", "action_number"), "Action"),
                  C("Fact_CAPA", "title"), L_(C("Dim_Employee", "full_name"), "Responsible"),
                  L_(C("Dim_Department", "department_code"), "Dept."), C("Fact_CAPA", "due_date"),
                  L_(M("Open Action Progress"), "Progress"), L_(M("Open Action Days Overdue"), "Days overdue")],
                 "Open actions", "At the cut-off date · most overdue first", sort=M("Open Action Days Overdue"))),
+            # Lessons learned block (Phase 9): the last step of the improvement cycle
+            ("lessonCards", RIGHT_X, BOTTOM_Y, RIGHT_W, LESSON_CARDS_H, v_cards(
+                [M("Lesson Incorporation Rate"), M("Lessons Pending Incorporation")])),
+            ("lessons", RIGHT_X, BOTTOM_Y + LESSON_CARDS_H + 12, RIGHT_W, BOTTOM_H - LESSON_CARDS_H - 12, v_table(
+                [L_(C("Fact_Lessons", "lesson_number"), "Lesson"), C("Fact_Lessons", "status"),
+                 L_(C("Fact_Lessons", "incorporated_in"), "Incorporated in"),
+                 L_(M("Lesson Days Pending"), "Days pending")],
+                "Lessons learned", "Pending incorporation first · target ≥ 80% (fictitious)",
+                sort=M("Lesson Days Pending"))),
         ]
     if page == "p04documents":
         return [
@@ -1294,7 +1351,7 @@ def page_content(page: str) -> list[tuple]:
             ("findings", RIGHT_X, MAIN_Y + 312, RIGHT_W, MAIN_H + BOTTOM_H - 300, v_table(
                 [L_(C("Fact_ValidationFindings", "rule_id"), "Rule"), L_(C("Fact_ValidationFindings", "record_ref"), "Record"),
                  C("Fact_ValidationFindings", "detail")],
-                "Validation findings to review", "WARNING rules (82 rules executed)")),
+                "Validation findings to review", "WARNING rules (89 rules executed)")),
         ]
     raise ValueError(page)
 

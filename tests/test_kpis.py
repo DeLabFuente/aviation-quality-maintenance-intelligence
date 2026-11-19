@@ -1,5 +1,6 @@
 """
-Phase 6 tests: the 18 indicators (KPIs) and the indicator rules K01, K02, K04, K05.
+Phase 6 tests: the 19 indicators (KPIs: 18 from Phase 6 + LRN-01 from Phase 9) and the
+indicator rules K01, K02, K04, K05.
 
 Three kinds of test:
   * the catalogue and the results have the expected structure;
@@ -31,6 +32,7 @@ REQUIRED = {  # the KPIs requested in the project brief
     "Maintenance Order Completion Rate", "Average Maintenance Delay", "Work Orders Blocked by Material",
     "Work Orders Blocked by Documentation",
 }
+ADDED = {"Lesson Incorporation Rate"}   # Phase 9: lessons learned (LRN-01)
 
 
 @pytest.fixture(scope="module")
@@ -50,12 +52,12 @@ def _total(dataset, kpi_id):
 # -----------------------------------------------------------------------------
 # 1. Catalogue and structure
 # -----------------------------------------------------------------------------
-def test_catalogue_has_the_18_requested_kpis():
+def test_catalogue_has_the_18_requested_kpis_and_lrn01():
     kpis = rk.load_kpis()
-    assert len(kpis) == 18
-    assert {k.name for k in kpis} == REQUIRED
+    assert len(kpis) == 19
+    assert {k.name for k in kpis} == REQUIRED | ADDED
     assert {a: sum(k.area == a for k in kpis) for a in rk.AREAS} == \
-        {"Quality": 6, "Document control": 4, "Inventory": 4, "Maintenance": 4}
+        {"Quality": 6, "Document control": 4, "Inventory": 4, "Maintenance": 4, "Continuous improvement": 1}
 
 
 def test_targets_are_marked_as_fictitious():
@@ -81,7 +83,7 @@ def test_reports_are_written(dataset):
     report = (dataset["folder"] / "reports" / "kpi_report.md").read_text(encoding="utf-8")
     assert "fictitious internal targets" in report and "PASSED" in report
     lines = (dataset["folder"] / "reports" / "kpi_values.csv").read_text(encoding="utf-8-sig").splitlines()
-    assert len(lines) == 1 + 18 * 25
+    assert len(lines) == 1 + 19 * 25
 
 
 # -----------------------------------------------------------------------------

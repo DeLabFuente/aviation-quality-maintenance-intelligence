@@ -1,6 +1,6 @@
 rule_id,rule_group,title,severity,result,findings
 A01,A · Audit & traceability,Every operational record has its INSERT event in the audit log,WARNING,PASS,0
-A02,A · Audit & traceability,"Every status change of orders, non-conformities and actions is in the audit log",WARNING,PASS,0
+A02,A · Audit & traceability,"Every status change of orders, non-conformities, actions and lessons is in the audit log",WARNING,PASS,0
 A03,A · Audit & traceability,The chain of changes of a field is continuous and ends in the current value,CRITICAL,PASS,0
 A04,A · Audit & traceability,There is no DELETE event in the audit log,CRITICAL,PASS,0
 A05,A · Audit & traceability,Every audit event points to an existing record,CRITICAL,PASS,0
@@ -54,6 +54,13 @@ I13,I · Materials & inventory,No purchase order to a supplier after its suspens
 I14,I · Materials & inventory,A movement to NON_CONFORMING is linked to a 'non-conforming material' incident,CRITICAL,PASS,0
 I15,I · Materials & inventory,No material is issued after its shelf-life expiry date,CRITICAL,PASS,0
 I16,I · Materials & inventory,Stock below minimum (available + in quarantine) with no pending purchase order,WARNING,WARNING,1
+L01,L · Lessons learned,A lesson is proposed only from a closed action whose effectiveness was verified,CRITICAL,PASS,0
+L02,L · Lessons learned,The person who approves or rejects a lesson is not the person who proposed it,CRITICAL,PASS,0
+L03,L · Lessons learned,The status of a lesson matches the decision recorded (rejection always has a reason),CRITICAL,PASS,0
+L04,L · Lessons learned,"Lesson dates are in order: proposal, then decision, then incorporation",CRITICAL,PASS,0
+L05,L · Lessons learned,"A lesson is incorporated into a controlled procedure, work instruction or form",CRITICAL,PASS,0
+L06,L · Lessons learned,The incorporated revision was in force on the incorporation date and came into force after the approval,CRITICAL,PASS,0
+L07,L · Lessons learned,Approved lesson not incorporated into a document more than 90 days after its approval,WARNING,WARNING,10
 M01,M · Maintenance orders,Planned end is not earlier than the opening date,CRITICAL,PASS,0
 M02,M · Maintenance orders,COMPLETED or CLOSED if and only if there is an actual end date,CRITICAL,PASS,0
 M03,M · Maintenance orders,CLOSED if and only if closure date and person are recorded; closure >= actual end,CRITICAL,PASS,0

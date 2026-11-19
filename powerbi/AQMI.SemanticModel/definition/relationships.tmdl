@@ -158,6 +158,14 @@ relationship d2ed44d7-b55b-57a7-bc8d-8a2fc8d4d3e7
 	fromColumn: Fact_AuditEvents.'Changed By'
 	toColumn: Dim_Employee.'Employee ID'
 
+relationship be477b1a-013d-5f66-9c15-3938a0767e1b
+	fromColumn: Fact_Lessons.'Proposed Date'
+	toColumn: Dim_Date.Date
+
+relationship 785f8f06-df72-53c7-bb2b-b87ec2ed8c84
+	fromColumn: Fact_Lessons.'Department ID'
+	toColumn: Dim_Department.'Department ID'
+
 relationship 9ce23d24-1946-569c-9d26-897bfed846ac
 	fromColumn: Fact_KPI_Monthly.'KPI ID'
 	toColumn: Dim_KPI.'KPI ID'

@@ -1,5 +1,7 @@
 """
-AQMI — Phase 6: calculate the 18 indicators (KPIs) and check them.
+AQMI — Phase 6: calculate the 19 indicators (KPIs) and check them.
+
+(18 indicators in Phase 6; LRN-01 Lesson Incorporation Rate added in Phase 9.)
 
 What it does:
     1. Reads every indicator in sql/kpi/ (one file per KPI; the header of each
@@ -41,7 +43,7 @@ from scripts.common import get_connection, setup_logging  # noqa: E402
 logger = setup_logging("run_kpis")
 
 HEADER = re.compile(r"^-- (\w+): (.*)$")
-AREAS = ["Quality", "Document control", "Inventory", "Maintenance"]
+AREAS = ["Quality", "Document control", "Inventory", "Maintenance", "Continuous improvement"]
 STATUS_ICON = {"GREEN": "🟢", "AMBER": "🟡", "RED": "🔴", "NO_TARGET": "—", "NO_DATA": "no data"}
 
 
@@ -109,6 +111,9 @@ def load_kpis(directory: Path = settings.SQL_KPI_DIR) -> list[KPI]:
     duplicated = {i for i in ids if ids.count(i) > 1}
     if duplicated:
         raise ValueError(f"Duplicated KPI ids: {sorted(duplicated)}")
+    # Indicators added after Phase 6 (area "Continuous improvement", Phase 9) go after the
+    # original 18, so the order of those does not change in the reports and in Power BI.
+    kpis.sort(key=lambda k: k.area == "Continuous improvement")
     return kpis
 
 
@@ -237,6 +242,7 @@ CURRENT_STATE = {
     "INV-04": "SELECT SUM(is_pending), NULL FROM vw_po_status",
     "MNT-03": "SELECT SUM(is_blocked_by_material), NULL FROM vw_mo_status",
     "MNT-04": "SELECT SUM(is_blocked_by_documentation), NULL FROM vw_mo_status",
+    "LRN-01": "SELECT SUM(status = 'INCORPORATED'), SUM(status IN ('APPROVED', 'INCORPORATED')) FROM Lessons_Learned",
 }
 
 

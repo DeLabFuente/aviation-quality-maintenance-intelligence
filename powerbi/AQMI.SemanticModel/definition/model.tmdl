@@ -17,7 +17,7 @@ queryGroup Tables
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["DataFolder", "Dim_Date", "Dim_Department", "Dim_Employee", "Dim_Aircraft", "Dim_Material", "Dim_Supplier", "Dim_Document", "Dim_IncidentCategory", "Fact_Incidents", "Fact_CAPA", "Fact_CAPA_Snapshot", "Fact_MaintenanceOrders", "Fact_Holds", "Fact_MO_Materials", "Fact_InventoryMovements", "Fact_StockSnapshot", "Fact_StockCounts", "Fact_PurchaseOrderLines", "Fact_PO_Snapshot", "Fact_DocumentVerifications", "Fact_DocumentSnapshot", "Fact_AuditEvents", "Dim_KPI", "Fact_KPI_Monthly", "Fact_ValidationResults", "Fact_ValidationFindings", "Model_Info", "_Measures"]
+annotation PBI_QueryOrder = ["DataFolder", "Dim_Date", "Dim_Department", "Dim_Employee", "Dim_Aircraft", "Dim_Material", "Dim_Supplier", "Dim_Document", "Dim_IncidentCategory", "Fact_Incidents", "Fact_CAPA", "Fact_CAPA_Snapshot", "Fact_MaintenanceOrders", "Fact_Holds", "Fact_MO_Materials", "Fact_InventoryMovements", "Fact_StockSnapshot", "Fact_StockCounts", "Fact_PurchaseOrderLines", "Fact_PO_Snapshot", "Fact_DocumentVerifications", "Fact_DocumentSnapshot", "Fact_AuditEvents", "Fact_Lessons", "Dim_KPI", "Fact_KPI_Monthly", "Fact_ValidationResults", "Fact_ValidationFindings", "Model_Info", "_Measures"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -43,6 +43,7 @@ ref table Fact_PO_Snapshot
 ref table Fact_DocumentVerifications
 ref table Fact_DocumentSnapshot
 ref table Fact_AuditEvents
+ref table Fact_Lessons
 ref table Dim_KPI
 ref table Fact_KPI_Monthly
 ref table Fact_ValidationResults

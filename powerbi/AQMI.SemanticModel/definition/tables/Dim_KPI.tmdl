@@ -1,4 +1,4 @@
-/// The 18 indicators: definition, fictitious internal target and SQL reference value.
+/// The 19 indicators: definition, fictitious internal target and SQL reference value.
 table Dim_KPI
 	lineageTag: ee91d323-7cab-471e-8f89-c998f3ef38c4
 

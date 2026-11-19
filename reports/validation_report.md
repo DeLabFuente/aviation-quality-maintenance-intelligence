@@ -6,14 +6,14 @@
 |---|---|
 | Database | `aqmi.db` |
 | Data cut-off date | 2026-10-31 |
-| Validation run | 2026-11-18 08:26 |
-| Rules executed | 82 |
+| Validation run | 2026-11-19 22:16 |
+| Rules executed | 89 |
 | **Quality gate** | **✅ PASSED** |
 | Critical failures | 0 |
 | Rules that could not run | 0 |
-| Rules with warnings | 8 |
-| Records flagged | 26 |
-| Data Quality Score (rules passed / rules executed) | 90.2 % |
+| Rules with warnings | 9 |
+| Records flagged | 36 |
+| Data Quality Score (rules passed / rules executed) | 89.9 % |
 
 The quality gate passes when no CRITICAL rule fails, every rule runs, and the planted
 discrepancies are detected exactly. WARNING findings do not block the gate: they are
@@ -29,6 +29,7 @@ the discrepancies a quality office must review.
 | I — Materials & inventory | 16 | 14 | 2 | 0 |
 | Q — Non-conformities | 13 | 11 | 2 | 0 |
 | C — CAPA | 11 | 10 | 1 | 0 |
+| L — Lessons learned | 7 | 6 | 1 | 0 |
 | A — Audit & traceability | 5 | 5 | 0 | 0 |
 
 ## Planted discrepancies
@@ -89,6 +90,23 @@ Severity **WARNING** · Result **WARNING** · 1 record(s)
 |---|---|
 | AQ-3342-06 | Available and in quarantine 2.0, below minimum 3.0, nothing on order |
 
+### L07 — Approved lesson not incorporated into a document more than 90 days after its approval
+
+Severity **WARNING** · Result **WARNING** · 10 record(s)
+
+| Record | Detail |
+|---|---|
+| LL-2025-0001 | Approved on 2025-03-04, pending incorporation for 606 days |
+| LL-2025-0004 | Approved on 2025-03-26, pending incorporation for 584 days |
+| LL-2025-0005 | Approved on 2025-03-26, pending incorporation for 584 days |
+| LL-2025-0006 | Approved on 2025-04-07, pending incorporation for 572 days |
+| LL-2025-0007 | Approved on 2025-04-04, pending incorporation for 575 days |
+| LL-2025-0011 | Approved on 2025-04-30, pending incorporation for 549 days |
+| LL-2025-0014 | Approved on 2025-06-05, pending incorporation for 513 days |
+| LL-2025-0032 | Approved on 2025-12-23, pending incorporation for 312 days |
+| LL-2026-0013 | Approved on 2026-05-19, pending incorporation for 165 days |
+| LL-2026-0018 | Approved on 2026-07-30, pending incorporation for 93 days |
+
 ### M08 — A material hold corresponds to a real shortage when it was recorded
 
 Severity **WARNING** · Result **WARNING** · 2 record(s)
@@ -131,7 +149,7 @@ Severity **WARNING** · Result **WARNING** · 2 record(s)
 | Rule | Title | Severity | Result | Records |
 |---|---|---|---|---|
 | A01 | Every operational record has its INSERT event in the audit log | WARNING | PASS | 0 |
-| A02 | Every status change of orders, non-conformities and actions is in the audit log | WARNING | PASS | 0 |
+| A02 | Every status change of orders, non-conformities, actions and lessons is in the audit log | WARNING | PASS | 0 |
 | A03 | The chain of changes of a field is continuous and ends in the current value | CRITICAL | PASS | 0 |
 | A04 | There is no DELETE event in the audit log | CRITICAL | PASS | 0 |
 | A05 | Every audit event points to an existing record | CRITICAL | PASS | 0 |
@@ -185,6 +203,13 @@ Severity **WARNING** · Result **WARNING** · 2 record(s)
 | I14 | A movement to NON_CONFORMING is linked to a 'non-conforming material' incident | CRITICAL | PASS | 0 |
 | I15 | No material is issued after its shelf-life expiry date | CRITICAL | PASS | 0 |
 | I16 | Stock below minimum (available + in quarantine) with no pending purchase order | WARNING | WARNING | 1 |
+| L01 | A lesson is proposed only from a closed action whose effectiveness was verified | CRITICAL | PASS | 0 |
+| L02 | The person who approves or rejects a lesson is not the person who proposed it | CRITICAL | PASS | 0 |
+| L03 | The status of a lesson matches the decision recorded (rejection always has a reason) | CRITICAL | PASS | 0 |
+| L04 | Lesson dates are in order: proposal, then decision, then incorporation | CRITICAL | PASS | 0 |
+| L05 | A lesson is incorporated into a controlled procedure, work instruction or form | CRITICAL | PASS | 0 |
+| L06 | The incorporated revision was in force on the incorporation date and came into force after the approval | CRITICAL | PASS | 0 |
+| L07 | Approved lesson not incorporated into a document more than 90 days after its approval | WARNING | WARNING | 10 |
 | M01 | Planned end is not earlier than the opening date | CRITICAL | PASS | 0 |
 | M02 | COMPLETED or CLOSED if and only if there is an actual end date | CRITICAL | PASS | 0 |
 | M03 | CLOSED if and only if closure date and person are recorded; closure >= actual end | CRITICAL | PASS | 0 |

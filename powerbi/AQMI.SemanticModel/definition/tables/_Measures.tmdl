@@ -762,6 +762,68 @@ table _Measures
 		displayFolder: 7. Audit & Data Quality
 		lineageTag: 929f4598-c4e1-4c27-bdf9-cd1d424c4080
 
+	/// Lessons learned proposed in the period.
+	measure 'Lessons Proposed' = COALESCE ( COUNTROWS ( Fact_Lessons ), 0 )
+		formatString: #,0
+		displayFolder: 8. Lessons Learned
+		lineageTag: 7acf5870-0c86-56a5-add3-04035a98031d
+
+	/// Lessons approved (incorporated or not) at the end of the selected period. A rejected lesson is never approved.
+	measure 'Lessons Approved' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_Lessons ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            NOT ISBLANK ( Fact_Lessons[Approved Date] ),
+			            Fact_Lessons[Approved Date] <= _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 8. Lessons Learned
+		lineageTag: 047cfa25-1c78-5689-a29b-84dcf474c90e
+
+	/// Approved lessons already incorporated into a controlled document at the end of the selected period.
+	measure 'Lessons Incorporated' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_Lessons ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            NOT ISBLANK ( Fact_Lessons[Incorporated Date] ),
+			            Fact_Lessons[Incorporated Date] <= _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 8. Lessons Learned
+		lineageTag: 2df5b239-15ac-50f4-97b8-436ff487c20c
+
+	/// LRN-01. Approved lessons already incorporated into a controlled document (fictitious internal target: 80%).
+	measure 'Lesson Incorporation Rate' = DIVIDE ( [Lessons Incorporated], [Lessons Approved] )
+		formatString: 0.0%
+		displayFolder: 8. Lessons Learned
+		lineageTag: 51153d99-5998-5472-82e8-c6e1977cc4ba
+
+	/// Approved lessons not yet incorporated into a controlled document at the end of the selected period.
+	measure 'Lessons Pending Incorporation' = [Lessons Approved] - [Lessons Incorporated]
+		formatString: #,0
+		displayFolder: 8. Lessons Learned
+		lineageTag: 49fcdc07-41a8-5563-8273-2225d2e10ded
+
+	/// Days each approved lesson has been waiting for incorporation at the cut-off date.
+	measure 'Lesson Days Pending' =
+			CALCULATE (
+			    IF ( MAX ( Fact_Lessons[Is Pending Incorporation] ) = 1, MAX ( Fact_Lessons[Days Pending] ) ),
+			    REMOVEFILTERS ( Dim_Date )
+			)
+		formatString: #,0
+		displayFolder: 8. Lessons Learned
+		lineageTag: a77f3401-b06e-5bab-8e6e-6623b9d499fb
+
 	/// Value of the KPI selected in Dim_KPI, calculated by the DAX measures (percentages as 0-100).
 	measure 'KPI Value (Power BI)' =
 			SWITCH (
@@ -783,7 +845,8 @@ table _Measures
 			    "MNT-01", [Maintenance Order Completion Rate] * 100,
 			    "MNT-02", [Average Maintenance Delay],
 			    "MNT-03", [Work Orders Blocked by Material],
-			    "MNT-04", [Work Orders Blocked by Documentation]
+			    "MNT-04", [Work Orders Blocked by Documentation],
+			    "LRN-01", [Lesson Incorporation Rate] * 100
 			)
 		formatString: 0.0
 		displayFolder: 0. KPI Framework

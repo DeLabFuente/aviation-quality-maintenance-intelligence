@@ -1197,7 +1197,7 @@
     ]
   },
   "Fact_AuditEvents": {
-    "rows": 17383,
+    "rows": 17746,
     "columns": [
       {
         "name": "audit_id",
@@ -1253,8 +1253,109 @@
       }
     ]
   },
+  "Fact_Lessons": {
+    "rows": 59,
+    "columns": [
+      {
+        "name": "lesson_id",
+        "type": "int64"
+      },
+      {
+        "name": "lesson_number",
+        "type": "string"
+      },
+      {
+        "name": "action_number",
+        "type": "string"
+      },
+      {
+        "name": "action_type",
+        "type": "string"
+      },
+      {
+        "name": "effectiveness_result",
+        "type": "string"
+      },
+      {
+        "name": "incident_number",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "recommendation",
+        "type": "string"
+      },
+      {
+        "name": "department_id",
+        "type": "int64"
+      },
+      {
+        "name": "scope",
+        "type": "string"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "status_order",
+        "type": "int64"
+      },
+      {
+        "name": "proposed_date",
+        "type": "date"
+      },
+      {
+        "name": "approved_date",
+        "type": "date"
+      },
+      {
+        "name": "rejected_date",
+        "type": "date"
+      },
+      {
+        "name": "incorporated_date",
+        "type": "date"
+      },
+      {
+        "name": "incorporated_in",
+        "type": "string"
+      },
+      {
+        "name": "proposed_by_name",
+        "type": "string"
+      },
+      {
+        "name": "is_approved",
+        "type": "int64"
+      },
+      {
+        "name": "is_incorporated",
+        "type": "int64"
+      },
+      {
+        "name": "is_pending_incorporation",
+        "type": "int64"
+      },
+      {
+        "name": "days_pending",
+        "type": "int64"
+      },
+      {
+        "name": "days_to_decision",
+        "type": "int64"
+      },
+      {
+        "name": "days_to_incorporate",
+        "type": "int64"
+      }
+    ]
+  },
   "Dim_KPI": {
-    "rows": 18,
+    "rows": 19,
     "columns": [
       {
         "name": "kpi_id",
@@ -1323,7 +1424,7 @@
     ]
   },
   "Fact_KPI_Monthly": {
-    "rows": 432,
+    "rows": 456,
     "columns": [
       {
         "name": "kpi_id",
@@ -1356,7 +1457,7 @@
     ]
   },
   "Fact_ValidationResults": {
-    "rows": 82,
+    "rows": 89,
     "columns": [
       {
         "name": "rule_id",
@@ -1385,7 +1486,7 @@
     ]
   },
   "Fact_ValidationFindings": {
-    "rows": 26,
+    "rows": 36,
     "columns": [
       {
         "name": "rule_id",

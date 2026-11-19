@@ -4,7 +4,7 @@ Phase 7 tests: the export to Power BI and the Power BI project (.pbip).
 Power BI Desktop cannot run in these tests, so they check everything that can be
 checked without it:
   * the export is protected by the quality gate;
-  * the exported star schema contains everything needed to reproduce the 18 KPIs
+  * the exported star schema contains everything needed to reproduce the 19 KPIs
     exactly, using the same filters as the DAX measures;
   * the generated project passes the validator (TMDL, DAX references, relationships,
     report fields and the official Microsoft JSON schemas);
@@ -56,7 +56,7 @@ def _load(project, table):
 def test_export_writes_the_star_schema(project):
     dims = [t for t in project["schema"] if t.startswith("Dim_")]
     facts = [t for t in project["schema"] if t.startswith("Fact_")]
-    assert len(dims) == 9 and len(facts) == 17 and "Model_Info" in project["schema"]
+    assert len(dims) == 9 and len(facts) == 18 and "Model_Info" in project["schema"]
     for table, info in project["schema"].items():
         assert (project["data"] / f"{table}.csv").exists()
         assert info["rows"] > 0, table
@@ -103,7 +103,7 @@ def test_column_types(values, name, expected):
 
 
 # -----------------------------------------------------------------------------
-# 2. The star schema reproduces the 18 KPIs (same filters as the DAX measures)
+# 2. The star schema reproduces the 19 KPIs (same filters as the DAX measures)
 # -----------------------------------------------------------------------------
 def _kpis_from_csv(project):
     I, C, CS = _load(project, "Fact_Incidents"), _load(project, "Fact_CAPA"), _load(project, "Fact_CAPA_Snapshot")
@@ -111,6 +111,7 @@ def _kpis_from_csv(project):
     MM, MV = _load(project, "Fact_MO_Materials"), _load(project, "Fact_InventoryMovements")
     SS, SC, POS = _load(project, "Fact_StockSnapshot"), _load(project, "Fact_StockCounts"), _load(project, "Fact_PO_Snapshot")
     DV, DS = _load(project, "Fact_DocumentVerifications"), _load(project, "Fact_DocumentSnapshot")
+    LL = _load(project, "Fact_Lessons")
     asof = _load(project, "Model_Info")[0]["as_of_date"]
     pct = lambda n, d: round(100 * n / d, 1)       # noqa: E731
     completed = [o for o in MO if o["is_cancelled"] == "0" and o["actual_end_date"]]
@@ -146,6 +147,8 @@ def _kpis_from_csv(project):
         "MNT-02": round(sum(int(o["delay_days"]) for o in completed) / len(completed), 1),
         "MNT-03": active("MATERIAL"),
         "MNT-04": active("DOCUMENTATION"),
+        "LRN-01": pct(sum(x["incorporated_date"] != "" and x["incorporated_date"] <= asof for x in LL),
+                      sum(x["approved_date"] != "" and x["approved_date"] <= asof for x in LL)),
     }
 
 
@@ -158,7 +161,7 @@ def test_star_schema_reproduces_every_kpi(project):
 
 def test_monthly_kpi_table_matches_the_sql_queries(project):
     monthly = _load(project, "Fact_KPI_Monthly")
-    assert len(monthly) == 18 * 24
+    assert len(monthly) == 19 * 24
     by_kpi = {k.kpi_id: {r["period"]: r["value"] for r in k.months} for k in project["kpis"]["kpis"]}
     for row in monthly:
         value = by_kpi[row["kpi_id"]][row["period"]]
@@ -213,7 +216,7 @@ def test_date_and_aircraft_axes_hide_the_blank_member():
 def test_every_kpi_has_a_dax_measure():
     switch = next(m for m in builder.MEASURES if m[1] == "KPI Value (Power BI)")[4]
     kpi_ids = re.findall(r'"([A-Z]{3}-\d{2})"', switch)
-    assert len(kpi_ids) == 18 == len(set(kpi_ids))
+    assert len(kpi_ids) == 19 == len(set(kpi_ids))
 
 
 def test_the_eight_requested_pages_exist(project):

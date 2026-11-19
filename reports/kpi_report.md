@@ -7,8 +7,8 @@
 |---|---|
 | Period | 2024-11 to 2026-10 (24 months) |
 | Cut-off date | 2026-10-31 |
-| Report run | 2026-11-18 08:26 |
-| Indicators | 18 |
+| Report run | 2026-11-19 22:16 |
+| Indicators | 19 |
 | **KPI checks (K rules)** | **✅ PASSED** |
 
 **How to read the values.** *Flow* indicators (things that happen) are given for the whole 24-month
@@ -55,6 +55,12 @@ Traffic light: 🟢 target met · 🟡 between target and warning level · 🔴 
 | MNT-03 | Work Orders Blocked by Material | Snapshot | **4** | — | — | 1 | 4 | ↑ worse |
 | MNT-04 | Work Orders Blocked by Documentation | Snapshot | **0** | — | — | 0 | 0 | = |
 
+## Continuous improvement
+
+| KPI | Indicator | Type | Value | Target (fictitious) | Status | Year 1 | Year 2 | Trend |
+|---|---|---|---|---|---|---|---|---|
+| LRN-01 | Lesson Incorporation Rate | Snapshot | **76.9 %** | ≥ 80.0 % | 🟡 | 🔴 44.0 % | 🟡 76.9 % | ↑ better |
+
 ## KPI checks
 
 | Rule | Check | Result | Findings |
@@ -89,3 +95,4 @@ Monthly values. The full series (24 months) is in `kpi_values.csv`.
 | QUA-04 | 66.7 | 75 | 28.6 | 50 | 40 | 83.3 | 66.7 | 80 | 100 | 62.5 | 40 | 80 |
 | QUA-05 | 75 | 74.5 | 121 | 111.4 | 121 | 71.4 | 128.8 | 75.3 | 70 | 63.5 | 90.6 | 69.6 |
 | QUA-06 | 1 | 2 | 3 | 1 | 1 | 0 | 0 | 1 | 0 | 2 | 3 | 2 |
+| LRN-01 | 40.7 | 50 | 50 | 65.6 | 64.9 | 66.7 | 64.3 | 67.4 | 71.1 | 65.3 | 78 | 76.9 |

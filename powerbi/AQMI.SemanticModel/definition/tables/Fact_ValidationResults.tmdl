@@ -1,4 +1,4 @@
-/// Result of each of the 82 validation rules.
+/// Result of each of the 89 validation rules.
 table Fact_ValidationResults
 	lineageTag: 15671686-0a15-49af-a807-9b2cfa8dd7bf
 

@@ -1,5 +1,6 @@
 """
-Phase 5 tests: views, business queries and the 82 validation rules.
+Phase 5 tests: views, business queries and the 89 validation rules
+(82 in Phase 5 + the 7 lessons-learned rules of Phase 9).
 
 The most important tests here are the NEGATIVE ones: a defect is injected on
 purpose into a copy of the database, and the corresponding rule must catch it
@@ -19,7 +20,7 @@ from scripts.common import get_connection
 from scripts.generate_data import generate
 from scripts.run_validations import PLANTED_RULE, load_rules, run_validations
 
-WARNING_RULES = {"G05", "G11", "D12", "M08", "M09", "I09", "I16", "Q06", "Q08", "Q12", "Q13", "C08", "C10", "A01", "A02"}
+WARNING_RULES = {"G05", "G11", "D12", "M08", "M09", "I09", "I16", "Q06", "Q08", "Q12", "Q13", "C08", "C10", "L07", "A01", "A02"}
 
 
 @pytest.fixture(scope="module")
@@ -45,10 +46,10 @@ def _copy(dataset, tmp_path):
 # -----------------------------------------------------------------------------
 # 1. The rule catalogue
 # -----------------------------------------------------------------------------
-def test_catalogue_has_82_rules_with_valid_headers():
+def test_catalogue_has_89_rules_with_valid_headers():
     rules = load_rules()
-    assert len(rules) == 82
-    assert len({r.rule_id for r in rules}) == 82
+    assert len(rules) == 89
+    assert len({r.rule_id for r in rules}) == 89
 
 
 def test_severities_match_the_business_rules_document():
@@ -192,7 +193,7 @@ def test_every_view_returns_rows(dataset):
     views = [r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type = 'view'")]
     empty = [v for v in views if conn.execute(f"SELECT COUNT(*) FROM {v}").fetchone()[0] == 0]
     conn.close()
-    assert len(views) == 14 and empty == []
+    assert len(views) == 15 and empty == []
 
 
 @pytest.mark.parametrize("query_file", sorted(p.name for p in settings.SQL_QUERIES_DIR.glob("*.sql")))

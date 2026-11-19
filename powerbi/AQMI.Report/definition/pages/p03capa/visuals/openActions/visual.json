@@ -6,7 +6,7 @@
     "y": 456,
     "z": 18000,
     "height": 252,
-    "width": 1048,
+    "width": 628,
     "tabOrder": 18000
   },
   "visual": {
@@ -29,21 +29,6 @@
               "queryRef": "Fact_CAPA.Action Number",
               "nativeQueryRef": "Action Number",
               "displayName": "Action"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_CAPA"
-                    }
-                  },
-                  "Property": "Action Type"
-                }
-              },
-              "queryRef": "Fact_CAPA.Action Type",
-              "nativeQueryRef": "Action Type",
-              "displayName": "Type"
             },
             {
               "field": {

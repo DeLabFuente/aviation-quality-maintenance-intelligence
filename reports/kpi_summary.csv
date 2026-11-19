@@ -17,3 +17,4 @@ QUA-03,Non-Conformity Rate,Tasa de no conformidades,Quality,FLOW,per 100 orders,
 QUA-04,Corrective Action Closure Rate,Cierre de acciones correctivas en plazo,Quality,FLOW,%,HIGHER_IS_BETTER,69.1,96,139,85.0,75.0,RED,73.1,63.9
 QUA-05,Average Resolution Time,Tiempo medio de resolución,Quality,FLOW,days,LOWER_IS_BETTER,82.0,10493,128,75.0,90.0,AMBER,75.3,91.4
 QUA-06,Overdue Corrective Actions,Acciones correctivas vencidas,Quality,SNAPSHOT,count,LOWER_IS_BETTER,2,2,,0.0,2.0,AMBER,1,2
+LRN-01,Lesson Incorporation Rate,Lecciones aprendidas incorporadas,Continuous improvement,SNAPSHOT,%,HIGHER_IS_BETTER,76.9,40,52,80.0,60.0,AMBER,44.0,76.9

@@ -3,6 +3,7 @@ SELECT a.audit_id, a.event_datetime, substr(a.event_datetime, 1, 10) AS event_da
        CASE a.table_name
            WHEN 'Quality_Incidents'       THEN (SELECT incident_number FROM Quality_Incidents WHERE incident_id = a.record_id)
            WHEN 'CAPA_Actions'            THEN (SELECT action_number FROM CAPA_Actions WHERE action_id = a.record_id)
+           WHEN 'Lessons_Learned'         THEN (SELECT lesson_number FROM Lessons_Learned WHERE lesson_id = a.record_id)
            WHEN 'Maintenance_Orders'      THEN (SELECT mo_number FROM Maintenance_Orders WHERE mo_id = a.record_id)
            WHEN 'Maintenance_Order_Holds' THEN (SELECT o.mo_number || ' hold' FROM Maintenance_Order_Holds h
                                                 JOIN Maintenance_Orders o USING (mo_id) WHERE h.hold_id = a.record_id)

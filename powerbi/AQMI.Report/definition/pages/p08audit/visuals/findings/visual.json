@@ -137,7 +137,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'WARNING rules (82 rules executed)'"
+                  "Value": "'WARNING rules (89 rules executed)'"
                 }
               }
             },

@@ -1,0 +1,187 @@
+/// One row per lesson learned, from its proposal to its incorporation into a controlled document.
+table Fact_Lessons
+	lineageTag: f97984da-a0eb-5b1f-9fb2-06cafab245db
+
+	column 'Lesson ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fb310d6b-232c-5622-a43f-cbc4ca1372b1
+		summarizeBy: none
+		sourceColumn: lesson_id
+
+	column 'Lesson Number'
+		dataType: string
+		lineageTag: cd81896c-6ea0-5a5f-bd4f-446eafbc5259
+		summarizeBy: none
+		sourceColumn: lesson_number
+
+	column 'Action Number'
+		dataType: string
+		lineageTag: c8b54a3d-e1f5-5883-80d5-25c9b943a386
+		summarizeBy: none
+		sourceColumn: action_number
+
+	column 'Action Type'
+		dataType: string
+		lineageTag: 5486bd3b-a0e4-5a21-99de-3a52691612f0
+		summarizeBy: none
+		sourceColumn: action_type
+
+	column 'Effectiveness Result'
+		dataType: string
+		lineageTag: ed0bbc63-408d-5d68-b571-37c4aca6ff5e
+		summarizeBy: none
+		sourceColumn: effectiveness_result
+
+	column 'Incident Number'
+		dataType: string
+		lineageTag: 9e151863-9fee-5cef-97b9-a4ec1045ea40
+		summarizeBy: none
+		sourceColumn: incident_number
+
+	column Title
+		dataType: string
+		lineageTag: 9f17d9e7-1383-5167-aca1-294eab08b027
+		summarizeBy: none
+		sourceColumn: title
+
+	column Recommendation
+		dataType: string
+		lineageTag: f4e0f62b-2739-5ce9-956d-722c40560fb9
+		summarizeBy: none
+		sourceColumn: recommendation
+
+	column 'Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: aeba7db0-aca6-5158-9d0e-98e4e17b2f0f
+		summarizeBy: none
+		sourceColumn: department_id
+
+	column Scope
+		dataType: string
+		lineageTag: 71f512de-4720-5401-a0c4-87f82e2ee9a5
+		summarizeBy: none
+		sourceColumn: scope
+
+	column Status
+		dataType: string
+		lineageTag: cc162114-b825-5787-b57d-2b15f1bec611
+		summarizeBy: none
+		sourceColumn: status
+		sortByColumn: 'Status Order'
+
+	column 'Status Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1b82d544-d1fb-581e-bc48-74f1c88a3f22
+		summarizeBy: none
+		sourceColumn: status_order
+
+	column 'Proposed Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: a779e6e7-cc55-5a53-b8a1-0c57503e6657
+		summarizeBy: none
+		sourceColumn: proposed_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Approved Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 47b78f39-22ac-5d7c-899a-57647bf42a03
+		summarizeBy: none
+		sourceColumn: approved_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Rejected Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 8f6841ab-517e-5868-a31f-ac1658130122
+		summarizeBy: none
+		sourceColumn: rejected_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Incorporated Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 76c875b9-ee26-5c34-ae74-e063bf246e86
+		summarizeBy: none
+		sourceColumn: incorporated_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Incorporated In'
+		dataType: string
+		lineageTag: 0a700788-8b17-5687-bd3c-193fd22274b6
+		summarizeBy: none
+		sourceColumn: incorporated_in
+
+	column 'Proposed By Name'
+		dataType: string
+		lineageTag: fc3bf6f3-cb34-5b9d-b44f-933f90d98e09
+		summarizeBy: none
+		sourceColumn: proposed_by_name
+
+	column 'Is Approved'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9fbe3591-cc3e-577a-a663-3b3bd3d2eb7d
+		summarizeBy: none
+		sourceColumn: is_approved
+
+	column 'Is Incorporated'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 875fe1ee-91ee-53c6-9328-bdce82cf6d35
+		summarizeBy: none
+		sourceColumn: is_incorporated
+
+	column 'Is Pending Incorporation'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5c3a0086-2bc8-56a7-8d64-ed2d69c2c840
+		summarizeBy: none
+		sourceColumn: is_pending_incorporation
+
+	column 'Days Pending'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 718511cb-4dff-5f55-bb49-aad79a2946db
+		summarizeBy: none
+		sourceColumn: days_pending
+
+	column 'Days To Decision'
+		dataType: int64
+		formatString: #,0
+		lineageTag: b7df4308-4579-5433-8177-5acf1fcab342
+		summarizeBy: none
+		sourceColumn: days_to_decision
+
+	column 'Days To Incorporate'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 41fdb8d3-6db6-567e-920e-4b4b9834cbc7
+		summarizeBy: none
+		sourceColumn: days_to_incorporate
+
+	partition Fact_Lessons = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Lessons.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"lesson_id", Int64.Type}, {"lesson_number", type text}, {"action_number", type text}, {"action_type", type text}, {"effectiveness_result", type text}, {"incident_number", type text}, {"title", type text}, {"recommendation", type text}, {"department_id", Int64.Type}, {"scope", type text}, {"status", type text}, {"status_order", Int64.Type}, {"proposed_date", type date}, {"approved_date", type date}, {"rejected_date", type date}, {"incorporated_date", type date}, {"incorporated_in", type text}, {"proposed_by_name", type text}, {"is_approved", Int64.Type}, {"is_incorporated", Int64.Type}, {"is_pending_incorporation", Int64.Type}, {"days_pending", Int64.Type}, {"days_to_decision", Int64.Type}, {"days_to_incorporate", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

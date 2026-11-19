@@ -23,13 +23,14 @@ EXPECTED_TABLES = {
     "Purchase_Order_Lines", "Incident_Categories", "Quality_Incidents",
     "Maintenance_Order_Holds", "Document_Verifications", "Root_Cause_Analyses",
     "CAPA_Actions", "CAPA_Progress_Updates", "Stock_Counts", "Inventory_Movements", "Audit_Log",
+    "Lessons_Learned",   # Phase 9
 }
 
 
 # -----------------------------------------------------------------------------
 # 1. Structure
 # -----------------------------------------------------------------------------
-def test_all_24_tables_exist(db):
+def test_all_25_tables_exist(db):
     rows = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
     assert {r[0] for r in rows} == EXPECTED_TABLES
 
@@ -60,7 +61,7 @@ def test_every_audited_table_is_accepted_by_audit_log(db):
     """Audit_Log.table_name must accept every table that has audit triggers (rule A05)."""
     audited = [r[0] for r in db.execute(
         "SELECT DISTINCT tbl_name FROM sqlite_master WHERE type='trigger' AND name LIKE '%_audit_insert'")]
-    assert len(audited) == 21
+    assert len(audited) == 22
     for table in audited:   # inserting a fake event must not violate the CHECK
         db.execute("INSERT INTO Audit_Log (event_datetime, table_name, record_id, action, source) "
                    "VALUES (?, ?, 0, 'INSERT', 'SYSTEM')", (TS, table))

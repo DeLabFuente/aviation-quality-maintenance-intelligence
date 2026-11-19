@@ -16,6 +16,16 @@ D12,WARNING,TDR-DOC-054,R00 review due 2025-05-23 (526 days overdue)
 I09,WARNING,MV-2025-00523,Receipt of AQ-1142-06 (lot L2505-00206) without certificate reference
 I09,WARNING,MV-2025-00870,Receipt of AQ-3412-06 (lot L2507-00248) without certificate reference
 I16,WARNING,AQ-3342-06,"Available and in quarantine 2.0, below minimum 3.0, nothing on order"
+L07,WARNING,LL-2025-0001,"Approved on 2025-03-04, pending incorporation for 606 days"
+L07,WARNING,LL-2025-0004,"Approved on 2025-03-26, pending incorporation for 584 days"
+L07,WARNING,LL-2025-0005,"Approved on 2025-03-26, pending incorporation for 584 days"
+L07,WARNING,LL-2025-0006,"Approved on 2025-04-07, pending incorporation for 572 days"
+L07,WARNING,LL-2025-0007,"Approved on 2025-04-04, pending incorporation for 575 days"
+L07,WARNING,LL-2025-0011,"Approved on 2025-04-30, pending incorporation for 549 days"
+L07,WARNING,LL-2025-0014,"Approved on 2025-06-05, pending incorporation for 513 days"
+L07,WARNING,LL-2025-0032,"Approved on 2025-12-23, pending incorporation for 312 days"
+L07,WARNING,LL-2026-0013,"Approved on 2026-05-19, pending incorporation for 165 days"
+L07,WARNING,LL-2026-0018,"Approved on 2026-07-30, pending incorporation for 93 days"
 M08,WARNING,WO-2025-0049,Hold on AQ-2319-09 started 2025-03-24 while 15.0 were available (required 6.0)
 M08,WARNING,WO-2025-0061,Hold on AQ-1107-02 started 2025-04-18 while 16.75 were available (required 1.0)
 M09,WARNING,WO-2025-0125,WIN-MNT-018 R00 linked on 2025-07-24 (superseded on 2023-10-02)
