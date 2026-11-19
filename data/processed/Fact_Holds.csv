@@ -1,0 +1,94 @@
+hold_id,mo_id,mo_number,aircraft_id,hold_reason,material_id,document_code,start_date,end_date,hold_days,is_active,comment
+1,5,WO-2024-0005,11,MATERIAL,17,,2024-11-18,2024-11-25,7,0,Material AQ-2214-04 not available at start of work
+2,4,WO-2024-0004,9,DOCUMENTATION,,TDR-DOC-011,2024-11-18,2024-11-20,2,0,Applicable data from TDR-DOC-011 not available in the work package
+3,7,WO-2024-0007,8,MATERIAL,39,,2024-11-20,2024-11-26,6,0,Material AQ-2368-09 not available at start of work
+4,10,WO-2024-0010,8,MATERIAL,100,,2024-11-22,2024-12-10,18,0,Material AQ-4456-03 not available at start of work
+5,21,WO-2024-0021,1,MATERIAL,96,,2024-12-05,2024-12-13,8,0,Material AQ-4428-09 not available at start of work
+6,31,WO-2024-0031,3,MATERIAL,22,,2024-12-16,2024-12-24,8,0,Material AQ-2249-01 not available at start of work
+7,33,WO-2024-0033,1,DOCUMENTATION,,TDR-DOC-031,2024-12-17,2024-12-20,3,0,Applicable data from TDR-DOC-031 not available in the work package
+8,44,WO-2025-0002,9,MATERIAL,20,,2025-01-03,2025-01-14,11,0,Material AQ-2235-04 not available at start of work
+9,55,WO-2025-0013,3,MATERIAL,51,,2025-01-24,2025-01-29,5,0,Material AQ-2452-06 not available at start of work
+10,58,WO-2025-0016,2,MATERIAL,9,,2025-01-28,2025-02-04,7,0,Material AQ-1163-01 not available at start of work
+11,66,WO-2025-0024,11,MATERIAL,43,,2025-02-07,2025-02-24,17,0,Material AQ-2396-05 not available at start of work
+12,67,WO-2025-0025,3,MATERIAL,62,,2025-02-07,2025-02-24,17,0,Material AQ-3349-03 not available at start of work
+13,72,WO-2025-0030,5,MATERIAL,40,,2025-02-17,2025-02-24,7,0,Material AQ-2375-06 not available at start of work
+14,79,WO-2025-0037,8,MATERIAL,87,,2025-03-06,2025-03-07,1,0,Material AQ-3524-03 not available at start of work
+15,82,WO-2025-0040,2,MATERIAL,92,,2025-03-10,2025-03-31,21,0,Material AQ-3559-08 not available at start of work
+16,89,WO-2025-0047,1,MATERIAL,30,,2025-03-20,2025-03-25,5,0,Material AQ-2305-06 not available at start of work
+17,91,WO-2025-0049,11,MATERIAL,32,,2025-03-24,2025-03-25,1,0,Material AQ-2319-09 not available at start of work
+18,93,WO-2025-0051,11,MATERIAL,5,,2025-03-27,2025-04-03,7,0,Material AQ-1135-07 not available at start of work
+19,94,WO-2025-0052,5,MATERIAL,87,,2025-03-27,2025-05-20,54,0,Material AQ-3524-03 not available at start of work
+20,95,WO-2025-0053,1,DOCUMENTATION,,TDR-DOC-027,2025-03-31,2025-04-01,1,0,Applicable data from TDR-DOC-027 not available in the work package
+21,100,WO-2025-0058,6,MATERIAL,32,,2025-04-14,2025-04-21,7,0,Material AQ-2319-09 not available at start of work
+22,103,WO-2025-0061,10,MATERIAL,1,,2025-04-18,2025-04-21,3,0,Material AQ-1107-02 not available at start of work
+23,109,WO-2025-0067,9,MATERIAL,13,,2025-04-24,2025-05-06,12,0,Material AQ-1191-05 not available at start of work
+24,111,WO-2025-0069,7,DOCUMENTATION,,TDR-DOC-016,2025-04-28,2025-04-29,1,0,Applicable data from TDR-DOC-016 not available in the work package
+25,120,WO-2025-0078,2,MATERIAL,75,,2025-05-09,2025-06-03,25,0,Material AQ-3440-08 not available at start of work
+26,129,WO-2025-0087,9,MATERIAL,18,,2025-05-23,2025-05-28,5,0,Material AQ-2221-08 not available at start of work
+27,131,WO-2025-0089,5,MATERIAL,16,,2025-05-26,2025-06-02,7,0,Material AQ-2207-07 not available at start of work
+28,132,WO-2025-0090,2,MATERIAL,99,,2025-05-26,2025-06-02,7,0,Material AQ-4449-02 not available at start of work
+29,135,WO-2025-0093,10,MATERIAL,34,,2025-06-04,2025-06-09,5,0,Material AQ-2333-03 not available at start of work
+30,141,WO-2025-0099,3,DOCUMENTATION,,TDR-DOC-036,2025-06-16,2025-06-18,2,0,Applicable data from TDR-DOC-036 not available in the work package
+31,144,WO-2025-0102,5,DOCUMENTATION,,WIN-MNT-044,2025-06-19,2025-06-19,0,0,WIN-MNT-044 overdue for review – expedited review requested
+32,146,WO-2025-0104,1,MATERIAL,49,,2025-06-20,2025-06-25,5,0,Material AQ-2438-06 not available at start of work
+33,147,WO-2025-0105,11,MATERIAL,12,,2025-06-23,2025-07-02,9,0,Material AQ-1184-05 not available at start of work
+34,154,WO-2025-0112,2,MATERIAL,96,,2025-07-01,2025-07-09,8,0,Material AQ-4428-09 not available at start of work
+35,161,WO-2025-0119,10,DOCUMENTATION,,TDR-DOC-044,2025-07-15,2025-07-18,3,0,Applicable data from TDR-DOC-044 not available in the work package
+36,170,WO-2025-0128,3,MATERIAL,35,,2025-07-28,2025-08-05,8,0,Material AQ-2340-04 not available at start of work
+37,176,WO-2025-0134,4,MATERIAL,96,,2025-07-30,2025-08-19,20,0,Material AQ-4428-09 not available at start of work
+38,183,WO-2025-0141,12,DOCUMENTATION,,TDR-DOC-061,2025-08-07,2025-08-08,1,0,Applicable data from TDR-DOC-061 not available in the work package
+39,184,WO-2025-0142,2,MATERIAL,15,,2025-08-08,2025-08-08,0,0,Material AQ-1205-06 not available at start of work
+40,215,WO-2025-0173,5,MATERIAL,22,,2025-09-18,2025-10-07,19,0,Material AQ-2249-01 not available at start of work
+41,221,WO-2025-0179,11,MATERIAL,17,,2025-09-24,2025-09-29,5,0,Material AQ-2214-04 not available at start of work
+42,222,WO-2025-0180,3,DOCUMENTATION,,WIN-MNT-008,2025-09-24,2025-09-25,1,0,WIN-MNT-008 overdue for review – expedited review requested
+43,223,WO-2025-0181,11,DOCUMENTATION,,TDR-DOC-063,2025-09-26,2025-09-30,4,0,Applicable data from TDR-DOC-063 not available in the work package
+44,229,WO-2025-0187,6,MATERIAL,50,,2025-10-09,2025-10-14,5,0,Material AQ-2445-06 not available at start of work
+45,232,WO-2025-0190,6,MATERIAL,35,,2025-10-13,2025-10-20,7,0,Material AQ-2340-04 not available at start of work
+46,247,WO-2025-0205,4,MATERIAL,16,,2025-10-30,2025-11-04,5,0,Material AQ-2207-07 not available at start of work
+47,251,WO-2025-0209,2,MATERIAL,31,,2025-11-03,2025-11-17,14,0,Material AQ-2312-03 not available at start of work
+48,257,WO-2025-0215,6,MATERIAL,98,,2025-11-07,2025-11-18,11,0,Material AQ-4442-09 not available at start of work
+49,258,WO-2025-0216,11,MATERIAL,74,,2025-11-12,2025-12-09,27,0,Material AQ-3433-02 not available at start of work
+50,260,WO-2025-0218,4,MATERIAL,93,,2025-11-17,2025-11-17,0,0,Material AQ-4407-09 not available at start of work
+51,262,WO-2025-0220,4,MATERIAL,13,,2025-11-19,2025-11-25,6,0,Material AQ-1191-05 not available at start of work
+52,263,WO-2025-0221,6,MATERIAL,36,,2025-11-20,2025-12-01,11,0,Material AQ-2347-07 not available at start of work
+53,266,WO-2025-0224,12,MATERIAL,51,,2025-11-25,2025-12-02,7,0,Material AQ-2452-06 not available at start of work
+54,274,WO-2025-0232,12,DOCUMENTATION,,TDR-DOC-064,2025-12-08,2025-12-10,2,0,Applicable data from TDR-DOC-064 not available in the work package
+55,275,WO-2025-0233,1,DOCUMENTATION,,TDR-DOC-040,2025-12-08,2025-12-10,2,0,Applicable data from TDR-DOC-040 not available in the work package
+56,277,WO-2025-0235,10,MATERIAL,49,,2025-12-09,2025-12-16,7,0,Material AQ-2438-06 not available at start of work
+57,282,WO-2025-0240,12,MATERIAL,49,,2025-12-15,2025-12-23,8,0,Material AQ-2438-06 not available at start of work
+58,287,WO-2025-0245,7,MATERIAL,13,,2025-12-18,2025-12-23,5,0,Material AQ-1191-05 not available at start of work
+59,290,WO-2025-0248,2,MATERIAL,12,,2025-12-25,2026-01-05,11,0,Material AQ-1184-05 not available at start of work
+60,298,WO-2026-0004,7,DOCUMENTATION,,WIN-MNT-062,2026-01-05,2026-01-06,1,0,WIN-MNT-062 overdue for review – expedited review requested
+61,300,WO-2026-0006,9,MATERIAL,30,,2026-01-08,2026-01-13,5,0,Material AQ-2305-06 not available at start of work
+62,302,WO-2026-0008,12,MATERIAL,3,,2026-01-12,2026-01-22,10,0,Material AQ-1121-06 not available at start of work
+63,304,WO-2026-0010,8,MATERIAL,36,,2026-01-12,2026-01-20,8,0,Material AQ-2347-07 not available at start of work
+64,309,WO-2026-0015,1,MATERIAL,41,,2026-01-22,2026-01-27,5,0,Material AQ-2382-02 not available at start of work
+65,310,WO-2026-0016,5,MATERIAL,95,,2026-01-22,2026-01-30,8,0,Material AQ-4421-08 not available at start of work
+66,319,WO-2026-0025,7,MATERIAL,36,,2026-02-05,2026-02-10,5,0,Material AQ-2347-07 not available at start of work
+67,326,WO-2026-0032,11,MATERIAL,30,,2026-02-16,2026-02-23,7,0,Material AQ-2305-06 not available at start of work
+68,327,WO-2026-0033,10,MATERIAL,54,,2026-02-16,2026-02-19,3,0,Material AQ-2473-04 not available at start of work
+69,330,WO-2026-0036,6,MATERIAL,97,,2026-02-26,2026-03-04,6,0,Material AQ-4435-03 not available at start of work
+70,331,WO-2026-0037,5,MATERIAL,98,,2026-03-02,2026-03-18,16,0,Material AQ-4442-09 not available at start of work
+71,340,WO-2026-0046,8,MATERIAL,16,,2026-03-12,2026-03-20,8,0,Material AQ-2207-07 not available at start of work
+72,343,WO-2026-0049,7,DOCUMENTATION,,WIN-MNT-064,2026-03-13,2026-03-24,11,0,WIN-MNT-064 overdue for review – expedited review requested
+73,368,WO-2026-0074,8,MATERIAL,18,,2026-05-04,2026-05-11,7,0,Material AQ-2221-08 not available at start of work
+74,384,WO-2026-0090,9,MATERIAL,16,,2026-05-25,2026-06-02,8,0,Material AQ-2207-07 not available at start of work
+75,385,WO-2026-0091,11,MATERIAL,10,,2026-05-26,2026-06-02,7,0,Material AQ-1170-01 not available at start of work
+76,390,WO-2026-0096,8,MATERIAL,96,,2026-06-08,2026-06-16,8,0,Material AQ-4428-09 not available at start of work
+77,394,WO-2026-0100,3,MATERIAL,26,,2026-06-09,2026-06-09,0,0,Material AQ-2277-01 not available at start of work
+78,402,WO-2026-0108,2,MATERIAL,96,,2026-06-24,2026-07-07,13,0,Material AQ-4428-09 not available at start of work
+79,401,WO-2026-0107,5,MATERIAL,65,,2026-06-24,2026-07-06,12,0,Material AQ-3370-03 not available at start of work
+80,407,WO-2026-0113,6,MATERIAL,41,,2026-06-30,2026-07-07,7,0,Material AQ-2382-02 not available at start of work
+81,416,WO-2026-0122,1,DOCUMENTATION,,WIN-MNT-021,2026-07-08,2026-07-15,7,0,WIN-MNT-021 overdue for review – expedited review requested
+82,429,WO-2026-0135,3,DOCUMENTATION,,TDR-DOC-035,2026-07-27,2026-07-29,2,0,Applicable data from TDR-DOC-035 not available in the work package
+83,431,WO-2026-0137,10,DOCUMENTATION,,WIN-MNT-004,2026-08-03,2026-08-07,4,0,WIN-MNT-004 overdue for review – expedited review requested
+84,444,WO-2026-0150,2,MATERIAL,92,,2026-08-24,2026-09-07,14,0,Material AQ-3559-08 not available at start of work
+85,447,WO-2026-0153,6,MATERIAL,30,,2026-09-02,2026-09-08,6,0,Material AQ-2305-06 not available at start of work
+86,450,WO-2026-0156,7,MATERIAL,32,,2026-09-10,2026-09-15,5,0,Material AQ-2319-09 not available at start of work
+87,455,WO-2026-0161,9,MATERIAL,12,,2026-09-15,2026-09-29,14,0,Material AQ-1184-05 not available at start of work
+88,461,WO-2026-0167,11,MATERIAL,20,,2026-09-22,2026-09-29,7,0,Material AQ-2235-04 not available at start of work
+89,468,WO-2026-0174,3,MATERIAL,2,,2026-10-06,2026-10-14,8,0,Material AQ-1114-08 not available at start of work
+90,479,WO-2026-0185,6,MATERIAL,65,,2026-10-15,,16,1,Material AQ-3370-03 not available at start of work
+91,481,WO-2026-0187,3,MATERIAL,70,,2026-10-19,,12,1,Material AQ-3405-08 not available at start of work
+92,490,WO-2026-0196,7,MATERIAL,16,,2026-10-28,,3,1,Material AQ-2207-07 not available at start of work
+93,491,WO-2026-0197,7,MATERIAL,46,,2026-10-30,,1,1,Material AQ-2417-02 not available at start of work

@@ -1,0 +1,1469 @@
+{
+  "Dim_Date": {
+    "rows": 730,
+    "columns": [
+      {
+        "name": "date",
+        "type": "date"
+      },
+      {
+        "name": "year",
+        "type": "int64"
+      },
+      {
+        "name": "quarter",
+        "type": "string"
+      },
+      {
+        "name": "year_quarter",
+        "type": "string"
+      },
+      {
+        "name": "year_quarter_num",
+        "type": "int64"
+      },
+      {
+        "name": "month_number",
+        "type": "int64"
+      },
+      {
+        "name": "month_name",
+        "type": "string"
+      },
+      {
+        "name": "month_label",
+        "type": "string"
+      },
+      {
+        "name": "year_month",
+        "type": "string"
+      },
+      {
+        "name": "year_month_num",
+        "type": "int64"
+      },
+      {
+        "name": "month_start",
+        "type": "date"
+      },
+      {
+        "name": "month_end",
+        "type": "date"
+      },
+      {
+        "name": "period_year",
+        "type": "string"
+      },
+      {
+        "name": "period_year_label",
+        "type": "string"
+      },
+      {
+        "name": "is_month_end",
+        "type": "int64"
+      }
+    ]
+  },
+  "Dim_Department": {
+    "rows": 6,
+    "columns": [
+      {
+        "name": "department_id",
+        "type": "int64"
+      },
+      {
+        "name": "department_code",
+        "type": "string"
+      },
+      {
+        "name": "department_name",
+        "type": "string"
+      },
+      {
+        "name": "department_label",
+        "type": "string"
+      }
+    ]
+  },
+  "Dim_Employee": {
+    "rows": 46,
+    "columns": [
+      {
+        "name": "employee_id",
+        "type": "int64"
+      },
+      {
+        "name": "employee_code",
+        "type": "string"
+      },
+      {
+        "name": "full_name",
+        "type": "string"
+      },
+      {
+        "name": "department_code",
+        "type": "string"
+      },
+      {
+        "name": "department_name",
+        "type": "string"
+      },
+      {
+        "name": "job_title",
+        "type": "string"
+      },
+      {
+        "name": "is_department_head",
+        "type": "int64"
+      },
+      {
+        "name": "is_active",
+        "type": "int64"
+      }
+    ]
+  },
+  "Dim_Aircraft": {
+    "rows": 12,
+    "columns": [
+      {
+        "name": "aircraft_id",
+        "type": "int64"
+      },
+      {
+        "name": "registration",
+        "type": "string"
+      },
+      {
+        "name": "fleet_number",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_category",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_model",
+        "type": "string"
+      },
+      {
+        "name": "customer_name",
+        "type": "string"
+      },
+      {
+        "name": "operation_type",
+        "type": "string"
+      },
+      {
+        "name": "contract_start_date",
+        "type": "date"
+      },
+      {
+        "name": "contract_end_date",
+        "type": "date"
+      },
+      {
+        "name": "operational_status",
+        "type": "string"
+      },
+      {
+        "name": "open_orders_now",
+        "type": "int64"
+      }
+    ]
+  },
+  "Dim_Material": {
+    "rows": 100,
+    "columns": [
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "part_number",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "material_label",
+        "type": "string"
+      },
+      {
+        "name": "material_class",
+        "type": "string"
+      },
+      {
+        "name": "unit_of_measure",
+        "type": "string"
+      },
+      {
+        "name": "preferred_supplier_code",
+        "type": "string"
+      },
+      {
+        "name": "standard_lead_time_days",
+        "type": "int64"
+      },
+      {
+        "name": "min_stock_qty",
+        "type": "double"
+      },
+      {
+        "name": "reorder_qty",
+        "type": "double"
+      },
+      {
+        "name": "unit_cost",
+        "type": "double"
+      },
+      {
+        "name": "is_serialized",
+        "type": "int64"
+      },
+      {
+        "name": "is_shelf_life_controlled",
+        "type": "int64"
+      },
+      {
+        "name": "requires_release_certificate",
+        "type": "int64"
+      },
+      {
+        "name": "is_active",
+        "type": "int64"
+      }
+    ]
+  },
+  "Dim_Supplier": {
+    "rows": 40,
+    "columns": [
+      {
+        "name": "supplier_id",
+        "type": "int64"
+      },
+      {
+        "name": "supplier_code",
+        "type": "string"
+      },
+      {
+        "name": "supplier_name",
+        "type": "string"
+      },
+      {
+        "name": "supplier_label",
+        "type": "string"
+      },
+      {
+        "name": "country_code",
+        "type": "string"
+      },
+      {
+        "name": "supplier_type",
+        "type": "string"
+      },
+      {
+        "name": "approval_status",
+        "type": "string"
+      }
+    ]
+  },
+  "Dim_Document": {
+    "rows": 250,
+    "columns": [
+      {
+        "name": "document_id",
+        "type": "int64"
+      },
+      {
+        "name": "document_code",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "document_type",
+        "type": "string"
+      },
+      {
+        "name": "owner_department_code",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_registration",
+        "type": "string"
+      },
+      {
+        "name": "is_controlled",
+        "type": "int64"
+      },
+      {
+        "name": "review_interval_months",
+        "type": "int64"
+      },
+      {
+        "name": "current_revision",
+        "type": "string"
+      },
+      {
+        "name": "effective_date",
+        "type": "date"
+      },
+      {
+        "name": "review_due_date",
+        "type": "date"
+      },
+      {
+        "name": "validity_status",
+        "type": "string"
+      },
+      {
+        "name": "days_overdue",
+        "type": "int64"
+      },
+      {
+        "name": "n_revisions",
+        "type": "int64"
+      }
+    ]
+  },
+  "Dim_IncidentCategory": {
+    "rows": 8,
+    "columns": [
+      {
+        "name": "category_id",
+        "type": "int64"
+      },
+      {
+        "name": "category_code",
+        "type": "string"
+      },
+      {
+        "name": "category_name",
+        "type": "string"
+      },
+      {
+        "name": "category_name_es",
+        "type": "string"
+      },
+      {
+        "name": "category_label",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_Incidents": {
+    "rows": 143,
+    "columns": [
+      {
+        "name": "incident_id",
+        "type": "int64"
+      },
+      {
+        "name": "incident_number",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "category_id",
+        "type": "int64"
+      },
+      {
+        "name": "severity",
+        "type": "string"
+      },
+      {
+        "name": "severity_order",
+        "type": "int64"
+      },
+      {
+        "name": "priority",
+        "type": "string"
+      },
+      {
+        "name": "detection_source",
+        "type": "string"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "status_order",
+        "type": "int64"
+      },
+      {
+        "name": "responsible_department_id",
+        "type": "int64"
+      },
+      {
+        "name": "owner_id",
+        "type": "int64"
+      },
+      {
+        "name": "aircraft_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "supplier_id",
+        "type": "int64"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "detected_date",
+        "type": "date"
+      },
+      {
+        "name": "target_closure_date",
+        "type": "date"
+      },
+      {
+        "name": "closed_date",
+        "type": "date"
+      },
+      {
+        "name": "is_cancelled",
+        "type": "int64"
+      },
+      {
+        "name": "is_open",
+        "type": "int64"
+      },
+      {
+        "name": "age_days",
+        "type": "int64"
+      },
+      {
+        "name": "resolution_days",
+        "type": "int64"
+      },
+      {
+        "name": "is_overdue",
+        "type": "int64"
+      },
+      {
+        "name": "closed_on_time",
+        "type": "int64"
+      },
+      {
+        "name": "has_rca",
+        "type": "int64"
+      },
+      {
+        "name": "rca_method",
+        "type": "string"
+      },
+      {
+        "name": "root_cause_6m",
+        "type": "string"
+      },
+      {
+        "name": "n_actions",
+        "type": "int64"
+      },
+      {
+        "name": "n_open_actions",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_CAPA": {
+    "rows": 165,
+    "columns": [
+      {
+        "name": "action_id",
+        "type": "int64"
+      },
+      {
+        "name": "action_number",
+        "type": "string"
+      },
+      {
+        "name": "action_type",
+        "type": "string"
+      },
+      {
+        "name": "origin",
+        "type": "string"
+      },
+      {
+        "name": "incident_number",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "responsible_id",
+        "type": "int64"
+      },
+      {
+        "name": "department_id",
+        "type": "int64"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "status_order",
+        "type": "int64"
+      },
+      {
+        "name": "created_date",
+        "type": "date"
+      },
+      {
+        "name": "original_due_date",
+        "type": "date"
+      },
+      {
+        "name": "due_date",
+        "type": "date"
+      },
+      {
+        "name": "completed_date",
+        "type": "date"
+      },
+      {
+        "name": "closed_date",
+        "type": "date"
+      },
+      {
+        "name": "effectiveness_result",
+        "type": "string"
+      },
+      {
+        "name": "is_cancelled",
+        "type": "int64"
+      },
+      {
+        "name": "is_open",
+        "type": "int64"
+      },
+      {
+        "name": "is_overdue",
+        "type": "int64"
+      },
+      {
+        "name": "days_overdue",
+        "type": "int64"
+      },
+      {
+        "name": "was_rescheduled",
+        "type": "int64"
+      },
+      {
+        "name": "completed_by_due",
+        "type": "int64"
+      },
+      {
+        "name": "days_to_complete",
+        "type": "int64"
+      },
+      {
+        "name": "latest_progress_pct",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_CAPA_Snapshot": {
+    "rows": 212,
+    "columns": [
+      {
+        "name": "snapshot_date",
+        "type": "date"
+      },
+      {
+        "name": "action_id",
+        "type": "int64"
+      },
+      {
+        "name": "action_number",
+        "type": "string"
+      },
+      {
+        "name": "action_type",
+        "type": "string"
+      },
+      {
+        "name": "department_id",
+        "type": "int64"
+      },
+      {
+        "name": "responsible_id",
+        "type": "int64"
+      },
+      {
+        "name": "due_date_then",
+        "type": "date"
+      },
+      {
+        "name": "is_overdue",
+        "type": "int64"
+      },
+      {
+        "name": "days_overdue",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_MaintenanceOrders": {
+    "rows": 491,
+    "columns": [
+      {
+        "name": "mo_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_id",
+        "type": "int64"
+      },
+      {
+        "name": "maintenance_type",
+        "type": "string"
+      },
+      {
+        "name": "priority",
+        "type": "string"
+      },
+      {
+        "name": "responsible_department_id",
+        "type": "int64"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "status_order",
+        "type": "int64"
+      },
+      {
+        "name": "opened_date",
+        "type": "date"
+      },
+      {
+        "name": "planned_end_date",
+        "type": "date"
+      },
+      {
+        "name": "actual_end_date",
+        "type": "date"
+      },
+      {
+        "name": "closed_date",
+        "type": "date"
+      },
+      {
+        "name": "is_cancelled",
+        "type": "int64"
+      },
+      {
+        "name": "is_open",
+        "type": "int64"
+      },
+      {
+        "name": "delay_days",
+        "type": "int64"
+      },
+      {
+        "name": "completed_by_planned",
+        "type": "int64"
+      },
+      {
+        "name": "turnaround_days",
+        "type": "int64"
+      },
+      {
+        "name": "material_hold_days",
+        "type": "int64"
+      },
+      {
+        "name": "documentation_hold_days",
+        "type": "int64"
+      },
+      {
+        "name": "had_material_hold",
+        "type": "int64"
+      },
+      {
+        "name": "had_documentation_hold",
+        "type": "int64"
+      },
+      {
+        "name": "material_hold_group",
+        "type": "string"
+      },
+      {
+        "name": "is_blocked_by_material",
+        "type": "int64"
+      },
+      {
+        "name": "is_blocked_by_documentation",
+        "type": "int64"
+      },
+      {
+        "name": "n_incidents",
+        "type": "int64"
+      },
+      {
+        "name": "work_description",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_Holds": {
+    "rows": 93,
+    "columns": [
+      {
+        "name": "hold_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_id",
+        "type": "int64"
+      },
+      {
+        "name": "hold_reason",
+        "type": "string"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "document_code",
+        "type": "string"
+      },
+      {
+        "name": "start_date",
+        "type": "date"
+      },
+      {
+        "name": "end_date",
+        "type": "date"
+      },
+      {
+        "name": "hold_days",
+        "type": "int64"
+      },
+      {
+        "name": "is_active",
+        "type": "int64"
+      },
+      {
+        "name": "comment",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_MO_Materials": {
+    "rows": 1188,
+    "columns": [
+      {
+        "name": "mo_material_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_id",
+        "type": "int64"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "aircraft_id",
+        "type": "int64"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "qty_required",
+        "type": "double"
+      },
+      {
+        "name": "required_by_date",
+        "type": "date"
+      },
+      {
+        "name": "first_reserved_date",
+        "type": "date"
+      },
+      {
+        "name": "last_issued_date",
+        "type": "date"
+      },
+      {
+        "name": "was_short",
+        "type": "int64"
+      },
+      {
+        "name": "is_cancelled_order",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_InventoryMovements": {
+    "rows": 3695,
+    "columns": [
+      {
+        "name": "movement_id",
+        "type": "int64"
+      },
+      {
+        "name": "movement_number",
+        "type": "string"
+      },
+      {
+        "name": "movement_date",
+        "type": "date"
+      },
+      {
+        "name": "movement_datetime",
+        "type": "dateTime"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "movement_type",
+        "type": "string"
+      },
+      {
+        "name": "quantity",
+        "type": "double"
+      },
+      {
+        "name": "from_bucket",
+        "type": "string"
+      },
+      {
+        "name": "to_bucket",
+        "type": "string"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "lot_number",
+        "type": "string"
+      },
+      {
+        "name": "certificate_ref",
+        "type": "string"
+      },
+      {
+        "name": "is_traceable",
+        "type": "int64"
+      },
+      {
+        "name": "movement_value",
+        "type": "double"
+      }
+    ]
+  },
+  "Fact_StockSnapshot": {
+    "rows": 2400,
+    "columns": [
+      {
+        "name": "snapshot_date",
+        "type": "date"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "min_stock_qty",
+        "type": "double"
+      },
+      {
+        "name": "available_qty",
+        "type": "double"
+      },
+      {
+        "name": "reserved_qty",
+        "type": "double"
+      },
+      {
+        "name": "quarantine_qty",
+        "type": "double"
+      },
+      {
+        "name": "blocked_qty",
+        "type": "double"
+      },
+      {
+        "name": "non_conforming_qty",
+        "type": "double"
+      },
+      {
+        "name": "is_below_min",
+        "type": "int64"
+      },
+      {
+        "name": "available_value",
+        "type": "double"
+      },
+      {
+        "name": "reserved_value",
+        "type": "double"
+      },
+      {
+        "name": "quarantine_value",
+        "type": "double"
+      },
+      {
+        "name": "blocked_value",
+        "type": "double"
+      },
+      {
+        "name": "non_conforming_value",
+        "type": "double"
+      }
+    ]
+  },
+  "Fact_StockCounts": {
+    "rows": 516,
+    "columns": [
+      {
+        "name": "count_id",
+        "type": "int64"
+      },
+      {
+        "name": "count_number",
+        "type": "string"
+      },
+      {
+        "name": "count_date",
+        "type": "date"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "count_type",
+        "type": "string"
+      },
+      {
+        "name": "system_qty",
+        "type": "double"
+      },
+      {
+        "name": "counted_qty",
+        "type": "double"
+      },
+      {
+        "name": "difference_qty",
+        "type": "double"
+      },
+      {
+        "name": "has_difference",
+        "type": "int64"
+      },
+      {
+        "name": "difference_value",
+        "type": "double"
+      }
+    ]
+  },
+  "Fact_PurchaseOrderLines": {
+    "rows": 341,
+    "columns": [
+      {
+        "name": "po_line_id",
+        "type": "int64"
+      },
+      {
+        "name": "po_number",
+        "type": "string"
+      },
+      {
+        "name": "supplier_id",
+        "type": "int64"
+      },
+      {
+        "name": "material_id",
+        "type": "int64"
+      },
+      {
+        "name": "order_date",
+        "type": "date"
+      },
+      {
+        "name": "urgency",
+        "type": "string"
+      },
+      {
+        "name": "promised_date",
+        "type": "date"
+      },
+      {
+        "name": "is_cancelled",
+        "type": "int64"
+      },
+      {
+        "name": "qty_ordered",
+        "type": "double"
+      },
+      {
+        "name": "qty_received",
+        "type": "double"
+      },
+      {
+        "name": "qty_pending",
+        "type": "double"
+      },
+      {
+        "name": "line_value",
+        "type": "double"
+      },
+      {
+        "name": "first_receipt_date",
+        "type": "date"
+      },
+      {
+        "name": "last_receipt_date",
+        "type": "date"
+      },
+      {
+        "name": "line_status",
+        "type": "string"
+      },
+      {
+        "name": "is_received",
+        "type": "int64"
+      },
+      {
+        "name": "days_late",
+        "type": "int64"
+      },
+      {
+        "name": "is_on_time",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_PO_Snapshot": {
+    "rows": 119,
+    "columns": [
+      {
+        "name": "snapshot_date",
+        "type": "date"
+      },
+      {
+        "name": "po_id",
+        "type": "int64"
+      },
+      {
+        "name": "po_number",
+        "type": "string"
+      },
+      {
+        "name": "supplier_id",
+        "type": "int64"
+      },
+      {
+        "name": "urgency",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_DocumentVerifications": {
+    "rows": 808,
+    "columns": [
+      {
+        "name": "verification_id",
+        "type": "int64"
+      },
+      {
+        "name": "verification_number",
+        "type": "string"
+      },
+      {
+        "name": "verification_date",
+        "type": "date"
+      },
+      {
+        "name": "document_id",
+        "type": "int64"
+      },
+      {
+        "name": "revision_code",
+        "type": "string"
+      },
+      {
+        "name": "verification_type",
+        "type": "string"
+      },
+      {
+        "name": "result",
+        "type": "string"
+      },
+      {
+        "name": "is_error",
+        "type": "int64"
+      },
+      {
+        "name": "is_routine",
+        "type": "int64"
+      },
+      {
+        "name": "verified_by",
+        "type": "int64"
+      },
+      {
+        "name": "mo_number",
+        "type": "string"
+      },
+      {
+        "name": "raised_incident",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_DocumentSnapshot": {
+    "rows": 5136,
+    "columns": [
+      {
+        "name": "snapshot_date",
+        "type": "date"
+      },
+      {
+        "name": "document_id",
+        "type": "int64"
+      },
+      {
+        "name": "owner_department_id",
+        "type": "int64"
+      },
+      {
+        "name": "revision_id",
+        "type": "int64"
+      },
+      {
+        "name": "revision_code",
+        "type": "string"
+      },
+      {
+        "name": "review_due_then",
+        "type": "date"
+      },
+      {
+        "name": "is_compliant",
+        "type": "int64"
+      },
+      {
+        "name": "is_expired",
+        "type": "int64"
+      },
+      {
+        "name": "days_overdue",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_AuditEvents": {
+    "rows": 17383,
+    "columns": [
+      {
+        "name": "audit_id",
+        "type": "int64"
+      },
+      {
+        "name": "event_datetime",
+        "type": "dateTime"
+      },
+      {
+        "name": "event_date",
+        "type": "date"
+      },
+      {
+        "name": "table_name",
+        "type": "string"
+      },
+      {
+        "name": "record_id",
+        "type": "int64"
+      },
+      {
+        "name": "record_ref",
+        "type": "string"
+      },
+      {
+        "name": "action",
+        "type": "string"
+      },
+      {
+        "name": "field_name",
+        "type": "string"
+      },
+      {
+        "name": "old_value",
+        "type": "string"
+      },
+      {
+        "name": "new_value",
+        "type": "string"
+      },
+      {
+        "name": "change_label",
+        "type": "string"
+      },
+      {
+        "name": "changed_by",
+        "type": "int64"
+      },
+      {
+        "name": "source",
+        "type": "string"
+      }
+    ]
+  },
+  "Dim_KPI": {
+    "rows": 18,
+    "columns": [
+      {
+        "name": "kpi_id",
+        "type": "string"
+      },
+      {
+        "name": "kpi_name",
+        "type": "string"
+      },
+      {
+        "name": "kpi_name_es",
+        "type": "string"
+      },
+      {
+        "name": "area",
+        "type": "string"
+      },
+      {
+        "name": "area_order",
+        "type": "int64"
+      },
+      {
+        "name": "kpi_order",
+        "type": "int64"
+      },
+      {
+        "name": "kpi_type",
+        "type": "string"
+      },
+      {
+        "name": "unit",
+        "type": "string"
+      },
+      {
+        "name": "direction",
+        "type": "string"
+      },
+      {
+        "name": "target",
+        "type": "double"
+      },
+      {
+        "name": "warning",
+        "type": "double"
+      },
+      {
+        "name": "target_label",
+        "type": "string"
+      },
+      {
+        "name": "sql_value",
+        "type": "double"
+      },
+      {
+        "name": "sql_numerator",
+        "type": "double"
+      },
+      {
+        "name": "sql_denominator",
+        "type": "double"
+      },
+      {
+        "name": "sql_status",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_KPI_Monthly": {
+    "rows": 432,
+    "columns": [
+      {
+        "name": "kpi_id",
+        "type": "string"
+      },
+      {
+        "name": "period",
+        "type": "string"
+      },
+      {
+        "name": "month_end",
+        "type": "date"
+      },
+      {
+        "name": "numerator",
+        "type": "double"
+      },
+      {
+        "name": "denominator",
+        "type": "double"
+      },
+      {
+        "name": "value",
+        "type": "double"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      }
+    ]
+  },
+  "Fact_ValidationResults": {
+    "rows": 82,
+    "columns": [
+      {
+        "name": "rule_id",
+        "type": "string"
+      },
+      {
+        "name": "rule_group",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "severity",
+        "type": "string"
+      },
+      {
+        "name": "result",
+        "type": "string"
+      },
+      {
+        "name": "findings",
+        "type": "int64"
+      }
+    ]
+  },
+  "Fact_ValidationFindings": {
+    "rows": 26,
+    "columns": [
+      {
+        "name": "rule_id",
+        "type": "string"
+      },
+      {
+        "name": "severity",
+        "type": "string"
+      },
+      {
+        "name": "record_ref",
+        "type": "string"
+      },
+      {
+        "name": "detail",
+        "type": "string"
+      }
+    ]
+  },
+  "Model_Info": {
+    "rows": 1,
+    "columns": [
+      {
+        "name": "as_of_date",
+        "type": "date"
+      },
+      {
+        "name": "period_start",
+        "type": "date"
+      },
+      {
+        "name": "generated_at",
+        "type": "dateTime"
+      },
+      {
+        "name": "random_seed",
+        "type": "int64"
+      },
+      {
+        "name": "rules_executed",
+        "type": "int64"
+      },
+      {
+        "name": "rules_passed",
+        "type": "int64"
+      },
+      {
+        "name": "rules_with_warnings",
+        "type": "int64"
+      },
+      {
+        "name": "critical_failures",
+        "type": "int64"
+      },
+      {
+        "name": "planted_expected",
+        "type": "int64"
+      },
+      {
+        "name": "planted_detected",
+        "type": "int64"
+      },
+      {
+        "name": "data_quality_score",
+        "type": "double"
+      },
+      {
+        "name": "quality_gate",
+        "type": "string"
+      },
+      {
+        "name": "kpi_checks",
+        "type": "string"
+      },
+      {
+        "name": "disclaimer",
+        "type": "string"
+      }
+    ]
+  }
+}

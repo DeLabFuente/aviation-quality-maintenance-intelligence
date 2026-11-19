@@ -1,0 +1,101 @@
+material_id,part_number,description,material_label,material_class,unit_of_measure,preferred_supplier_code,standard_lead_time_days,min_stock_qty,reorder_qty,unit_cost,is_serialized,is_shelf_life_controlled,requires_release_certificate,is_active
+1,AQ-1107-02,"Engine oil – synthetic, grade A","AQ-1107-02 · Engine oil – synthetic, grade A",CONSUMABLE,L,SUP-006,10,5,23.25,24,0,1,1,1
+2,AQ-1114-08,"Engine oil – synthetic, grade B","AQ-1114-08 · Engine oil – synthetic, grade B",CONSUMABLE,L,SUP-009,10,5,23.25,27,0,1,1,1
+3,AQ-1121-06,Hydraulic fluid – type H1,AQ-1121-06 · Hydraulic fluid – type H1,CONSUMABLE,L,SUP-020,12,5.25,23.25,31,0,1,1,1
+4,AQ-1128-08,Gearbox oil – type T1,AQ-1128-08 · Gearbox oil – type T1,CONSUMABLE,L,SUP-006,12,5.25,23.25,35,0,1,1,1
+5,AQ-1135-07,"Grease – general purpose, type G1","AQ-1135-07 · Grease – general purpose, type G1",CONSUMABLE,KG,SUP-008,9,1.25,6.25,42,0,1,1,1
+6,AQ-1142-06,"Grease – high temperature, type G2","AQ-1142-06 · Grease – high temperature, type G2",CONSUMABLE,KG,SUP-017,14,1.5,6.25,68,0,1,1,1
+7,AQ-1149-07,"Sealant kit – fuel tank, type S1","AQ-1149-07 · Sealant kit – fuel tank, type S1",CONSUMABLE,KIT,SUP-005,18,2,5,74,0,1,1,1
+8,AQ-1156-02,"Sealant kit – general purpose, type S2","AQ-1156-02 · Sealant kit – general purpose, type S2",CONSUMABLE,KIT,SUP-017,12,2,5,39,0,1,1,1
+9,AQ-1163-01,Corrosion inhibitor compound,AQ-1163-01 · Corrosion inhibitor compound,CONSUMABLE,L,SUP-008,10,2.25,10.75,28,0,1,1,1
+10,AQ-1170-01,Cleaning solvent – type C1,AQ-1170-01 · Cleaning solvent – type C1,CONSUMABLE,L,SUP-002,7,2,10.75,9.5,0,0,0,1
+11,AQ-1177-06,"Adhesive kit – structural, type A1","AQ-1177-06 · Adhesive kit – structural, type A1",CONSUMABLE,KIT,SUP-005,15,1,2,56,0,1,1,1
+12,AQ-1184-05,"Primer – epoxy, type P1","AQ-1184-05 · Primer – epoxy, type P1",CONSUMABLE,L,SUP-015,15,1,3.5,44,0,1,1,1
+13,AQ-1191-05,"Lockwire – stainless, 0.8 mm","AQ-1191-05 · Lockwire – stainless, 0.8 mm",CONSUMABLE,M,SUP-016,8,1,4,0.9,0,0,0,1
+14,AQ-1198-08,Lint-free wipes – pack of 50,AQ-1198-08 · Lint-free wipes – pack of 50,CONSUMABLE,EA,SUP-007,5,2,10,6.5,0,0,0,1
+15,AQ-1205-06,Masking tape – roll,AQ-1205-06 · Masking tape – roll,CONSUMABLE,EA,SUP-014,5,2,10,3.2,0,0,0,1
+16,AQ-2207-07,"Bolt – hex head, size 3","AQ-2207-07 · Bolt – hex head, size 3",STANDARD_PART,EA,SUP-015,7,3,14,0.75,0,0,0,1
+17,AQ-2214-04,"Bolt – hex head, size 4","AQ-2214-04 · Bolt – hex head, size 4",STANDARD_PART,EA,SUP-013,7,3,14,0.85,0,0,0,1
+18,AQ-2221-08,"Bolt – hex head, size 5","AQ-2221-08 · Bolt – hex head, size 5",STANDARD_PART,EA,SUP-007,7,3,14,0.95,0,0,0,1
+19,AQ-2228-03,"Bolt – hex head, size 6","AQ-2228-03 · Bolt – hex head, size 6",STANDARD_PART,EA,SUP-011,7,3,14,1.05,0,0,0,1
+20,AQ-2235-04,"Bolt – hex head, size 8","AQ-2235-04 · Bolt – hex head, size 8",STANDARD_PART,EA,SUP-008,7,3,14,1.25,0,0,0,1
+21,AQ-2242-08,"Nut – self-locking, size 3","AQ-2242-08 · Nut – self-locking, size 3",STANDARD_PART,EA,SUP-009,7,3,14,0.48,0,0,0,1
+22,AQ-2249-01,"Nut – self-locking, size 4","AQ-2249-01 · Nut – self-locking, size 4",STANDARD_PART,EA,SUP-003,7,3,14,0.54,0,0,0,1
+23,AQ-2256-07,"Nut – self-locking, size 5","AQ-2256-07 · Nut – self-locking, size 5",STANDARD_PART,EA,SUP-004,7,3,14,0.6,0,0,0,1
+24,AQ-2263-03,"Nut – self-locking, size 6","AQ-2263-03 · Nut – self-locking, size 6",STANDARD_PART,EA,SUP-012,7,3,14,0.66,0,0,0,1
+25,AQ-2270-04,"Nut – self-locking, size 8","AQ-2270-04 · Nut – self-locking, size 8",STANDARD_PART,EA,SUP-003,7,3,14,0.78,0,0,0,1
+26,AQ-2277-01,"Washer – flat, size 3","AQ-2277-01 · Washer – flat, size 3",STANDARD_PART,EA,SUP-003,7,3,14,0.14,0,0,0,1
+27,AQ-2284-01,"Washer – flat, size 4","AQ-2284-01 · Washer – flat, size 4",STANDARD_PART,EA,SUP-002,7,3,14,0.16,0,0,0,1
+28,AQ-2291-08,"Washer – flat, size 5","AQ-2291-08 · Washer – flat, size 5",STANDARD_PART,EA,SUP-002,7,3,14,0.18,0,0,0,1
+29,AQ-2298-01,"Washer – flat, size 6","AQ-2298-01 · Washer – flat, size 6",STANDARD_PART,EA,SUP-010,7,3,14,0.2,0,0,0,1
+30,AQ-2305-06,"Washer – flat, size 8","AQ-2305-06 · Washer – flat, size 8",STANDARD_PART,EA,SUP-001,7,3,14,0.24,0,0,0,1
+31,AQ-2312-03,"Screw – countersunk, size 3","AQ-2312-03 · Screw – countersunk, size 3",STANDARD_PART,EA,SUP-011,7,3,14,0.5,0,0,0,1
+32,AQ-2319-09,"Screw – countersunk, size 4","AQ-2319-09 · Screw – countersunk, size 4",STANDARD_PART,EA,SUP-004,7,3,14,0.55,0,0,0,1
+33,AQ-2326-03,"Screw – countersunk, size 5","AQ-2326-03 · Screw – countersunk, size 5",STANDARD_PART,EA,SUP-007,7,3,14,0.6,0,0,0,1
+34,AQ-2333-03,Cotter pin – size 1,AQ-2333-03 · Cotter pin – size 1,STANDARD_PART,EA,SUP-017,7,3,14,0.12,0,0,0,1
+35,AQ-2340-04,Cotter pin – size 2,AQ-2340-04 · Cotter pin – size 2,STANDARD_PART,EA,SUP-011,7,3,14,0.12,0,0,0,1
+36,AQ-2347-07,Cotter pin – size 3,AQ-2347-07 · Cotter pin – size 3,STANDARD_PART,EA,SUP-006,7,3,14,0.12,0,0,0,1
+37,AQ-2354-09,"Rivet – solid, size 3","AQ-2354-09 · Rivet – solid, size 3",STANDARD_PART,EA,SUP-013,7,3,14,0.06,0,0,0,1
+38,AQ-2361-02,"Rivet – solid, size 4","AQ-2361-02 · Rivet – solid, size 4",STANDARD_PART,EA,SUP-014,7,3,14,0.06,0,0,0,1
+39,AQ-2368-09,"Rivet – blind, size 3","AQ-2368-09 · Rivet – blind, size 3",STANDARD_PART,EA,SUP-003,7,3,14,0.22,0,0,0,1
+40,AQ-2375-06,"Rivet – blind, size 4","AQ-2375-06 · Rivet – blind, size 4",STANDARD_PART,EA,SUP-017,7,3,14,0.22,0,0,0,1
+41,AQ-2382-02,O-ring – size 010,AQ-2382-02 · O-ring – size 010,STANDARD_PART,EA,SUP-018,7,3,17,0.85,0,1,1,1
+42,AQ-2389-06,O-ring – size 012,AQ-2389-06 · O-ring – size 012,STANDARD_PART,EA,SUP-012,7,3,17,0.85,0,1,1,1
+43,AQ-2396-05,O-ring – size 014,AQ-2396-05 · O-ring – size 014,STANDARD_PART,EA,SUP-006,7,3,17,0.85,0,1,1,1
+44,AQ-2403-06,O-ring – size 016,AQ-2403-06 · O-ring – size 016,STANDARD_PART,EA,SUP-010,7,3,17,0.85,0,1,1,1
+45,AQ-2410-03,O-ring – size 018,AQ-2410-03 · O-ring – size 018,STANDARD_PART,EA,SUP-011,7,3,17,0.85,0,1,1,1
+46,AQ-2417-02,O-ring – size 020,AQ-2417-02 · O-ring – size 020,STANDARD_PART,EA,SUP-006,7,3,17,0.85,0,1,1,1
+47,AQ-2424-09,Hose clamp – size 1,AQ-2424-09 · Hose clamp – size 1,STANDARD_PART,EA,SUP-006,7,3,14,1.9,0,0,0,1
+48,AQ-2431-02,Hose clamp – size 2,AQ-2431-02 · Hose clamp – size 2,STANDARD_PART,EA,SUP-014,7,3,14,1.9,0,0,0,1
+49,AQ-2438-06,Hose clamp – size 3,AQ-2438-06 · Hose clamp – size 3,STANDARD_PART,EA,SUP-004,7,3,14,1.9,0,0,0,1
+50,AQ-2445-06,Cable tie – pack of 100,AQ-2445-06 · Cable tie – pack of 100,STANDARD_PART,EA,SUP-011,7,3,14,7.5,0,0,0,1
+51,AQ-2452-06,Packing ring – size 1,AQ-2452-06 · Packing ring – size 1,STANDARD_PART,EA,SUP-017,7,3,17,1.4,0,0,0,1
+52,AQ-2459-03,Packing ring – size 2,AQ-2459-03 · Packing ring – size 2,STANDARD_PART,EA,SUP-006,7,3,17,1.4,0,0,0,1
+53,AQ-2466-06,Spring pin – size 2,AQ-2466-06 · Spring pin – size 2,STANDARD_PART,EA,SUP-014,7,3,14,0.25,0,0,0,1
+54,AQ-2473-04,Spring pin – size 3,AQ-2473-04 · Spring pin – size 3,STANDARD_PART,EA,SUP-010,7,3,14,0.25,0,0,0,1
+55,AQ-2480-01,"Shim – laminated, type L1","AQ-2480-01 · Shim – laminated, type L1",STANDARD_PART,EA,SUP-010,7,3,14,12,0,0,0,1
+56,AQ-3307-05,Oil filter element – type A,AQ-3307-05 · Oil filter element – type A,COMPONENT,EA,SUP-012,21,3,8,62,0,0,1,1
+57,AQ-3314-08,Oil filter element – type B,AQ-3314-08 · Oil filter element – type B,COMPONENT,EA,SUP-011,21,3,8,71,0,0,1,1
+58,AQ-3321-05,Fuel filter element – type A,AQ-3321-05 · Fuel filter element – type A,COMPONENT,EA,SUP-006,21,3,8,58,0,0,1,1
+59,AQ-3328-08,Fuel filter element – type B,AQ-3328-08 · Fuel filter element – type B,COMPONENT,EA,SUP-016,21,3,8,66,0,0,1,1
+60,AQ-3335-01,Hydraulic filter element – type A,AQ-3335-01 · Hydraulic filter element – type A,COMPONENT,EA,SUP-005,25,3,8,94,0,0,1,1
+61,AQ-3342-06,Air filter element – type A,AQ-3342-06 · Air filter element – type A,COMPONENT,EA,SUP-006,18,3,8,47,0,0,1,1
+62,AQ-3349-03,Cabin air filter element,AQ-3349-03 · Cabin air filter element,COMPONENT,EA,SUP-014,18,3,8,39,0,0,1,1
+63,AQ-3356-07,"Bearing – ball, type B1","AQ-3356-07 · Bearing – ball, type B1",COMPONENT,EA,SUP-015,30,2,4,145,0,0,1,1
+64,AQ-3363-01,"Bearing – ball, type B2","AQ-3363-01 · Bearing – ball, type B2",COMPONENT,EA,SUP-001,30,2,4,162,0,0,1,1
+65,AQ-3370-03,"Bearing – roller, type R1","AQ-3370-03 · Bearing – roller, type R1",COMPONENT,EA,SUP-002,35,2,4,210,0,0,1,1
+66,AQ-3377-01,"Seal kit – actuator, type K1","AQ-3377-01 · Seal kit – actuator, type K1",COMPONENT,EA,SUP-017,28,2,4,118,0,0,1,1
+67,AQ-3384-04,"Seal kit – actuator, type K2","AQ-3384-04 · Seal kit – actuator, type K2",COMPONENT,EA,SUP-018,28,2,4,131,0,0,1,1
+68,AQ-3391-07,Brush set – starter generator,AQ-3391-07 · Brush set – starter generator,COMPONENT,EA,SUP-001,30,3,6,186,0,0,1,1
+69,AQ-3398-07,Lamp – position light,AQ-3398-07 · Lamp – position light,COMPONENT,EA,SUP-007,14,2,6,38,0,0,1,1
+70,AQ-3405-08,Lamp – landing light,AQ-3405-08 · Lamp – landing light,COMPONENT,EA,SUP-017,14,2,6,96,0,0,1,1
+71,AQ-3412-06,Lamp – cabin light,AQ-3412-06 · Lamp – cabin light,COMPONENT,EA,SUP-003,14,2,6,22,0,0,1,1
+72,AQ-3419-04,"Hose assembly – hydraulic, type H1","AQ-3419-04 · Hose assembly – hydraulic, type H1",COMPONENT,EA,SUP-006,35,2,4,265,0,0,1,1
+73,AQ-3426-01,"Hose assembly – hydraulic, type H2","AQ-3426-01 · Hose assembly – hydraulic, type H2",COMPONENT,EA,SUP-004,35,2,4,289,0,0,1,1
+74,AQ-3433-02,"Hose assembly – fuel, type F1","AQ-3433-02 · Hose assembly – fuel, type F1",COMPONENT,EA,SUP-002,35,2,4,240,0,0,1,1
+75,AQ-3440-08,"Sensor – temperature, type T1","AQ-3440-08 · Sensor – temperature, type T1",COMPONENT,EA,SUP-014,40,3,6,410,0,0,1,1
+76,AQ-3447-08,"Sensor – pressure, type P1","AQ-3447-08 · Sensor – pressure, type P1",COMPONENT,EA,SUP-001,45,1,1,1450,1,0,1,1
+77,AQ-3454-08,"Valve – check, type V1","AQ-3454-08 · Valve – check, type V1",COMPONENT,EA,SUP-014,40,2,4,330,0,0,1,1
+78,AQ-3461-06,"Valve – solenoid, type V2","AQ-3461-06 · Valve – solenoid, type V2",COMPONENT,EA,SUP-008,40,2,4,520,0,0,1,1
+79,AQ-3468-01,"Switch – micro, type S1","AQ-3468-01 · Switch – micro, type S1",COMPONENT,EA,SUP-016,21,2,6,64,0,0,1,1
+80,AQ-3475-05,Fuse – 5 A,AQ-3475-05 · Fuse – 5 A,COMPONENT,EA,SUP-008,10,2,6,4.8,0,0,1,1
+81,AQ-3482-02,Fuse – 10 A,AQ-3482-02 · Fuse – 10 A,COMPONENT,EA,SUP-003,10,2,6,4.8,0,0,1,1
+82,AQ-3489-08,Relay – type R1,AQ-3489-08 · Relay – type R1,COMPONENT,EA,SUP-030,21,2,6,88,0,0,1,1
+83,AQ-3496-06,"Battery – main, type B","AQ-3496-06 · Battery – main, type B",COMPONENT,EA,SUP-016,45,1,1,2350,1,0,1,1
+84,AQ-3503-02,Starter generator – type SG,AQ-3503-02 · Starter generator – type SG,COMPONENT,EA,SUP-030,60,1,1,8900,1,0,1,1
+85,AQ-3510-05,Servo actuator – type SA,AQ-3510-05 · Servo actuator – type SA,COMPONENT,EA,SUP-011,75,1,1,7400,1,0,1,1
+86,AQ-3517-03,Fuel pump – type FP,AQ-3517-03 · Fuel pump – type FP,COMPONENT,EA,SUP-023,60,1,1,5200,1,0,1,1
+87,AQ-3524-03,Damper assembly – type D,AQ-3524-03 · Damper assembly – type D,COMPONENT,EA,SUP-005,70,1,1,6100,1,0,1,1
+88,AQ-3531-01,Display unit – type AD,AQ-3531-01 · Display unit – type AD,COMPONENT,EA,SUP-008,80,1,1,9800,1,0,1,1
+89,AQ-3538-02,Pitot-static probe – type PS,AQ-3538-02 · Pitot-static probe – type PS,COMPONENT,EA,SUP-013,50,1,1,2900,1,0,1,1
+90,AQ-3545-02,Windshield wiper blade,AQ-3545-02 · Windshield wiper blade,COMPONENT,EA,SUP-001,21,2,4,54,0,0,1,1
+91,AQ-3552-09,Drive belt – type DB1,AQ-3552-09 · Drive belt – type DB1,COMPONENT,EA,SUP-004,21,2,4,76,0,0,1,1
+92,AQ-3559-08,"Gasket – exhaust, type E1","AQ-3559-08 · Gasket – exhaust, type E1",COMPONENT,EA,SUP-012,18,5,17,33,0,0,1,1
+93,AQ-4407-09,Aluminium sheet 1.0 mm – 1 x 2 m,AQ-4407-09 · Aluminium sheet 1.0 mm – 1 x 2 m,RAW_MATERIAL,EA,SUP-013,14,1,3,86,0,0,0,1
+94,AQ-4414-08,Aluminium sheet 1.6 mm – 1 x 2 m,AQ-4414-08 · Aluminium sheet 1.6 mm – 1 x 2 m,RAW_MATERIAL,EA,SUP-012,14,1,3,112,0,0,0,1
+95,AQ-4421-08,Aluminium tube 10 mm,AQ-4421-08 · Aluminium tube 10 mm,RAW_MATERIAL,M,SUP-001,14,1.5,5.5,9.5,0,0,0,1
+96,AQ-4428-09,Steel tube 8 mm,AQ-4428-09 · Steel tube 8 mm,RAW_MATERIAL,M,SUP-012,14,1.5,5.5,12,0,0,0,1
+97,AQ-4435-03,Electrical cable AWG 20,AQ-4435-03 · Electrical cable AWG 20,RAW_MATERIAL,M,SUP-010,10,1.25,5.5,1.1,0,0,0,1
+98,AQ-4442-09,Electrical cable AWG 22,AQ-4442-09 · Electrical cable AWG 22,RAW_MATERIAL,M,SUP-001,10,1.25,5.5,0.9,0,0,0,1
+99,AQ-4449-02,Heat-shrink sleeve 6 mm,AQ-4449-02 · Heat-shrink sleeve 6 mm,RAW_MATERIAL,M,SUP-018,7,1,5.5,1.6,0,0,0,1
+100,AQ-4456-03,Fibreglass cloth,AQ-4456-03 · Fibreglass cloth,RAW_MATERIAL,M,SUP-005,12,1.25,5.5,18,0,0,0,1

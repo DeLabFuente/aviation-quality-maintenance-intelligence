@@ -1,0 +1,19 @@
+﻿kpi_id,kpi_name,kpi_name_es,area,type,unit,direction,value,numerator,denominator,fictitious_target,fictitious_warning,status,year_1,year_2
+DOC-01,Document Compliance Rate,Cumplimiento documental,Document control,SNAPSHOT,%,HIGHER_IS_BETTER,94.4,202,214,95.0,90.0,AMBER,96.7,94.4
+DOC-02,Documentation Error Rate,Tasa de errores documentales,Document control,FLOW,%,LOWER_IS_BETTER,8.3,64,767,5.0,8.0,RED,8.7,8.0
+DOC-03,Expired Documents,Documentos caducados,Document control,SNAPSHOT,count,LOWER_IS_BETTER,12,12,,0.0,5.0,RED,7,12
+DOC-04,Traceability Compliance,Cumplimiento de trazabilidad,Document control,FLOW,%,HIGHER_IS_BETTER,99.2,1341,1352,100.0,99.0,AMBER,99.1,99.3
+INV-01,Inventory Accuracy,Exactitud de inventario,Inventory,FLOW,%,HIGHER_IS_BETTER,89.9,374,416,95.0,90.0,RED,85.6,94.2
+INV-02,Stock Availability,Disponibilidad de stock,Inventory,SNAPSHOT,%,HIGHER_IS_BETTER,93.0,93,100,95.0,90.0,AMBER,93.0,93.0
+INV-03,Material Shortage Rate,Tasa de faltas de material,Inventory,FLOW,%,LOWER_IS_BETTER,6.6,77,1169,5.0,8.0,AMBER,6.2,7.0
+INV-04,Pending Purchase Orders,Pedidos pendientes,Inventory,SNAPSHOT,count,NEUTRAL,9,9,,,,NO_TARGET,3,9
+MNT-01,Maintenance Order Completion Rate,Órdenes completadas en plazo,Maintenance,FLOW,%,HIGHER_IS_BETTER,60.8,290,477,85.0,75.0,RED,65.5,56.2
+MNT-02,Average Maintenance Delay,Retraso medio de las órdenes,Maintenance,FLOW,days,LOWER_IS_BETTER,2.3,1079,473,2.0,4.0,AMBER,2.2,2.3
+MNT-03,Work Orders Blocked by Material,Órdenes bloqueadas por material,Maintenance,SNAPSHOT,count,LOWER_IS_BETTER,4,4,,,,NO_TARGET,1,4
+MNT-04,Work Orders Blocked by Documentation,Órdenes bloqueadas por documentación,Maintenance,SNAPSHOT,count,LOWER_IS_BETTER,0,0,,,,NO_TARGET,0,0
+QUA-01,Total Quality Incidents,Total de no conformidades,Quality,FLOW,count,NEUTRAL,141,141,,,,NO_TARGET,86,55
+QUA-02,Open Non-Conformities,No conformidades abiertas,Quality,SNAPSHOT,count,LOWER_IS_BETTER,13,13,,,,NO_TARGET,11,13
+QUA-03,Non-Conformity Rate,Tasa de no conformidades,Quality,FLOW,per 100 orders,LOWER_IS_BETTER,29.8,141,473,,,NO_TARGET,36.8,23.0
+QUA-04,Corrective Action Closure Rate,Cierre de acciones correctivas en plazo,Quality,FLOW,%,HIGHER_IS_BETTER,69.1,96,139,85.0,75.0,RED,73.1,63.9
+QUA-05,Average Resolution Time,Tiempo medio de resolución,Quality,FLOW,days,LOWER_IS_BETTER,82.0,10493,128,75.0,90.0,AMBER,75.3,91.4
+QUA-06,Overdue Corrective Actions,Acciones correctivas vencidas,Quality,SNAPSHOT,count,LOWER_IS_BETTER,2,2,,0.0,2.0,AMBER,1,2

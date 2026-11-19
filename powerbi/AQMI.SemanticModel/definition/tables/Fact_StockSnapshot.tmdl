@@ -1,0 +1,119 @@
+/// Stock of each active material at each month end, by state (periodic snapshot).
+table Fact_StockSnapshot
+	lineageTag: 024f071c-8a73-494a-9f33-0a9e5b2ecf17
+
+	column 'Snapshot Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: af7193a4-44d3-4cae-963d-e5b33a8b935b
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: da860356-1159-49ce-a33e-65dd23cd2138
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Min Stock Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 697413d7-5c9e-44e5-9597-1f6c45f8d3b4
+		summarizeBy: none
+		sourceColumn: min_stock_qty
+
+	column 'Available Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 2fd383a8-1bb2-429e-a036-4540a9668cff
+		summarizeBy: none
+		sourceColumn: available_qty
+
+	column 'Reserved Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: aae1567c-0a2e-4f51-b130-21a000bd0cf5
+		summarizeBy: none
+		sourceColumn: reserved_qty
+
+	column 'Quarantine Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: c99262ea-6e61-4bd7-b015-069d485921d4
+		summarizeBy: none
+		sourceColumn: quarantine_qty
+
+	column 'Blocked Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 5b20b785-6a7d-4433-8f1c-018113dc3e50
+		summarizeBy: none
+		sourceColumn: blocked_qty
+
+	column 'Non Conforming Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: c8a3d7bc-0f0b-400b-90df-744727138a42
+		summarizeBy: none
+		sourceColumn: non_conforming_qty
+
+	column 'Is Below Min'
+		dataType: int64
+		formatString: #,0
+		lineageTag: e270e782-0c67-4e6d-8690-b0655b51f166
+		summarizeBy: none
+		sourceColumn: is_below_min
+
+	column 'Available Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 019c1622-da66-48d5-9605-c3d0d23d92fe
+		summarizeBy: none
+		sourceColumn: available_value
+
+	column 'Reserved Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9237ecff-4f34-4773-b1fa-63157150dce6
+		summarizeBy: none
+		sourceColumn: reserved_value
+
+	column 'Quarantine Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 604e935e-7df0-4da6-975b-1ab9bce951ff
+		summarizeBy: none
+		sourceColumn: quarantine_value
+
+	column 'Blocked Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 03aa4db0-2acd-491d-b12d-ba91cfb4e392
+		summarizeBy: none
+		sourceColumn: blocked_value
+
+	column 'Non Conforming Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: edbaaf4c-3697-4cea-a9f8-8fa502f887f4
+		summarizeBy: none
+		sourceColumn: non_conforming_value
+
+	partition Fact_StockSnapshot = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_StockSnapshot.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"snapshot_date", type date}, {"material_id", Int64.Type}, {"min_stock_qty", type number}, {"available_qty", type number}, {"reserved_qty", type number}, {"quarantine_qty", type number}, {"blocked_qty", type number}, {"non_conforming_qty", type number}, {"is_below_min", Int64.Type}, {"available_value", type number}, {"reserved_value", type number}, {"quarantine_value", type number}, {"blocked_value", type number}, {"non_conforming_value", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,9 @@
+category_id,category_code,category_name,category_name_es,category_label
+1,DOC,Incorrect documentation,Documentación incorrecta,DOC · Incorrect documentation
+3,INV,Inventory discrepancy,Discrepancia de inventario,INV · Inventory discrepancy
+4,MNC,Non-conforming material,Material no conforme,MNC · Non-conforming material
+7,MNT,Maintenance issue,Incidencia de mantenimiento,MNT · Maintenance issue
+5,PRC,Procedure non-compliance,Incumplimiento de procedimiento,PRC · Procedure non-compliance
+2,REC,Recording error,Error de registro,REC · Recording error
+8,SUP,Supply problem,Problema de suministro,SUP · Supply problem
+6,TRC,Traceability error,Error de trazabilidad,TRC · Traceability error

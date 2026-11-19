@@ -1,0 +1,44 @@
+/// The six departments of AEROQ MRO.
+table Dim_Department
+	lineageTag: 4066c9ec-b6fa-4430-8ce9-eed00e2bbdae
+
+	column 'Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2629f985-0166-403a-bc80-a1f1287f0beb
+		summarizeBy: none
+		sourceColumn: department_id
+
+	column 'Department Code'
+		dataType: string
+		lineageTag: 522ba02d-1ef2-45a8-b00c-7d3e9c0fcb78
+		summarizeBy: none
+		sourceColumn: department_code
+
+	column 'Department Name'
+		dataType: string
+		lineageTag: 8ad586ed-47c8-43ef-85d9-1c17e5c82238
+		summarizeBy: none
+		sourceColumn: department_name
+
+	column 'Department Label'
+		dataType: string
+		lineageTag: 1e8d2ac0-f0ee-48ac-99ce-cc1b705b59ba
+		summarizeBy: none
+		sourceColumn: department_label
+
+	partition Dim_Department = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Department.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"department_id", Int64.Type}, {"department_code", type text}, {"department_name", type text}, {"department_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

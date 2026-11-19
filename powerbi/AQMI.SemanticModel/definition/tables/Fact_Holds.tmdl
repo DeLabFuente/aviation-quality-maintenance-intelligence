@@ -1,0 +1,106 @@
+/// One row per work-order hold (material or documentation).
+table Fact_Holds
+	lineageTag: cfea3bc0-9ec2-4374-8898-ca84fe9bfae1
+
+	column 'Hold ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 139eed04-dade-4fef-85f3-05185a32ceb0
+		summarizeBy: none
+		sourceColumn: hold_id
+
+	column 'MO ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fe7fe966-dd75-4709-b002-66e798c346c9
+		summarizeBy: none
+		sourceColumn: mo_id
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: da3327c9-180b-4559-9a18-f36bc7942af7
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Aircraft ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b84087af-9184-40f3-973c-cf43de997c25
+		summarizeBy: none
+		sourceColumn: aircraft_id
+
+	column 'Hold Reason'
+		dataType: string
+		lineageTag: 8a7c73f7-afd2-4a85-a207-c827aa7d362f
+		summarizeBy: none
+		sourceColumn: hold_reason
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: def52adb-8e68-4ea6-930b-1d41d43a2538
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Document Code'
+		dataType: string
+		lineageTag: d39f5209-7030-4b36-a524-1944cb9e5b11
+		summarizeBy: none
+		sourceColumn: document_code
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: a54482ff-c10b-4486-b4ba-83a6723f587e
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: bfa98694-4726-4356-bd6b-45d88bf32b29
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Hold Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1a7e9371-4f13-4ed3-85ed-49b2bfbd6eee
+		summarizeBy: none
+		sourceColumn: hold_days
+
+	column 'Is Active'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5a1d837b-c318-4698-bfb8-0620e6dcb115
+		summarizeBy: none
+		sourceColumn: is_active
+
+	column Comment
+		dataType: string
+		lineageTag: 7df5148d-ca8f-45c0-ab83-438a6c001fb7
+		summarizeBy: none
+		sourceColumn: comment
+
+	partition Fact_Holds = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Holds.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"hold_id", Int64.Type}, {"mo_id", Int64.Type}, {"mo_number", type text}, {"aircraft_id", Int64.Type}, {"hold_reason", type text}, {"material_id", Int64.Type}, {"document_code", type text}, {"start_date", type date}, {"end_date", type date}, {"hold_days", Int64.Type}, {"is_active", Int64.Type}, {"comment", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

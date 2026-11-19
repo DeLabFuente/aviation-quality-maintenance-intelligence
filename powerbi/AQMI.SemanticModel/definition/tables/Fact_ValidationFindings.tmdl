@@ -1,0 +1,42 @@
+/// Records flagged by the validation rules.
+table Fact_ValidationFindings
+	lineageTag: 47d6e1af-fa66-4e5c-9b4a-7ce3bba89f1f
+
+	column 'Rule ID'
+		dataType: string
+		lineageTag: 4ab6ab69-169d-476e-b613-3c00dd8189e9
+		summarizeBy: none
+		sourceColumn: rule_id
+
+	column Severity
+		dataType: string
+		lineageTag: 313a5573-240f-41f0-aac7-2f75b6f9cdb0
+		summarizeBy: none
+		sourceColumn: severity
+
+	column 'Record Ref'
+		dataType: string
+		lineageTag: cbc02342-dfb7-4083-838e-e133bff126af
+		summarizeBy: none
+		sourceColumn: record_ref
+
+	column Detail
+		dataType: string
+		lineageTag: 21e2fb7e-1d51-4130-9f96-329b7507ff09
+		summarizeBy: none
+		sourceColumn: detail
+
+	partition Fact_ValidationFindings = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_ValidationFindings.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"rule_id", type text}, {"severity", type text}, {"record_ref", type text}, {"detail", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

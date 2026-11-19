@@ -1,0 +1,105 @@
+/// The audit trail: one row per recorded change.
+table Fact_AuditEvents
+	lineageTag: 87c765a8-babe-4ad1-b23f-2afe5e8d246a
+
+	column 'Audit ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b4fab0c1-5662-4156-bc53-0b5bb77a878c
+		summarizeBy: none
+		sourceColumn: audit_id
+
+	column 'Event Datetime'
+		dataType: dateTime
+		formatString: dd mmm yyyy hh:nn
+		lineageTag: 94909213-8ba3-47b1-a33e-ff2ef8e504f2
+		summarizeBy: none
+		sourceColumn: event_datetime
+
+	column 'Event Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 18c31c63-5546-4b3e-8346-7fabc52b6755
+		summarizeBy: none
+		sourceColumn: event_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Table Name'
+		dataType: string
+		lineageTag: c46ecf3e-1693-44a4-bb9b-a8150ae62cd2
+		summarizeBy: none
+		sourceColumn: table_name
+
+	column 'Record ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 04aad848-c21a-48c2-8e36-c2f6dcfa343f
+		summarizeBy: none
+		sourceColumn: record_id
+
+	column 'Record Ref'
+		dataType: string
+		lineageTag: 6590abc0-36fa-400d-8cdc-37a3b91f233c
+		summarizeBy: none
+		sourceColumn: record_ref
+
+	column Action
+		dataType: string
+		lineageTag: 9d5a222f-ff23-420f-b30c-9cf23b08be9e
+		summarizeBy: none
+		sourceColumn: action
+
+	column 'Field Name'
+		dataType: string
+		lineageTag: a9b984ac-acb3-4379-af2d-53d7cde91ff5
+		summarizeBy: none
+		sourceColumn: field_name
+
+	column 'Old Value'
+		dataType: string
+		lineageTag: 460448f8-c4af-4d33-922c-e57fc9d916ed
+		summarizeBy: none
+		sourceColumn: old_value
+
+	column 'New Value'
+		dataType: string
+		lineageTag: 101a7db5-d642-433d-9518-3c9ac24cb47e
+		summarizeBy: none
+		sourceColumn: new_value
+
+	column 'Change Label'
+		dataType: string
+		lineageTag: e93a5404-b501-45c4-9595-c8402f32032c
+		summarizeBy: none
+		sourceColumn: change_label
+
+	column 'Changed By'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 0ebaf1c8-30d6-4182-abe9-a2464d86955c
+		summarizeBy: none
+		sourceColumn: changed_by
+
+	column Source
+		dataType: string
+		lineageTag: 26c2dbc8-8900-4178-8e09-ff66544e26d2
+		summarizeBy: none
+		sourceColumn: source
+
+	partition Fact_AuditEvents = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_AuditEvents.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"audit_id", Int64.Type}, {"event_datetime", type datetime}, {"event_date", type date}, {"table_name", type text}, {"record_id", Int64.Type}, {"record_ref", type text}, {"action", type text}, {"field_name", type text}, {"old_value", type text}, {"new_value", type text}, {"change_label", type text}, {"changed_by", Int64.Type}, {"source", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

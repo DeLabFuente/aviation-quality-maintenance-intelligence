@@ -1,0 +1,114 @@
+/// One row per stock movement.
+table Fact_InventoryMovements
+	lineageTag: 9015005c-b863-497a-bf22-348f113e4c51
+
+	column 'Movement ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7930d141-5edb-4378-8553-e0f2b96f99d4
+		summarizeBy: none
+		sourceColumn: movement_id
+
+	column 'Movement Number'
+		dataType: string
+		lineageTag: 2783e344-fe4a-46d4-8f54-069870ec3cae
+		summarizeBy: none
+		sourceColumn: movement_number
+
+	column 'Movement Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 32d41597-7e7d-4243-a8e0-5d91cc0b0572
+		summarizeBy: none
+		sourceColumn: movement_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Movement Datetime'
+		dataType: dateTime
+		isHidden
+		formatString: dd mmm yyyy hh:nn
+		lineageTag: 1c7f813f-5f1d-4779-b4b6-a2b69bc6cbf3
+		summarizeBy: none
+		sourceColumn: movement_datetime
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cb5453fc-f1e6-4803-a9c7-0d13ec154f1f
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Movement Type'
+		dataType: string
+		lineageTag: bb5a68ec-6364-4cd1-8561-14e27bb8a0e7
+		summarizeBy: none
+		sourceColumn: movement_type
+
+	column Quantity
+		dataType: double
+		formatString: #,0.##
+		lineageTag: e5e7c8fa-d5a6-4a25-a511-da4a06a9f40b
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column 'From Bucket'
+		dataType: string
+		lineageTag: f3d75d4c-391b-443a-93ec-46091d691815
+		summarizeBy: none
+		sourceColumn: from_bucket
+
+	column 'To Bucket'
+		dataType: string
+		lineageTag: df76f3ca-3452-4e2e-8190-91151818f336
+		summarizeBy: none
+		sourceColumn: to_bucket
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: 67280b59-9456-4918-9036-3db28097e92a
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Lot Number'
+		dataType: string
+		lineageTag: 08a0f6d4-a2c2-4f30-bcb3-0114f1a7492e
+		summarizeBy: none
+		sourceColumn: lot_number
+
+	column 'Certificate Ref'
+		dataType: string
+		lineageTag: 2a76f063-da33-4b4d-acc4-a1d5178f2a83
+		summarizeBy: none
+		sourceColumn: certificate_ref
+
+	column 'Is Traceable'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 60b32c06-e709-44d3-98e4-77851b0d23cc
+		summarizeBy: none
+		sourceColumn: is_traceable
+
+	column 'Movement Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d7929d37-32dc-46ce-98b7-3ad1afce942b
+		summarizeBy: none
+		sourceColumn: movement_value
+
+	partition Fact_InventoryMovements = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_InventoryMovements.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"movement_id", Int64.Type}, {"movement_number", type text}, {"movement_date", type date}, {"movement_datetime", type datetime}, {"material_id", Int64.Type}, {"movement_type", type text}, {"quantity", type number}, {"from_bucket", type text}, {"to_bucket", type text}, {"mo_number", type text}, {"lot_number", type text}, {"certificate_ref", type text}, {"is_traceable", Int64.Type}, {"movement_value", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

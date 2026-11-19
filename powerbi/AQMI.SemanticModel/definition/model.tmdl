@@ -1,0 +1,54 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Parameters
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Tables
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder", "Dim_Date", "Dim_Department", "Dim_Employee", "Dim_Aircraft", "Dim_Material", "Dim_Supplier", "Dim_Document", "Dim_IncidentCategory", "Fact_Incidents", "Fact_CAPA", "Fact_CAPA_Snapshot", "Fact_MaintenanceOrders", "Fact_Holds", "Fact_MO_Materials", "Fact_InventoryMovements", "Fact_StockSnapshot", "Fact_StockCounts", "Fact_PurchaseOrderLines", "Fact_PO_Snapshot", "Fact_DocumentVerifications", "Fact_DocumentSnapshot", "Fact_AuditEvents", "Dim_KPI", "Fact_KPI_Monthly", "Fact_ValidationResults", "Fact_ValidationFindings", "Model_Info", "_Measures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dim_Date
+ref table Dim_Department
+ref table Dim_Employee
+ref table Dim_Aircraft
+ref table Dim_Material
+ref table Dim_Supplier
+ref table Dim_Document
+ref table Dim_IncidentCategory
+ref table Fact_Incidents
+ref table Fact_CAPA
+ref table Fact_CAPA_Snapshot
+ref table Fact_MaintenanceOrders
+ref table Fact_Holds
+ref table Fact_MO_Materials
+ref table Fact_InventoryMovements
+ref table Fact_StockSnapshot
+ref table Fact_StockCounts
+ref table Fact_PurchaseOrderLines
+ref table Fact_PO_Snapshot
+ref table Fact_DocumentVerifications
+ref table Fact_DocumentSnapshot
+ref table Fact_AuditEvents
+ref table Dim_KPI
+ref table Fact_KPI_Monthly
+ref table Fact_ValidationResults
+ref table Fact_ValidationFindings
+ref table Model_Info
+ref table _Measures
+
+ref cultureInfo en-US
+

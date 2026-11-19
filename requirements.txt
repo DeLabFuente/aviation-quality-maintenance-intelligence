@@ -1,0 +1,11 @@
+# AQMI — Python dependencies
+# Install them (with the virtual environment active) using:
+#     pip install -r requirements.txt
+#
+# sqlite3 is not listed: it is included with Python.
+
+pytest>=8.0         # automated tests (from Phase 3)
+pandas>=2.2         # data export to CSV / Excel (from Phase 4)
+openpyxl>=3.1       # Excel files (from Phase 4)
+jsonschema>=4.23    # checks the Power BI files against Microsoft's official schemas (from Phase 7)
+referencing>=0.35   # resolves the links between those schemas (from Phase 7)

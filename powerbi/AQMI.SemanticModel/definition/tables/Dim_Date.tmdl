@@ -1,0 +1,129 @@
+/// Calendar of the simulated period (01/11/2024 - 31/10/2026). Marked as date table.
+table Dim_Date
+	lineageTag: df4a07f8-5c49-4e2f-9407-6098127773ac
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd mmm yyyy
+		lineageTag: 9b42e460-5905-49e7-aec8-4fe95ef67672
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: eca3c872-2f10-40ea-8d77-559942e95e74
+		summarizeBy: none
+		sourceColumn: year
+
+	column Quarter
+		dataType: string
+		lineageTag: 48cdd359-ee3e-448b-9ab1-c38ee302e4ee
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column 'Year Quarter'
+		dataType: string
+		lineageTag: 43e6e93e-e401-458f-a7c2-90b58920165d
+		summarizeBy: none
+		sourceColumn: year_quarter
+		sortByColumn: 'Year Quarter Num'
+
+	column 'Year Quarter Num'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 756f53af-c8ec-4a2c-bf6a-780d97ec5a99
+		summarizeBy: none
+		sourceColumn: year_quarter_num
+
+	column 'Month Number'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 72f19aca-e518-4ac8-a98a-563203ea5685
+		summarizeBy: none
+		sourceColumn: month_number
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: a601758b-4227-4983-b90a-9edebfb93a9e
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: 'Month Number'
+
+	column 'Month Label'
+		dataType: string
+		lineageTag: 645f0e75-4761-4ee2-a51f-12f37b6424e7
+		summarizeBy: none
+		sourceColumn: month_label
+		sortByColumn: 'Year Month Num'
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 8a6864bd-eab3-4b28-aa23-11d832cf16ce
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column 'Year Month Num'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2ae5ae62-95a4-4b5f-a492-f2cda85a94f3
+		summarizeBy: none
+		sourceColumn: year_month_num
+
+	column 'Month Start'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 2073f11f-d11a-4155-958c-23725b05eddc
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 9ab01bcd-91b5-47cd-aec0-e97b7dd0e135
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Period Year'
+		dataType: string
+		lineageTag: 5846b194-c6ef-44f6-8e90-931546981fc1
+		summarizeBy: none
+		sourceColumn: period_year
+
+	column 'Period Year Label'
+		dataType: string
+		lineageTag: f506e827-7cd1-402c-8b85-8b4267f346af
+		summarizeBy: none
+		sourceColumn: period_year_label
+
+	column 'Is Month End'
+		dataType: int64
+		formatString: #,0
+		lineageTag: b085fe8a-51e9-4939-bbf9-5baf988c8e05
+		summarizeBy: none
+		sourceColumn: is_month_end
+
+	partition Dim_Date = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Date.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"date", type date}, {"year", Int64.Type}, {"quarter", type text}, {"year_quarter", type text}, {"year_quarter_num", Int64.Type}, {"month_number", Int64.Type}, {"month_name", type text}, {"month_label", type text}, {"year_month", type text}, {"year_month_num", Int64.Type}, {"month_start", type date}, {"month_end", type date}, {"period_year", type text}, {"period_year_label", type text}, {"is_month_end", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

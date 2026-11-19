@@ -1,0 +1,10 @@
+﻿kind,table,reference,date,description
+FALSE_MATERIAL_HOLD,Maintenance_Orders,WO-2025-0049,2025-03-24,Material hold recorded while AQ-2319-09 was available
+FALSE_MATERIAL_HOLD,Maintenance_Orders,WO-2025-0061,2025-04-18,Material hold recorded while AQ-1107-02 was available
+RECEIPT_WITHOUT_CERTIFICATE,Inventory_Movements,MV-2025-00523,2025-05-05,Receipt of AQ-1142-06 recorded without certificate reference
+INCIDENT_WITHOUT_LINKS,Quality_Incidents,NC-2025-0038,2025-05-12,Audit finding recorded without reference to the audited procedure
+RECEIPT_WITHOUT_CERTIFICATE,Inventory_Movements,MV-2025-00870,2025-07-21,Receipt of AQ-3412-06 recorded without certificate reference
+OBSOLETE_REVISION_LINK,Maintenance_Orders,WO-2025-0125,2025-07-24,Work order linked to superseded revision WIN-MNT-018 R00 (detected at records review)
+INCIDENT_WITHOUT_LINKS,Quality_Incidents,NC-2025-0059,2025-08-12,Audit finding recorded without reference to the audited procedure
+OBSOLETE_REVISION_LINK,Maintenance_Orders,WO-2025-0199,2025-10-24,Work order linked to superseded revision WIN-MNT-059 R00 (detected at records review)
+OBSOLETE_REVISION_LINK,Maintenance_Orders,WO-2025-0203,2025-10-28,Work order linked to superseded revision WIN-MNT-038 R00 (not detected)

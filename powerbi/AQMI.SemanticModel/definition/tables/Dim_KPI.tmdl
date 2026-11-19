@@ -1,0 +1,125 @@
+/// The 18 indicators: definition, fictitious internal target and SQL reference value.
+table Dim_KPI
+	lineageTag: ee91d323-7cab-471e-8f89-c998f3ef38c4
+
+	column 'KPI ID'
+		dataType: string
+		lineageTag: 2355280e-8292-4316-afac-8843c13c8eb9
+		summarizeBy: none
+		sourceColumn: kpi_id
+
+	column 'KPI Name'
+		dataType: string
+		lineageTag: c2bcddd5-5c36-4b8e-8e1c-02def150cc98
+		summarizeBy: none
+		sourceColumn: kpi_name
+		sortByColumn: 'KPI Order'
+
+	column 'KPI Name Es'
+		dataType: string
+		lineageTag: b5e12c5c-8bc2-4ef6-9a32-46cd1381ab93
+		summarizeBy: none
+		sourceColumn: kpi_name_es
+
+	column Area
+		dataType: string
+		lineageTag: 896af8d4-ced2-4d8a-9361-30f403d853d8
+		summarizeBy: none
+		sourceColumn: area
+		sortByColumn: 'Area Order'
+
+	column 'Area Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 92a08e81-7773-46a2-a535-d2df5d0edbe6
+		summarizeBy: none
+		sourceColumn: area_order
+
+	column 'KPI Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a54b4096-07ea-44ab-b088-48b32f6e9f11
+		summarizeBy: none
+		sourceColumn: kpi_order
+
+	column 'KPI Type'
+		dataType: string
+		lineageTag: f269c1ba-6d72-478b-9375-52999f8e9da5
+		summarizeBy: none
+		sourceColumn: kpi_type
+
+	column Unit
+		dataType: string
+		lineageTag: c3350123-5c97-49a4-9c61-f3f1798643e3
+		summarizeBy: none
+		sourceColumn: unit
+
+	column Direction
+		dataType: string
+		lineageTag: 377266be-4bb1-4990-a916-4aa752027966
+		summarizeBy: none
+		sourceColumn: direction
+
+	column Target
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 733c1fbb-8232-4198-9fa1-5f4b77940ed6
+		summarizeBy: none
+		sourceColumn: target
+
+	column Warning
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 3557684c-e72c-4c2d-a9e9-10d3188e2c7b
+		summarizeBy: none
+		sourceColumn: warning
+
+	column 'Target Label'
+		dataType: string
+		lineageTag: 03cadf0b-4c3f-4408-a100-ff6ddc76b802
+		summarizeBy: none
+		sourceColumn: target_label
+
+	column 'SQL Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 5db25377-765b-4124-982c-3891c0064dbe
+		summarizeBy: none
+		sourceColumn: sql_value
+
+	column 'SQL Numerator'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 5085828a-7f86-4a06-8e35-7660cef5bf1a
+		summarizeBy: none
+		sourceColumn: sql_numerator
+
+	column 'SQL Denominator'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 04c38e83-b83c-4bc5-8433-76b70861eb41
+		summarizeBy: none
+		sourceColumn: sql_denominator
+
+	column 'SQL Status'
+		dataType: string
+		lineageTag: 51c164b8-9061-4b20-93d7-a2e6d12c2196
+		summarizeBy: none
+		sourceColumn: sql_status
+
+	partition Dim_KPI = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_KPI.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"kpi_id", type text}, {"kpi_name", type text}, {"kpi_name_es", type text}, {"area", type text}, {"area_order", Int64.Type}, {"kpi_order", Int64.Type}, {"kpi_type", type text}, {"unit", type text}, {"direction", type text}, {"target", type number}, {"warning", type number}, {"target_label", type text}, {"sql_value", type number}, {"sql_numerator", type number}, {"sql_denominator", type number}, {"sql_status", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

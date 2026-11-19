@@ -1,0 +1,236 @@
+/// One row per non-conformity.
+table Fact_Incidents
+	lineageTag: 6ebcd7c7-c237-40d6-b42b-148d993c8bc3
+
+	column 'Incident ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 142785d0-4dde-4c5f-8df0-84a8152e1ef0
+		summarizeBy: none
+		sourceColumn: incident_id
+
+	column 'Incident Number'
+		dataType: string
+		lineageTag: b7050f11-1644-4c04-beaa-5f78aa76a48e
+		summarizeBy: none
+		sourceColumn: incident_number
+
+	column Title
+		dataType: string
+		lineageTag: 28db72af-5aee-4810-a80e-e8a82e3297c1
+		summarizeBy: none
+		sourceColumn: title
+
+	column 'Category ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e022854e-dfaf-4252-9d44-525ee0f47fb5
+		summarizeBy: none
+		sourceColumn: category_id
+
+	column Severity
+		dataType: string
+		lineageTag: d8992394-7abb-474f-ada4-120806765883
+		summarizeBy: none
+		sourceColumn: severity
+		sortByColumn: 'Severity Order'
+
+	column 'Severity Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 410d40e8-084d-4b98-88c2-b1e1d06271c7
+		summarizeBy: none
+		sourceColumn: severity_order
+
+	column Priority
+		dataType: string
+		lineageTag: 5fb20ff2-ad11-4e44-aee4-42777fc4cd48
+		summarizeBy: none
+		sourceColumn: priority
+
+	column 'Detection Source'
+		dataType: string
+		lineageTag: 7e720c91-d0fa-491e-9224-f3ad7bde5f29
+		summarizeBy: none
+		sourceColumn: detection_source
+
+	column Status
+		dataType: string
+		lineageTag: 6c9e80f7-6ab9-4290-a05b-b1d01747acad
+		summarizeBy: none
+		sourceColumn: status
+		sortByColumn: 'Status Order'
+
+	column 'Status Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 955a478b-fc59-4e1c-adfd-85fbee5e8f19
+		summarizeBy: none
+		sourceColumn: status_order
+
+	column 'Responsible Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 67342f6d-5e2b-4e25-86e9-75bda702d8f9
+		summarizeBy: none
+		sourceColumn: responsible_department_id
+
+	column 'Owner ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1224a71c-293c-43b2-84ad-f8775a38ffd3
+		summarizeBy: none
+		sourceColumn: owner_id
+
+	column 'Aircraft ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b779c9bc-0211-44e4-b502-5f2e238d0095
+		summarizeBy: none
+		sourceColumn: aircraft_id
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: 047c23e4-c799-44dd-977d-b0997d85dc00
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Supplier ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b211236c-9165-4855-affb-aa6a58d1a69e
+		summarizeBy: none
+		sourceColumn: supplier_id
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4e11722f-e52c-41d7-9783-c2f577e3ffe2
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Detected Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: e9699f84-05b0-4463-8856-59d3c095ea9d
+		summarizeBy: none
+		sourceColumn: detected_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Target Closure Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 0ed037d1-7560-4da5-86cf-d704ba9cbe2f
+		summarizeBy: none
+		sourceColumn: target_closure_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Closed Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 7175f531-4ecd-4c23-b60c-4d118dd577a0
+		summarizeBy: none
+		sourceColumn: closed_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Cancelled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: df3b74dc-9fa6-4e9d-a204-a2d29feecaaf
+		summarizeBy: none
+		sourceColumn: is_cancelled
+
+	column 'Is Open'
+		dataType: int64
+		formatString: #,0
+		lineageTag: f6929f5d-9fb6-4f87-8274-d2115df0af9f
+		summarizeBy: none
+		sourceColumn: is_open
+
+	column 'Age Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6d44d566-0d7d-4895-a504-58f5733119a5
+		summarizeBy: none
+		sourceColumn: age_days
+
+	column 'Resolution Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 36673fbc-a348-4aaf-8dae-f7ebcf008a4b
+		summarizeBy: none
+		sourceColumn: resolution_days
+
+	column 'Is Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: f2af85a5-78a5-4c69-a223-79d273bd9ea3
+		summarizeBy: none
+		sourceColumn: is_overdue
+
+	column 'Closed On Time'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 492fe8f2-537d-4b27-8fdd-9b85ea88b8a0
+		summarizeBy: none
+		sourceColumn: closed_on_time
+
+	column 'Has RCA'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 2837b2a7-311d-4433-ab6e-7abfbc032d28
+		summarizeBy: none
+		sourceColumn: has_rca
+
+	column 'RCA Method'
+		dataType: string
+		lineageTag: 4130a086-99ed-40d2-bf86-4474549dfc0f
+		summarizeBy: none
+		sourceColumn: rca_method
+
+	column 'Root Cause 6M'
+		dataType: string
+		lineageTag: 8f02c03c-8266-4a48-bd06-077bb4f9cca4
+		summarizeBy: none
+		sourceColumn: root_cause_6m
+
+	column 'Number of Actions'
+		dataType: int64
+		formatString: #,0
+		lineageTag: a920f688-6a88-4102-8e1d-a46b01ef00b8
+		summarizeBy: none
+		sourceColumn: n_actions
+
+	column 'Number of Open Actions'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3a43a0c6-8d86-417b-a9e5-3c36f76fb1a3
+		summarizeBy: none
+		sourceColumn: n_open_actions
+
+	partition Fact_Incidents = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_Incidents.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"incident_id", Int64.Type}, {"incident_number", type text}, {"title", type text}, {"category_id", Int64.Type}, {"severity", type text}, {"severity_order", Int64.Type}, {"priority", type text}, {"detection_source", type text}, {"status", type text}, {"status_order", Int64.Type}, {"responsible_department_id", Int64.Type}, {"owner_id", Int64.Type}, {"aircraft_id", Int64.Type}, {"mo_number", type text}, {"supplier_id", Int64.Type}, {"material_id", Int64.Type}, {"detected_date", type date}, {"target_closure_date", type date}, {"closed_date", type date}, {"is_cancelled", Int64.Type}, {"is_open", Int64.Type}, {"age_days", Int64.Type}, {"resolution_days", Int64.Type}, {"is_overdue", Int64.Type}, {"closed_on_time", Int64.Type}, {"has_rca", Int64.Type}, {"rca_method", type text}, {"root_cause_6m", type text}, {"n_actions", Int64.Type}, {"n_open_actions", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

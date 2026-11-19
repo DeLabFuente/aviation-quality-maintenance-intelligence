@@ -1,0 +1,41 @@
+supplier_id,supplier_code,supplier_name,supplier_label,country_code,supplier_type,approval_status
+1,SUP-001,Parxi Technical Supplies,SUP-001 · Parxi Technical Supplies,PT,MANUFACTURER,APPROVED
+2,SUP-002,Rosdu Aero Supply,SUP-002 · Rosdu Aero Supply,FR,DISTRIBUTOR,APPROVED
+3,SUP-003,Jorri Components,SUP-003 · Jorri Components,ES,MANUFACTURER,APPROVED
+4,SUP-004,Belta Aero Logistics,SUP-004 · Belta Aero Logistics,ES,MANUFACTURER,APPROVED
+5,SUP-005,Darve Repair Services,SUP-005 · Darve Repair Services,PT,MANUFACTURER,APPROVED
+6,SUP-006,Irma Components,SUP-006 · Irma Components,US,REPAIR_STATION,APPROVED
+7,SUP-007,Jorta Components,SUP-007 · Jorta Components,ES,MANUFACTURER,APPROVED
+8,SUP-008,Lorpe Aero Supply,SUP-008 · Lorpe Aero Supply,DE,MANUFACTURER,APPROVED
+9,SUP-009,Rosno Aero Supply,SUP-009 · Rosno Aero Supply,ES,MANUFACTURER,APPROVED
+10,SUP-010,Kelsa Technical Supplies,SUP-010 · Kelsa Technical Supplies,ES,DISTRIBUTOR,APPROVED
+11,SUP-011,Marno Aero Distribution,SUP-011 · Marno Aero Distribution,ES,DISTRIBUTOR,APPROVED
+12,SUP-012,Corri Aero Logistics,SUP-012 · Corri Aero Logistics,ES,DISTRIBUTOR,APPROVED
+13,SUP-013,Alve Aviation Parts,SUP-013 · Alve Aviation Parts,NL,DISTRIBUTOR,APPROVED
+14,SUP-014,Torsa Aviation Parts,SUP-014 · Torsa Aviation Parts,NL,DISTRIBUTOR,APPROVED
+15,SUP-015,Jorri Technical Supplies,SUP-015 · Jorri Technical Supplies,DE,DISTRIBUTOR,APPROVED
+16,SUP-016,Lorsa Repair Services,SUP-016 · Lorsa Repair Services,ES,DISTRIBUTOR,APPROVED
+17,SUP-017,Lorta Aero Supply,SUP-017 · Lorta Aero Supply,US,MANUFACTURER,APPROVED
+18,SUP-018,Alma Aero Supply,SUP-018 · Alma Aero Supply,FR,DISTRIBUTOR,APPROVED
+19,SUP-019,Halxi Aviation Parts,SUP-019 · Halxi Aviation Parts,ES,MANUFACTURER,APPROVED
+20,SUP-020,Belma Aero Supply,SUP-020 · Belma Aero Supply,ES,REPAIR_STATION,APPROVED
+21,SUP-021,Halpe Aero Logistics,SUP-021 · Halpe Aero Logistics,ES,DISTRIBUTOR,APPROVED
+22,SUP-022,Norpe Aero Supply,SUP-022 · Norpe Aero Supply,GB,MANUFACTURER,APPROVED
+23,SUP-023,Corlo Aviation Parts,SUP-023 · Corlo Aviation Parts,ES,DISTRIBUTOR,APPROVED
+24,SUP-024,Corxi Components,SUP-024 · Corxi Components,NL,MANUFACTURER,APPROVED
+25,SUP-025,Fenma Repair Services,SUP-025 · Fenma Repair Services,IT,DISTRIBUTOR,APPROVED
+26,SUP-026,Zorma Technical Supplies,SUP-026 · Zorma Technical Supplies,FR,REPAIR_STATION,APPROVED
+27,SUP-027,Marpe Technical Supplies,SUP-027 · Marpe Technical Supplies,FR,DISTRIBUTOR,APPROVED
+28,SUP-028,Fensa Aviation Parts,SUP-028 · Fensa Aviation Parts,ES,DISTRIBUTOR,APPROVED
+29,SUP-029,Selno Repair Services,SUP-029 · Selno Repair Services,FR,DISTRIBUTOR,APPROVED
+30,SUP-030,Zorve Industrial,SUP-030 · Zorve Industrial,ES,REPAIR_STATION,APPROVED
+31,SUP-031,Parno Components,SUP-031 · Parno Components,DE,DISTRIBUTOR,CONDITIONAL
+32,SUP-032,Belma Aero Logistics,SUP-032 · Belma Aero Logistics,ES,DISTRIBUTOR,CONDITIONAL
+33,SUP-033,Bello Aero Supply,SUP-033 · Bello Aero Supply,ES,DISTRIBUTOR,CONDITIONAL
+34,SUP-034,Valxi Components,SUP-034 · Valxi Components,DE,REPAIR_STATION,CONDITIONAL
+35,SUP-035,Fenve Technical Supplies,SUP-035 · Fenve Technical Supplies,ES,REPAIR_STATION,SUSPENDED
+36,SUP-036,Belta Aero Supply,SUP-036 · Belta Aero Supply,GB,DISTRIBUTOR,SUSPENDED
+37,SUP-037,Jorta Aero Distribution,SUP-037 · Jorta Aero Distribution,ES,DISTRIBUTOR,INACTIVE
+38,SUP-038,Jorno Components,SUP-038 · Jorno Components,ES,SERVICE_PROVIDER,INACTIVE
+39,SUP-039,Parsa Technical Supplies,SUP-039 · Parsa Technical Supplies,ES,MANUFACTURER,INACTIVE
+40,SUP-040,Galta Aviation Parts,SUP-040 · Galta Aviation Parts,ES,DISTRIBUTOR,INACTIVE

@@ -1,0 +1,70 @@
+/// Employees (department kept as text to avoid ambiguous relationship paths).
+table Dim_Employee
+	lineageTag: e92a40f4-3f9d-4249-a75c-c5137c035de0
+
+	column 'Employee ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: adb7f23c-f22b-446e-87a2-d51d399f2fab
+		summarizeBy: none
+		sourceColumn: employee_id
+
+	column 'Employee Code'
+		dataType: string
+		lineageTag: 7a919e0b-d85c-49fe-ad0a-179d75ba6b75
+		summarizeBy: none
+		sourceColumn: employee_code
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: f606852b-96cb-4649-a139-736f38b10e4c
+		summarizeBy: none
+		sourceColumn: full_name
+
+	column 'Department Code'
+		dataType: string
+		lineageTag: f920df1e-c005-4401-8e5d-65f4f75cd0a8
+		summarizeBy: none
+		sourceColumn: department_code
+
+	column 'Department Name'
+		dataType: string
+		lineageTag: 024811e4-3c7d-4be3-ae65-70d4ab4a0ec7
+		summarizeBy: none
+		sourceColumn: department_name
+
+	column 'Job Title'
+		dataType: string
+		lineageTag: 9ce557f0-3fa3-4ecc-ade1-f2e09b5245bd
+		summarizeBy: none
+		sourceColumn: job_title
+
+	column 'Is Department Head'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 018bad0f-56fa-4590-bbf6-7d5a8f14470d
+		summarizeBy: none
+		sourceColumn: is_department_head
+
+	column 'Is Active'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8ca0bc2a-8d38-4077-aebc-0421c028ab24
+		summarizeBy: none
+		sourceColumn: is_active
+
+	partition Dim_Employee = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Employee.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"employee_id", Int64.Type}, {"employee_code", type text}, {"full_name", type text}, {"department_code", type text}, {"department_name", type text}, {"job_title", type text}, {"is_department_head", Int64.Type}, {"is_active", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

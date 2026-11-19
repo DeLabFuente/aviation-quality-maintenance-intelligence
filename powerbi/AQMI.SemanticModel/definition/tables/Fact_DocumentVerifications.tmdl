@@ -1,0 +1,101 @@
+/// One row per verification of a document or record.
+table Fact_DocumentVerifications
+	lineageTag: 3c446242-7402-43fe-a51b-75894c32b4ed
+
+	column 'Verification ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a9f5bc89-f51f-44dc-b953-43ad5fbb1104
+		summarizeBy: none
+		sourceColumn: verification_id
+
+	column 'Verification Number'
+		dataType: string
+		lineageTag: cfc1f663-412b-470b-a009-eb96f52102ad
+		summarizeBy: none
+		sourceColumn: verification_number
+
+	column 'Verification Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 7cf50f09-cfb8-4214-bce3-0a1dabca15f6
+		summarizeBy: none
+		sourceColumn: verification_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Document ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a72fc5a3-8ab1-4996-9988-af8f487481ca
+		summarizeBy: none
+		sourceColumn: document_id
+
+	column 'Revision Code'
+		dataType: string
+		lineageTag: 7243ff02-fe80-4346-b28c-4824b09f7728
+		summarizeBy: none
+		sourceColumn: revision_code
+
+	column 'Verification Type'
+		dataType: string
+		lineageTag: 0abab821-6fd3-46e3-b113-ee1dfe7f8424
+		summarizeBy: none
+		sourceColumn: verification_type
+
+	column Result
+		dataType: string
+		lineageTag: ba3a269a-7b25-4077-b47f-a2d9629da251
+		summarizeBy: none
+		sourceColumn: result
+
+	column 'Is Error'
+		dataType: int64
+		formatString: #,0
+		lineageTag: e5ae8074-866f-447a-88a7-ca644a209177
+		summarizeBy: none
+		sourceColumn: is_error
+
+	column 'Is Routine'
+		dataType: int64
+		formatString: #,0
+		lineageTag: d2955a33-a4f4-48a7-a82e-96495c4ef79f
+		summarizeBy: none
+		sourceColumn: is_routine
+
+	column 'Verified By'
+		dataType: int64
+		formatString: #,0
+		lineageTag: a65ee204-9f1b-477d-9ac1-b3ea9f0f980e
+		summarizeBy: none
+		sourceColumn: verified_by
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: c9bf19d8-2f08-4c67-b940-1a3f6c4bbf0e
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Raised Incident'
+		dataType: int64
+		formatString: #,0
+		lineageTag: b5571db5-3c67-47df-953d-af376a8d68e5
+		summarizeBy: none
+		sourceColumn: raised_incident
+
+	partition Fact_DocumentVerifications = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_DocumentVerifications.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"verification_id", Int64.Type}, {"verification_number", type text}, {"verification_date", type date}, {"document_id", Int64.Type}, {"revision_code", type text}, {"verification_type", type text}, {"result", type text}, {"is_error", Int64.Type}, {"is_routine", Int64.Type}, {"verified_by", Int64.Type}, {"mo_number", type text}, {"raised_incident", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

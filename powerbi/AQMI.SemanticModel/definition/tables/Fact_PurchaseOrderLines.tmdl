@@ -1,0 +1,152 @@
+/// One row per purchase order line.
+table Fact_PurchaseOrderLines
+	lineageTag: f63da0ad-1f14-4803-9d6b-7b25150412e2
+
+	column 'PO Line ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c6382026-d07e-4f5e-8490-27742ff2686a
+		summarizeBy: none
+		sourceColumn: po_line_id
+
+	column 'PO Number'
+		dataType: string
+		lineageTag: 6e4e1f47-192e-4a5a-a071-d3985d89bde4
+		summarizeBy: none
+		sourceColumn: po_number
+
+	column 'Supplier ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 958da82b-5f75-4536-8f3b-237a8df6061b
+		summarizeBy: none
+		sourceColumn: supplier_id
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7ef7aade-44e2-423d-87ef-7702f061bbab
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: b7ef768e-bbc2-4801-829f-fd88fb77412c
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Urgency
+		dataType: string
+		lineageTag: c4ee5578-fb31-4677-b352-667c3e3cb86b
+		summarizeBy: none
+		sourceColumn: urgency
+
+	column 'Promised Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 8955854d-898b-4568-8f5d-8fadefc838d9
+		summarizeBy: none
+		sourceColumn: promised_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Cancelled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9146db05-56fc-4ae8-b9cc-3bf3abaafd9f
+		summarizeBy: none
+		sourceColumn: is_cancelled
+
+	column 'Qty Ordered'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 0c1eb275-4fdd-4202-8fef-0e1f9bc95f91
+		summarizeBy: none
+		sourceColumn: qty_ordered
+
+	column 'Qty Received'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: d3173841-9290-4e49-b5f5-555067b8cb21
+		summarizeBy: none
+		sourceColumn: qty_received
+
+	column 'Qty Pending'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 4228578a-7a13-48eb-800a-a896d2179710
+		summarizeBy: none
+		sourceColumn: qty_pending
+
+	column 'Line Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f400855d-c695-4b51-a8a0-998e3cd1c331
+		summarizeBy: none
+		sourceColumn: line_value
+
+	column 'First Receipt Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 7b04fab3-2913-4ffd-a2fa-01db533a8b5b
+		summarizeBy: none
+		sourceColumn: first_receipt_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last Receipt Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: bebc480a-a7fd-408f-8122-e54c6e6921b0
+		summarizeBy: none
+		sourceColumn: last_receipt_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Line Status'
+		dataType: string
+		lineageTag: 76a7f9f4-cc4a-48de-b6d3-375de36fffd8
+		summarizeBy: none
+		sourceColumn: line_status
+
+	column 'Is Received'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6aef265a-c038-4ae3-afb8-7689a190f5f4
+		summarizeBy: none
+		sourceColumn: is_received
+
+	column 'Days Late'
+		dataType: int64
+		formatString: #,0
+		lineageTag: b83cb5f3-b625-4d20-a7ab-ed1020e6e98d
+		summarizeBy: none
+		sourceColumn: days_late
+
+	column 'Is On Time'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5326cdad-3b60-4773-9ea2-61b30d1fe1a6
+		summarizeBy: none
+		sourceColumn: is_on_time
+
+	partition Fact_PurchaseOrderLines = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_PurchaseOrderLines.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"po_line_id", Int64.Type}, {"po_number", type text}, {"supplier_id", Int64.Type}, {"material_id", Int64.Type}, {"order_date", type date}, {"urgency", type text}, {"promised_date", type date}, {"is_cancelled", Int64.Type}, {"qty_ordered", type number}, {"qty_received", type number}, {"qty_pending", type number}, {"line_value", type number}, {"first_receipt_date", type date}, {"last_receipt_date", type date}, {"line_status", type text}, {"is_received", Int64.Type}, {"days_late", Int64.Type}, {"is_on_time", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,7 @@
+﻿department_id,department_code,department_name,is_active,created_at,created_by,updated_at,updated_by
+1,QUA,Quality,1,2024-11-01 08:00:00,,,
+2,MNT,Maintenance,1,2024-11-01 08:00:00,,,
+3,PRD,Production Planning & Control,1,2024-11-01 08:00:00,,,
+4,DOC,Document Control,1,2024-11-01 08:00:00,,,
+5,LOG,Logistics & Materials,1,2024-11-01 08:00:00,,,
+6,DIR,Management,1,2024-11-01 08:00:00,,,

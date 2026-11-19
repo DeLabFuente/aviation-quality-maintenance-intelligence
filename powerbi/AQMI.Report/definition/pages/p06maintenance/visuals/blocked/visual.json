@@ -1,0 +1,260 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "blocked",
+  "position": {
+    "x": 216,
+    "y": 456,
+    "z": 18000,
+    "height": 252,
+    "width": 1048,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Holds"
+                    }
+                  },
+                  "Property": "MO Number"
+                }
+              },
+              "queryRef": "Fact_Holds.MO Number",
+              "nativeQueryRef": "MO Number",
+              "displayName": "Work order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Aircraft"
+                    }
+                  },
+                  "Property": "Registration"
+                }
+              },
+              "queryRef": "Dim_Aircraft.Registration",
+              "nativeQueryRef": "Registration",
+              "displayName": "Aircraft"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Holds"
+                    }
+                  },
+                  "Property": "Hold Reason"
+                }
+              },
+              "queryRef": "Fact_Holds.Hold Reason",
+              "nativeQueryRef": "Hold Reason",
+              "displayName": "Reason"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Material"
+                    }
+                  },
+                  "Property": "Part Number"
+                }
+              },
+              "queryRef": "Dim_Material.Part Number",
+              "nativeQueryRef": "Part Number",
+              "displayName": "Material"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Holds"
+                    }
+                  },
+                  "Property": "Document Code"
+                }
+              },
+              "queryRef": "Fact_Holds.Document Code",
+              "nativeQueryRef": "Document Code",
+              "displayName": "Document"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Holds"
+                    }
+                  },
+                  "Property": "Start Date"
+                }
+              },
+              "queryRef": "Fact_Holds.Start Date",
+              "nativeQueryRef": "Start Date",
+              "displayName": "Since"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Active Hold Days"
+                }
+              },
+              "queryRef": "_Measures.Active Hold Days",
+              "nativeQueryRef": "Active Hold Days",
+              "displayName": "Days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Holds"
+                    }
+                  },
+                  "Property": "Comment"
+                }
+              },
+              "queryRef": "Fact_Holds.Comment",
+              "nativeQueryRef": "Comment"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Active Hold Days"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Work orders blocked'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E2A3B'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'At the cut-off date · longest first'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#5B6577'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

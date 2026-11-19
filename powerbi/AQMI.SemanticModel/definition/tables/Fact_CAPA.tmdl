@@ -1,0 +1,194 @@
+/// One row per corrective or preventive action.
+table Fact_CAPA
+	lineageTag: 36429e4c-4066-4b24-b702-ed23ad7bd91d
+
+	column 'Action ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 07c5ecb2-0b26-44e4-bfc6-1771b38295c3
+		summarizeBy: none
+		sourceColumn: action_id
+
+	column 'Action Number'
+		dataType: string
+		lineageTag: 50eed081-b99f-469a-b843-ec27587f8573
+		summarizeBy: none
+		sourceColumn: action_number
+
+	column 'Action Type'
+		dataType: string
+		lineageTag: 771b1ab0-b97a-4ade-869f-5c1abd1a7502
+		summarizeBy: none
+		sourceColumn: action_type
+
+	column Origin
+		dataType: string
+		lineageTag: db539bd6-14f2-4844-a56e-f866829906ff
+		summarizeBy: none
+		sourceColumn: origin
+
+	column 'Incident Number'
+		dataType: string
+		lineageTag: 1f9b3314-8b97-4f5b-bded-1f3ee4a22066
+		summarizeBy: none
+		sourceColumn: incident_number
+
+	column Title
+		dataType: string
+		lineageTag: 56d5a206-4f98-4325-86e2-9bc2a73f1f05
+		summarizeBy: none
+		sourceColumn: title
+
+	column 'Responsible ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c223796b-4737-4da6-ba2a-18de5dca312d
+		summarizeBy: none
+		sourceColumn: responsible_id
+
+	column 'Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 26b05754-1dfa-4264-8b31-6d27db3fa6a7
+		summarizeBy: none
+		sourceColumn: department_id
+
+	column Status
+		dataType: string
+		lineageTag: b331a2ec-91cd-41d2-abf8-b89b91b479a6
+		summarizeBy: none
+		sourceColumn: status
+		sortByColumn: 'Status Order'
+
+	column 'Status Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: feb0c627-e21a-49eb-961b-a162c0ed006c
+		summarizeBy: none
+		sourceColumn: status_order
+
+	column 'Created Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: ccf9f007-c275-46c4-a3de-2b439b449006
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Original Due Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 6888380e-7a84-4bf4-96dd-00cde73b8ad4
+		summarizeBy: none
+		sourceColumn: original_due_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Due Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 75cf844d-bf4e-4cea-8884-ac7ce540bb91
+		summarizeBy: none
+		sourceColumn: due_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Completed Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 485b61c2-73b0-48a3-9ed9-037ce3f6e90d
+		summarizeBy: none
+		sourceColumn: completed_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Closed Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: a81e46eb-2ca3-42c2-87b0-0560d1cdceb5
+		summarizeBy: none
+		sourceColumn: closed_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Effectiveness Result'
+		dataType: string
+		lineageTag: e7ea4ac8-efa5-4bc1-8df0-8d61fb54e796
+		summarizeBy: none
+		sourceColumn: effectiveness_result
+
+	column 'Is Cancelled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3e754b15-b8cc-4796-9409-02a21e9a8257
+		summarizeBy: none
+		sourceColumn: is_cancelled
+
+	column 'Is Open'
+		dataType: int64
+		formatString: #,0
+		lineageTag: f31f4d5a-ee64-443f-a07f-11bf4bbb5736
+		summarizeBy: none
+		sourceColumn: is_open
+
+	column 'Is Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 48564f08-869d-45f1-b81a-376ec42cfde4
+		summarizeBy: none
+		sourceColumn: is_overdue
+
+	column 'Days Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7dc10159-e6b9-440e-a8d2-8d47a29b5a4a
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+	column 'Was Rescheduled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4752148d-a056-4d9c-9b00-c9a1f53f75c8
+		summarizeBy: none
+		sourceColumn: was_rescheduled
+
+	column 'Completed By Due'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6d48bb49-7d6a-4b9d-9ff6-0e0161c253c7
+		summarizeBy: none
+		sourceColumn: completed_by_due
+
+	column 'Days To Complete'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 99c55940-2edd-4c08-a644-0223f393c2ed
+		summarizeBy: none
+		sourceColumn: days_to_complete
+
+	column 'Latest Progress %'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 64c39e96-5fbd-45da-8872-a1a94a687bbc
+		summarizeBy: none
+		sourceColumn: latest_progress_pct
+
+	partition Fact_CAPA = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_CAPA.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"action_id", Int64.Type}, {"action_number", type text}, {"action_type", type text}, {"origin", type text}, {"incident_number", type text}, {"title", type text}, {"responsible_id", Int64.Type}, {"department_id", Int64.Type}, {"status", type text}, {"status_order", Int64.Type}, {"created_date", type date}, {"original_due_date", type date}, {"due_date", type date}, {"completed_date", type date}, {"closed_date", type date}, {"effectiveness_result", type text}, {"is_cancelled", Int64.Type}, {"is_open", Int64.Type}, {"is_overdue", Int64.Type}, {"days_overdue", Int64.Type}, {"was_rescheduled", Int64.Type}, {"completed_by_due", Int64.Type}, {"days_to_complete", Int64.Type}, {"latest_progress_pct", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

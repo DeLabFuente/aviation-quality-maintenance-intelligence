@@ -1,0 +1,83 @@
+rule_id,rule_group,title,severity,result,findings
+A01,A · Audit & traceability,Every operational record has its INSERT event in the audit log,WARNING,PASS,0
+A02,A · Audit & traceability,"Every status change of orders, non-conformities and actions is in the audit log",WARNING,PASS,0
+A03,A · Audit & traceability,The chain of changes of a field is continuous and ends in the current value,CRITICAL,PASS,0
+A04,A · Audit & traceability,There is no DELETE event in the audit log,CRITICAL,PASS,0
+A05,A · Audit & traceability,Every audit event points to an existing record,CRITICAL,PASS,0
+C01,C · CAPA,A corrective action has a non-conformity; origin INCIDENT if and only if it has one,CRITICAL,PASS,0
+C02,C · CAPA,The number prefix (CA/PA) matches the action type,CRITICAL,PASS,0
+C03,C · CAPA,Due dates are not before creation; the action is not created before the non-conformity,CRITICAL,PASS,0
+C04,C · CAPA,"A CLOSED action records the result, date and verifier of the effectiveness check",CRITICAL,PASS,0
+C05,C · CAPA,The person verifying effectiveness is not the person responsible for the action,CRITICAL,PASS,0
+C06,C · CAPA,Dates in order: creation <= completion <= effectiveness check <= closure,CRITICAL,PASS,0
+C07,C · CAPA,Progress never decreases and reaches 100 % before the action is completed,CRITICAL,PASS,0
+C08,C · CAPA,An action closed as NOT_EFFECTIVE has a follow-up action,WARNING,PASS,0
+C09,C · CAPA,The current due date is not earlier than the original one,CRITICAL,PASS,0
+C10,C · CAPA,Open action past its due date (overdue action),WARNING,WARNING,2
+C11,C · CAPA,Progress updates are between the creation and the closure of the action,CRITICAL,PASS,0
+D01,D · Document control,A document has at most one current revision,CRITICAL,PASS,0
+D02,D · Document control,Revision dates are in order (issue <= effective <= review; effective <= superseded),CRITICAL,PASS,0
+D03,D · Document control,A revision is SUPERSEDED if and only if it has a superseded date,CRITICAL,PASS,0
+D04,D · Document control,The approver of a revision is not its author,CRITICAL,PASS,0
+D05,D · Document control,Every revision that is not a draft has an approver,CRITICAL,PASS,0
+D06,D · Document control,Revisions do not overlap: each one starts the day the previous one is superseded,CRITICAL,PASS,0
+D07,D · Document control,An aircraft record is linked to an aircraft,CRITICAL,PASS,0
+D08,D · Document control,A controlled document has a review interval and its current revision a review date,CRITICAL,PASS,0
+D09,D · Document control,A verification that is not CONFORM describes the discrepancy,CRITICAL,PASS,0
+D10,D · Document control,A NON_CONFORM verification is linked to a non-conformity,CRITICAL,PASS,0
+D11,D · Document control,A verification is not earlier than the issue of the revision verified,CRITICAL,PASS,0
+D12,D · Document control,Current revision with its review date passed (expired document),WARNING,WARNING,12
+G01,G · General,Every foreign key points to an existing record,CRITICAL,PASS,0
+G02,G · General,Business codes are unique and follow their format,CRITICAL,PASS,0
+G03,G · General,Dates and date-times have a valid ISO format,CRITICAL,PASS,0
+G04,G · General,No event is later than the cut-off date (AS_OF_DATE),CRITICAL,PASS,0
+G05,G · General,No operational event is earlier than the start of the period,WARNING,PASS,0
+G06,G · General,Every person acting on a record was employed on that date,CRITICAL,PASS,0
+G07,G · General,Boolean fields only contain 0 or 1,CRITICAL,PASS,0
+G08,G · General,"Movements, progress updates and the audit log cannot be modified",CRITICAL,PASS,0
+G09,G · General,No business record can be physically deleted,CRITICAL,PASS,0
+G10,G · General,Operational records identify who created them,CRITICAL,PASS,0
+G11,G · General,No logical duplicates (same content recorded twice),WARNING,PASS,0
+I01,I · Materials & inventory,Each movement type moves stock between its own pair of states,CRITICAL,PASS,0
+I02,I · Materials & inventory,Each movement type carries its mandatory references,CRITICAL,PASS,0
+I03,I · Materials & inventory,No stock state is ever negative (running balance),CRITICAL,PASS,0
+I04,I · Materials & inventory,The quantity received on a line does not exceed the quantity ordered,CRITICAL,PASS,0
+I05,I · Materials & inventory,No receipt or promised date earlier than the order date,CRITICAL,PASS,0
+I06,I · Materials & inventory,Material is only reserved or issued for lines of the order while it is open,CRITICAL,PASS,0
+I07,I · Materials & inventory,Every lot issued to an order was previously received (or counted at go-live),CRITICAL,PASS,0
+I08,I · Materials & inventory,Serialized materials move one unit at a time with a serial number,CRITICAL,PASS,0
+I09,I · Materials & inventory,Receipts of materials that require a certificate carry its reference,WARNING,WARNING,2
+I10,I · Materials & inventory,"Materials counted in units (EA, KIT) only have whole quantities",CRITICAL,PASS,0
+I11,I · Materials & inventory,The 'system' quantity of a count equals the stock calculated at that moment,CRITICAL,PASS,0
+I12,I · Materials & inventory,Every count difference has an adjustment of the same quantity and a comment,CRITICAL,PASS,0
+I13,I · Materials & inventory,No purchase order to a supplier after its suspension,CRITICAL,PASS,0
+I14,I · Materials & inventory,A movement to NON_CONFORMING is linked to a 'non-conforming material' incident,CRITICAL,PASS,0
+I15,I · Materials & inventory,No material is issued after its shelf-life expiry date,CRITICAL,PASS,0
+I16,I · Materials & inventory,Stock below minimum (available + in quarantine) with no pending purchase order,WARNING,WARNING,1
+M01,M · Maintenance orders,Planned end is not earlier than the opening date,CRITICAL,PASS,0
+M02,M · Maintenance orders,COMPLETED or CLOSED if and only if there is an actual end date,CRITICAL,PASS,0
+M03,M · Maintenance orders,CLOSED if and only if closure date and person are recorded; closure >= actual end,CRITICAL,PASS,0
+M04,M · Maintenance orders,CANCELLED if and only if there is a cancellation reason,CRITICAL,PASS,0
+M05,M · Maintenance orders,ON_HOLD if and only if the order has an active hold,CRITICAL,PASS,0
+M06,M · Maintenance orders,At most one active hold per reason on each order,CRITICAL,PASS,0
+M07,M · Maintenance orders,A material hold names the material; a documentation hold names the document,CRITICAL,PASS,0
+M08,M · Maintenance orders,A material hold corresponds to a real shortage when it was recorded,WARNING,WARNING,2
+M09,M · Maintenance orders,An order only uses revisions in force on the date they were linked,WARNING,WARNING,3
+M10,M · Maintenance orders,The required date of a material is within the order dates,CRITICAL,PASS,0
+M11,M · Maintenance orders,"A COMPLETED or CLOSED order received all its material, net of returns",CRITICAL,PASS,0
+M12,M · Maintenance orders,Order dates are within the maintenance contract of the aircraft,CRITICAL,PASS,0
+M13,M · Maintenance orders,An order is not closed while a CRITICAL non-conformity linked to it is open,CRITICAL,PASS,0
+M14,M · Maintenance orders,Holds are within the dates of their order,CRITICAL,PASS,0
+Q01,Q · Non-conformities,"CLOSED or CANCELLED if and only if there is a closure date, not before detection",CRITICAL,PASS,0
+Q02,Q · Non-conformities,A CLOSED non-conformity records who closed it and the measures adopted,CRITICAL,PASS,0
+Q03,Q · Non-conformities,CRITICAL and MAJOR non-conformities have a containment action,CRITICAL,PASS,0
+Q04,Q · Non-conformities,CRITICAL and MAJOR non-conformities have a root-cause analysis once investigated,CRITICAL,PASS,0
+Q05,Q · Non-conformities,A CLOSED non-conformity has all its corrective actions closed or cancelled,CRITICAL,PASS,0
+Q06,Q · Non-conformities,A CLOSED non-conformity (except observations) has at least one corrective action,WARNING,PASS,0
+Q07,Q · Non-conformities,"If a non-conformity names an order and an aircraft, the aircraft is the order's",CRITICAL,PASS,0
+Q08,Q · Non-conformities,"A non-conformity is linked to at least one record (aircraft, order, revision, material, supplier or PO line)",WARNING,WARNING,2
+Q09,Q · Non-conformities,The root-cause analysis is after detection and before closure,CRITICAL,PASS,0
+Q10,Q · Non-conformities,"With 5 Whys, why_1 is filled in and the chain has no gaps",CRITICAL,PASS,0
+Q11,Q · Non-conformities,"With Ishikawa, the 6M category is filled in",CRITICAL,PASS,0
+Q12,Q · Non-conformities,Open non-conformity past its target closure date,WARNING,WARNING,2
+Q13,Q · Non-conformities,"The category is consistent with the linked records (SUP->supplier, INV->material, DOC/TRC->document or order)",WARNING,PASS,0

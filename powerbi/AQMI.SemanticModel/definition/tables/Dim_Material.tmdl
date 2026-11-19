@@ -1,0 +1,118 @@
+/// Material catalogue.
+table Dim_Material
+	lineageTag: 1bdff3f1-3ba0-4be0-bf21-f3d34e8c78e7
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ea48d3ab-e594-4dae-ac67-ed1c348762bd
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Part Number'
+		dataType: string
+		lineageTag: 95666c59-e587-44f1-8ec1-48b3ce700b81
+		summarizeBy: none
+		sourceColumn: part_number
+
+	column Description
+		dataType: string
+		lineageTag: f06d9e3c-47cf-4da9-ad2b-d27d8877611f
+		summarizeBy: none
+		sourceColumn: description
+
+	column 'Material Label'
+		dataType: string
+		lineageTag: 9d4eaa8a-4886-4950-94cd-9a3db88d1c04
+		summarizeBy: none
+		sourceColumn: material_label
+
+	column 'Material Class'
+		dataType: string
+		lineageTag: e307c7e4-f6d6-4153-be34-1160783f1dc4
+		summarizeBy: none
+		sourceColumn: material_class
+
+	column 'Unit Of Measure'
+		dataType: string
+		lineageTag: bc3f0eb2-f750-4f57-85d7-8801e91b0530
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+	column 'Preferred Supplier Code'
+		dataType: string
+		lineageTag: 9529a8f5-4fb0-47d6-8dac-23d2a84f5c02
+		summarizeBy: none
+		sourceColumn: preferred_supplier_code
+
+	column 'Standard Lead Time Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9310b448-c956-4486-b7f1-2c5ad1ade231
+		summarizeBy: none
+		sourceColumn: standard_lead_time_days
+
+	column 'Min Stock Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: d32baf78-b667-4e93-975e-d56b359aee21
+		summarizeBy: none
+		sourceColumn: min_stock_qty
+
+	column 'Reorder Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: e1bfe739-a41b-4cf5-9f77-44cedf3e2a04
+		summarizeBy: none
+		sourceColumn: reorder_qty
+
+	column 'Unit Cost'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 2866d099-fbc1-4d94-b165-09725de10dc3
+		summarizeBy: none
+		sourceColumn: unit_cost
+
+	column 'Is Serialized'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4e3d81dc-0086-4294-b490-d5e536113b3d
+		summarizeBy: none
+		sourceColumn: is_serialized
+
+	column 'Is Shelf Life Controlled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4a1ad252-2b98-432e-967c-58008dba5d84
+		summarizeBy: none
+		sourceColumn: is_shelf_life_controlled
+
+	column 'Requires Release Certificate'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9be4bb99-770d-41a7-a312-764aff894f3e
+		summarizeBy: none
+		sourceColumn: requires_release_certificate
+
+	column 'Is Active'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 30844b22-0752-4c69-8d42-c185b902b303
+		summarizeBy: none
+		sourceColumn: is_active
+
+	partition Dim_Material = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Material.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"material_id", Int64.Type}, {"part_number", type text}, {"description", type text}, {"material_label", type text}, {"material_class", type text}, {"unit_of_measure", type text}, {"preferred_supplier_code", type text}, {"standard_lead_time_days", Int64.Type}, {"min_stock_qty", type number}, {"reorder_qty", type number}, {"unit_cost", type number}, {"is_serialized", Int64.Type}, {"is_shelf_life_controlled", Int64.Type}, {"requires_release_certificate", Int64.Type}, {"is_active", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

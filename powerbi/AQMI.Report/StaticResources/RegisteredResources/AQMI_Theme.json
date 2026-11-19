@@ -1,0 +1,236 @@
+{
+  "name": "AQMI Aero",
+  "dataColors": [
+    "#1F6FB2",
+    "#0B1F3A",
+    "#7FA7D6",
+    "#5B6577",
+    "#2E7D32",
+    "#D99A00",
+    "#C62828",
+    "#9AA5B1",
+    "#3E8FD8",
+    "#264A73"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1E2A3B",
+  "tableAccent": "#1F6FB2",
+  "good": "#2E7D32",
+  "neutral": "#D99A00",
+  "bad": "#C62828",
+  "maximum": "#1F6FB2",
+  "center": "#D99A00",
+  "minimum": "#C62828",
+  "null": "#9AA5B1",
+  "textClasses": {
+    "callout": {
+      "fontSize": 24,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0B1F3A"
+    },
+    "title": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1E2A3B"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1E2A3B"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#5B6577"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 11,
+            "fontColor": {
+              "solid": {
+                "color": "#1E2A3B"
+              }
+            }
+          }
+        ],
+        "subTitle": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 9,
+            "fontColor": {
+              "solid": {
+                "color": "#5B6577"
+              }
+            }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E1E6EE"
+              }
+            },
+            "radius": 6
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "padding": [
+          {
+            "top": 8,
+            "bottom": 8,
+            "left": 10,
+            "right": 10
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 8,
+            "labelColor": {
+              "solid": {
+                "color": "#5B6577"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 8,
+            "labelColor": {
+              "solid": {
+                "color": "#5B6577"
+              }
+            },
+            "showAxisTitle": false,
+            "gridlineColor": {
+              "solid": {
+                "color": "#E1E6EE"
+              }
+            },
+            "gridlineStyle": "dotted"
+          }
+        ],
+        "legend": [
+          {
+            "show": true,
+            "position": "Top",
+            "fontSize": 8,
+            "labelColor": {
+              "solid": {
+                "color": "#5B6577"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F3F5F8"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#E9EDF2"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "columnHeaders": [
+          {
+            "backColor": {
+              "solid": {
+                "color": "#0B1F3A"
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 9,
+            "wordWrap": true
+          }
+        ],
+        "values": [
+          {
+            "fontSize": 9,
+            "fontFamily": "Segoe UI",
+            "backColorSecondary": {
+              "solid": {
+                "color": "#F6F8FB"
+              }
+            }
+          }
+        ],
+        "grid": [
+          {
+            "gridHorizontal": true,
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#E1E6EE"
+              }
+            },
+            "rowPadding": 3
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "fontSize": 9
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

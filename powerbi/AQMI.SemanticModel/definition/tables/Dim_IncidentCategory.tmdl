@@ -1,0 +1,50 @@
+/// Categories of non-conformity.
+table Dim_IncidentCategory
+	lineageTag: b3417486-b33b-4fd5-8fbe-f2e66b69db43
+
+	column 'Category ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d1a109d6-becb-4fc0-8f71-d4173a6496fd
+		summarizeBy: none
+		sourceColumn: category_id
+
+	column 'Category Code'
+		dataType: string
+		lineageTag: 6494a99d-ea02-44b3-b9fa-a23c2db5f544
+		summarizeBy: none
+		sourceColumn: category_code
+
+	column 'Category Name'
+		dataType: string
+		lineageTag: 9750f49f-0de9-4839-9598-8ba210ee7f71
+		summarizeBy: none
+		sourceColumn: category_name
+
+	column 'Category Name Es'
+		dataType: string
+		lineageTag: 8cd37dfb-b588-48c5-8d9a-1b9b9ce87832
+		summarizeBy: none
+		sourceColumn: category_name_es
+
+	column 'Category Label'
+		dataType: string
+		lineageTag: b1081d2c-ae17-4699-b9a5-ffaa158430e7
+		summarizeBy: none
+		sourceColumn: category_label
+
+	partition Dim_IncidentCategory = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_IncidentCategory.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"category_id", Int64.Type}, {"category_code", type text}, {"category_name", type text}, {"category_name_es", type text}, {"category_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

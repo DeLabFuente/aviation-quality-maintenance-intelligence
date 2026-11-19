@@ -1,0 +1,888 @@
+/// All DAX measures of AQMI, grouped in display folders. Definitions: documentation/08_fase7_power_bi.md
+table _Measures
+	lineageTag: f1f648bb-4222-40ad-b4d4-8091167e84d7
+
+	/// Cut-off date of the data (31/10/2026).
+	measure 'Cut-off Date' = MAX ( Model_Info[As Of Date] )
+		formatString: dd mmm yyyy
+		displayFolder: 9. Helpers
+		lineageTag: 7282196f-5837-4c95-acd7-9725eed53581
+
+	/// Last date of the period selected in the report, never later than the cut-off date.
+	measure 'Selected Date' =
+			VAR _max = MAX ( Dim_Date[Date] )
+			VAR _asof = [Cut-off Date]
+			RETURN IF ( ISBLANK ( _max ), _asof, MIN ( _max, _asof ) )
+		formatString: dd mmm yyyy
+		displayFolder: 9. Helpers
+		lineageTag: a15d70c4-66ec-40e9-8000-594600fb440d
+
+	/// Last month end on or before the selected date: the date at which 'state' KPIs are measured.
+	measure 'Snapshot Month End' =
+			VAR _d = [Selected Date]
+			VAR _eom = EOMONTH ( _d, 0 )
+			RETURN IF ( _eom = _d, _d, EOMONTH ( _d, -1 ) )
+		formatString: dd mmm yyyy
+		displayFolder: 9. Helpers
+		lineageTag: 3f3459f0-7cb2-47fa-a960-95931654353e
+
+	/// Subtitle shown on every page.
+	measure 'Data As Of Label' = "Data as of " & FORMAT ( [Cut-off Date], "dd mmm yyyy" ) & "  ·  Synthetic data  ·  Fictitious company"
+		displayFolder: 9. Helpers
+		lineageTag: 6d365e3a-0aeb-4fdc-86f4-2b53582ea82f
+
+	/// QUA-01. Non-conformities detected in the period (cancelled excluded).
+	measure 'Total Quality Incidents' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Fact_Incidents ), Fact_Incidents[Is Cancelled] = 0 ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: e67e9e9b-acb0-40ff-b792-37c542d6075a
+
+	/// QUA-02. Non-conformities open at the end of the selected period.
+	measure 'Open Non-Conformities' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_Incidents ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            Fact_Incidents[Is Cancelled] = 0,
+			            Fact_Incidents[Detected Date] <= _d,
+			            ISBLANK ( Fact_Incidents[Closed Date] ) || Fact_Incidents[Closed Date] > _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: a7c48673-6b15-4264-8e8d-5901ca748341
+
+	/// QUA-03. Non-conformities per 100 work orders completed.
+	measure 'Non-Conformity Rate' = DIVIDE ( [Total Quality Incidents] * 100, [Completed Orders] )
+		formatString: 0.0
+		displayFolder: 1. Quality
+		lineageTag: e45fea7d-eaeb-45a3-a013-aedc12581ba4
+
+	/// Non-conformities closed in the period (by closing date).
+	measure 'Non-Conformities Closed' =
+			CALCULATE (
+			    COUNTROWS ( Fact_Incidents ),
+			    USERELATIONSHIP ( Fact_Incidents[Closed Date], Dim_Date[Date] ),
+			    Fact_Incidents[Status] = "CLOSED"
+			)
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: 72e5ab9c-1aba-4f93-8939-1a7872350885
+
+	/// Sum of the days to close the non-conformities closed in the period.
+	measure 'Resolution Days (Sum)' =
+			CALCULATE (
+			    SUM ( Fact_Incidents[Resolution Days] ),
+			    USERELATIONSHIP ( Fact_Incidents[Closed Date], Dim_Date[Date] ),
+			    Fact_Incidents[Status] = "CLOSED"
+			)
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: 66f27b26-f411-4058-b854-8cddb88945ea
+
+	/// QUA-05. Average days from detection to closure.
+	measure 'Average Resolution Time' = DIVIDE ( [Resolution Days (Sum)], [Non-Conformities Closed] )
+		formatString: 0.0
+		displayFolder: 1. Quality
+		lineageTag: b41f32b8-fa8d-415c-a0d0-ec8db5582ca3
+
+	/// Share of critical and major non-conformities with a root-cause analysis.
+	measure 'RCA Coverage (Critical & Major)' =
+			DIVIDE (
+			    CALCULATE (
+			        [Total Quality Incidents],
+			        KEEPFILTERS ( Fact_Incidents[Severity] IN { "CRITICAL", "MAJOR" } ),
+			        Fact_Incidents[Has RCA] = 1
+			    ),
+			    CALCULATE ( [Total Quality Incidents], KEEPFILTERS ( Fact_Incidents[Severity] IN { "CRITICAL", "MAJOR" } ) )
+			)
+		formatString: 0.0%
+		displayFolder: 1. Quality
+		lineageTag: d1978f62-f0da-4c89-88ac-3ab859f81eb5
+
+	/// Non-conformities with an Ishikawa (6M) root cause.
+	measure 'Analysed Non-Conformities' =
+			CALCULATE (
+			    COUNTROWS ( Fact_Incidents ),
+			    Fact_Incidents[Is Cancelled] = 0,
+			    KEEPFILTERS ( Fact_Incidents[Root Cause 6M] <> "NOT ANALYSED" )
+			)
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: cbc90166-3600-4086-a137-25bf2ff27394
+
+	/// Age in days of each non-conformity open at the cut-off date.
+	measure 'Open NC Age (days)' =
+			CALCULATE (
+			    IF ( MAX ( Fact_Incidents[Is Open] ) = 1, MAX ( Fact_Incidents[Age Days] ) ),
+			    REMOVEFILTERS ( Dim_Date )
+			)
+		formatString: #,0
+		displayFolder: 1. Quality
+		lineageTag: 2482be6c-9a48-4226-9330-b7bbe2e9a30e
+
+	/// Corrective actions whose due date falls in the period.
+	measure 'Corrective Actions Due' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_CAPA ),
+			        USERELATIONSHIP ( Fact_CAPA[Due Date], Dim_Date[Date] ),
+			        Fact_CAPA[Action Type] = "CORRECTIVE",
+			        Fact_CAPA[Is Cancelled] = 0,
+			        Fact_CAPA[Due Date] <= _asof
+			    )
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: a8a26e66-c774-4524-8408-28fbcfe70210
+
+	/// Of the actions due in the period, those implemented by their due date.
+	measure 'Corrective Actions Due On Time' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_CAPA ),
+			        USERELATIONSHIP ( Fact_CAPA[Due Date], Dim_Date[Date] ),
+			        Fact_CAPA[Action Type] = "CORRECTIVE",
+			        Fact_CAPA[Is Cancelled] = 0,
+			        Fact_CAPA[Due Date] <= _asof,
+			        Fact_CAPA[Completed By Due] = 1
+			    )
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: 18cecd34-04de-4598-a01c-362e9205734a
+
+	/// QUA-04. Corrective actions implemented by their due date.
+	measure 'Corrective Action Closure Rate' = DIVIDE ( [Corrective Actions Due On Time], [Corrective Actions Due] )
+		formatString: 0.0%
+		displayFolder: 2. CAPA
+		lineageTag: 2bb930d2-993f-46ac-9ccb-a63bb1b40cc8
+
+	/// QUA-06. Corrective actions past their due date (as it was then) and not implemented, at the snapshot date.
+	measure 'Overdue Corrective Actions' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_CAPA_Snapshot ),
+			            Fact_CAPA_Snapshot[Snapshot Date] = _s,
+			            Fact_CAPA_Snapshot[Action Type] = "CORRECTIVE",
+			            Fact_CAPA_Snapshot[Is Overdue] = 1
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: c1cb08dc-cb05-4785-a85d-a55b28da0105
+
+	/// Corrective and preventive actions not yet implemented at the snapshot date.
+	measure 'Actions Pending Implementation' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE ( COUNTROWS ( Fact_CAPA_Snapshot ), Fact_CAPA_Snapshot[Snapshot Date] = _s ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: 6204f724-5b0e-4f02-9c39-55548dd25974
+
+	/// Actions created in the period (cancelled excluded).
+	measure 'Actions Created' = CALCULATE ( COUNTROWS ( Fact_CAPA ), Fact_CAPA[Is Cancelled] = 0 )
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: 11670445-35a6-4864-8f92-15eb4b928d2d
+
+	/// Of the actions whose effectiveness was verified, share found effective.
+	measure 'Effectiveness Rate' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( Fact_CAPA ), Fact_CAPA[Effectiveness Result] = "EFFECTIVE" ),
+			    CALCULATE ( COUNTROWS ( Fact_CAPA ), Fact_CAPA[Effectiveness Result] IN { "EFFECTIVE", "NOT_EFFECTIVE" } )
+			)
+		formatString: 0.0%
+		displayFolder: 2. CAPA
+		lineageTag: 49bd5919-54f1-4d9c-be42-8736ea40bddd
+
+	/// Actions whose due date was extended at least once.
+	measure 'Rescheduled Actions' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Fact_CAPA ), Fact_CAPA[Was Rescheduled] = 1, Fact_CAPA[Is Cancelled] = 0 ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: 4081f4ac-4bd4-4cdd-a838-8b6d38ec46a7
+
+	/// Days overdue of each open action at the cut-off date (0 = within its due date).
+	measure 'Open Action Days Overdue' =
+			CALCULATE (
+			    IF ( MAX ( Fact_CAPA[Is Open] ) = 1, MAX ( Fact_CAPA[Days Overdue] ) ),
+			    REMOVEFILTERS ( Dim_Date )
+			)
+		formatString: #,0
+		displayFolder: 2. CAPA
+		lineageTag: 0ae9c486-fb6e-4b6d-8fb6-d516ecef41d4
+
+	/// Latest progress reported for each open action.
+	measure 'Open Action Progress' =
+			CALCULATE (
+			    IF ( MAX ( Fact_CAPA[Is Open] ) = 1, DIVIDE ( MAX ( Fact_CAPA[Latest Progress %] ), 100 ) ),
+			    REMOVEFILTERS ( Dim_Date )
+			)
+		formatString: 0%
+		displayFolder: 2. CAPA
+		lineageTag: 82e54849-ad3c-470f-aa38-fef26ad35188
+
+	/// Controlled documents with a revision in force at the snapshot date.
+	measure 'Controlled Documents In Force' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE ( COUNTROWS ( Fact_DocumentSnapshot ), Fact_DocumentSnapshot[Snapshot Date] = _s ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: 8c629894-bebd-41b5-a5aa-37adaaac26b2
+
+	/// Controlled documents within their review date at the snapshot date.
+	measure 'Compliant Documents' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_DocumentSnapshot ),
+			            Fact_DocumentSnapshot[Snapshot Date] = _s,
+			            Fact_DocumentSnapshot[Is Compliant] = 1
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: f1fd8a0d-302a-4b09-91b5-1aafcb4a9257
+
+	/// DOC-01. Controlled documents within their review date.
+	measure 'Document Compliance Rate' = DIVIDE ( [Compliant Documents], [Controlled Documents In Force] )
+		formatString: 0.0%
+		displayFolder: 3. Documents
+		lineageTag: 74ca3f36-400d-4612-8ef7-e84186206011
+
+	/// DOC-03. Controlled documents past their review date at the snapshot date.
+	measure 'Expired Documents' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_DocumentSnapshot ),
+			            Fact_DocumentSnapshot[Snapshot Date] = _s,
+			            Fact_DocumentSnapshot[Is Expired] = 1
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: b9affc0b-a7e6-4815-8b1a-71cb0467ba4b
+
+	/// Document and record checks, internal audits excluded.
+	measure 'Routine Verifications' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Fact_DocumentVerifications ), Fact_DocumentVerifications[Is Routine] = 1 ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: 2dc7834e-d48b-41c0-8ca2-7dbd63bae537
+
+	/// Routine checks that found a discrepancy.
+	measure 'Routine Verification Discrepancies' =
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( Fact_DocumentVerifications ),
+			        Fact_DocumentVerifications[Is Routine] = 1,
+			        Fact_DocumentVerifications[Is Error] = 1
+			    ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: f28cd49d-4c85-42ba-a814-7c39d4faaabc
+
+	/// DOC-02. Routine checks that found a discrepancy.
+	measure 'Documentation Error Rate' = DIVIDE ( [Routine Verification Discrepancies], [Routine Verifications] )
+		formatString: 0.0%
+		displayFolder: 3. Documents
+		lineageTag: 53b0074a-a65c-4e20-9b9a-14a4cbad5592
+
+	/// Verifications with a discrepancy, all types (for the breakdown by type).
+	measure 'Discrepancy Rate (All Verifications)' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( Fact_DocumentVerifications ), Fact_DocumentVerifications[Is Error] = 1 ),
+			    COUNTROWS ( Fact_DocumentVerifications )
+			)
+		formatString: 0.0%
+		displayFolder: 3. Documents
+		lineageTag: 98c66a3d-dab4-43d5-9718-bfc4352115e9
+
+	/// Material issued to work orders.
+	measure 'Material Issues' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Fact_InventoryMovements ), Fact_InventoryMovements[Movement Type] = "ISSUE" ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: bd4d51fa-fb0f-4947-88fa-462c2d1002bd
+
+	/// Issues with work order, lot, serial number and certificate where required.
+	measure 'Traceable Issues' =
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( Fact_InventoryMovements ),
+			        Fact_InventoryMovements[Movement Type] = "ISSUE",
+			        Fact_InventoryMovements[Is Traceable] = 1
+			    ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: 550ccb0c-01ec-4fd0-8d26-394de3c72154
+
+	/// DOC-04. Issues with complete traceability data.
+	measure 'Traceability Compliance' = DIVIDE ( [Traceable Issues], [Material Issues] )
+		formatString: 0.0%
+		displayFolder: 3. Documents
+		lineageTag: 2e89ba23-5d4e-4071-9611-70630062db42
+
+	/// Days past the review date of each expired document (cut-off date).
+	measure 'Expired Document Days Overdue' =
+			CALCULATE (
+			    MAX ( Dim_Document[Days Overdue] ),
+			    KEEPFILTERS ( Dim_Document[Validity Status] = "REVIEW_OVERDUE" )
+			)
+		formatString: #,0
+		displayFolder: 3. Documents
+		lineageTag: 4ffa722e-3f95-4189-bf88-7aa7af11f71f
+
+	/// Cycle counts made in the period (opening counts excluded).
+	measure 'Cycle Counts' = COALESCE ( CALCULATE ( COUNTROWS ( Fact_StockCounts ), Fact_StockCounts[Count Type] = "CYCLE" ), 0 )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: 3d4bf0cc-f4a0-4cf8-b049-90ea9f408917
+
+	/// Cycle counts that matched the stock recorded in the system.
+	measure 'Accurate Counts' =
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( Fact_StockCounts ),
+			        Fact_StockCounts[Count Type] = "CYCLE",
+			        Fact_StockCounts[Has Difference] = 0
+			    ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: 128a5a4a-9aec-4fb0-a63e-477fdc9131c2
+
+	/// INV-01. Cycle counts that matched the system.
+	measure 'Inventory Accuracy' = DIVIDE ( [Accurate Counts], [Cycle Counts] )
+		formatString: 0.0%
+		displayFolder: 4. Inventory
+		lineageTag: 3661080f-d616-4af5-8cf4-cb4ab2ab1b0b
+
+	/// Active materials at the snapshot date.
+	measure 'Active Materials' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE ( COUNTROWS ( Fact_StockSnapshot ), Fact_StockSnapshot[Snapshot Date] = _s ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: c154aef8-21c4-4943-9738-9131dc813660
+
+	/// Active materials with available stock below their minimum.
+	measure 'Materials Below Minimum' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_StockSnapshot ),
+			            Fact_StockSnapshot[Snapshot Date] = _s,
+			            Fact_StockSnapshot[Is Below Min] = 1
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: 237442de-6cd3-4102-879e-2366815a4e47
+
+	/// INV-02. Active materials with available stock at or above their minimum.
+	measure 'Stock Availability' = DIVIDE ( [Active Materials] - [Materials Below Minimum], [Active Materials] )
+		formatString: 0.0%
+		displayFolder: 4. Inventory
+		lineageTag: f4b8eb55-82b2-4921-949c-9c9d78031e8b
+
+	/// Material lines of work orders required in the period.
+	measure 'Material Lines Required' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_MO_Materials ),
+			        Fact_MO_Materials[Is Cancelled Order] = 0,
+			        NOT ISBLANK ( Fact_MO_Materials[Was Short] ),
+			        Fact_MO_Materials[Required By Date] <= _asof
+			    )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: bb7d0018-2b18-4457-a78a-8ec898bbc66a
+
+	/// Material lines not available on the required date.
+	measure 'Material Lines Short' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_MO_Materials ),
+			        Fact_MO_Materials[Is Cancelled Order] = 0,
+			        Fact_MO_Materials[Was Short] = 1,
+			        Fact_MO_Materials[Required By Date] <= _asof
+			    )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: c34d16c8-e2f9-4bdd-bfdc-cb46c1878ac0
+
+	/// INV-03. Material lines not available on the required date.
+	measure 'Material Shortage Rate' = DIVIDE ( [Material Lines Short], [Material Lines Required] )
+		formatString: 0.0%
+		displayFolder: 4. Inventory
+		lineageTag: 337ef5a1-33e0-49d6-8911-53a7e1bedaa3
+
+	/// INV-04. Purchase orders sent and not fully received at the snapshot date.
+	measure 'Pending Purchase Orders' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    COALESCE (
+			        CALCULATE ( DISTINCTCOUNT ( Fact_PO_Snapshot[PO ID] ), Fact_PO_Snapshot[Snapshot Date] = _s ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: c0f95603-04c6-4c3a-8e74-fcc0809b4af7
+
+	/// Available stock of the materials below their minimum.
+	measure 'Available Qty (Below Minimum)' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    CALCULATE (
+			        SUM ( Fact_StockSnapshot[Available Qty] ),
+			        Fact_StockSnapshot[Snapshot Date] = _s,
+			        Fact_StockSnapshot[Is Below Min] = 1
+			    )
+		formatString: #,0.##
+		displayFolder: 4. Inventory
+		lineageTag: 88513da2-79a4-4257-b536-e186548cf8a6
+
+	/// Minimum stock of the materials below their minimum.
+	measure 'Minimum Stock (Below Minimum)' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    CALCULATE (
+			        MAX ( Fact_StockSnapshot[Min Stock Qty] ),
+			        Fact_StockSnapshot[Snapshot Date] = _s,
+			        Fact_StockSnapshot[Is Below Min] = 1
+			    )
+		formatString: #,0.##
+		displayFolder: 4. Inventory
+		lineageTag: b84f2f9b-dbb5-44fe-8483-159378560b03
+
+	/// Stock in receiving inspection of the materials below their minimum.
+	measure 'In Receiving Inspection (Below Minimum)' =
+			VAR _s = [Snapshot Month End]
+			RETURN
+			    CALCULATE (
+			        SUM ( Fact_StockSnapshot[Quarantine Qty] ),
+			        Fact_StockSnapshot[Snapshot Date] = _s,
+			        Fact_StockSnapshot[Is Below Min] = 1
+			    )
+		formatString: #,0.##
+		displayFolder: 4. Inventory
+		lineageTag: d72a45a5-598a-4390-97dc-2aaacbd83c6a
+
+	/// Purchase order lines fully received (by order date).
+	measure 'PO Lines Received' = CALCULATE ( COUNTROWS ( Fact_PurchaseOrderLines ), Fact_PurchaseOrderLines[Is Received] = 1 )
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: 71a8ca41-a2ed-43b3-9aa5-b464fb9e225f
+
+	/// Lines fully received on or before the promised date.
+	measure 'PO Lines On Time' =
+			CALCULATE (
+			    COUNTROWS ( Fact_PurchaseOrderLines ),
+			    Fact_PurchaseOrderLines[Is Received] = 1,
+			    Fact_PurchaseOrderLines[Is On Time] = 1
+			)
+		formatString: #,0
+		displayFolder: 4. Inventory
+		lineageTag: aa6687e0-31d1-4c22-8a45-61918b2a1e8c
+
+	/// Supplier lines received on time (complement to the KPIs).
+	measure 'On-Time Delivery Rate' = DIVIDE ( [PO Lines On Time], [PO Lines Received] )
+		formatString: 0.0%
+		displayFolder: 4. Inventory
+		lineageTag: 304510e1-f16e-415d-b75e-f5210456b7ec
+
+	/// Work orders opened in the period (cancelled excluded).
+	measure 'Orders Opened' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Fact_MaintenanceOrders ), Fact_MaintenanceOrders[Is Cancelled] = 0 ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: 63ece2cd-3294-4658-95bb-ef8e18a74a10
+
+	/// Work orders completed in the period (by actual end date).
+	measure 'Completed Orders' =
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( Fact_MaintenanceOrders ),
+			        USERELATIONSHIP ( Fact_MaintenanceOrders[Actual End Date], Dim_Date[Date] ),
+			        Fact_MaintenanceOrders[Is Cancelled] = 0,
+			        NOT ISBLANK ( Fact_MaintenanceOrders[Actual End Date] )
+			    ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: 3ac257b0-3255-48a8-875c-6e53fef7071b
+
+	/// Work orders planned to finish in the period.
+	measure 'Orders Due' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_MaintenanceOrders ),
+			        USERELATIONSHIP ( Fact_MaintenanceOrders[Planned End Date], Dim_Date[Date] ),
+			        Fact_MaintenanceOrders[Is Cancelled] = 0,
+			        Fact_MaintenanceOrders[Planned End Date] <= _asof
+			    )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: 5a787f8e-2f6a-427f-a4bd-ce74985d9176
+
+	/// Of the orders due in the period, those completed by the planned date.
+	measure 'Orders Due On Time' =
+			VAR _asof = [Cut-off Date]
+			RETURN
+			    CALCULATE (
+			        COUNTROWS ( Fact_MaintenanceOrders ),
+			        USERELATIONSHIP ( Fact_MaintenanceOrders[Planned End Date], Dim_Date[Date] ),
+			        Fact_MaintenanceOrders[Is Cancelled] = 0,
+			        Fact_MaintenanceOrders[Planned End Date] <= _asof,
+			        Fact_MaintenanceOrders[Completed By Planned] = 1
+			    )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: 16cf2daf-6112-4e91-bc14-ae4b4c2682f0
+
+	/// MNT-01. Work orders completed by the planned date.
+	measure 'Maintenance Order Completion Rate' = DIVIDE ( [Orders Due On Time], [Orders Due] )
+		formatString: 0.0%
+		displayFolder: 5. Maintenance
+		lineageTag: b9660543-cc46-4c22-89ea-eee8cdf211ef
+
+	/// Sum of the days of delay of the orders completed in the period.
+	measure 'Delay Days (Sum)' =
+			CALCULATE (
+			    SUM ( Fact_MaintenanceOrders[Delay Days] ),
+			    USERELATIONSHIP ( Fact_MaintenanceOrders[Actual End Date], Dim_Date[Date] ),
+			    Fact_MaintenanceOrders[Is Cancelled] = 0,
+			    NOT ISBLANK ( Fact_MaintenanceOrders[Actual End Date] )
+			)
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: de0d33e5-9158-4ecf-a50b-afc3032979c0
+
+	/// MNT-02. Average days of delay of completed orders (on time = 0).
+	measure 'Average Maintenance Delay' = DIVIDE ( [Delay Days (Sum)], [Completed Orders] )
+		formatString: 0.0
+		displayFolder: 5. Maintenance
+		lineageTag: 67960d52-fc3d-4f4d-b507-962bbb7e2151
+
+	/// Work orders open at the end of the selected period.
+	measure 'Open Work Orders' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( Fact_MaintenanceOrders ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            Fact_MaintenanceOrders[Is Cancelled] = 0,
+			            Fact_MaintenanceOrders[Opened Date] <= _d,
+			            ISBLANK ( Fact_MaintenanceOrders[Actual End Date] ) || Fact_MaintenanceOrders[Actual End Date] > _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: b08f8783-2968-4363-ae83-15acc1153569
+
+	/// MNT-03. Work orders stopped by a material hold at the end of the selected period.
+	measure 'Work Orders Blocked by Material' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            DISTINCTCOUNT ( Fact_Holds[MO ID] ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            Fact_Holds[Hold Reason] = "MATERIAL",
+			            Fact_Holds[Start Date] <= _d,
+			            ISBLANK ( Fact_Holds[End Date] ) || Fact_Holds[End Date] > _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: c1857108-5b57-4664-b204-e5cd7d0454a8
+
+	/// MNT-04. Work orders stopped by a documentation hold at the end of the selected period.
+	measure 'Work Orders Blocked by Documentation' =
+			VAR _d = [Selected Date]
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            DISTINCTCOUNT ( Fact_Holds[MO ID] ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            Fact_Holds[Hold Reason] = "DOCUMENTATION",
+			            Fact_Holds[Start Date] <= _d,
+			            ISBLANK ( Fact_Holds[End Date] ) || Fact_Holds[End Date] > _d
+			        ),
+			        0
+			    )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: 59bf8a30-15a7-4100-ba8e-9698c66615ff
+
+	/// Completed orders that finished by the planned date.
+	measure 'On-Time Rate (Completed Orders)' =
+			DIVIDE (
+			    CALCULATE ( [Completed Orders], Fact_MaintenanceOrders[Completed By Planned] = 1 ),
+			    [Completed Orders]
+			)
+		formatString: 0.0%
+		displayFolder: 5. Maintenance
+		lineageTag: 8a53023b-b017-4d8b-b74b-9f412972f328
+
+	/// Days each active hold has lasted at the cut-off date.
+	measure 'Active Hold Days' =
+			CALCULATE (
+			    IF ( MAX ( Fact_Holds[Is Active] ) = 1, MAX ( Fact_Holds[Hold Days] ) ),
+			    REMOVEFILTERS ( Dim_Date )
+			)
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: e6cc1f35-ed26-474a-bc2e-3dea0d3c54a4
+
+	/// Days work orders opened in the period spent stopped by material.
+	measure 'Material Hold Days (Total)' = CALCULATE ( SUM ( Fact_MaintenanceOrders[Material Hold Days] ), Fact_MaintenanceOrders[Is Cancelled] = 0 )
+		formatString: #,0
+		displayFolder: 5. Maintenance
+		lineageTag: c1787bc6-4d2c-4fcc-b48c-9478c9d399e3
+
+	/// Share of work orders that were unscheduled.
+	measure 'Unscheduled Share' =
+			DIVIDE (
+			    CALCULATE ( [Orders Opened], KEEPFILTERS ( Fact_MaintenanceOrders[Maintenance Type] = "UNSCHEDULED" ) ),
+			    [Orders Opened]
+			)
+		formatString: 0.0%
+		displayFolder: 5. Maintenance
+		lineageTag: 19c60f48-fc65-4272-84cd-ecb516b67caa
+
+	/// Aircraft in the selection.
+	measure 'Fleet Size' = COUNTROWS ( Dim_Aircraft )
+		formatString: #,0
+		displayFolder: 6. Aircraft
+		lineageTag: 3ebf0ece-c0df-4db3-b710-ebd6e019a44c
+
+	/// Aircraft with an open work order at the cut-off date.
+	measure 'Aircraft In Maintenance' =
+			COALESCE (
+			    CALCULATE ( COUNTROWS ( Dim_Aircraft ), KEEPFILTERS ( Dim_Aircraft[Operational Status] = "IN_MAINTENANCE" ) ),
+			    0
+			)
+		formatString: #,0
+		displayFolder: 6. Aircraft
+		lineageTag: e39a802b-0c4e-452c-b90c-6192cb09b014
+
+	/// Changes recorded in the audit trail.
+	measure 'Audit Events' = COALESCE ( COUNTROWS ( Fact_AuditEvents ), 0 )
+		formatString: #,0
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: beeeefb1-fecf-4fc7-a488-74482489672f
+
+	/// Validation rules passed / rules executed (Phase 5).
+	measure 'Data Quality Score (Rules Passed)' = DIVIDE ( MAX ( Model_Info[Data Quality Score] ), 100 )
+		formatString: 0.0%
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: 4f6ec613-e193-4be3-a05b-6ec1818f0f91
+
+	/// Validation rules executed.
+	measure 'Validation Rules Executed' = MAX ( Model_Info[Rules Executed] )
+		formatString: #,0
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: fb908a45-00f9-478f-a4db-a0344ba0f9af
+
+	/// CRITICAL validation rules with findings (must be 0).
+	measure 'Critical Rule Failures' = MAX ( Model_Info[Critical Failures] )
+		formatString: #,0
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: 6b236264-fb59-4115-8c9d-3eed2a51bdaa
+
+	/// Discrepancies planted on purpose by the generator and detected by the rules.
+	measure 'Planted Discrepancies Detected' = FORMAT ( MAX ( Model_Info[Planted Detected] ), "0" ) & " of " & FORMAT ( MAX ( Model_Info[Planted Expected] ), "0" )
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: 43dc667d-62dd-4ca5-b564-b7c240b6e72c
+
+	/// Records flagged by the WARNING rules.
+	measure 'Validation Findings' = COALESCE ( COUNTROWS ( Fact_ValidationFindings ), 0 )
+		formatString: #,0
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: 929f4598-c4e1-4c27-bdf9-cd1d424c4080
+
+	/// Value of the KPI selected in Dim_KPI, calculated by the DAX measures (percentages as 0-100).
+	measure 'KPI Value (Power BI)' =
+			SWITCH (
+			    SELECTEDVALUE ( Dim_KPI[KPI ID] ),
+			    "QUA-01", [Total Quality Incidents],
+			    "QUA-02", [Open Non-Conformities],
+			    "QUA-03", [Non-Conformity Rate],
+			    "QUA-04", [Corrective Action Closure Rate] * 100,
+			    "QUA-05", [Average Resolution Time],
+			    "QUA-06", [Overdue Corrective Actions],
+			    "DOC-01", [Document Compliance Rate] * 100,
+			    "DOC-02", [Documentation Error Rate] * 100,
+			    "DOC-03", [Expired Documents],
+			    "DOC-04", [Traceability Compliance] * 100,
+			    "INV-01", [Inventory Accuracy] * 100,
+			    "INV-02", [Stock Availability] * 100,
+			    "INV-03", [Material Shortage Rate] * 100,
+			    "INV-04", [Pending Purchase Orders],
+			    "MNT-01", [Maintenance Order Completion Rate] * 100,
+			    "MNT-02", [Average Maintenance Delay],
+			    "MNT-03", [Work Orders Blocked by Material],
+			    "MNT-04", [Work Orders Blocked by Documentation]
+			)
+		formatString: 0.0
+		displayFolder: 0. KPI Framework
+		lineageTag: 60aefd54-76b4-4bfc-bdd1-44c397438cab
+
+	/// Value of the KPI for the whole period, from its SQL reference query (Phase 6).
+	measure 'KPI Value (SQL)' = SELECTEDVALUE ( Dim_KPI[SQL Value] )
+		formatString: 0.0
+		displayFolder: 0. KPI Framework
+		lineageTag: d040c991-59f7-49cb-bbdb-e7a55defe66c
+
+	/// Rule K03: the Power BI value must equal the SQL reference value (whole period, no filters).
+	measure 'KPI Reconciliation' =
+			VAR _pbi = [KPI Value (Power BI)]
+			VAR _sql = [KPI Value (SQL)]
+			RETURN
+			    IF (
+			        HASONEVALUE ( Dim_KPI[KPI ID] ),
+			        IF ( ROUND ( _pbi, 1 ) = ROUND ( _sql, 1 ), "✔ Match", "✖ Check" )
+			    )
+		displayFolder: 0. KPI Framework
+		lineageTag: 8aed6edb-0ef1-4792-a387-74b9f26d2bb2
+
+	/// Traffic light against the fictitious internal target of AEROQ MRO.
+	measure 'KPI Status' =
+			VAR _value = [KPI Value (Power BI)]
+			VAR _v = ROUND ( _value, 1 )
+			VAR _t = SELECTEDVALUE ( Dim_KPI[Target] )
+			VAR _w = SELECTEDVALUE ( Dim_KPI[Warning] )
+			VAR _dir = SELECTEDVALUE ( Dim_KPI[Direction] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        NOT HASONEVALUE ( Dim_KPI[KPI ID] ), BLANK (),
+			        ISBLANK ( _value ), "NO DATA",
+			        ISBLANK ( _t ), "NO TARGET",
+			        _dir = "HIGHER_IS_BETTER", IF ( _v >= _t, "GREEN", IF ( _v >= _w, "AMBER", "RED" ) ),
+			        IF ( _v <= _t, "GREEN", IF ( _v <= _w, "AMBER", "RED" ) )
+			    )
+		displayFolder: 0. KPI Framework
+		lineageTag: d03f353c-39ca-4962-af90-f4deaffc561b
+
+	/// Colour of the traffic light (used by conditional formatting).
+	measure 'KPI Status Color' =
+			SWITCH (
+			    [KPI Status],
+			    "GREEN", "#2E7D32",
+			    "AMBER", "#D99A00",
+			    "RED", "#C62828",
+			    "#9AA5B1"
+			)
+		displayFolder: 0. KPI Framework
+		lineageTag: a3c0516b-4b3c-4fa7-a70b-6a6264796553
+
+	/// Traffic light as text.
+	measure 'KPI Status Label' =
+			SWITCH (
+			    [KPI Status],
+			    "GREEN", "● On target",
+			    "AMBER", "● Warning",
+			    "RED", "● Off target",
+			    "NO DATA", "no data",
+			    "NO TARGET", "— monitoring",
+			    BLANK ()
+			)
+		displayFolder: 0. KPI Framework
+		lineageTag: 695c69f8-a114-4fc7-bbde-f33681044d6a
+
+	/// KPI value formatted with its unit.
+	measure 'KPI Display Value' =
+			VAR _v = [KPI Value (Power BI)]
+			VAR _u = SELECTEDVALUE ( Dim_KPI[Unit] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Dim_KPI[KPI ID] ),
+			        IF (
+			            ISBLANK ( _v ),
+			            "no data",
+			            SWITCH (
+			                _u,
+			                "%", FORMAT ( _v, "0.0" ) & " %",
+			                "days", FORMAT ( _v, "0.0" ) & " days",
+			                "count", FORMAT ( _v, "#,0" ),
+			                FORMAT ( _v, "0.0" )
+			            )
+			        )
+			    )
+		displayFolder: 0. KPI Framework
+		lineageTag: 8e0829f1-ba46-4de1-993b-32aea16130eb
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 253a2b09-a318-4b8e-a61d-7d4975ce9ed3
+		summarizeBy: none
+		sourceColumn: Placeholder
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Placeholder = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

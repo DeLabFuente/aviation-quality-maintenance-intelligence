@@ -1,0 +1,168 @@
+relationship 7fc7f82d-4055-5918-81c1-4d1d4b22d557
+	fromColumn: Fact_Incidents.'Detected Date'
+	toColumn: Dim_Date.Date
+
+relationship 7e43ac34-6316-5a64-9bae-32d3024de6f2
+	isActive: false
+	fromColumn: Fact_Incidents.'Closed Date'
+	toColumn: Dim_Date.Date
+
+relationship aa14ced0-c3d4-59e4-a4a1-4f6d28850820
+	fromColumn: Fact_Incidents.'Category ID'
+	toColumn: Dim_IncidentCategory.'Category ID'
+
+relationship b5957496-3dc8-5a03-85ac-7583851f1aee
+	fromColumn: Fact_Incidents.'Responsible Department ID'
+	toColumn: Dim_Department.'Department ID'
+
+relationship b047e449-1bbc-5d07-a384-326c0a998bab
+	fromColumn: Fact_Incidents.'Aircraft ID'
+	toColumn: Dim_Aircraft.'Aircraft ID'
+
+relationship 0678e071-b6fe-5b6b-842a-7b2d167fc5d9
+	fromColumn: Fact_Incidents.'Owner ID'
+	toColumn: Dim_Employee.'Employee ID'
+
+relationship a96b7b5d-c139-5dde-a32a-188bedb1ced3
+	fromColumn: Fact_CAPA.'Created Date'
+	toColumn: Dim_Date.Date
+
+relationship fa8c24e5-dc3c-5de5-bc69-3049c2a92b87
+	isActive: false
+	fromColumn: Fact_CAPA.'Due Date'
+	toColumn: Dim_Date.Date
+
+relationship ef1dbcba-4a56-5a4a-b8c9-4b114ab978bc
+	fromColumn: Fact_CAPA.'Department ID'
+	toColumn: Dim_Department.'Department ID'
+
+relationship c776cd4d-bdb8-5d54-a17e-a51646ed9406
+	fromColumn: Fact_CAPA.'Responsible ID'
+	toColumn: Dim_Employee.'Employee ID'
+
+relationship 2ffb572d-e5b6-5b59-84f2-a6666c0febd8
+	fromColumn: Fact_CAPA_Snapshot.'Department ID'
+	toColumn: Dim_Department.'Department ID'
+
+relationship 58f13bf3-9541-57fd-b210-e488b3ee1bba
+	fromColumn: Fact_CAPA_Snapshot.'Responsible ID'
+	toColumn: Dim_Employee.'Employee ID'
+
+relationship b7aaa74f-d56f-5920-b4cd-5d40a1fc8a3f
+	fromColumn: Fact_MaintenanceOrders.'Opened Date'
+	toColumn: Dim_Date.Date
+
+relationship 5bc6fb10-f087-5be0-86df-20ecf5a4fa24
+	isActive: false
+	fromColumn: Fact_MaintenanceOrders.'Planned End Date'
+	toColumn: Dim_Date.Date
+
+relationship d4c7be93-46b6-57ca-ad4d-22d4db871388
+	isActive: false
+	fromColumn: Fact_MaintenanceOrders.'Actual End Date'
+	toColumn: Dim_Date.Date
+
+relationship 77a3b92c-d96b-5f70-8232-981e2f5a846e
+	fromColumn: Fact_MaintenanceOrders.'Aircraft ID'
+	toColumn: Dim_Aircraft.'Aircraft ID'
+
+relationship 9e74d9ae-5273-51e8-81b0-5d231924d036
+	fromColumn: Fact_MaintenanceOrders.'Responsible Department ID'
+	toColumn: Dim_Department.'Department ID'
+
+relationship 2b6e1e48-b53d-5eec-bb8c-93d23c088ced
+	fromColumn: Fact_Holds.'Start Date'
+	toColumn: Dim_Date.Date
+
+relationship 258aed28-9d84-568b-b29f-eeaf646f89eb
+	fromColumn: Fact_Holds.'Aircraft ID'
+	toColumn: Dim_Aircraft.'Aircraft ID'
+
+relationship 2cda9953-9d82-5bc5-a57d-1781dbb7cc82
+	fromColumn: Fact_Holds.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship fced128f-e3e0-5245-b4a2-76280c8b982b
+	fromColumn: Fact_MO_Materials.'Required By Date'
+	toColumn: Dim_Date.Date
+
+relationship 4ca34575-5e6d-59f3-8c79-617fcc6ba991
+	fromColumn: Fact_MO_Materials.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship fcb1317e-7b23-5348-b539-7b0435ccfef2
+	fromColumn: Fact_MO_Materials.'Aircraft ID'
+	toColumn: Dim_Aircraft.'Aircraft ID'
+
+relationship a95d3c52-963a-505f-8c73-a6ab3015ff70
+	fromColumn: Fact_InventoryMovements.'Movement Date'
+	toColumn: Dim_Date.Date
+
+relationship ecfbe64d-1a56-5533-8df9-6c69d05acfb0
+	fromColumn: Fact_InventoryMovements.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship 80806cf9-8270-595b-97bc-e279379c7535
+	fromColumn: Fact_StockSnapshot.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship a758f7ab-07a6-525b-af01-cef4996e3702
+	fromColumn: Fact_StockCounts.'Count Date'
+	toColumn: Dim_Date.Date
+
+relationship cb6d9c21-f7ab-5653-b2a6-818ecf008770
+	fromColumn: Fact_StockCounts.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship 799790d2-8790-5a3c-9028-c429e4111f37
+	fromColumn: Fact_PurchaseOrderLines.'Order Date'
+	toColumn: Dim_Date.Date
+
+relationship d563f320-5d1a-50f1-90c2-8d2fde2d6a29
+	fromColumn: Fact_PurchaseOrderLines.'Supplier ID'
+	toColumn: Dim_Supplier.'Supplier ID'
+
+relationship 5e991dac-cc55-5e7e-8754-8df8ad2acbb1
+	fromColumn: Fact_PurchaseOrderLines.'Material ID'
+	toColumn: Dim_Material.'Material ID'
+
+relationship 775ea3ce-e4c2-56fb-8c52-46487c463092
+	fromColumn: Fact_PO_Snapshot.'Supplier ID'
+	toColumn: Dim_Supplier.'Supplier ID'
+
+relationship 06681e2c-520e-5afb-8c56-ba0921da17bd
+	fromColumn: Fact_DocumentVerifications.'Verification Date'
+	toColumn: Dim_Date.Date
+
+relationship 7c606027-a728-5685-93b7-97bea8e7c90b
+	fromColumn: Fact_DocumentVerifications.'Document ID'
+	toColumn: Dim_Document.'Document ID'
+
+relationship a742148a-3b24-58d5-a160-7a239d06bb5c
+	fromColumn: Fact_DocumentVerifications.'Verified By'
+	toColumn: Dim_Employee.'Employee ID'
+
+relationship a13620fc-1769-57b6-8f90-5f212974a4fe
+	fromColumn: Fact_DocumentSnapshot.'Document ID'
+	toColumn: Dim_Document.'Document ID'
+
+relationship f588a519-7c97-5097-8e98-ead1810cb0ca
+	fromColumn: Fact_DocumentSnapshot.'Owner Department ID'
+	toColumn: Dim_Department.'Department ID'
+
+relationship cf0d5d9f-e24e-57a3-98b6-507d975c6c92
+	fromColumn: Fact_AuditEvents.'Event Date'
+	toColumn: Dim_Date.Date
+
+relationship d2ed44d7-b55b-57a7-bc8d-8a2fc8d4d3e7
+	fromColumn: Fact_AuditEvents.'Changed By'
+	toColumn: Dim_Employee.'Employee ID'
+
+relationship 9ce23d24-1946-569c-9d26-897bfed846ac
+	fromColumn: Fact_KPI_Monthly.'KPI ID'
+	toColumn: Dim_KPI.'KPI ID'
+
+relationship 109336c8-adcc-5c08-bcd3-f6b57280d176
+	fromColumn: Fact_ValidationFindings.'Rule ID'
+	toColumn: Fact_ValidationResults.'Rule ID'
+

@@ -1,0 +1,90 @@
+/// One row per stock count.
+table Fact_StockCounts
+	lineageTag: 42d223f3-318b-4312-ac3b-03e2e48c9b7a
+
+	column 'Count ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9627472c-0245-4a2a-bff6-4d6a64e443a8
+		summarizeBy: none
+		sourceColumn: count_id
+
+	column 'Count Number'
+		dataType: string
+		lineageTag: 246e1250-9b76-4707-bf3c-a685786555d2
+		summarizeBy: none
+		sourceColumn: count_number
+
+	column 'Count Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 70ea2570-992a-489d-bab2-e70f6d72acc8
+		summarizeBy: none
+		sourceColumn: count_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7a00801f-c81a-473f-892a-7c4dd9822151
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Count Type'
+		dataType: string
+		lineageTag: 0de4049d-0477-4be0-8ce6-8bfad7a577a9
+		summarizeBy: none
+		sourceColumn: count_type
+
+	column 'System Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: d3d9d8a3-34d6-4d15-9d19-84593bb7ad22
+		summarizeBy: none
+		sourceColumn: system_qty
+
+	column 'Counted Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: b7935a81-2473-4632-bba1-efda9b6f3455
+		summarizeBy: none
+		sourceColumn: counted_qty
+
+	column 'Difference Qty'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 6f3ee94d-b56f-4c20-a983-2fae4c5734b3
+		summarizeBy: none
+		sourceColumn: difference_qty
+
+	column 'Has Difference'
+		dataType: int64
+		formatString: #,0
+		lineageTag: deafed9e-e96f-44a4-b8c5-bd4c6fefd3ca
+		summarizeBy: none
+		sourceColumn: has_difference
+
+	column 'Difference Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: e113bea9-2920-4af3-90e4-a76c0ceaa073
+		summarizeBy: none
+		sourceColumn: difference_value
+
+	partition Fact_StockCounts = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_StockCounts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"count_id", Int64.Type}, {"count_number", type text}, {"count_date", type date}, {"material_id", Int64.Type}, {"count_type", type text}, {"system_qty", type number}, {"counted_qty", type number}, {"difference_qty", type number}, {"has_difference", Int64.Type}, {"difference_value", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

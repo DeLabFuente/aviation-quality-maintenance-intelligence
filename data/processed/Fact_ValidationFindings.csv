@@ -1,0 +1,27 @@
+rule_id,severity,record_ref,detail
+C10,WARNING,CA-2026-0028,"CORRECTIVE, due 2026-09-29 (32 days late), status IN_PROGRESS"
+C10,WARNING,CA-2026-0038,"CORRECTIVE, due 2026-09-21 (40 days late), status IN_PROGRESS"
+D12,WARNING,PRO-LOG-002,R00 review due 2026-04-05 (209 days overdue)
+D12,WARNING,PRO-MNT-006,R01 review due 2025-10-17 (379 days overdue)
+D12,WARNING,WIN-MNT-017,R01 review due 2026-10-12 (19 days overdue)
+D12,WARNING,FRM-QUA-007,R01 review due 2026-10-15 (16 days overdue)
+D12,WARNING,FRM-MNT-008,R01 review due 2025-07-12 (476 days overdue)
+D12,WARNING,TDR-DOC-009,R03 review due 2026-02-21 (252 days overdue)
+D12,WARNING,TDR-DOC-021,R01 review due 2025-02-06 (632 days overdue)
+D12,WARNING,TDR-DOC-043,R01 review due 2026-03-05 (240 days overdue)
+D12,WARNING,TDR-DOC-047,R01 review due 2026-10-24 (7 days overdue)
+D12,WARNING,TDR-DOC-050,R00 review due 2026-09-22 (39 days overdue)
+D12,WARNING,TDR-DOC-053,R02 review due 2026-10-20 (11 days overdue)
+D12,WARNING,TDR-DOC-054,R00 review due 2025-05-23 (526 days overdue)
+I09,WARNING,MV-2025-00523,Receipt of AQ-1142-06 (lot L2505-00206) without certificate reference
+I09,WARNING,MV-2025-00870,Receipt of AQ-3412-06 (lot L2507-00248) without certificate reference
+I16,WARNING,AQ-3342-06,"Available and in quarantine 2.0, below minimum 3.0, nothing on order"
+M08,WARNING,WO-2025-0049,Hold on AQ-2319-09 started 2025-03-24 while 15.0 were available (required 6.0)
+M08,WARNING,WO-2025-0061,Hold on AQ-1107-02 started 2025-04-18 while 16.75 were available (required 1.0)
+M09,WARNING,WO-2025-0125,WIN-MNT-018 R00 linked on 2025-07-24 (superseded on 2023-10-02)
+M09,WARNING,WO-2025-0199,WIN-MNT-059 R00 linked on 2025-10-24 (superseded on 2024-01-09)
+M09,WARNING,WO-2025-0203,WIN-MNT-038 R00 linked on 2025-10-28 (superseded on 2024-01-06)
+Q08,WARNING,NC-2025-0038,"No related aircraft, order, document, material, supplier or purchase line"
+Q08,WARNING,NC-2025-0059,"No related aircraft, order, document, material, supplier or purchase line"
+Q12,WARNING,NC-2026-0024,"MINOR, target 2026-10-06 (25 days late), status IMPLEMENTATION"
+Q12,WARNING,NC-2026-0025,"MINOR, target 2026-10-11 (20 days late), status EFFECTIVENESS_CHECK"

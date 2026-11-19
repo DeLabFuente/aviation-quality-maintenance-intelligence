@@ -1,0 +1,251 @@
+document_id,document_code,title,document_type,owner_department_code,aircraft_registration,is_controlled,review_interval_months,current_revision,effective_date,review_due_date,validity_status,days_overdue,n_revisions
+215,ACR-DOC-001,Aircraft record – EC-Q01 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q01,0,,R00,2021-11-07,,NOT_CONTROLLED,0,1
+216,ACR-DOC-002,Aircraft record – EC-Q01 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q01,0,,R00,2022-07-25,,NOT_CONTROLLED,0,1
+217,ACR-DOC-003,Aircraft record – EC-Q01 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q01,0,,R01,2020-12-16,,NOT_CONTROLLED,0,2
+218,ACR-DOC-004,Aircraft record – EC-Q02 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q02,0,,R00,2021-03-05,,NOT_CONTROLLED,0,1
+219,ACR-DOC-005,Aircraft record – EC-Q02 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q02,0,,R00,2022-02-22,,NOT_CONTROLLED,0,1
+220,ACR-DOC-006,Aircraft record – EC-Q02 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q02,0,,R00,2021-05-06,,NOT_CONTROLLED,0,1
+221,ACR-DOC-007,Aircraft record – EC-Q03 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q03,0,,R02,2022-12-07,,NOT_CONTROLLED,0,3
+222,ACR-DOC-008,Aircraft record – EC-Q03 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q03,0,,R03,2024-06-30,,NOT_CONTROLLED,0,4
+223,ACR-DOC-009,Aircraft record – EC-Q03 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q03,0,,R02,2023-08-05,,NOT_CONTROLLED,0,3
+224,ACR-DOC-010,Aircraft record – EC-Q04 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q04,0,,R01,2023-05-30,,NOT_CONTROLLED,0,2
+225,ACR-DOC-011,Aircraft record – EC-Q04 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q04,0,,R01,2021-04-11,,NOT_CONTROLLED,0,2
+226,ACR-DOC-012,Aircraft record – EC-Q04 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q04,0,,R01,2023-04-15,,NOT_CONTROLLED,0,2
+227,ACR-DOC-013,Aircraft record – EC-Q05 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q05,0,,R00,2020-12-06,,NOT_CONTROLLED,0,1
+228,ACR-DOC-014,Aircraft record – EC-Q05 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q05,0,,R03,2021-05-04,,NOT_CONTROLLED,0,4
+229,ACR-DOC-015,Aircraft record – EC-Q05 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q05,0,,R00,2020-12-29,,NOT_CONTROLLED,0,1
+230,ACR-DOC-016,Aircraft record – EC-Q06 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q06,0,,R00,2022-08-29,,NOT_CONTROLLED,0,1
+231,ACR-DOC-017,Aircraft record – EC-Q06 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q06,0,,R03,2024-01-23,,NOT_CONTROLLED,0,4
+232,ACR-DOC-018,Aircraft record – EC-Q06 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q06,0,,R01,2023-03-28,,NOT_CONTROLLED,0,2
+233,ACR-DOC-019,Aircraft record – EC-Q07 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q07,0,,R01,2022-06-23,,NOT_CONTROLLED,0,2
+234,ACR-DOC-020,Aircraft record – EC-Q07 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q07,0,,R01,2023-06-18,,NOT_CONTROLLED,0,2
+235,ACR-DOC-021,Aircraft record – EC-Q07 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q07,0,,R00,2023-01-31,,NOT_CONTROLLED,0,1
+236,ACR-DOC-022,Aircraft record – EC-Q08 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q08,0,,R01,2023-03-11,,NOT_CONTROLLED,0,2
+237,ACR-DOC-023,Aircraft record – EC-Q08 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q08,0,,R02,2024-09-02,,NOT_CONTROLLED,0,3
+238,ACR-DOC-024,Aircraft record – EC-Q08 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q08,0,,R00,2021-04-04,,NOT_CONTROLLED,0,1
+239,ACR-DOC-025,Aircraft record – EC-Q09 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q09,0,,R01,2020-12-23,,NOT_CONTROLLED,0,2
+240,ACR-DOC-026,Aircraft record – EC-Q09 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q09,0,,R00,2022-09-12,,NOT_CONTROLLED,0,1
+241,ACR-DOC-027,Aircraft record – EC-Q09 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q09,0,,R01,2022-11-18,,NOT_CONTROLLED,0,2
+242,ACR-DOC-028,Aircraft record – EC-Q10 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q10,0,,R00,2021-04-18,,NOT_CONTROLLED,0,1
+243,ACR-DOC-029,Aircraft record – EC-Q10 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q10,0,,R00,2024-01-14,,NOT_CONTROLLED,0,1
+244,ACR-DOC-030,Aircraft record – EC-Q10 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q10,0,,R01,2021-10-01,,NOT_CONTROLLED,0,2
+245,ACR-DOC-031,Aircraft record – EC-Q11 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q11,0,,R01,2021-03-07,,NOT_CONTROLLED,0,2
+246,ACR-DOC-032,Aircraft record – EC-Q11 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q11,0,,R03,2022-12-26,,NOT_CONTROLLED,0,4
+247,ACR-DOC-033,Aircraft record – EC-Q11 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q11,0,,R01,2024-07-08,,NOT_CONTROLLED,0,2
+248,ACR-DOC-034,Aircraft record – EC-Q12 – Logbook index,AIRCRAFT_RECORD,DOC,EC-Q12,0,,R00,2025-06-02,,NOT_CONTROLLED,0,1
+249,ACR-DOC-035,Aircraft record – EC-Q12 – Component status record,AIRCRAFT_RECORD,DOC,EC-Q12,0,,R00,2025-06-02,,NOT_CONTROLLED,0,1
+250,ACR-DOC-036,Aircraft record – EC-Q12 – Modification record,AIRCRAFT_RECORD,DOC,EC-Q12,0,,R00,2025-06-02,,NOT_CONTROLLED,0,1
+119,FRM-DOC-001,Form – Document change request,FORM,DOC,,1,36,R02,2022-09-28,2028-10-13,VALID,0,3
+120,FRM-DOC-002,Form – Document review record,FORM,DOC,,1,36,R01,2025-03-31,2028-03-31,VALID,0,2
+121,FRM-DOC-003,Form – Controlled copy distribution list,FORM,DOC,,1,36,R01,2024-08-05,2027-08-05,VALID,0,2
+122,FRM-DOC-004,Form – Records transfer sheet,FORM,DOC,,1,36,R04,2026-02-19,2029-02-19,VALID,0,5
+123,FRM-DOC-005,Form – Technical data revision log,FORM,DOC,,1,36,R03,2022-09-01,2028-09-10,VALID,0,4
+124,FRM-DOC-006,Form – Document withdrawal notice,FORM,DOC,,1,36,R01,2026-09-08,2029-09-08,VALID,0,2
+125,FRM-LOG-001,Form – Goods receipt note,FORM,LOG,,1,36,R02,2025-07-28,2028-07-28,VALID,0,3
+126,FRM-LOG-002,Form – Receiving inspection record,FORM,LOG,,1,36,R01,2026-07-17,2029-07-17,VALID,0,2
+127,FRM-LOG-003,Form – Quarantine label,FORM,LOG,,1,36,R01,2024-02-12,2027-02-12,VALID,0,2
+128,FRM-LOG-004,Form – Non-conforming material tag,FORM,LOG,,1,36,R02,2024-04-02,2027-04-02,VALID,0,3
+129,FRM-LOG-005,Form – Cycle count sheet,FORM,LOG,,1,36,R02,2022-03-09,2028-03-17,VALID,0,3
+130,FRM-LOG-006,Form – Stock adjustment form,FORM,LOG,,1,36,R03,2024-12-16,2027-12-16,VALID,0,4
+131,FRM-LOG-007,Form – Purchase requisition,FORM,LOG,,1,36,R03,2023-11-17,2026-11-17,VALID,0,4
+132,FRM-LOG-008,Form – Shelf-life monitoring sheet,FORM,LOG,,1,36,R02,2025-08-28,2028-08-28,VALID,0,3
+133,FRM-LOG-009,Form – Return to supplier note,FORM,LOG,,1,36,R01,2025-12-26,2028-12-26,VALID,0,2
+143,FRM-MNT-001,Form – Task card (generic),FORM,MNT,,1,36,R01,2024-05-08,2027-05-08,VALID,0,2
+144,FRM-MNT-002,Form – Tool control sheet,FORM,MNT,,1,36,R00,2023-12-23,2026-12-23,VALID,0,1
+145,FRM-MNT-003,Form – Shift handover log,FORM,MNT,,1,36,R00,2022-07-22,2028-06-30,VALID,0,1
+146,FRM-MNT-004,Form – Ground run log,FORM,MNT,,1,36,R01,2026-08-25,2029-08-25,VALID,0,2
+147,FRM-MNT-005,Form – Foreign object inspection checklist,FORM,MNT,,1,36,R01,2021-12-02,2027-12-16,VALID,0,2
+148,FRM-MNT-006,Form – Component change record,FORM,MNT,,1,36,R02,2022-07-13,2028-08-07,VALID,0,3
+149,FRM-MNT-007,Form – Consumables usage record,FORM,MNT,,1,36,R00,2024-09-19,2027-09-19,VALID,0,1
+150,FRM-MNT-008,Form – Workshop inspection checklist,FORM,MNT,,1,36,R01,2022-07-12,2025-07-12,REVIEW_OVERDUE,476,2
+134,FRM-PRD-001,Form – Work order opening sheet,FORM,PRD,,1,36,R01,2026-03-23,2029-03-23,VALID,0,2
+135,FRM-PRD-002,Form – Material request,FORM,PRD,,1,36,R00,2024-08-10,2027-08-10,VALID,0,1
+136,FRM-PRD-003,Form – Work package checklist,FORM,PRD,,1,36,R01,2021-12-12,2027-12-30,VALID,0,2
+137,FRM-PRD-004,Form – Work order closure record,FORM,PRD,,1,36,R01,2025-05-07,2028-05-07,VALID,0,2
+138,FRM-PRD-005,Form – Delay report,FORM,PRD,,1,36,R03,2024-06-23,2027-06-23,VALID,0,4
+139,FRM-PRD-006,Form – Planning board update,FORM,PRD,,1,36,R01,2024-07-05,2027-07-05,VALID,0,2
+140,FRM-PRD-007,Form – Hold notification,FORM,PRD,,1,36,R00,2022-08-10,2028-08-27,VALID,0,1
+141,FRM-PRD-008,Form – Records review checklist,FORM,PRD,,1,36,R01,2024-06-25,2027-06-25,VALID,0,2
+142,FRM-PRD-009,Form – Customer work summary,FORM,PRD,,1,36,R02,2025-04-25,2028-04-25,VALID,0,3
+111,FRM-QUA-001,Form – Non-conformity report,FORM,QUA,,1,36,R03,2024-06-12,2027-06-12,VALID,0,4
+112,FRM-QUA-002,Form – Root cause analysis worksheet,FORM,QUA,,1,36,R01,2022-09-22,2028-10-13,VALID,0,2
+113,FRM-QUA-003,Form – Corrective action plan,FORM,QUA,,1,36,R03,2021-12-25,2027-12-25,VALID,0,4
+114,FRM-QUA-004,Form – Internal audit checklist,FORM,QUA,,1,36,R00,2022-10-02,2028-10-28,VALID,0,1
+115,FRM-QUA-005,Form – Audit finding report,FORM,QUA,,1,36,R01,2022-07-22,2028-07-14,VALID,0,2
+116,FRM-QUA-006,Form – Effectiveness verification record,FORM,QUA,,1,36,R02,2026-04-15,2029-04-15,VALID,0,3
+117,FRM-QUA-007,Form – Management review minutes,FORM,QUA,,1,36,R01,2023-10-15,2026-10-15,REVIEW_OVERDUE,16,2
+118,FRM-QUA-008,Form – Training record,FORM,QUA,,1,36,R01,2023-03-09,2029-04-03,VALID,0,2
+11,PRO-DOC-001,Document control,PROCEDURE,DOC,,1,24,R02,2025-06-13,2027-06-13,VALID,0,3
+12,PRO-DOC-002,Control of technical data,PROCEDURE,DOC,,1,24,R01,2025-10-30,2027-10-30,VALID,0,2
+13,PRO-DOC-003,Technical records management,PROCEDURE,DOC,,1,24,R01,2022-12-29,2027-01-20,VALID,0,2
+14,PRO-DOC-004,Archiving and retention of records,PROCEDURE,DOC,,1,24,R00,2023-10-08,2027-11-06,VALID,0,1
+15,PRO-DOC-005,Distribution of controlled copies,PROCEDURE,DOC,,1,24,R03,2024-06-10,2028-06-22,VALID,0,4
+16,PRO-DOC-006,Electronic records and backups,PROCEDURE,DOC,,1,24,R01,2022-11-26,2026-11-11,VALID,0,2
+17,PRO-LOG-001,Receiving inspection of materials,PROCEDURE,LOG,,1,24,R01,2024-05-11,2028-05-01,VALID,0,2
+18,PRO-LOG-002,Storage and segregation of materials,PROCEDURE,LOG,,1,24,R00,2024-04-05,2026-04-05,REVIEW_OVERDUE,209,1
+19,PRO-LOG-003,Quarantine and non-conforming material,PROCEDURE,LOG,,1,24,R00,2024-01-25,2028-01-22,VALID,0,1
+20,PRO-LOG-004,Cycle counting and inventory adjustments,PROCEDURE,LOG,,1,24,R03,2025-08-18,2027-08-18,VALID,0,4
+21,PRO-LOG-005,Shelf-life control,PROCEDURE,LOG,,1,24,R00,2023-06-21,2027-06-30,VALID,0,1
+22,PRO-LOG-006,Purchasing and expediting,PROCEDURE,LOG,,1,24,R02,2025-06-25,2027-06-25,VALID,0,3
+23,PRO-LOG-007,Tool store control,PROCEDURE,LOG,,1,24,R04,2025-06-27,2027-06-27,VALID,0,5
+24,PRO-LOG-008,Shipping and returns to suppliers,PROCEDURE,LOG,,1,24,R01,2025-10-17,2027-10-17,VALID,0,2
+33,PRO-MNT-001,Maintenance task execution,PROCEDURE,MNT,,1,24,R02,2024-12-25,2026-12-25,VALID,0,3
+34,PRO-MNT-002,Shift and task handover,PROCEDURE,MNT,,1,24,R04,2025-08-07,2027-08-07,VALID,0,5
+35,PRO-MNT-003,Tooling and equipment use,PROCEDURE,MNT,,1,24,R03,2025-02-12,2027-02-12,VALID,0,4
+36,PRO-MNT-004,Independent inspection records,PROCEDURE,MNT,,1,24,R01,2025-01-30,2027-01-30,VALID,0,2
+37,PRO-MNT-005,Ground run coordination,PROCEDURE,MNT,,1,24,R00,2024-02-24,2028-02-03,VALID,0,1
+38,PRO-MNT-006,Foreign object prevention,PROCEDURE,MNT,,1,24,R01,2023-10-17,2025-10-17,REVIEW_OVERDUE,379,2
+39,PRO-MNT-007,Component removal and installation records,PROCEDURE,MNT,,1,24,R01,2025-08-08,2027-08-08,VALID,0,2
+40,PRO-MNT-008,Workshop housekeeping,PROCEDURE,MNT,,1,24,R03,2026-05-19,2028-05-19,VALID,0,4
+25,PRO-PRD-001,Maintenance order planning,PROCEDURE,PRD,,1,24,R04,2026-06-22,2028-06-22,VALID,0,5
+26,PRO-PRD-002,Work package preparation,PROCEDURE,PRD,,1,24,R03,2022-12-28,2026-12-13,VALID,0,4
+27,PRO-PRD-003,Production control and follow-up,PROCEDURE,PRD,,1,24,R01,2025-10-06,2027-10-06,VALID,0,2
+28,PRO-PRD-004,Work order closure and records review,PROCEDURE,PRD,,1,24,R01,2026-07-14,2028-07-14,VALID,0,2
+29,PRO-PRD-005,Material requests for maintenance orders,PROCEDURE,PRD,,1,24,R02,2022-11-14,2026-11-29,VALID,0,3
+30,PRO-PRD-006,Planning of aircraft inputs,PROCEDURE,PRD,,1,24,R01,2023-01-15,2027-02-03,VALID,0,2
+31,PRO-PRD-007,Priority management (AOG and urgent orders),PROCEDURE,PRD,,1,24,R01,2023-01-04,2026-12-23,VALID,0,2
+32,PRO-PRD-008,Customer communication of delays,PROCEDURE,PRD,,1,24,R01,2023-01-26,2027-02-03,VALID,0,2
+1,PRO-QUA-001,Quality system manual – AEROQ MRO,PROCEDURE,QUA,,1,24,R01,2026-03-20,2028-03-20,VALID,0,2
+2,PRO-QUA-002,Control of non-conformities,PROCEDURE,QUA,,1,24,R04,2024-12-23,2026-12-23,VALID,0,5
+3,PRO-QUA-003,Root cause analysis,PROCEDURE,QUA,,1,24,R02,2023-12-22,2027-12-18,VALID,0,3
+4,PRO-QUA-004,Corrective and preventive actions,PROCEDURE,QUA,,1,24,R01,2025-10-30,2027-10-30,VALID,0,2
+5,PRO-QUA-005,Internal audit programme,PROCEDURE,QUA,,1,24,R03,2026-02-20,2028-02-20,VALID,0,4
+6,PRO-QUA-006,Management review,PROCEDURE,QUA,,1,24,R00,2024-03-01,2028-03-25,VALID,0,1
+7,PRO-QUA-007,Control of quality records,PROCEDURE,QUA,,1,24,R03,2025-03-11,2027-03-11,VALID,0,4
+8,PRO-QUA-008,Competence assessment of staff,PROCEDURE,QUA,,1,24,R01,2026-04-07,2028-04-07,VALID,0,2
+9,PRO-QUA-009,Internal occurrence and hazard reporting,PROCEDURE,QUA,,1,24,R02,2023-08-24,2027-09-01,VALID,0,3
+10,PRO-QUA-010,Supplier evaluation and monitoring,PROCEDURE,QUA,,1,24,R03,2026-09-16,2028-09-16,VALID,0,4
+151,TDR-DOC-001,Technical data reference – LS-100 – General,TECHNICAL_DATA_REF,DOC,,1,12,R03,2026-02-19,2027-02-19,VALID,0,4
+152,TDR-DOC-002,Technical data reference – LS-100 – Airframe,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-09-03,2027-08-20,VALID,0,1
+153,TDR-DOC-003,Technical data reference – LS-100 – Main rotor,TECHNICAL_DATA_REF,DOC,,1,12,R02,2024-05-20,2027-05-19,VALID,0,3
+154,TDR-DOC-004,Technical data reference – LS-100 – Tail rotor,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-07-23,2027-07-27,VALID,0,3
+155,TDR-DOC-005,Technical data reference – LS-100 – Transmission,TECHNICAL_DATA_REF,DOC,,1,12,R02,2024-05-11,2027-06-05,VALID,0,3
+156,TDR-DOC-006,Technical data reference – LS-100 – Engine,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-04-19,2027-04-24,VALID,0,2
+157,TDR-DOC-007,Technical data reference – LS-100 – Fuel system,TECHNICAL_DATA_REF,DOC,,1,12,R03,2026-04-22,2027-04-22,VALID,0,4
+158,TDR-DOC-008,Technical data reference – LS-100 – Hydraulic system,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-06-02,2027-06-02,VALID,0,3
+159,TDR-DOC-009,Technical data reference – LS-100 – Electrical system,TECHNICAL_DATA_REF,DOC,,1,12,R03,2024-02-16,2026-02-21,REVIEW_OVERDUE,252,4
+160,TDR-DOC-010,Technical data reference – LS-100 – Lighting,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-02-06,2027-01-30,VALID,0,1
+161,TDR-DOC-011,Technical data reference – LS-100 – Avionics,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-02-20,2027-02-11,VALID,0,1
+162,TDR-DOC-012,Technical data reference – LS-100 – Landing gear,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-10-01,2027-10-01,VALID,0,3
+163,TDR-DOC-013,Technical data reference – LS-100 – Flight controls,TECHNICAL_DATA_REF,DOC,,1,12,R03,2026-01-22,2027-01-22,VALID,0,4
+164,TDR-DOC-014,Technical data reference – LS-100 – Cabin,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-03-20,2027-03-17,VALID,0,2
+165,TDR-DOC-015,Technical data reference – LS-100 – Fire protection,TECHNICAL_DATA_REF,DOC,,1,12,R05,2026-07-20,2027-07-20,VALID,0,6
+166,TDR-DOC-016,Technical data reference – LS-100 – Instruments,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-11-17,2027-10-30,VALID,0,3
+167,TDR-DOC-017,Technical data reference – LS-100 – Ice and rain protection,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-05-05,2027-05-05,VALID,0,3
+168,TDR-DOC-018,Technical data reference – LS-100 – Doors and windows,TECHNICAL_DATA_REF,DOC,,1,12,R04,2026-01-12,2027-01-12,VALID,0,5
+169,TDR-DOC-019,Technical data reference – LS-100 – Cargo hook,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-08-06,2027-08-06,VALID,0,3
+170,TDR-DOC-020,Technical data reference – LS-100 – Navigation,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-05-29,2027-06-08,VALID,0,1
+171,TDR-DOC-021,Technical data reference – LS-100 – Communications,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-02-06,2025-02-06,REVIEW_OVERDUE,632,2
+172,TDR-DOC-022,Technical data reference – LT-200 – General,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-06-26,2027-07-27,VALID,0,1
+173,TDR-DOC-023,Technical data reference – LT-200 – Airframe,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-11-17,2026-11-17,VALID,0,3
+174,TDR-DOC-024,Technical data reference – LT-200 – Main rotor,TECHNICAL_DATA_REF,DOC,,1,12,R03,2025-03-24,2027-04-08,VALID,0,4
+175,TDR-DOC-025,Technical data reference – LT-200 – Tail rotor,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-01-28,2027-01-28,VALID,0,3
+176,TDR-DOC-026,Technical data reference – LT-200 – Transmission,TECHNICAL_DATA_REF,DOC,,1,12,R01,2025-06-26,2027-07-20,VALID,0,2
+177,TDR-DOC-027,Technical data reference – LT-200 – Engine,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-09-30,2027-10-06,VALID,0,3
+178,TDR-DOC-028,Technical data reference – LT-200 – Fuel system,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-10-21,2027-10-07,VALID,0,3
+179,TDR-DOC-029,Technical data reference – LT-200 – Hydraulic system,TECHNICAL_DATA_REF,DOC,,1,12,R01,2026-07-22,2027-07-22,VALID,0,2
+180,TDR-DOC-030,Technical data reference – LT-200 – Electrical system,TECHNICAL_DATA_REF,DOC,,1,12,R01,2025-06-17,2027-07-17,VALID,0,2
+181,TDR-DOC-031,Technical data reference – LT-200 – Lighting,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-06-06,2027-05-18,VALID,0,1
+182,TDR-DOC-032,Technical data reference – LT-200 – Avionics,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-03-27,2027-03-27,VALID,0,3
+183,TDR-DOC-033,Technical data reference – LT-200 – Landing gear,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-08-31,2027-08-24,VALID,0,1
+184,TDR-DOC-034,Technical data reference – LT-200 – Flight controls,TECHNICAL_DATA_REF,DOC,,1,12,R04,2026-08-31,2027-08-31,VALID,0,5
+185,TDR-DOC-035,Technical data reference – LT-200 – Cabin,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-06-17,2027-07-09,VALID,0,2
+186,TDR-DOC-036,Technical data reference – LT-200 – Fire protection,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-03-10,2027-03-19,VALID,0,3
+187,TDR-DOC-037,Technical data reference – LT-200 – Instruments,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-08-03,2027-08-03,VALID,0,3
+188,TDR-DOC-038,Technical data reference – LT-200 – Ice and rain protection,TECHNICAL_DATA_REF,DOC,,1,12,R03,2026-08-05,2027-08-05,VALID,0,4
+189,TDR-DOC-039,Technical data reference – LT-200 – Doors and windows,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-04-14,2027-04-17,VALID,0,2
+190,TDR-DOC-040,Technical data reference – LT-200 – Cargo hook,TECHNICAL_DATA_REF,DOC,,1,12,R02,2024-10-08,2026-11-06,VALID,0,3
+191,TDR-DOC-041,Technical data reference – LT-200 – Navigation,TECHNICAL_DATA_REF,DOC,,1,12,R01,2026-02-20,2027-02-20,VALID,0,2
+192,TDR-DOC-042,Technical data reference – LT-200 – Communications,TECHNICAL_DATA_REF,DOC,,1,12,R01,2026-06-12,2027-06-12,VALID,0,2
+193,TDR-DOC-043,Technical data reference – MT-300 – General,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-03-15,2026-03-05,REVIEW_OVERDUE,240,2
+194,TDR-DOC-044,Technical data reference – MT-300 – Airframe,TECHNICAL_DATA_REF,DOC,,1,12,R04,2024-11-28,2027-10-30,VALID,0,5
+195,TDR-DOC-045,Technical data reference – MT-300 – Main rotor,TECHNICAL_DATA_REF,DOC,,1,12,R03,2024-02-25,2027-02-26,VALID,0,4
+196,TDR-DOC-046,Technical data reference – MT-300 – Tail rotor,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-07-23,2027-06-15,VALID,0,1
+197,TDR-DOC-047,Technical data reference – MT-300 – Transmission,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-10-15,2026-10-24,REVIEW_OVERDUE,7,2
+198,TDR-DOC-048,Technical data reference – MT-300 – Engine,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-08-26,2027-10-08,VALID,0,2
+199,TDR-DOC-049,Technical data reference – MT-300 – Fuel system,TECHNICAL_DATA_REF,DOC,,1,12,R03,2026-04-06,2027-04-06,VALID,0,4
+200,TDR-DOC-050,Technical data reference – MT-300 – Hydraulic system,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-09-17,2026-09-22,REVIEW_OVERDUE,39,1
+201,TDR-DOC-051,Technical data reference – MT-300 – Electrical system,TECHNICAL_DATA_REF,DOC,,1,12,R01,2025-05-12,2027-05-12,VALID,0,2
+202,TDR-DOC-052,Technical data reference – MT-300 – Lighting,TECHNICAL_DATA_REF,DOC,,1,12,R01,2026-03-12,2027-03-12,VALID,0,2
+203,TDR-DOC-053,Technical data reference – MT-300 – Avionics,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-10-20,2026-10-20,REVIEW_OVERDUE,11,3
+204,TDR-DOC-054,Technical data reference – MT-300 – Landing gear,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-05-23,2025-05-23,REVIEW_OVERDUE,526,1
+205,TDR-DOC-055,Technical data reference – MT-300 – Flight controls,TECHNICAL_DATA_REF,DOC,,1,12,R02,2025-12-26,2026-12-26,VALID,0,3
+206,TDR-DOC-056,Technical data reference – MT-300 – Cabin,TECHNICAL_DATA_REF,DOC,,1,12,R04,2026-03-17,2027-03-17,VALID,0,5
+207,TDR-DOC-057,Technical data reference – MT-300 – Fire protection,TECHNICAL_DATA_REF,DOC,,1,12,R00,2024-04-16,2027-05-19,VALID,0,1
+208,TDR-DOC-058,Technical data reference – MT-300 – Instruments,TECHNICAL_DATA_REF,DOC,,1,12,R01,2024-07-18,2027-08-03,VALID,0,2
+209,TDR-DOC-059,Technical data reference – MT-300 – Ice and rain protection,TECHNICAL_DATA_REF,DOC,,1,12,R03,2025-03-06,2027-03-24,VALID,0,4
+210,TDR-DOC-060,Technical data reference – MT-300 – Doors and windows,TECHNICAL_DATA_REF,DOC,,1,12,R04,2025-05-30,2027-06-01,VALID,0,5
+211,TDR-DOC-061,Technical data reference – MT-300 – Cargo hook,TECHNICAL_DATA_REF,DOC,,1,12,R02,2026-05-27,2027-05-27,VALID,0,3
+212,TDR-DOC-062,Technical data reference – MT-300 – Navigation,TECHNICAL_DATA_REF,DOC,,1,12,R01,2025-01-20,2027-01-30,VALID,0,2
+213,TDR-DOC-063,Technical data reference – MT-300 – Communications,TECHNICAL_DATA_REF,DOC,,1,12,R04,2026-01-30,2027-01-30,VALID,0,5
+214,TDR-DOC-064,Technical data reference – common – Standard practices,TECHNICAL_DATA_REF,DOC,,1,12,R01,2026-07-03,2027-07-03,VALID,0,2
+41,WIN-MNT-001,Work instruction – Engine – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R03,2024-04-06,2028-03-27,VALID,0,4
+42,WIN-MNT-002,Work instruction – Engine – component replacement,WORK_INSTRUCTION,MNT,,1,24,R00,2023-09-03,2027-10-03,VALID,0,1
+43,WIN-MNT-003,Work instruction – Engine – servicing,WORK_INSTRUCTION,MNT,,1,24,R02,2023-12-12,2027-12-22,VALID,0,3
+44,WIN-MNT-004,Work instruction – Engine – functional check,WORK_INSTRUCTION,MNT,,1,24,R00,2024-07-17,2028-08-07,VALID,0,1
+45,WIN-MNT-005,Work instruction – Engine – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R01,2025-01-27,2027-01-27,VALID,0,2
+46,WIN-MNT-006,Work instruction – Engine – records preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2024-07-14,2028-07-21,VALID,0,2
+47,WIN-MNT-007,Work instruction – Engine – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-08-02,2027-08-04,VALID,0,1
+48,WIN-MNT-008,Work instruction – Main rotor – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R02,2025-09-25,2027-09-25,VALID,0,3
+49,WIN-MNT-009,Work instruction – Main rotor – component replacement,WORK_INSTRUCTION,MNT,,1,24,R00,2023-11-05,2027-12-04,VALID,0,1
+50,WIN-MNT-010,Work instruction – Main rotor – servicing,WORK_INSTRUCTION,MNT,,1,24,R00,2024-04-18,2028-04-20,VALID,0,1
+51,WIN-MNT-011,Work instruction – Main rotor – functional check,WORK_INSTRUCTION,MNT,,1,24,R01,2024-12-12,2026-12-12,VALID,0,2
+52,WIN-MNT-012,Work instruction – Main rotor – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R01,2026-10-29,2028-10-29,VALID,0,2
+53,WIN-MNT-013,Work instruction – Main rotor – records preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2024-08-21,2028-09-01,VALID,0,2
+54,WIN-MNT-014,Work instruction – Main rotor – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R02,2025-08-19,2027-08-19,VALID,0,3
+55,WIN-MNT-015,Work instruction – Tail rotor – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R01,2023-08-12,2027-07-24,VALID,0,2
+56,WIN-MNT-016,Work instruction – Tail rotor – component replacement,WORK_INSTRUCTION,MNT,,1,24,R02,2023-01-30,2027-01-31,VALID,0,3
+57,WIN-MNT-017,Work instruction – Tail rotor – servicing,WORK_INSTRUCTION,MNT,,1,24,R01,2024-10-12,2026-10-12,REVIEW_OVERDUE,19,2
+58,WIN-MNT-018,Work instruction – Tail rotor – functional check,WORK_INSTRUCTION,MNT,,1,24,R01,2023-10-02,2027-10-14,VALID,0,2
+59,WIN-MNT-019,Work instruction – Tail rotor – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R00,2024-09-22,2028-10-05,VALID,0,1
+60,WIN-MNT-020,Work instruction – Tail rotor – records preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2023-10-25,2027-10-27,VALID,0,2
+61,WIN-MNT-021,Work instruction – Tail rotor – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2026-07-15,2028-07-15,VALID,0,2
+62,WIN-MNT-022,Work instruction – Transmission – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R00,2023-08-03,2027-08-04,VALID,0,1
+63,WIN-MNT-023,Work instruction – Transmission – component replacement,WORK_INSTRUCTION,MNT,,1,24,R04,2026-06-05,2028-06-05,VALID,0,5
+64,WIN-MNT-024,Work instruction – Transmission – servicing,WORK_INSTRUCTION,MNT,,1,24,R01,2026-02-04,2028-02-04,VALID,0,2
+65,WIN-MNT-025,Work instruction – Transmission – functional check,WORK_INSTRUCTION,MNT,,1,24,R00,2024-08-28,2028-08-25,VALID,0,1
+66,WIN-MNT-026,Work instruction – Transmission – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R02,2025-10-14,2027-10-14,VALID,0,3
+67,WIN-MNT-027,Work instruction – Transmission – records preparation,WORK_INSTRUCTION,MNT,,1,24,R02,2025-05-09,2027-05-09,VALID,0,3
+68,WIN-MNT-028,Work instruction – Transmission – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-08-22,2027-07-28,VALID,0,1
+69,WIN-MNT-029,Work instruction – Fuel system – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R02,2026-07-20,2028-07-20,VALID,0,3
+70,WIN-MNT-030,Work instruction – Fuel system – component replacement,WORK_INSTRUCTION,MNT,,1,24,R02,2026-03-16,2028-03-16,VALID,0,3
+71,WIN-MNT-031,Work instruction – Fuel system – servicing,WORK_INSTRUCTION,MNT,,1,24,R01,2023-08-06,2027-08-04,VALID,0,2
+72,WIN-MNT-032,Work instruction – Fuel system – functional check,WORK_INSTRUCTION,MNT,,1,24,R01,2024-03-14,2028-03-09,VALID,0,2
+73,WIN-MNT-033,Work instruction – Fuel system – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R02,2023-01-22,2027-01-20,VALID,0,3
+74,WIN-MNT-034,Work instruction – Fuel system – records preparation,WORK_INSTRUCTION,MNT,,1,24,R02,2024-07-10,2028-07-27,VALID,0,3
+75,WIN-MNT-035,Work instruction – Fuel system – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2024-04-16,2028-04-27,VALID,0,2
+76,WIN-MNT-036,Work instruction – Hydraulic system – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R04,2024-12-13,2026-12-13,VALID,0,5
+77,WIN-MNT-037,Work instruction – Hydraulic system – component replacement,WORK_INSTRUCTION,MNT,,1,24,R02,2026-01-26,2028-01-26,VALID,0,3
+78,WIN-MNT-038,Work instruction – Hydraulic system – servicing,WORK_INSTRUCTION,MNT,,1,24,R01,2024-01-06,2027-12-15,VALID,0,2
+79,WIN-MNT-039,Work instruction – Hydraulic system – functional check,WORK_INSTRUCTION,MNT,,1,24,R04,2025-01-20,2027-01-20,VALID,0,5
+80,WIN-MNT-040,Work instruction – Hydraulic system – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R02,2024-09-02,2028-08-19,VALID,0,3
+81,WIN-MNT-041,Work instruction – Hydraulic system – records preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2024-07-14,2028-07-27,VALID,0,1
+82,WIN-MNT-042,Work instruction – Hydraulic system – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R02,2024-02-14,2028-03-16,VALID,0,3
+83,WIN-MNT-043,Work instruction – Electrical system – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R01,2025-07-14,2027-07-14,VALID,0,2
+84,WIN-MNT-044,Work instruction – Electrical system – component replacement,WORK_INSTRUCTION,MNT,,1,24,R00,2022-12-25,2027-06-20,VALID,0,1
+85,WIN-MNT-045,Work instruction – Electrical system – servicing,WORK_INSTRUCTION,MNT,,1,24,R02,2025-02-07,2027-02-07,VALID,0,3
+86,WIN-MNT-046,Work instruction – Electrical system – functional check,WORK_INSTRUCTION,MNT,,1,24,R01,2025-12-22,2027-12-22,VALID,0,2
+87,WIN-MNT-047,Work instruction – Electrical system – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R01,2023-11-06,2027-11-10,VALID,0,2
+88,WIN-MNT-048,Work instruction – Electrical system – records preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-07-01,2027-07-31,VALID,0,1
+89,WIN-MNT-049,Work instruction – Electrical system – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2026-02-16,2028-02-16,VALID,0,2
+90,WIN-MNT-050,Work instruction – Landing gear – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R00,2024-08-20,2028-07-28,VALID,0,1
+91,WIN-MNT-051,Work instruction – Landing gear – component replacement,WORK_INSTRUCTION,MNT,,1,24,R00,2023-07-24,2027-07-16,VALID,0,1
+92,WIN-MNT-052,Work instruction – Landing gear – servicing,WORK_INSTRUCTION,MNT,,1,24,R03,2026-02-03,2028-02-03,VALID,0,4
+93,WIN-MNT-053,Work instruction – Landing gear – functional check,WORK_INSTRUCTION,MNT,,1,24,R02,2026-08-11,2028-08-11,VALID,0,3
+94,WIN-MNT-054,Work instruction – Landing gear – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R00,2023-03-23,2027-04-07,VALID,0,1
+95,WIN-MNT-055,Work instruction – Landing gear – records preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-11-07,2027-10-16,VALID,0,1
+96,WIN-MNT-056,Work instruction – Landing gear – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2024-03-20,2028-03-03,VALID,0,1
+97,WIN-MNT-057,Work instruction – Airframe – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R01,2026-09-16,2028-09-16,VALID,0,2
+98,WIN-MNT-058,Work instruction – Airframe – component replacement,WORK_INSTRUCTION,MNT,,1,24,R01,2024-04-30,2028-05-05,VALID,0,2
+99,WIN-MNT-059,Work instruction – Airframe – servicing,WORK_INSTRUCTION,MNT,,1,24,R02,2025-12-30,2027-12-30,VALID,0,3
+100,WIN-MNT-060,Work instruction – Airframe – functional check,WORK_INSTRUCTION,MNT,,1,24,R03,2024-05-29,2028-05-28,VALID,0,4
+101,WIN-MNT-061,Work instruction – Airframe – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R02,2025-07-23,2027-07-23,VALID,0,3
+102,WIN-MNT-062,Work instruction – Airframe – records preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-12-11,2028-01-06,VALID,0,1
+103,WIN-MNT-063,Work instruction – Airframe – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2024-10-10,2028-10-19,VALID,0,1
+104,WIN-MNT-064,Work instruction – Avionics – scheduled inspection package,WORK_INSTRUCTION,MNT,,1,24,R02,2026-03-24,2028-03-24,VALID,0,3
+105,WIN-MNT-065,Work instruction – Avionics – component replacement,WORK_INSTRUCTION,MNT,,1,24,R00,2023-07-08,2027-06-25,VALID,0,1
+106,WIN-MNT-066,Work instruction – Avionics – servicing,WORK_INSTRUCTION,MNT,,1,24,R03,2024-02-11,2028-03-09,VALID,0,4
+107,WIN-MNT-067,Work instruction – Avionics – functional check,WORK_INSTRUCTION,MNT,,1,24,R02,2024-06-15,2028-06-12,VALID,0,3
+108,WIN-MNT-068,Work instruction – Avionics – corrosion control,WORK_INSTRUCTION,MNT,,1,24,R00,2023-06-16,2027-06-03,VALID,0,1
+109,WIN-MNT-069,Work instruction – Avionics – records preparation,WORK_INSTRUCTION,MNT,,1,24,R00,2023-07-16,2027-08-11,VALID,0,1
+110,WIN-MNT-070,Work instruction – Avionics – ground run preparation,WORK_INSTRUCTION,MNT,,1,24,R01,2024-08-07,2028-08-24,VALID,0,2

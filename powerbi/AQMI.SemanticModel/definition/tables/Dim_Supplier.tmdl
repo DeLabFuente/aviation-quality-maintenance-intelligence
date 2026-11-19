@@ -1,0 +1,62 @@
+/// Suppliers and their approval status at the cut-off date.
+table Dim_Supplier
+	lineageTag: fbf378c0-2be7-47f3-9fbd-1821d0058dc2
+
+	column 'Supplier ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b2db3482-cae0-44b9-8490-6ead60fff10c
+		summarizeBy: none
+		sourceColumn: supplier_id
+
+	column 'Supplier Code'
+		dataType: string
+		lineageTag: da09fa23-fd04-4f4d-a40e-6daea632c7f1
+		summarizeBy: none
+		sourceColumn: supplier_code
+
+	column 'Supplier Name'
+		dataType: string
+		lineageTag: 0d34bfe0-7a28-4829-b6ab-f16b66146ac8
+		summarizeBy: none
+		sourceColumn: supplier_name
+
+	column 'Supplier Label'
+		dataType: string
+		lineageTag: 312c0d04-91d3-4564-8874-68f138d5168a
+		summarizeBy: none
+		sourceColumn: supplier_label
+
+	column 'Country Code'
+		dataType: string
+		lineageTag: 55bf8745-e704-4107-8349-b65739545b4b
+		summarizeBy: none
+		sourceColumn: country_code
+
+	column 'Supplier Type'
+		dataType: string
+		lineageTag: 1c7acd29-0e49-46eb-8fb2-969e4c70568a
+		summarizeBy: none
+		sourceColumn: supplier_type
+
+	column 'Approval Status'
+		dataType: string
+		lineageTag: 96e6baee-a135-46aa-b96c-a95eed3c682c
+		summarizeBy: none
+		sourceColumn: approval_status
+
+	partition Dim_Supplier = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Supplier.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"supplier_id", Int64.Type}, {"supplier_code", type text}, {"supplier_name", type text}, {"supplier_label", type text}, {"country_code", type text}, {"supplier_type", type text}, {"approval_status", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

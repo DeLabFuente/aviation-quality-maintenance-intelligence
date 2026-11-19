@@ -1,0 +1,48 @@
+# AQMI — Continuous integration.
+#
+# On every push and pull request, GitHub runs the whole pipeline on a clean
+# machine (Linux and Windows): database, synthetic data, quality gate, KPIs,
+# Power BI export and project check, the automated tests and the
+# pre-publication check. The badge at the top of the README shows the result.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pipeline:
+    name: pipeline and tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    env:
+      PYTHONUTF8: "1"          # same text encoding on Windows and Linux
+    steps:
+      - name: Get the repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the pipeline (data, quality gate, KPIs, Power BI export and check)
+        run: python scripts/run_pipeline.py
+
+      - name: Run the automated tests
+        run: python -m pytest -q
+
+      - name: Run the pre-publication check
+        run: python scripts/check_release.py

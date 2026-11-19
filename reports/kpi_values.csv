@@ -1,0 +1,451 @@
+﻿kpi_id,kpi_name,area,unit,period,numerator,denominator,value,status
+DOC-01,Document Compliance Rate,Document control,%,2024-11,212,214,99.1,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2024-12,208,214,97.2,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-01,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-02,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-03,210,214,98.1,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-04,211,214,98.6,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-05,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-06,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-07,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-08,208,214,97.2,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-09,204,214,95.3,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-10,207,214,96.7,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-11,208,214,97.2,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2025-12,206,214,96.3,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-01,205,214,95.8,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-02,205,214,95.8,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-03,203,214,94.9,AMBER
+DOC-01,Document Compliance Rate,Document control,%,2026-04,205,214,95.8,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-05,200,214,93.5,AMBER
+DOC-01,Document Compliance Rate,Document control,%,2026-06,201,214,93.9,AMBER
+DOC-01,Document Compliance Rate,Document control,%,2026-07,203,214,94.9,AMBER
+DOC-01,Document Compliance Rate,Document control,%,2026-08,204,214,95.3,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-09,204,214,95.3,GREEN
+DOC-01,Document Compliance Rate,Document control,%,2026-10,202,214,94.4,AMBER
+DOC-01,Document Compliance Rate,Document control,%,TOTAL,202,214,94.4,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2024-11,1,8,12.5,RED
+DOC-02,Documentation Error Rate,Document control,%,2024-12,6,43,14.0,RED
+DOC-02,Documentation Error Rate,Document control,%,2025-01,6,31,19.4,RED
+DOC-02,Documentation Error Rate,Document control,%,2025-02,2,30,6.7,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2025-03,2,25,8.0,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2025-04,4,27,14.8,RED
+DOC-02,Documentation Error Rate,Document control,%,2025-05,3,36,8.3,RED
+DOC-02,Documentation Error Rate,Document control,%,2025-06,2,26,7.7,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2025-07,2,45,4.4,GREEN
+DOC-02,Documentation Error Rate,Document control,%,2025-08,1,36,2.8,GREEN
+DOC-02,Documentation Error Rate,Document control,%,2025-09,2,37,5.4,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2025-10,2,35,5.7,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2025-11,3,31,9.7,RED
+DOC-02,Documentation Error Rate,Document control,%,2025-12,4,37,10.8,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-01,3,37,8.1,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-02,2,31,6.5,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2026-03,2,32,6.3,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2026-04,3,28,10.7,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-05,4,34,11.8,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-06,3,28,10.7,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-07,1,41,2.4,GREEN
+DOC-02,Documentation Error Rate,Document control,%,2026-08,4,30,13.3,RED
+DOC-02,Documentation Error Rate,Document control,%,2026-09,2,25,8.0,AMBER
+DOC-02,Documentation Error Rate,Document control,%,2026-10,0,34,0.0,GREEN
+DOC-02,Documentation Error Rate,Document control,%,TOTAL,64,767,8.3,RED
+DOC-03,Expired Documents,Document control,count,2024-11,2,,2,AMBER
+DOC-03,Expired Documents,Document control,count,2024-12,6,,6,RED
+DOC-03,Expired Documents,Document control,count,2025-01,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-02,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-03,4,,4,AMBER
+DOC-03,Expired Documents,Document control,count,2025-04,3,,3,AMBER
+DOC-03,Expired Documents,Document control,count,2025-05,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-06,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-07,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-08,6,,6,RED
+DOC-03,Expired Documents,Document control,count,2025-09,10,,10,RED
+DOC-03,Expired Documents,Document control,count,2025-10,7,,7,RED
+DOC-03,Expired Documents,Document control,count,2025-11,6,,6,RED
+DOC-03,Expired Documents,Document control,count,2025-12,8,,8,RED
+DOC-03,Expired Documents,Document control,count,2026-01,9,,9,RED
+DOC-03,Expired Documents,Document control,count,2026-02,9,,9,RED
+DOC-03,Expired Documents,Document control,count,2026-03,11,,11,RED
+DOC-03,Expired Documents,Document control,count,2026-04,9,,9,RED
+DOC-03,Expired Documents,Document control,count,2026-05,14,,14,RED
+DOC-03,Expired Documents,Document control,count,2026-06,13,,13,RED
+DOC-03,Expired Documents,Document control,count,2026-07,11,,11,RED
+DOC-03,Expired Documents,Document control,count,2026-08,10,,10,RED
+DOC-03,Expired Documents,Document control,count,2026-09,10,,10,RED
+DOC-03,Expired Documents,Document control,count,2026-10,12,,12,RED
+DOC-03,Expired Documents,Document control,count,TOTAL,12,,12,RED
+DOC-04,Traceability Compliance,Document control,%,2024-11,35,35,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2024-12,70,70,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-01,47,47,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-02,43,43,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-03,44,44,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-04,51,51,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-05,46,46,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-06,57,58,98.3,RED
+DOC-04,Traceability Compliance,Document control,%,2025-07,62,66,93.9,RED
+DOC-04,Traceability Compliance,Document control,%,2025-08,59,60,98.3,RED
+DOC-04,Traceability Compliance,Document control,%,2025-09,75,75,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-10,77,77,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-11,53,53,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2025-12,75,76,98.7,RED
+DOC-04,Traceability Compliance,Document control,%,2026-01,60,60,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-02,38,38,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-03,61,62,98.4,RED
+DOC-04,Traceability Compliance,Document control,%,2026-04,45,46,97.8,RED
+DOC-04,Traceability Compliance,Document control,%,2026-05,47,47,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-06,48,50,96.0,RED
+DOC-04,Traceability Compliance,Document control,%,2026-07,74,74,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-08,35,35,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-09,67,67,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,2026-10,72,72,100.0,GREEN
+DOC-04,Traceability Compliance,Document control,%,TOTAL,1341,1352,99.2,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2024-11,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2024-12,11,20,55.0,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-01,10,16,62.5,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-02,12,16,75.0,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-03,16,16,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2025-04,19,20,95.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2025-05,13,16,81.3,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-06,14,16,87.5,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-07,17,20,85.0,RED
+INV-01,Inventory Accuracy,Inventory,%,2025-08,16,16,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2025-09,20,20,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2025-10,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2025-11,16,16,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2025-12,18,20,90.0,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2026-01,14,16,87.5,RED
+INV-01,Inventory Accuracy,Inventory,%,2026-02,16,16,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2026-03,19,20,95.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2026-04,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2026-05,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2026-06,19,20,95.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2026-07,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2026-08,15,16,93.8,AMBER
+INV-01,Inventory Accuracy,Inventory,%,2026-09,20,20,100.0,GREEN
+INV-01,Inventory Accuracy,Inventory,%,2026-10,14,16,87.5,RED
+INV-01,Inventory Accuracy,Inventory,%,TOTAL,374,416,89.9,RED
+INV-02,Stock Availability,Inventory,%,2024-11,99,100,99.0,GREEN
+INV-02,Stock Availability,Inventory,%,2024-12,94,100,94.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-01,96,100,96.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-02,95,100,95.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-03,94,100,94.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-04,96,100,96.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-05,95,100,95.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-06,95,100,95.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-07,94,100,94.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-08,94,100,94.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-09,96,100,96.0,GREEN
+INV-02,Stock Availability,Inventory,%,2025-10,93,100,93.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-11,92,100,92.0,AMBER
+INV-02,Stock Availability,Inventory,%,2025-12,98,100,98.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-01,97,100,97.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-02,98,100,98.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-03,95,100,95.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-04,97,100,97.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-05,96,100,96.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-06,97,100,97.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-07,98,100,98.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-08,96,100,96.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-09,95,100,95.0,GREEN
+INV-02,Stock Availability,Inventory,%,2026-10,93,100,93.0,AMBER
+INV-02,Stock Availability,Inventory,%,TOTAL,93,100,93.0,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2024-11,3,35,8.6,RED
+INV-03,Material Shortage Rate,Inventory,%,2024-12,2,59,3.4,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2025-01,3,46,6.5,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2025-02,3,32,9.4,RED
+INV-03,Material Shortage Rate,Inventory,%,2025-03,6,47,12.8,RED
+INV-03,Material Shortage Rate,Inventory,%,2025-04,2,43,4.7,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2025-05,5,45,11.1,RED
+INV-03,Material Shortage Rate,Inventory,%,2025-06,3,40,7.5,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2025-07,4,61,6.6,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2025-08,0,41,0.0,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2025-09,2,66,3.0,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2025-10,3,65,4.6,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2025-11,8,49,16.3,RED
+INV-03,Material Shortage Rate,Inventory,%,2025-12,4,63,6.3,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2026-01,5,47,10.6,RED
+INV-03,Material Shortage Rate,Inventory,%,2026-02,4,37,10.8,RED
+INV-03,Material Shortage Rate,Inventory,%,2026-03,2,47,4.3,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2026-04,0,42,0.0,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2026-05,3,48,6.3,AMBER
+INV-03,Material Shortage Rate,Inventory,%,2026-06,4,44,9.1,RED
+INV-03,Material Shortage Rate,Inventory,%,2026-07,0,58,0.0,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2026-08,1,36,2.8,GREEN
+INV-03,Material Shortage Rate,Inventory,%,2026-09,5,53,9.4,RED
+INV-03,Material Shortage Rate,Inventory,%,2026-10,5,65,7.7,AMBER
+INV-03,Material Shortage Rate,Inventory,%,TOTAL,77,1169,6.6,AMBER
+INV-04,Pending Purchase Orders,Inventory,count,2024-11,2,,2,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2024-12,6,,6,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-01,5,,5,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-02,3,,3,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-03,7,,7,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-04,6,,6,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-05,5,,5,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-06,7,,7,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-07,5,,5,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-08,5,,5,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-09,6,,6,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-10,3,,3,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-11,7,,7,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2025-12,7,,7,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-01,4,,4,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-02,3,,3,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-03,3,,3,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-04,3,,3,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-05,4,,4,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-06,6,,6,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-07,4,,4,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-08,4,,4,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-09,5,,5,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,2026-10,9,,9,NO_TARGET
+INV-04,Pending Purchase Orders,Inventory,count,TOTAL,9,,9,NO_TARGET
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2024-11,7,11,63.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2024-12,17,26,65.4,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-01,10,12,83.3,AMBER
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-02,11,21,52.4,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-03,13,17,76.5,AMBER
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-04,8,15,53.3,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-05,15,24,62.5,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-06,9,19,47.4,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-07,15,20,75.0,AMBER
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-08,16,23,69.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-09,21,29,72.4,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-10,12,18,66.7,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-11,13,22,59.1,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2025-12,17,25,68.0,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-01,10,21,47.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-02,13,17,76.5,AMBER
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-03,10,18,55.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-04,10,14,71.4,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-05,13,23,56.5,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-06,10,18,55.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-07,9,26,34.6,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-08,8,14,57.1,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-09,7,17,41.2,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,2026-10,16,27,59.3,RED
+MNT-01,Maintenance Order Completion Rate,Maintenance,%,TOTAL,290,477,60.8,RED
+MNT-02,Average Maintenance Delay,Maintenance,days,2024-11,8,9,0.9,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2024-12,45,25,1.8,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-01,34,15,2.3,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-02,45,18,2.5,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-03,34,18,1.9,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-04,51,15,3.4,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-05,80,23,3.5,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-06,66,19,3.5,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-07,48,23,2.1,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-08,37,22,1.7,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-09,24,26,0.9,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-10,47,21,2.2,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-11,43,19,2.3,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2025-12,73,27,2.7,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-01,58,21,2.8,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-02,34,18,1.9,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-03,46,18,2.6,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-04,32,15,2.1,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-05,30,22,1.4,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-06,39,17,2.3,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-07,86,27,3.2,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-08,21,14,1.5,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-09,51,16,3.2,AMBER
+MNT-02,Average Maintenance Delay,Maintenance,days,2026-10,47,25,1.9,GREEN
+MNT-02,Average Maintenance Delay,Maintenance,days,TOTAL,1079,473,2.3,AMBER
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2024-11,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2024-12,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-01,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-02,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-03,2,,2,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-04,2,,2,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-05,3,,3,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-06,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-07,2,,2,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-08,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-09,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-10,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-11,3,,3,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2025-12,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-01,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-02,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-03,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-04,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-05,2,,2,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-06,3,,3,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-07,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-08,1,,1,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-09,0,,0,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,2026-10,4,,4,NO_TARGET
+MNT-03,Work Orders Blocked by Material,Maintenance,count,TOTAL,4,,4,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2024-11,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2024-12,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-01,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-02,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-03,1,,1,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-04,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-05,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-06,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-07,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-08,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-09,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-10,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-11,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2025-12,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-01,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-02,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-03,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-04,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-05,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-06,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-07,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-08,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-09,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,2026-10,0,,0,NO_TARGET
+MNT-04,Work Orders Blocked by Documentation,Maintenance,count,TOTAL,0,,0,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2024-11,2,,2,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2024-12,15,,15,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-01,10,,10,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-02,7,,7,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-03,8,,8,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-04,10,,10,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-05,10,,10,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-06,5,,5,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-07,6,,6,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-08,6,,6,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-09,3,,3,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-10,4,,4,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-11,8,,8,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2025-12,4,,4,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-01,2,,2,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-02,4,,4,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-03,3,,3,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-04,2,,2,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-05,8,,8,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-06,3,,3,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-07,5,,5,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-08,8,,8,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-09,5,,5,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,2026-10,3,,3,NO_TARGET
+QUA-01,Total Quality Incidents,Quality,count,TOTAL,141,,141,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2024-11,2,,2,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2024-12,16,,16,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-01,22,,22,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-02,24,,24,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-03,23,,23,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-04,21,,21,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-05,24,,24,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-06,21,,21,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-07,16,,16,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-08,16,,16,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-09,14,,14,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-10,11,,11,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-11,17,,17,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2025-12,17,,17,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-01,14,,14,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-02,13,,13,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-03,12,,12,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-04,9,,9,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-05,12,,12,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-06,11,,11,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-07,13,,13,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-08,17,,17,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-09,15,,15,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,2026-10,13,,13,NO_TARGET
+QUA-02,Open Non-Conformities,Quality,count,TOTAL,13,,13,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2024-11,2,9,22.2,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2024-12,15,25,60.0,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-01,10,15,66.7,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-02,7,18,38.9,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-03,8,18,44.4,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-04,10,15,66.7,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-05,10,23,43.5,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-06,5,19,26.3,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-07,6,23,26.1,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-08,6,22,27.3,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-09,3,26,11.5,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-10,4,21,19.0,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-11,8,19,42.1,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2025-12,4,27,14.8,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-01,2,21,9.5,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-02,4,18,22.2,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-03,3,18,16.7,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-04,2,15,13.3,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-05,8,22,36.4,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-06,3,17,17.6,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-07,5,27,18.5,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-08,8,14,57.1,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-09,5,16,31.3,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,2026-10,3,25,12.0,NO_TARGET
+QUA-03,Non-Conformity Rate,Quality,per 100 orders,TOTAL,141,473,29.8,NO_TARGET
+QUA-04,Corrective Action Closure Rate,Quality,%,2024-11,0,0,,NO_DATA
+QUA-04,Corrective Action Closure Rate,Quality,%,2024-12,0,0,,NO_DATA
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-01,5,8,62.5,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-02,9,10,90.0,GREEN
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-03,9,11,81.8,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-04,4,6,66.7,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-05,6,9,66.7,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-06,5,10,50.0,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-07,6,8,75.0,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-08,2,4,50.0,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-09,7,8,87.5,GREEN
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-10,4,4,100.0,GREEN
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-11,2,3,66.7,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2025-12,6,8,75.0,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-01,2,7,28.6,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-02,1,2,50.0,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-03,2,5,40.0,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-04,5,6,83.3,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-05,2,3,66.7,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-06,4,5,80.0,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-07,4,4,100.0,GREEN
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-08,5,8,62.5,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-09,2,5,40.0,RED
+QUA-04,Corrective Action Closure Rate,Quality,%,2026-10,4,5,80.0,AMBER
+QUA-04,Corrective Action Closure Rate,Quality,%,TOTAL,96,139,69.1,RED
+QUA-05,Average Resolution Time,Quality,days,2024-11,0,0,,NO_DATA
+QUA-05,Average Resolution Time,Quality,days,2024-12,22,1,22.0,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-01,135,4,33.8,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-02,314,5,62.8,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-03,661,9,73.4,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-04,1056,12,88.0,AMBER
+QUA-05,Average Resolution Time,Quality,days,2025-05,493,7,70.4,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-06,522,8,65.3,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-07,832,11,75.6,AMBER
+QUA-05,Average Resolution Time,Quality,days,2025-08,590,6,98.3,RED
+QUA-05,Average Resolution Time,Quality,days,2025-09,486,5,97.2,RED
+QUA-05,Average Resolution Time,Quality,days,2025-10,540,7,77.1,AMBER
+QUA-05,Average Resolution Time,Quality,days,2025-11,150,2,75.0,GREEN
+QUA-05,Average Resolution Time,Quality,days,2025-12,298,4,74.5,GREEN
+QUA-05,Average Resolution Time,Quality,days,2026-01,605,5,121.0,RED
+QUA-05,Average Resolution Time,Quality,days,2026-02,557,5,111.4,RED
+QUA-05,Average Resolution Time,Quality,days,2026-03,484,4,121.0,RED
+QUA-05,Average Resolution Time,Quality,days,2026-04,357,5,71.4,GREEN
+QUA-05,Average Resolution Time,Quality,days,2026-05,644,5,128.8,RED
+QUA-05,Average Resolution Time,Quality,days,2026-06,301,4,75.3,AMBER
+QUA-05,Average Resolution Time,Quality,days,2026-07,210,3,70.0,GREEN
+QUA-05,Average Resolution Time,Quality,days,2026-08,254,4,63.5,GREEN
+QUA-05,Average Resolution Time,Quality,days,2026-09,634,7,90.6,RED
+QUA-05,Average Resolution Time,Quality,days,2026-10,348,5,69.6,GREEN
+QUA-05,Average Resolution Time,Quality,days,TOTAL,10493,128,82.0,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2024-11,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2024-12,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2025-01,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-02,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-03,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2025-04,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-05,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-06,4,,4,RED
+QUA-06,Overdue Corrective Actions,Quality,count,2025-07,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-08,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-09,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-10,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-11,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2025-12,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2026-01,3,,3,RED
+QUA-06,Overdue Corrective Actions,Quality,count,2026-02,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2026-03,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2026-04,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2026-05,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2026-06,1,,1,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2026-07,0,,0,GREEN
+QUA-06,Overdue Corrective Actions,Quality,count,2026-08,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,2026-09,3,,3,RED
+QUA-06,Overdue Corrective Actions,Quality,count,2026-10,2,,2,AMBER
+QUA-06,Overdue Corrective Actions,Quality,count,TOTAL,2,,2,AMBER

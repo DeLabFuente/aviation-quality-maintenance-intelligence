@@ -1,0 +1,114 @@
+/// Controlled documents and records, with their current revision and validity.
+table Dim_Document
+	lineageTag: e10f9ef5-b7c9-4acb-b75c-fa385d6b1d23
+
+	column 'Document ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 41c60195-f21a-4a10-96dc-521fa2dcb53f
+		summarizeBy: none
+		sourceColumn: document_id
+
+	column 'Document Code'
+		dataType: string
+		lineageTag: b30bb136-2977-4a4a-b201-428c2bbcf946
+		summarizeBy: none
+		sourceColumn: document_code
+
+	column Title
+		dataType: string
+		lineageTag: f4f978c2-6699-43d8-80eb-00fa7b3853ad
+		summarizeBy: none
+		sourceColumn: title
+
+	column 'Document Type'
+		dataType: string
+		lineageTag: 5c3e14ed-4401-4ebd-adf9-bf22be126b35
+		summarizeBy: none
+		sourceColumn: document_type
+
+	column 'Owner Department Code'
+		dataType: string
+		lineageTag: 53cb1c1f-aa66-4fdf-a1b7-54386d58bb57
+		summarizeBy: none
+		sourceColumn: owner_department_code
+
+	column 'Aircraft Registration'
+		dataType: string
+		lineageTag: c8fa5e09-7984-4e36-94fc-9f071b51078d
+		summarizeBy: none
+		sourceColumn: aircraft_registration
+
+	column 'Is Controlled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4bf6bf1b-8eea-43e0-97d0-a9a74ce0fd96
+		summarizeBy: none
+		sourceColumn: is_controlled
+
+	column 'Review Interval Months'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 423a79a5-dcb3-4b84-bf96-6c014b24fc2a
+		summarizeBy: none
+		sourceColumn: review_interval_months
+
+	column 'Current Revision'
+		dataType: string
+		lineageTag: 673c8532-c035-4333-982d-6432c365b00a
+		summarizeBy: none
+		sourceColumn: current_revision
+
+	column 'Effective Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 991cd304-eed0-4cf9-9895-60af12874bb4
+		summarizeBy: none
+		sourceColumn: effective_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Review Due Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 8ee55c15-b4ae-45e5-a3d3-7933addad7ba
+		summarizeBy: none
+		sourceColumn: review_due_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Validity Status'
+		dataType: string
+		lineageTag: 75aaff6a-2506-4e29-b82b-bc472d46bfc7
+		summarizeBy: none
+		sourceColumn: validity_status
+
+	column 'Days Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 0a366f96-f89b-4bd2-9bd0-5e71a13acc55
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+	column 'Number of Revisions'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 89e5511a-0aee-4fce-af56-5b9904e42d4e
+		summarizeBy: none
+		sourceColumn: n_revisions
+
+	partition Dim_Document = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Document.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"document_id", Int64.Type}, {"document_code", type text}, {"title", type text}, {"document_type", type text}, {"owner_department_code", type text}, {"aircraft_registration", type text}, {"is_controlled", Int64.Type}, {"review_interval_months", Int64.Type}, {"current_revision", type text}, {"effective_date", type date}, {"review_due_date", type date}, {"validity_status", type text}, {"days_overdue", Int64.Type}, {"n_revisions", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

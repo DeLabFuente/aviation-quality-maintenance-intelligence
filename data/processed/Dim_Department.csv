@@ -1,0 +1,7 @@
+department_id,department_code,department_name,department_label
+1,QUA,Quality,QUA · Quality
+2,MNT,Maintenance,MNT · Maintenance
+3,PRD,Production Planning & Control,PRD · Production Planning & Control
+4,DOC,Document Control,DOC · Document Control
+5,LOG,Logistics & Materials,LOG · Logistics & Materials
+6,DIR,Management,DIR · Management

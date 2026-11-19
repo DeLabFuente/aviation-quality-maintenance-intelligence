@@ -1,0 +1,117 @@
+/// One row: cut-off date, quality gate status and disclaimer.
+table Model_Info
+	lineageTag: e7f9a4de-26a0-42ce-8e28-410f13ef992e
+
+	column 'As Of Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: b69c4e57-5edc-4afd-9d4e-0c86e24d1cb3
+		summarizeBy: none
+		sourceColumn: as_of_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Period Start'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 8c971cdd-d0b2-446b-a7e2-59b3eea9c7d7
+		summarizeBy: none
+		sourceColumn: period_start
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Generated At'
+		dataType: dateTime
+		formatString: dd mmm yyyy hh:nn
+		lineageTag: bda06399-e809-48bc-b8f8-eac373a49d4b
+		summarizeBy: none
+		sourceColumn: generated_at
+
+	column 'Random Seed'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cbc447b-5cdc-4bc8-90a1-daca821eff97
+		summarizeBy: none
+		sourceColumn: random_seed
+
+	column 'Rules Executed'
+		dataType: int64
+		formatString: #,0
+		lineageTag: fa93b449-b93b-4156-8fc8-5bbedc64fe1a
+		summarizeBy: none
+		sourceColumn: rules_executed
+
+	column 'Rules Passed'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7d59a775-737d-4061-b1d6-3538de8ca5b4
+		summarizeBy: none
+		sourceColumn: rules_passed
+
+	column 'Rules With Warnings'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7c037000-5bef-43a5-8f19-b4a06676ea7e
+		summarizeBy: none
+		sourceColumn: rules_with_warnings
+
+	column 'Critical Failures'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3df5464e-7700-437c-9987-4539aef3822d
+		summarizeBy: none
+		sourceColumn: critical_failures
+
+	column 'Planted Expected'
+		dataType: int64
+		formatString: #,0
+		lineageTag: e1fe279a-b232-4551-9f40-9b18ad3e2e5c
+		summarizeBy: none
+		sourceColumn: planted_expected
+
+	column 'Planted Detected'
+		dataType: int64
+		formatString: #,0
+		lineageTag: a3ec6424-e72f-426a-9595-002b3dec4854
+		summarizeBy: none
+		sourceColumn: planted_detected
+
+	column 'Data Quality Score'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 09d8cc5a-037c-4ab1-9a52-d4abc17d31d2
+		summarizeBy: none
+		sourceColumn: data_quality_score
+
+	column 'Quality Gate'
+		dataType: string
+		lineageTag: ee9a00a7-6246-4550-b33b-fdc274cac07d
+		summarizeBy: none
+		sourceColumn: quality_gate
+
+	column 'KPI Checks'
+		dataType: string
+		lineageTag: d8d30d6e-2dc1-425b-b5da-a8a4051b230e
+		summarizeBy: none
+		sourceColumn: kpi_checks
+
+	column Disclaimer
+		dataType: string
+		lineageTag: 0ec7f8a4-e32f-4e0c-adf4-03102fe296f7
+		summarizeBy: none
+		sourceColumn: disclaimer
+
+	partition Model_Info = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Model_Info.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"as_of_date", type date}, {"period_start", type date}, {"generated_at", type datetime}, {"random_seed", Int64.Type}, {"rules_executed", Int64.Type}, {"rules_passed", Int64.Type}, {"rules_with_warnings", Int64.Type}, {"critical_failures", Int64.Type}, {"planted_expected", Int64.Type}, {"planted_detected", Int64.Type}, {"data_quality_score", type number}, {"quality_gate", type text}, {"kpi_checks", type text}, {"disclaimer", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,105 @@
+/// One row per material line required by a work order.
+table Fact_MO_Materials
+	lineageTag: a2be98dc-b71d-450a-be0c-f24c23ca6e9f
+
+	column 'MO Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 65662067-e0aa-4f26-9544-f8e7168a907f
+		summarizeBy: none
+		sourceColumn: mo_material_id
+
+	column 'MO ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7f29e136-67f3-4657-af21-3af1b7cc6804
+		summarizeBy: none
+		sourceColumn: mo_id
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: f889d5cd-8019-4936-a72e-a2f5aa6a66d1
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Aircraft ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2450a28f-04c2-44ec-bed9-ef0be117d1d9
+		summarizeBy: none
+		sourceColumn: aircraft_id
+
+	column 'Material ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6a8da123-ea29-41f5-b7c7-c8419fb05337
+		summarizeBy: none
+		sourceColumn: material_id
+
+	column 'Qty Required'
+		dataType: double
+		formatString: #,0.##
+		lineageTag: da7fbcbb-d537-4928-8a2d-dd75c6d83942
+		summarizeBy: none
+		sourceColumn: qty_required
+
+	column 'Required By Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: b7954b7e-2935-4f4d-a68d-f9d37272f505
+		summarizeBy: none
+		sourceColumn: required_by_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'First Reserved Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 40f3ef10-7bdd-4d82-9478-d08380f1f874
+		summarizeBy: none
+		sourceColumn: first_reserved_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Last Issued Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 91246bc0-4938-49e1-ab40-b9ee1e2ce7e6
+		summarizeBy: none
+		sourceColumn: last_issued_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Was Short'
+		dataType: int64
+		formatString: #,0
+		lineageTag: b2e11c04-a792-4c13-a8b4-455bd81e3d37
+		summarizeBy: none
+		sourceColumn: was_short
+
+	column 'Is Cancelled Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6867a02d-3966-48ee-8f5a-65fa6891da26
+		summarizeBy: none
+		sourceColumn: is_cancelled_order
+
+	partition Fact_MO_Materials = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_MO_Materials.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"mo_material_id", Int64.Type}, {"mo_id", Int64.Type}, {"mo_number", type text}, {"aircraft_id", Int64.Type}, {"material_id", Int64.Type}, {"qty_required", type number}, {"required_by_date", type date}, {"first_reserved_date", type date}, {"last_issued_date", type date}, {"was_short", Int64.Type}, {"is_cancelled_order", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

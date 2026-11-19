@@ -1,0 +1,207 @@
+/// One row per work order.
+table Fact_MaintenanceOrders
+	lineageTag: 89e81335-4cc8-441f-8003-19f6f0ee3b79
+
+	column 'MO ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0c6a7e4d-fef3-4ac9-bb38-50c5323bf933
+		summarizeBy: none
+		sourceColumn: mo_id
+
+	column 'MO Number'
+		dataType: string
+		lineageTag: a970ff6b-31e2-4d35-bc89-8167d6241f8c
+		summarizeBy: none
+		sourceColumn: mo_number
+
+	column 'Aircraft ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 18fb985b-0da7-4e48-a410-41da0909996d
+		summarizeBy: none
+		sourceColumn: aircraft_id
+
+	column 'Maintenance Type'
+		dataType: string
+		lineageTag: e405f7d3-c5da-40e4-ba70-3376e5043421
+		summarizeBy: none
+		sourceColumn: maintenance_type
+
+	column Priority
+		dataType: string
+		lineageTag: 828d0371-b03a-4318-949b-0c326b7a3e7f
+		summarizeBy: none
+		sourceColumn: priority
+
+	column 'Responsible Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9de2f21f-8833-4475-a174-08fd3a681cac
+		summarizeBy: none
+		sourceColumn: responsible_department_id
+
+	column Status
+		dataType: string
+		lineageTag: d5dd5199-8490-4ad8-840c-d4cb86dc1c7f
+		summarizeBy: none
+		sourceColumn: status
+		sortByColumn: 'Status Order'
+
+	column 'Status Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: aec43b92-e2c3-4aa6-a282-b18e6b03517f
+		summarizeBy: none
+		sourceColumn: status_order
+
+	column 'Opened Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: e5019556-72ed-4997-81fd-fb8fcab49b70
+		summarizeBy: none
+		sourceColumn: opened_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Planned End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: d86e261b-2afc-4e7a-98fc-f9424759cac6
+		summarizeBy: none
+		sourceColumn: planned_end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Actual End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 491ce6cf-38d9-41b8-9c66-0d0c16178218
+		summarizeBy: none
+		sourceColumn: actual_end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Closed Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: f1300b48-6f45-4a21-8a5e-60022a1768dc
+		summarizeBy: none
+		sourceColumn: closed_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Cancelled'
+		dataType: int64
+		formatString: #,0
+		lineageTag: d9a3304c-37a3-4cb7-95eb-0e6ad699ffd7
+		summarizeBy: none
+		sourceColumn: is_cancelled
+
+	column 'Is Open'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9e17d406-502a-4413-9bb8-befd4158410b
+		summarizeBy: none
+		sourceColumn: is_open
+
+	column 'Delay Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: c15b5f98-cc0d-4dfe-a3d0-ecc1f4d3941d
+		summarizeBy: none
+		sourceColumn: delay_days
+
+	column 'Completed By Planned'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6faa951e-3c95-4ec6-854d-6b7500365c5c
+		summarizeBy: none
+		sourceColumn: completed_by_planned
+
+	column 'Turnaround Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: f4aecdd8-54d3-4d79-b0da-c83d4e2733e7
+		summarizeBy: none
+		sourceColumn: turnaround_days
+
+	column 'Material Hold Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6569bee7-de09-4c0d-9114-35ce1ed31723
+		summarizeBy: none
+		sourceColumn: material_hold_days
+
+	column 'Documentation Hold Days'
+		dataType: int64
+		formatString: #,0
+		lineageTag: d4ef16b1-6217-4e8e-99b4-5d222171a304
+		summarizeBy: none
+		sourceColumn: documentation_hold_days
+
+	column 'Had Material Hold'
+		dataType: int64
+		formatString: #,0
+		lineageTag: fd7df1bc-0106-450b-9c58-54617294eee5
+		summarizeBy: none
+		sourceColumn: had_material_hold
+
+	column 'Had Documentation Hold'
+		dataType: int64
+		formatString: #,0
+		lineageTag: abbc8e7b-3ed7-4e14-b936-8342c9db00d2
+		summarizeBy: none
+		sourceColumn: had_documentation_hold
+
+	column 'Material Hold Group'
+		dataType: string
+		lineageTag: 9709f4b6-5632-4460-9105-33eaeaed311f
+		summarizeBy: none
+		sourceColumn: material_hold_group
+
+	column 'Is Blocked By Material'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6eaaf44d-7da9-40de-9254-3304fd430f05
+		summarizeBy: none
+		sourceColumn: is_blocked_by_material
+
+	column 'Is Blocked By Documentation'
+		dataType: int64
+		formatString: #,0
+		lineageTag: df71161b-e884-4d84-8d13-1c3d55897491
+		summarizeBy: none
+		sourceColumn: is_blocked_by_documentation
+
+	column 'Number of Incidents'
+		dataType: int64
+		formatString: #,0
+		lineageTag: fcd739b2-4a02-4b87-b8cd-55227bebdbba
+		summarizeBy: none
+		sourceColumn: n_incidents
+
+	column 'Work Description'
+		dataType: string
+		lineageTag: 4181d857-bbf8-4d1b-9e2c-f09d4a78a17b
+		summarizeBy: none
+		sourceColumn: work_description
+
+	partition Fact_MaintenanceOrders = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_MaintenanceOrders.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"mo_id", Int64.Type}, {"mo_number", type text}, {"aircraft_id", Int64.Type}, {"maintenance_type", type text}, {"priority", type text}, {"responsible_department_id", Int64.Type}, {"status", type text}, {"status_order", Int64.Type}, {"opened_date", type date}, {"planned_end_date", type date}, {"actual_end_date", type date}, {"closed_date", type date}, {"is_cancelled", Int64.Type}, {"is_open", Int64.Type}, {"delay_days", Int64.Type}, {"completed_by_planned", Int64.Type}, {"turnaround_days", Int64.Type}, {"material_hold_days", Int64.Type}, {"documentation_hold_days", Int64.Type}, {"had_material_hold", Int64.Type}, {"had_documentation_hold", Int64.Type}, {"material_hold_group", type text}, {"is_blocked_by_material", Int64.Type}, {"is_blocked_by_documentation", Int64.Type}, {"n_incidents", Int64.Type}, {"work_description", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

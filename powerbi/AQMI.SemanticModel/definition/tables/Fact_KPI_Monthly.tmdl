@@ -1,0 +1,66 @@
+/// Monthly KPI values as calculated by the SQL reference queries.
+table Fact_KPI_Monthly
+	lineageTag: b57e55c8-10b9-423b-95d4-2671ce8fec16
+
+	column 'KPI ID'
+		dataType: string
+		lineageTag: 13750de0-3946-4e4a-a32a-a3c0c8df8e58
+		summarizeBy: none
+		sourceColumn: kpi_id
+
+	column Period
+		dataType: string
+		lineageTag: a02a904f-9971-4a89-b4f2-f8402f65cc2b
+		summarizeBy: none
+		sourceColumn: period
+
+	column 'Month End'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 85314768-258e-464c-94a7-1a9be26871e2
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Numerator
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 3a3adac8-8e44-4743-afad-a8616c0d5e54
+		summarizeBy: none
+		sourceColumn: numerator
+
+	column Denominator
+		dataType: double
+		formatString: #,0.##
+		lineageTag: f66d2877-fb52-410b-8a94-aeaa5c487a0c
+		summarizeBy: none
+		sourceColumn: denominator
+
+	column Value
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 38cf55d2-de04-4969-9195-c0a1818181ba
+		summarizeBy: none
+		sourceColumn: value
+
+	column Status
+		dataType: string
+		lineageTag: 7451ab44-d136-40eb-955c-296c5b392a3d
+		summarizeBy: none
+		sourceColumn: status
+
+	partition Fact_KPI_Monthly = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_KPI_Monthly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"kpi_id", type text}, {"period", type text}, {"month_end", type date}, {"numerator", type number}, {"denominator", type number}, {"value", type number}, {"status", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

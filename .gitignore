@@ -1,0 +1,27 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# --- Generated files (rebuilt with one command, not stored in Git) --------
+database/*.db
+database/*.db-journal
+database/*.db-wal
+database/*.db-shm
+logs/*.log
+
+# --- Editors and operating systems ----------------------------------------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Office / Power BI temporary and local files ---------------------------
+~$*
+# Power BI Desktop keeps a local data cache and personal settings in .pbi
+# folders. They are rebuilt when the project is opened (Microsoft's guidance).
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

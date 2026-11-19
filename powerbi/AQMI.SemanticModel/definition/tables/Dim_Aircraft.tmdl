@@ -1,0 +1,93 @@
+/// The fleet: aircraft, customer and operational status at the cut-off date.
+table Dim_Aircraft
+	lineageTag: 9ef9f49b-0563-4f29-9fc3-dd8d14ba5683
+
+	column 'Aircraft ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2fe32d68-2669-4748-b1d1-cd43ee1afe45
+		summarizeBy: none
+		sourceColumn: aircraft_id
+
+	column Registration
+		dataType: string
+		lineageTag: dec477e3-c673-45e8-9273-8b694750d168
+		summarizeBy: none
+		sourceColumn: registration
+
+	column 'Fleet Number'
+		dataType: string
+		lineageTag: 83e2a541-447f-4a52-98cc-7be3291c094d
+		summarizeBy: none
+		sourceColumn: fleet_number
+
+	column 'Aircraft Category'
+		dataType: string
+		lineageTag: b6f55054-611a-4208-bfdd-26fe9d3c24d1
+		summarizeBy: none
+		sourceColumn: aircraft_category
+
+	column 'Aircraft Model'
+		dataType: string
+		lineageTag: 561902a4-1875-4613-be0c-570bdc0ceda9
+		summarizeBy: none
+		sourceColumn: aircraft_model
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 956e8681-2e3a-4aec-a912-02d788886346
+		summarizeBy: none
+		sourceColumn: customer_name
+
+	column 'Operation Type'
+		dataType: string
+		lineageTag: f61fabb4-4095-41c7-ba93-001c93cb02d1
+		summarizeBy: none
+		sourceColumn: operation_type
+
+	column 'Contract Start Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: b7da6d0c-dcf0-457b-bf83-0ae9b5592bac
+		summarizeBy: none
+		sourceColumn: contract_start_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Contract End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: ff80b35e-62b0-4364-a33b-2a9cec9acc5c
+		summarizeBy: none
+		sourceColumn: contract_end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Operational Status'
+		dataType: string
+		lineageTag: af48d845-a0aa-47e2-aada-118b5e322c35
+		summarizeBy: none
+		sourceColumn: operational_status
+
+	column 'Open Orders Now'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 799c30d4-4a96-4015-9774-44807d176b7e
+		summarizeBy: none
+		sourceColumn: open_orders_now
+
+	partition Dim_Aircraft = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dim_Aircraft.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"aircraft_id", Int64.Type}, {"registration", type text}, {"fleet_number", type text}, {"aircraft_category", type text}, {"aircraft_model", type text}, {"customer_name", type text}, {"operation_type", type text}, {"contract_start_date", type date}, {"contract_end_date", type date}, {"operational_status", type text}, {"open_orders_now", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

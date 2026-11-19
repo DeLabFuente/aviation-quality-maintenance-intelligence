@@ -1,0 +1,9 @@
+﻿category_id,category_code,category_name_es,category_name_en,description,default_department_id,is_active
+1,DOC,Documentación incorrecta,Incorrect documentation,"A document is wrong, incomplete, obsolete or not approved.",4,1
+2,REC,Error de registro,Recording error,Information recorded in the system does not match its source document.,3,1
+3,INV,Discrepancia de inventario,Inventory discrepancy,Physical stock differs from the stock recorded in the system.,5,1
+4,MNC,Material no conforme,Non-conforming material,Material received or held in stock does not meet its requirements.,5,1
+5,PRC,Incumplimiento de procedimiento,Procedure non-compliance,An internal procedure was not followed.,1,1
+6,TRC,Error de trazabilidad,Traceability error,"A record cannot be traced to its origin (lot, certificate, revision or order).",1,1
+7,MNT,Incidencia de mantenimiento,Maintenance issue,Administrative issue arising during a maintenance order (no technical assessment).,2,1
+8,SUP,Problema de suministro,Supply problem,"Late, incomplete or incorrect delivery from a supplier.",5,1

@@ -1,0 +1,86 @@
+/// Actions not yet implemented at each month end (periodic snapshot).
+table Fact_CAPA_Snapshot
+	lineageTag: 6f597c1b-be41-481e-9ed6-99620b1235a9
+
+	column 'Snapshot Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 472098e6-ad1a-4f52-9644-cfbdd36bffed
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Action ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6d991221-7221-453a-9fde-38f99717051b
+		summarizeBy: none
+		sourceColumn: action_id
+
+	column 'Action Number'
+		dataType: string
+		lineageTag: 0c6e3c39-a68c-427b-982a-7b56b0064324
+		summarizeBy: none
+		sourceColumn: action_number
+
+	column 'Action Type'
+		dataType: string
+		lineageTag: edd282b6-7339-4a17-9921-f0c160ea79f6
+		summarizeBy: none
+		sourceColumn: action_type
+
+	column 'Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: da463033-a172-4e11-bf28-0e813959606e
+		summarizeBy: none
+		sourceColumn: department_id
+
+	column 'Responsible ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 92754914-97ca-436c-b939-b1abfed08209
+		summarizeBy: none
+		sourceColumn: responsible_id
+
+	column 'Due Date Then'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 82b54f94-53d0-418b-9879-6414521fece7
+		summarizeBy: none
+		sourceColumn: due_date_then
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8757c4c9-6a7c-4765-a8a7-ad2bc09bb31f
+		summarizeBy: none
+		sourceColumn: is_overdue
+
+	column 'Days Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: cabc1ba1-c426-4678-b84b-725cfd99fc91
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+	partition Fact_CAPA_Snapshot = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_CAPA_Snapshot.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"snapshot_date", type date}, {"action_id", Int64.Type}, {"action_number", type text}, {"action_type", type text}, {"department_id", Int64.Type}, {"responsible_id", Int64.Type}, {"due_date_then", type date}, {"is_overdue", Int64.Type}, {"days_overdue", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

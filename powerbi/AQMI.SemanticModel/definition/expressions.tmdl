@@ -1,0 +1,6 @@
+expression DataFolder = "C:\Proyectos\aviation-quality-maintenance-intelligence\data\processed\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 95bf11c2-6461-4aaa-9d33-cc7672705c93
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+

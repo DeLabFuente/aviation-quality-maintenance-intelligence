@@ -1,0 +1,87 @@
+/// Controlled documents in force at each month end (periodic snapshot).
+table Fact_DocumentSnapshot
+	lineageTag: 519bb607-ce62-4f59-b7ba-2123bfb02348
+
+	column 'Snapshot Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 8e6d9e0f-a256-4daf-b55f-59b7275677f0
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Document ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d13c925c-c1b0-4733-8a37-836ad5f877c8
+		summarizeBy: none
+		sourceColumn: document_id
+
+	column 'Owner Department ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9a4c95d9-9fda-48cc-8b18-ecca432cedd7
+		summarizeBy: none
+		sourceColumn: owner_department_id
+
+	column 'Revision ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3863bff4-784a-4ba8-a195-2e00c4d7f206
+		summarizeBy: none
+		sourceColumn: revision_id
+
+	column 'Revision Code'
+		dataType: string
+		lineageTag: 36b6b914-ff4d-405d-93c6-df3f23cebc6a
+		summarizeBy: none
+		sourceColumn: revision_code
+
+	column 'Review Due Then'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 956d6977-d5e6-49dd-a661-b2aa610b13e8
+		summarizeBy: none
+		sourceColumn: review_due_then
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Is Compliant'
+		dataType: int64
+		formatString: #,0
+		lineageTag: aa3148c1-d9f8-4ef8-a7f3-d89edaa85f63
+		summarizeBy: none
+		sourceColumn: is_compliant
+
+	column 'Is Expired'
+		dataType: int64
+		formatString: #,0
+		lineageTag: bd82c2ff-bae3-455f-bdba-8f87b92ca956
+		summarizeBy: none
+		sourceColumn: is_expired
+
+	column 'Days Overdue'
+		dataType: int64
+		formatString: #,0
+		lineageTag: bb44e073-f8c8-41c1-80a5-85db49e8e547
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+	partition Fact_DocumentSnapshot = m
+		mode: import
+		queryGroup: Tables
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Fact_DocumentSnapshot.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    EmptyAsNull = Table.TransformColumns(Promoted, {}, each if _ = "" then null else _),
+				    Typed = Table.TransformColumnTypes(EmptyAsNull, {{"snapshot_date", type date}, {"document_id", Int64.Type}, {"owner_department_id", Int64.Type}, {"revision_id", Int64.Type}, {"revision_code", type text}, {"review_due_then", type date}, {"is_compliant", Int64.Type}, {"is_expired", Int64.Type}, {"days_overdue", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

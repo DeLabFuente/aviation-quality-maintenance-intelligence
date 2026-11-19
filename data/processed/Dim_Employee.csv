@@ -1,0 +1,47 @@
+employee_id,employee_code,full_name,department_code,department_name,job_title,is_department_head,is_active
+1,EMP-001,Rocío García Ortega,DIR,Management,General Manager,1,1
+2,EMP-002,Lucía Castro Iglesias,DIR,Management,Operations Manager,0,1
+3,EMP-003,Jorge Jiménez Navarro,DIR,Management,Administration Officer,0,1
+4,EMP-004,Beatriz Garrido Ramos,QUA,Quality,Head of Quality,1,1
+5,EMP-005,Pablo López Garrido,QUA,Quality,Quality Auditor,0,1
+6,EMP-006,Jorge Navarro Molina,QUA,Quality,Quality Auditor,0,1
+7,EMP-007,Lucía García Rubio,QUA,Quality,Quality Inspector,0,0
+8,EMP-008,Andrés Muñoz Sánchez,QUA,Quality,Quality Inspector,0,1
+9,EMP-009,Gloria López Ortega,QUA,Quality,Quality Inspector,0,1
+10,EMP-010,Víctor Suárez Delgado,QUA,Quality,Quality Analyst,0,1
+11,EMP-011,Laura Suárez Ramírez,DOC,Document Control,Head of Document Control,1,1
+12,EMP-012,Alejandro Hernández Blanco,DOC,Document Control,Document Controller,0,1
+13,EMP-013,Nuria Alonso Vázquez,DOC,Document Control,Document Controller,0,1
+14,EMP-014,Teresa Navarro Medina,DOC,Document Control,Document Controller,0,1
+15,EMP-015,Rocío López Blanco,DOC,Document Control,Technical Records Clerk,0,1
+16,EMP-016,Ignacio Gómez Alonso,PRD,Production Planning & Control,Head of Production Planning & Control,1,1
+17,EMP-017,Natalia Delgado Garrido,PRD,Production Planning & Control,Production Planner,0,1
+18,EMP-018,Natalia Rubio Vázquez,PRD,Production Planning & Control,Production Planner,0,1
+19,EMP-019,Ana Muñoz Castro,PRD,Production Planning & Control,Production Planner,0,1
+20,EMP-020,Luis Navarro Iglesias,PRD,Production Planning & Control,Production Control Clerk,0,1
+21,EMP-021,Natalia Gutiérrez López,PRD,Production Planning & Control,Production Control Clerk,0,1
+22,EMP-022,Andrés García Martínez,PRD,Production Planning & Control,Production Control Clerk,0,1
+23,EMP-023,Francisco Molina Pérez,MNT,Maintenance,Head of Maintenance,1,1
+24,EMP-024,Ignacio Rubio Martín,MNT,Maintenance,Maintenance Supervisor,0,1
+25,EMP-025,Ignacio Ramos Alonso,MNT,Maintenance,Maintenance Supervisor,0,1
+26,EMP-026,Patricia Gómez Morales,MNT,Maintenance,Maintenance Supervisor,0,1
+27,EMP-027,Nuria Muñoz Moreno,MNT,Maintenance,Maintenance Technician,0,1
+28,EMP-028,José Martínez Sanz,MNT,Maintenance,Maintenance Technician,0,1
+29,EMP-029,Rosa Ruiz Martínez,MNT,Maintenance,Maintenance Technician,0,1
+30,EMP-030,Rosa Marín Ortiz,MNT,Maintenance,Maintenance Technician,0,1
+31,EMP-031,Alejandro Martín Cortés,MNT,Maintenance,Maintenance Technician,0,1
+32,EMP-032,Carmen Navarro Sánchez,MNT,Maintenance,Maintenance Technician,0,1
+33,EMP-033,María Cortés Romero,MNT,Maintenance,Maintenance Technician,0,1
+34,EMP-034,Miguel Jiménez Ramos,MNT,Maintenance,Maintenance Technician,0,1
+35,EMP-035,Sergio Jiménez Alonso,MNT,Maintenance,Maintenance Technician,0,1
+36,EMP-036,Javier Martínez Ramírez,LOG,Logistics & Materials,Head of Logistics,1,1
+37,EMP-037,Inés Ramírez Jiménez,LOG,Logistics & Materials,Storekeeper,0,1
+38,EMP-038,Pedro Álvarez Álvarez,LOG,Logistics & Materials,Storekeeper,0,1
+39,EMP-039,Miguel Ramírez Domínguez,LOG,Logistics & Materials,Storekeeper,0,1
+40,EMP-040,Sergio García Jiménez,LOG,Logistics & Materials,Storekeeper,0,1
+41,EMP-041,Ignacio Gutiérrez Morales,LOG,Logistics & Materials,Buyer,0,1
+42,EMP-042,Pilar Sanz Alonso,LOG,Logistics & Materials,Buyer,0,1
+43,EMP-043,Andrés Marín Ramos,LOG,Logistics & Materials,Buyer,0,1
+44,EMP-044,Carmen Romero Ramos,LOG,Logistics & Materials,Logistics Clerk,0,1
+45,EMP-045,Pilar Iglesias Suárez,QUA,Quality,Quality Inspector,0,1
+46,EMP-046,José Medina Garrido,LOG,Logistics & Materials,Storekeeper,0,1
