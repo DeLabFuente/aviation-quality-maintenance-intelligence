@@ -1353,7 +1353,7 @@ def build_report(root: Path) -> None:
     write_json(definition / "version.json", {
         "$schema": f"{SCHEMA_BASE}/versionMetadata/1.0.0/schema.json", "version": "2.0.0"})
     write_json(definition / "report.json", {
-        "$schema": f"{SCHEMA_BASE}/report/3.0.0/schema.json",
+        "$schema": f"{SCHEMA_BASE}/report/3.3.0/schema.json",
         "themeCollection": {
             "baseTheme": {"name": "CY24SU10", "reportVersionAtImport": {"visual": "1.8.97", "report": "2.0.97", "page": "1.3.97"},
                           "type": "SharedResources"},
@@ -1367,7 +1367,9 @@ def build_report(root: Path) -> None:
              "items": [{"name": THEME_FILE, "path": THEME_FILE, "type": "CustomTheme"}]}],
         "settings": {"useStylableVisualContainerHeader": True, "defaultFilterActionIsDataFilter": True,
                      "defaultDrillFilterOtherVisuals": True, "allowChangeFilterTypes": True,
-                     "allowInlineExploration": True, "useEnhancedTooltips": True}})
+                     "allowInlineExploration": True, "useEnhancedTooltips": True,
+                     # numbers and dates always in English (US), whatever the viewer's locale
+                     "locale": "en-US", "defaultDisplayUnitsToNone": True}})
     write_json(definition / "pages" / "pages.json", {
         "$schema": f"{SCHEMA_BASE}/pagesMetadata/1.0.0/schema.json",
         "pageOrder": [p for p, _ in PAGES], "activePageName": PAGES[0][0]})
