@@ -1,7 +1,7 @@
 # AQMI — Fase 8: Documentación y presentación en GitHub
 
 **Documento:** `documentation/09_fase8_documentacion_y_github.md`
-**Estado:** Propuesta pendiente de aprobación
+**Estado:** Aprobada el 19/11/2026
 **Fecha:** 19/11/2026
 
 > AEROQ MRO es una empresa ficticia y todos sus datos son sintéticos. AQMI no está certificado y AEROQ MRO no tiene ninguna aprobación real.
@@ -208,6 +208,19 @@ Son ajustes de la página del repositorio que solo puede hacer el propietario (r
 | Release v1.0 (opcional) | *Releases → Create a new release* → etiqueta `v1.0` → adjuntar `assets/AQMI_report.pdf` |
 
 ---
+
+## 9 bis. Correcciones visuales tras la publicación
+
+Al revisar las primeras capturas se corrigieron seis detalles. Las capturas y el PDF del repositorio son los que se obtuvieron después de corregirlos.
+
+| Problema | Causa | Corrección |
+|---|---|---|
+| Categoría "(Blank)" en los ejes | Filas sin fecha en la relación que usa la medida (órdenes sin terminar) o no conformidades sin aeronave | Filtro de visual "no está en blanco" en los 7 gráficos mensuales y en el gráfico por aeronave, comprobado por una prueba |
+| Barra gris junto a los títulos | Barra de desplazamiento de los cuadros de texto de la cabecera y del logotipo | Relleno interior 0, cuadros algo más altos, título a 17 pt |
+| "Maintenance…" cortado en el menú | Texto demasiado largo para el botón, sobre todo en negrita | Botones de 188 px y letra de 9,5 pt |
+| Coma decimal, "17 mil" y meses en español | Power BI Desktop usa el idioma del equipo | El informe fija su propio formato (`locale: en-US` y unidades automáticas desactivadas; esquema del informe 3.3.0, mayo de 2026) |
+| "Audit Events: 17 mil" | La tarjeta nueva de Power BI abrevia los números aunque la medida tenga formato | Nueva medida `Audit Events (Label)`, que da el número como texto (17,383) |
+| "94.4 %" en la tabla de KPI | Espacio antes del símbolo | "94.4%", igual que las tarjetas |
 
 ## 10. Archivos de esta fase
 

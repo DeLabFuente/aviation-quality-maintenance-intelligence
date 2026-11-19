@@ -82,11 +82,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Audit Events"
+                  "Property": "Audit Events (Label)"
                 }
               },
-              "queryRef": "_Measures.Audit Events",
-              "nativeQueryRef": "Audit Events"
+              "queryRef": "_Measures.Audit Events (Label)",
+              "nativeQueryRef": "Audit Events (Label)",
+              "displayName": "Audit Events"
             }
           ]
         }

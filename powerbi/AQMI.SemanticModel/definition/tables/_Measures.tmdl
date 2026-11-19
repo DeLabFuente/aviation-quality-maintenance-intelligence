@@ -728,6 +728,11 @@ table _Measures
 		displayFolder: 7. Audit & Data Quality
 		lineageTag: beeeefb1-fecf-4fc7-a488-74482489672f
 
+	/// Audit Events as text (17,383): the new card visual abbreviates numbers (17K) whatever the format string.
+	measure 'Audit Events (Label)' = FORMAT ( [Audit Events], "#,0" )
+		displayFolder: 7. Audit & Data Quality
+		lineageTag: 56124b02-f168-51c2-93a1-7e54c3a024ba
+
 	/// Validation rules passed / rules executed (Phase 5).
 	measure 'Data Quality Score (Rules Passed)' = DIVIDE ( MAX ( Model_Info[Data Quality Score] ), 100 )
 		formatString: 0.0%

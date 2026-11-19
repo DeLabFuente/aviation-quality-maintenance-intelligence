@@ -82,7 +82,7 @@ flowchart LR
     GATE -- "fails" --> STOP["Stop<br/>nothing is exported"]
     GATE -- "passes" --> KPI["KPI engine<br/>18 KPIs · consistency checks"]
     KPI --> EXP["Star schema export<br/>27 CSV files"]
-    EXP --> PBI["Power BI project (.pbip)<br/>80 DAX measures · 8 pages"]
+    EXP --> PBI["Power BI project (.pbip)<br/>81 DAX measures · 8 pages"]
     DB --> REP["Reports<br/>validation · KPIs"]
     KPI --> REP
 ```
@@ -176,7 +176,7 @@ The project applies to its own data the controls a quality office applies to rea
 
 ## Dashboards (screenshots)
 
-The Power BI report has 8 pages with a common layout: navigation bar, page filters, KPI cards, and charts and tables that answer one question each. The model behind them is a star schema with 80 documented DAX measures. A PDF export of the whole report is in [`assets/AQMI_report.pdf`](assets/AQMI_report.pdf).
+The Power BI report has 8 pages with a common layout: navigation bar, page filters, KPI cards, and charts and tables that answer one question each. The model behind them is a star schema with 81 documented DAX measures. A PDF export of the whole report is in [`assets/AQMI_report.pdf`](assets/AQMI_report.pdf).
 
 <table>
   <tr>

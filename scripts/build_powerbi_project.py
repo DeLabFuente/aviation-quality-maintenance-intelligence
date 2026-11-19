@@ -598,6 +598,9 @@ RETURN
     # ------------------------------------------------------------------ audit & data quality
     ("7. Audit & Data Quality", "Audit Events", "#,0", "Changes recorded in the audit trail.",
      "COALESCE ( COUNTROWS ( Fact_AuditEvents ), 0 )"),
+    ("7. Audit & Data Quality", "Audit Events (Label)", None,
+     "Audit Events as text (17,383): the new card visual abbreviates numbers (17K) whatever the format string.",
+     'FORMAT ( [Audit Events], "#,0" )'),
     ("7. Audit & Data Quality", "Data Quality Score (Rules Passed)", "0.0%", "Validation rules passed / rules executed (Phase 5).",
      "DIVIDE ( MAX ( Model_Info[Data Quality Score] ), 100 )"),
     ("7. Audit & Data Quality", "Validation Rules Executed", "#,0", "Validation rules executed.", "MAX ( Model_Info[Rules Executed] )"),
@@ -998,7 +1001,7 @@ def v_nav_button(label: str, target_page: str, current: bool) -> dict:
                          {"properties": {"fillColor": color(NAVY_2 if not current else AERO), "transparency": num(0)},
                           "selector": {"id": "hover"}}],
                 "text": [{"properties": {"show": boolean(True)}},
-                         {"properties": {"text": text(label), "fontColor": color(fg), "fontSize": num(10),
+                         {"properties": {"text": text(label), "fontColor": color(fg), "fontSize": num(9.5),
                                          "fontFamily": text(FONT_SEMIBOLD if current else FONT),
                                          "horizontalAlignment": text("left"), "leftMargin": num(12)},
                           "selector": {"id": "default"}},
@@ -1278,7 +1281,7 @@ def page_content(page: str) -> list[tuple]:
             ("slicer1", 852, 14, 204, 52, v_slicer(C("Fact_AuditEvents", "table_name"), "Table")),
             ("slicer2", 1060, 14, 204, 52, v_slicer(C("Fact_AuditEvents", "record_ref"), "Record")),
             ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([L_(M("Data Quality Score (Rules Passed)"), "Data Quality Score"), L_(M("Validation Rules Executed"), "Rules executed"), L_(M("Critical Rule Failures"), "Critical failures"),
-                                                        M("Planted Discrepancies Detected"), M("Audit Events")])),
+                                                        M("Planted Discrepancies Detected"), L_(M("Audit Events (Label)"), "Audit Events")])),
             ("trail", X0, MAIN_Y, LEFT_W, MAIN_H + 12 + BOTTOM_H, v_table(
                 [L_(C("Fact_AuditEvents", "event_datetime"), "When"), L_(C("Fact_AuditEvents", "record_ref"), "Record"),
                  L_(C("Fact_AuditEvents", "change_label"), "Change"), L_(C("Dim_Employee", "full_name"), "Who")],
@@ -1308,7 +1311,7 @@ def chrome(page: str, title: str) -> list[tuple]:
                                                [(PAGE_SUBTITLES[page] + "  ·  Data as of 31 Oct 2026", 9, GREY, FONT)]])),
     ]
     for i, (target, label) in enumerate(PAGES):
-        items.append((f"nav{i + 1:02d}", 12, 104 + i * 44, 184, 36, v_nav_button(label, target, target == page)))
+        items.append((f"nav{i + 1:02d}", 12, 104 + i * 44, 188, 36, v_nav_button(label, target, target == page)))
     return items
 
 

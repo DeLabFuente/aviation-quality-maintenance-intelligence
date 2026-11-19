@@ -30,7 +30,7 @@
 |---|---|---|
 | **Exportación con control de calidad** | Comprueba de nuevo las 82 reglas y los controles de los indicadores. Si algo falla, no exporta nada. Si todo está bien, escribe el modelo en estrella en CSV | `scripts/export_powerbi.py`, `sql/analytics/` |
 | **Datos para Power BI** | 27 tablas en CSV y una descripción de sus columnas (`_schema.json`) | `data/processed/` |
-| **Proyecto de Power BI (.pbip)** | El informe completo en formato de texto: modelo, 41 relaciones, 80 medidas DAX, tema visual y 8 páginas con 144 elementos | `powerbi/` |
+| **Proyecto de Power BI (.pbip)** | El informe completo en formato de texto: modelo, 41 relaciones, 81 medidas DAX, tema visual y 8 páginas con 144 elementos | `powerbi/` |
 | **Generador del proyecto** | Crea la primera versión del proyecto a partir del modelo. No sobrescribe nunca un proyecto existente salvo que se le pida | `scripts/build_powerbi_project.py` |
 | **Validador del proyecto** | Revisa el proyecto antes de abrirlo en Power BI (sección 7) | `scripts/validate_powerbi.py` |
 | **Esquemas oficiales de Microsoft** | Copia de los esquemas JSON del formato de informe, para validar sin conexión | `tests/schemas/` |
@@ -123,7 +123,7 @@ El detalle de las 27 tablas y las 41 relaciones está en los anexos A y B.
 
 ## 4. Las medidas DAX
 
-Las 80 medidas están en la tabla `_Measures`, organizadas en carpetas:
+Las 81 medidas están en la tabla `_Measures`, organizadas en carpetas:
 
 | Carpeta | Contenido |
 |---|---|
@@ -255,7 +255,7 @@ No puedo ejecutar Power BI Desktop en mi entorno de trabajo. Por eso he comproba
 | **Esquemas oficiales de Microsoft** | Cualquier propiedad mal escrita o en un sitio incorrecto en los archivos del informe | 156 archivos válidos |
 | **Sintaxis TMDL** | Tablas, columnas, tipos, columnas de orden, particiones y sangría | Sin errores |
 | **Columnas = cabecera del CSV** | Que cada tabla lee exactamente las columnas de su archivo | 27 de 27 |
-| **Referencias DAX** | Que cada `Tabla[Columna]` y cada `[Medida]` usada existe, y que paréntesis y comillas están equilibrados | 80 medidas sin errores |
+| **Referencias DAX** | Que cada `Tabla[Columna]` y cada `[Medida]` usada existe, y que paréntesis y comillas están equilibrados | 81 medidas sin errores |
 | **Relaciones** | Columnas existentes, una sola relación activa entre dos tablas, sin caminos de filtro ambiguos | 41 relaciones correctas |
 | **Campos de los gráficos** | Que cada campo de cada gráfico existe en el modelo, con el tipo correcto (columna o medida) | 144 elementos correctos |
 | **Navegación y posiciones** | Que los botones apuntan a páginas que existen y nada se sale de la página ni se solapa | Correcto |
@@ -359,7 +359,7 @@ Todos están en la carpeta del proyecto.
 | `config/settings.py` | Actualizado: rutas de Power BI |
 | `data/processed/` | Nuevo: 27 CSV y `_schema.json` |
 | `powerbi/AQMI.pbip` | Nuevo: **el archivo que se abre en Power BI** |
-| `powerbi/AQMI.SemanticModel/` | Nuevo: el modelo (TMDL): 28 tablas, 41 relaciones, 80 medidas |
+| `powerbi/AQMI.SemanticModel/` | Nuevo: el modelo (TMDL): 28 tablas, 41 relaciones, 81 medidas |
 | `powerbi/AQMI.Report/` | Nuevo: el informe (PBIR): tema y 8 páginas |
 | `tests/test_powerbi.py` | Nuevo: 27 pruebas |
 | `tests/schemas/` | Nuevo: esquemas oficiales de Microsoft (licencia MIT) |
@@ -381,7 +381,7 @@ INFO    | STEP 4/5 — Export the star schema for Power BI
 ...
 INFO    | EXPORT OK
 INFO    | STEP 5/5 — Check the Power BI project
-INFO    | Model: 28 tables, 334 columns, 80 measures
+INFO    | Model: 28 tables, 334 columns, 81 measures
 INFO    | Report: 8 pages, 144 visuals; JSON files checked against official schemas: 154
 INFO    | POWER BI PROJECT OK
 INFO    | PIPELINE OK
@@ -576,6 +576,7 @@ La fórmula DAX completa de cada medida está en `powerbi/AQMI.SemanticModel/def
 | 6. Aircraft | Fleet Size | `#,0` | Aircraft in the selection. |
 | 6. Aircraft | Aircraft In Maintenance | `#,0` | Aircraft with an open work order at the cut-off date. |
 | 7. Audit & Data Quality | Audit Events | `#,0` | Changes recorded in the audit trail. |
+| 7. Audit & Data Quality | Audit Events (Label) | text | Audit Events as text (17,383): the new card visual abbreviates numbers (17K) whatever the format string. Added in Phase 8. |
 | 7. Audit & Data Quality | Data Quality Score (Rules Passed) | `0.0%` | Validation rules passed / rules executed (Phase 5). |
 | 7. Audit & Data Quality | Validation Rules Executed | `#,0` | Validation rules executed. |
 | 7. Audit & Data Quality | Critical Rule Failures | `#,0` | CRITICAL validation rules with findings (must be 0). |
