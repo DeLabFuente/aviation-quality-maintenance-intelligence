@@ -550,7 +550,7 @@ Es una **práctica general de gestión de la calidad** que AEROQ MRO aplica de f
 - Todos los cambios quedan en `Audit_Log`, igual que en el resto de tablas: los triggers se generan automáticamente.
 - Los registros no se borran (G09).
 
-> **Pendiente de decisión (Fase 9):** la lección de NC-2025-0021 está incorporada en FRM-PRD-004 R01, que entró en vigor **antes** de que se verificara la acción, porque el rediseño del formulario era la propia acción correctiva. La regla L06 admite provisionalmente esta excepción: la revisión producida por la propia acción (en vigor entre la creación y el cierre de la acción). Ver `09b_fase9_lecciones_aprendidas.md`.
+> **Decisión aprobada (Fase 9, 19/11/2026):** la lección de NC-2025-0021 está incorporada en FRM-PRD-004 R01, que entró en vigor **antes** de que se verificara la acción, porque el rediseño del formulario era la propia acción correctiva. La regla L06 admite esta única excepción: la revisión producida por la propia acción (en vigor entre la creación y el cierre de la acción). Para el resto de lecciones la regla es estricta. Ver `09b_fase9_lecciones_aprendidas.md`.
 
 ### 6.6 Módulo D — Materiales y almacén
 

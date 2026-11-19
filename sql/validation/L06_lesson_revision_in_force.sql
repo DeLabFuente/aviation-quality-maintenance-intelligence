@@ -4,7 +4,7 @@
 -- type: N
 -- enforced_by: VALIDATION
 -- returns: one row per record that breaks the rule (record_ref, detail)
--- Exception (PROVISIONAL, pending decision in Phase 9): when the revision is the
+-- Exception (decision approved in Phase 9): when the revision is the
 -- output of the action itself (it came into force between the creation and the
 -- closure of the action), the lesson is already incorporated when it is approved.
 -- Example: NC-2025-0021, whose corrective action was the redesign of FRM-PRD-004 (R01).
@@ -27,4 +27,4 @@ JOIN Document_Revisions r ON r.revision_id = l.incorporated_revision_id
 JOIN Documents d ON d.document_id = r.document_id
 JOIN CAPA_Actions a ON a.action_id = l.action_id
 WHERE r.effective_date <= l.approved_date
-  AND NOT (r.effective_date BETWEEN a.created_date AND a.closed_date);   -- provisional exception
+  AND NOT (r.effective_date BETWEEN a.created_date AND a.closed_date);   -- approved exception

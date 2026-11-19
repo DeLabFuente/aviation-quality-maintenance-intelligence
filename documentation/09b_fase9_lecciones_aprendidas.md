@@ -3,7 +3,7 @@
 **Proyecto:** Aviation Quality & Maintenance Intelligence (AQMI)
 **Empresa ficticia:** AEROQ MRO
 **Documento:** `documentation/09b_fase9_lecciones_aprendidas.md`
-**Estado:** Implementado el 19/11/2026. **Pendiente de revisión y aprobación.** Hay decisiones provisionales en la sección 9.
+**Estado:** Implementado el 19/11/2026. Decisiones de diseño **aprobadas** el 19/11/2026 (sección 9). Falta la revisión visual en Power BI Desktop, con nuevas capturas y PDF, antes de publicar.
 
 > AEROQ MRO es una empresa ficticia y todos sus datos son sintéticos. El registro de lecciones aprendidas se presenta como una **práctica general de gestión de la calidad** que la empresa aplica de forma voluntaria. **No se presenta como un requisito normativo.** El objetivo del 80 % es un **objetivo interno ficticio** de AEROQ MRO.
 
@@ -19,7 +19,7 @@
 6. Resultados
 7. El indicador LRN-01
 8. Power BI
-9. Decisiones provisionales (pendientes de aprobación)
+9. Decisiones tomadas (aprobadas)
 10. Archivos creados y modificados
 11. Cómo comprobar que funciona
 12. Limitaciones
@@ -94,7 +94,7 @@ La definición completa, campo a campo, está en el diccionario de datos (`02_di
 | L03 | El estado coincide con la decisión registrada (el rechazo tiene motivo) | CRITICAL | CHECK + validación |
 | L04 | Fechas en orden: propuesta, decisión, incorporación | CRITICAL | CHECK + validación |
 | L05 | La revisión incorporada es de un procedimiento, instrucción de trabajo o formulario **controlado** | CRITICAL | Validación |
-| L06 | La revisión estaba en vigor en la fecha de incorporación y entró en vigor después de la aprobación *(con una excepción provisional, sección 9)* | CRITICAL | Validación |
+| L06 | La revisión estaba en vigor en la fecha de incorporación y entró en vigor después de la aprobación *(con una excepción aprobada, sección 9)* | CRITICAL | Validación |
 | L07 | Lección aprobada sin incorporar más de 90 días (**política interna ficticia**) | WARNING | Validación |
 
 Además, las reglas generales se han ampliado a la tabla nueva: G02 (formato y unicidad del número), G03 (fechas válidas), G04 (nada posterior al corte), G05 (nada anterior al inicio), G06 (las personas estaban de alta), G10 (autor del registro), A01 y A02 (creación y cambios de estado auditados), A03 (cadena de cambios coherente) y A05 (eventos que apuntan a registros existentes).
@@ -177,11 +177,11 @@ El catálogo tiene ahora **19 indicadores**. LRN-01 está en un área nueva, *Co
 
 **Cómo se ha modificado el proyecto.** Se respetan las convenciones de la versión guardada por Power BI Desktop. Los cambios son mínimos (7 archivos modificados y 3 nuevos) y siguen sus convenciones: `lineageTag` en la tabla, las columnas y las medidas nuevas; finales de línea CRLF; JSON sin salto final; y `compatibilityLevel` 1606, `cultures/en-US.tmdl` y el esquema del informe 3.3.0 sin tocar. Los mismos cambios están en `scripts/build_powerbi_project.py`, y el validador comprueba los dos proyectos contra los esquemas oficiales de Microsoft. **Falta abrirlo en Power BI Desktop** (en tu ordenador) para ver cómo queda, ajustar el bloque si hace falta y rehacer las capturas y el PDF.
 
-## 9. Decisiones provisionales (pendientes de aprobación)
+## 9. Decisiones tomadas (aprobadas)
 
-Se tomaron para poder avanzar sin parar el trabajo. Cada una se cambia en un solo sitio.
+Durante la implementación surgieron nueve puntos que el diseño aprobado no resolvía. Se propusieron con su alternativa y se **aprobaron el 19/11/2026**. Cada una está en un solo sitio, por si hubiera que revisarla.
 
-| # | Decisión provisional | Dónde se cambia |
+| # | Decisión aprobada | Dónde está |
 |---|---|---|
 | 1 | **Regla L06 con excepción.** FRM-PRD-004 R01 entró en vigor el 07/05/2025, antes de que se verificara la acción (20/05/2025), porque el rediseño *era* la acción. L06 acepta la revisión producida por la propia acción (en vigor entre su creación y su cierre). Para el resto de lecciones la regla es estricta | `sql/validation/L06_lesson_revision_in_force.sql` |
 | 2 | LRN-01 en un **área nueva**, *Continuous improvement* (en lugar de *Quality*) | Cabecera de `sql/kpi/LRN01_…sql` y `AREAS` en `scripts/run_kpis.py` |
@@ -190,6 +190,8 @@ Se tomaron para poder avanzar sin parar el trabajo. Cada una se cambia en un sol
 | 5 | **Diseño del bloque** en *Corrective Actions* y retirada de la columna *Type* de *Open actions* | `page_content("p03capa")` y los `visual.json` de la página |
 | 6 | Plazo de **90 días** para el aviso L07 (política ficticia) | `sql/validation/L07_…sql` |
 | 7 | `SCHEMA_VERSION` 1.0.0 → **1.1.0** | `config/settings.py` |
+| 8 | **Quién decide** en los datos generados: propone el responsable de la acción o quien verificó su eficacia; decide la responsable de Calidad (o la Dirección, si la propuesta es suya); registra la incorporación Control Documental. Parámetros ficticios de la sección 5 | `scripts/generator/lessons.py`, `config/generator_parameters.py` |
+| 9 | **Publicación:** se publica en GitHub después de abrir el `.pbip` en Power BI Desktop, revisar el bloque nuevo y rehacer las capturas y el PDF, para que el README nunca muestre una captura antigua | — |
 
 ## 10. Archivos creados y modificados
 
