@@ -6,7 +6,7 @@
     "y": 324,
     "z": 10000,
     "height": 36,
-    "width": 176,
+    "width": 184,
     "tabOrder": 10000
   },
   "visual": {
@@ -171,7 +171,7 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }

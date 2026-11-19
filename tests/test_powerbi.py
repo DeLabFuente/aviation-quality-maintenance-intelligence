@@ -188,6 +188,28 @@ def test_saved_project_in_the_repository_passes_the_validator():
     assert result["stats"]["pages"] == 8
 
 
+def test_date_and_aircraft_axes_hide_the_blank_member():
+    """Charts by month or by aircraft must not show a "(Blank)" category (Phase 8 fix)."""
+    from config import settings
+    pages = settings.POWERBI_DIR / "AQMI.Report" / "definition" / "pages"
+    if not pages.exists():
+        pytest.skip("no Power BI project in the repository")
+    checked = 0
+    for path in sorted(pages.glob("*/visuals/*/visual.json")):
+        container = json.loads(path.read_text(encoding="utf-8"))
+        category = container["visual"].get("query", {}).get("queryState", {}).get("Category")
+        if not category:
+            continue
+        column = category["projections"][0]["field"].get("Column", {})
+        target = (column.get("Expression", {}).get("SourceRef", {}).get("Entity"), column.get("Property"))
+        if target in {("Dim_Date", "Month Label"), ("Dim_Aircraft", "Registration")}:
+            filters = container.get("filterConfig", {}).get("filters", [])
+            assert any(f["field"]["Column"]["Property"] == target[1] and "Not" in json.dumps(f["filter"])
+                       for f in filters), path.parent.name
+            checked += 1
+    assert checked == 8
+
+
 def test_every_kpi_has_a_dax_measure():
     switch = next(m for m in builder.MEASURES if m[1] == "KPI Value (Power BI)")[4]
     kpi_ids = re.findall(r'"([A-Z]{3}-\d{2})"', switch)

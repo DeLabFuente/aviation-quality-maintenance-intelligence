@@ -859,7 +859,7 @@ table _Measures
 			            "no data",
 			            SWITCH (
 			                _u,
-			                "%", FORMAT ( _v, "0.0" ) & " %",
+			                "%", FORMAT ( _v, "0.0" ) & "%",
 			                "days", FORMAT ( _v, "0.0" ) & " days",
 			                "count", FORMAT ( _v, "#,0" ),
 			                FORMAT ( _v, "0.0" )

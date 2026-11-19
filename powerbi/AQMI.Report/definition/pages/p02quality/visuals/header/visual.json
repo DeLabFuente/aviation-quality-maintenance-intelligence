@@ -5,7 +5,7 @@
     "x": 216,
     "y": 8,
     "z": 4000,
-    "height": 62,
+    "height": 66,
     "width": 620,
     "tabOrder": 4000
   },
@@ -22,7 +22,7 @@
                     "value": "Quality Performance",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "18pt",
+                      "fontSize": "17pt",
                       "color": "#0B1F3A"
                     }
                   }
@@ -34,7 +34,7 @@
                     "value": "Non-conformities: volume, severity, recurring problems and root causes  ·  Data as of 31 Oct 2026",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "9.5pt",
+                      "fontSize": "9pt",
                       "color": "#5B6577"
                     }
                   }
@@ -92,6 +92,40 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

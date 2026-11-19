@@ -688,7 +688,7 @@ RETURN
             "no data",
             SWITCH (
                 _u,
-                "%", FORMAT ( _v, "0.0" ) & " %",
+                "%", FORMAT ( _v, "0.0" ) & "%",
                 "days", FORMAT ( _v, "0.0" ) & " days",
                 "count", FORMAT ( _v, "#,0" ),
                 FORMAT ( _v, "0.0" )
@@ -967,7 +967,10 @@ def v_textbox(paragraphs: list[list[tuple]]) -> dict:
             "visualContainerObjects": {"title": [{"properties": {"show": boolean(False)}}],
                                        "background": [{"properties": {"show": boolean(False)}}],
                                        "border": [{"properties": {"show": boolean(False)}}],
-                                       "visualHeader": [{"properties": {"show": boolean(False)}}]}}
+                                       "visualHeader": [{"properties": {"show": boolean(False)}}],
+                                       # no inner padding: avoids a scroll bar when the text fills the box
+                                       "padding": [{"properties": {side: num(0) for side in
+                                                                   ("top", "bottom", "left", "right")}}]}}
 
 
 def v_rectangle(fill: str) -> dict:
@@ -997,7 +1000,7 @@ def v_nav_button(label: str, target_page: str, current: bool) -> dict:
                 "text": [{"properties": {"show": boolean(True)}},
                          {"properties": {"text": text(label), "fontColor": color(fg), "fontSize": num(10),
                                          "fontFamily": text(FONT_SEMIBOLD if current else FONT),
-                                         "horizontalAlignment": text("left"), "leftMargin": num(14)},
+                                         "horizontalAlignment": text("left"), "leftMargin": num(12)},
                           "selector": {"id": "default"}},
                          {"properties": {"fontColor": color(WHITE)}, "selector": {"id": "hover"}}]},
             "visualContainerObjects": {
@@ -1297,16 +1300,43 @@ def chrome(page: str, title: str) -> list[tuple]:
     """Sidebar, navigation and header common to all pages."""
     items = [
         ("sidebar", 0, 0, 200, 720, v_rectangle(NAVY)),
-        ("brand", 12, 14, 180, 70, v_textbox([[("AQMI", 22, WHITE, FONT_SEMIBOLD)],
+        ("brand", 12, 14, 180, 78, v_textbox([[("AQMI", 22, WHITE, FONT_SEMIBOLD)],
                                                [("AEROQ MRO · Quality Office", 9, AERO_LIGHT, FONT)]])),
         ("footer", 12, 628, 180, 80, v_textbox([[("Synthetic data · fictitious company", 8, GREY_LIGHT, FONT)],
                                                 [("Portfolio project. Not a certified system.", 8, GREY_LIGHT, FONT)]])),
-        ("header", X0, 8, 620, 62, v_textbox([[(title, 18, NAVY, FONT_SEMIBOLD)],
-                                               [(PAGE_SUBTITLES[page] + "  ·  Data as of 31 Oct 2026", 9.5, GREY, FONT)]])),
+        ("header", X0, 8, 620, 66, v_textbox([[(title, 17, NAVY, FONT_SEMIBOLD)],
+                                               [(PAGE_SUBTITLES[page] + "  ·  Data as of 31 Oct 2026", 9, GREY, FONT)]])),
     ]
     for i, (target, label) in enumerate(PAGES):
-        items.append((f"nav{i + 1:02d}", 12, 104 + i * 44, 176, 36, v_nav_button(label, target, target == page)))
+        items.append((f"nav{i + 1:02d}", 12, 104 + i * 44, 184, 36, v_nav_button(label, target, target == page)))
     return items
+
+
+# Charts whose axis must not show the "(Blank)" member. It appears when fact rows have
+# no date for the relationship used by a measure (e.g. orders not finished yet), or
+# no aircraft (non-conformities not related to an aircraft).
+NOT_BLANK_AXES = {
+    **{key: ("Dim_Date", "Month Label") for key in [
+        ("p01executive", "trend"), ("p02quality", "bySeverity"), ("p03capa", "backlog"),
+        ("p04documents", "compliance"), ("p05inventory", "accuracy"), ("p06maintenance", "completion"),
+        ("p07aircraft", "monthly")]},
+    ("p07aircraft", "byAircraft"): ("Dim_Aircraft", "Registration"),
+}
+
+
+def not_blank_filter(entity: str, prop: str, visual_id: str) -> dict:
+    """Visual-level 'is not blank' filter on the axis column."""
+    col = lambda src: {"Column": {"Expression": {"SourceRef": src}, "Property": prop}}
+    return {
+        "name": uuid.uuid5(uuid.NAMESPACE_URL, f"aqmi/{visual_id}/notblank").hex[:20],
+        "field": col({"Entity": entity}),
+        "type": "Advanced",
+        "filter": {"Version": 2, "From": [{"Name": "x", "Entity": entity, "Type": 0}],
+                   "Where": [{"Condition": {"Not": {"Expression": {"Comparison": {
+                       "ComparisonKind": 0, "Left": col({"Source": "x"}),
+                       "Right": {"Literal": {"Value": "null"}}}}}}}]},
+        "howCreated": "Auto",
+    }
 
 
 def build_report(root: Path) -> None:
@@ -1352,7 +1382,10 @@ def build_report(root: Path) -> None:
         z = 0
         for name, x, y, w, h, visual in chrome(page, title) + page_content(page):
             z += 1000
-            write_json(folder / "visuals" / name / "visual.json", container(name, x, y, w, h, z, visual))
+            item = container(name, x, y, w, h, z, visual)
+            if (page, name) in NOT_BLANK_AXES:
+                item["filterConfig"] = {"filters": [not_blank_filter(*NOT_BLANK_AXES[(page, name)], f"{page}/{name}")]}
+            write_json(folder / "visuals" / name / "visual.json", item)
     theme_dir = rp / "StaticResources" / "RegisteredResources"
     theme_dir.mkdir(parents=True)
     write_json(theme_dir / THEME_FILE, theme())
