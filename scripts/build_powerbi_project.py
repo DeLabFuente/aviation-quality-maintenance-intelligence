@@ -603,7 +603,7 @@ RETURN
     ("7. Audit & Data Quality", "Audit Events", "#,0", "Changes recorded in the audit trail.",
      "COALESCE ( COUNTROWS ( Fact_AuditEvents ), 0 )"),
     ("7. Audit & Data Quality", "Audit Events (Label)", None,
-     "Audit Events as text (17,383): the new card visual abbreviates numbers (17K) whatever the format string.",
+     "Audit Events as text (e.g. 17,746): the new card visual abbreviates numbers (17K) whatever the format string.",
      'FORMAT ( [Audit Events], "#,0" )'),
     ("7. Audit & Data Quality", "Data Quality Score (Rules Passed)", "0.0%", "Validation rules passed / rules executed (Phase 5).",
      "DIVIDE ( MAX ( Model_Info[Data Quality Score] ), 100 )"),
@@ -1092,7 +1092,8 @@ def v_cards(measures: list[tuple]) -> dict:
 
 
 def v_chart(kind: str, category: tuple, y: list, title: str, subtitle: str | None = None, series: tuple | None = None,
-            y2: list | None = None, sort: tuple | None = None, descending: bool = True, labels: bool = False) -> dict:
+            y2: list | None = None, sort: tuple | None = None, descending: bool = True, labels: bool = False,
+            axis_width: int | None = None) -> dict:
     state = {"Category": role([category], category=True), "Y": role(y)}
     if series:
         state["Series"] = role([series])
@@ -1105,6 +1106,8 @@ def v_chart(kind: str, category: tuple, y: list, title: str, subtitle: str | Non
     objects = {}
     if labels:
         objects["labels"] = [{"properties": {"show": boolean(True), "fontSize": num(8), "color": color(GREY)}}]
+    if axis_width:   # maximum share of the visual (%) for the category labels, so long names are not cut (Phase 9)
+        objects["categoryAxis"] = [{"properties": {"maxMarginFactor": integer(axis_width)}}]
     if kind in ("clusteredBarChart", "clusteredColumnChart") and not series:
         objects["dataPoint"] = [{"properties": {"fill": color(AERO)}}]
     if kind == "lineClusteredColumnComboChart":
@@ -1173,13 +1176,13 @@ def page_content(page: str) -> list[tuple]:
             ("slicer1", 1060, 14, 204, 52, v_slicer(*PERIOD_SLICER)),
             ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([M("Open Non-Conformities"), M("Overdue Corrective Actions"),
                                                         M("Document Compliance Rate"), M("Stock Availability"),
-                                                        M("Maintenance Order Completion Rate")])),
+                                                        L_(M("Maintenance Order Completion Rate"), "Order Completion Rate")])),
             ("trend", X0, MAIN_Y, LEFT_W, MAIN_H, v_chart(
                 "lineClusteredColumnComboChart", month, [M("Total Quality Incidents")],
                 "Non-conformities per month", "Columns: detected · Line: per 100 completed work orders",
                 y2=[M("Non-Conformity Rate")])),
             ("scorecard", RIGHT_X, MAIN_Y, RIGHT_W, MAIN_H + 12 + BOTTOM_H, v_table(
-                [L_(C("Dim_KPI", "area"), "Area"), L_(C("Dim_KPI", "kpi_name"), "Indicator"),
+                [L_(C("Dim_KPI", "kpi_id"), "KPI"), L_(C("Dim_KPI", "kpi_name"), "Indicator"),
                  L_(M("KPI Display Value"), "Value"), L_(C("Dim_KPI", "target_label"), "Target*"),
                  L_(M("KPI Status Label"), "Status")],
                 "KPI scorecard", "*Fictitious internal targets of AEROQ MRO, not regulatory thresholds",
@@ -1203,7 +1206,7 @@ def page_content(page: str) -> list[tuple]:
             ("pareto", RIGHT_X, MAIN_Y, RIGHT_W, MAIN_H, v_chart(
                 "clusteredBarChart", C("Dim_IncidentCategory", "category_name"), [M("Total Quality Incidents")],
                 "Recurring problems by category", "Pareto: highest first", sort=M("Total Quality Incidents"),
-                labels=True)),
+                labels=True, axis_width=45)),
             ("resolution", X0, BOTTOM_Y, LEFT_W, BOTTOM_H, v_chart(
                 "clusteredColumnChart", C("Dim_Department", "department_code"), [M("Average Resolution Time")],
                 "Average resolution time by department (days)", "Non-conformities closed in the period",
@@ -1217,7 +1220,8 @@ def page_content(page: str) -> list[tuple]:
         return [
             ("slicer1", 852, 14, 204, 52, v_slicer(*PERIOD_SLICER)),
             ("slicer2", 1060, 14, 204, 52, v_slicer(C("Dim_Department", "department_label"), "Department")),
-            ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([M("Actions Pending Implementation"), M("Overdue Corrective Actions"),
+            ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([L_(M("Actions Pending Implementation"), "Pending Implementation"),
+                                                        M("Overdue Corrective Actions"),
                                                         M("Corrective Action Closure Rate"), M("Effectiveness Rate"),
                                                         M("Rescheduled Actions")])),
             ("byStatus", X0, MAIN_Y, LEFT_W, MAIN_H, v_chart(
@@ -1235,7 +1239,8 @@ def page_content(page: str) -> list[tuple]:
                 "Open actions", "At the cut-off date · most overdue first", sort=M("Open Action Days Overdue"))),
             # Lessons learned block (Phase 9): the last step of the improvement cycle
             ("lessonCards", RIGHT_X, BOTTOM_Y, RIGHT_W, LESSON_CARDS_H, v_cards(
-                [M("Lesson Incorporation Rate"), M("Lessons Pending Incorporation")])),
+                [L_(M("Lesson Incorporation Rate"), "Incorporation Rate"),
+                 L_(M("Lessons Pending Incorporation"), "Pending Incorporation")])),
             ("lessons", RIGHT_X, BOTTOM_Y + LESSON_CARDS_H + 12, RIGHT_W, BOTTOM_H - LESSON_CARDS_H - 12, v_table(
                 [L_(C("Fact_Lessons", "lesson_number"), "Lesson"), C("Fact_Lessons", "status"),
                  L_(C("Fact_Lessons", "incorporated_in"), "Incorporated in"),
@@ -1258,7 +1263,7 @@ def page_content(page: str) -> list[tuple]:
                 "clusteredBarChart", C("Fact_DocumentVerifications", "verification_type"),
                 [M("Discrepancy Rate (All Verifications)")], "Verifications with discrepancies, by type",
                 "Internal audits target risk areas: excluded from DOC-02", sort=M("Discrepancy Rate (All Verifications)"),
-                labels=True)),
+                labels=True, axis_width=45)),
             ("expired", X0, BOTTOM_Y, W, BOTTOM_H, v_table(
                 [L_(C("Dim_Document", "document_code"), "Document"), C("Dim_Document", "title"),
                  L_(C("Dim_Document", "document_type"), "Type"), L_(C("Dim_Document", "owner_department_code"), "Owner"),
@@ -1294,9 +1299,11 @@ def page_content(page: str) -> list[tuple]:
         return [
             ("slicer1", 852, 14, 204, 52, v_slicer(*PERIOD_SLICER)),
             ("slicer2", 1060, 14, 204, 52, v_slicer(C("Fact_MaintenanceOrders", "maintenance_type"), "Maintenance type")),
-            ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([M("Open Work Orders"), M("Maintenance Order Completion Rate"),
-                                                        M("Average Maintenance Delay"), M("Work Orders Blocked by Material"),
-                                                        M("Work Orders Blocked by Documentation")])),
+            ("cards", X0, CARDS_Y, W, CARDS_H, v_cards([M("Open Work Orders"),
+                                                        L_(M("Maintenance Order Completion Rate"), "Order Completion Rate"),
+                                                        M("Average Maintenance Delay"),
+                                                        L_(M("Work Orders Blocked by Material"), "Blocked by Material"),
+                                                        L_(M("Work Orders Blocked by Documentation"), "Blocked by Documentation")])),
             ("completion", X0, MAIN_Y, LEFT_W, MAIN_H, v_chart(
                 "lineClusteredColumnComboChart", month, [M("Completed Orders")],
                 "Work orders completed and on-time rate", "Columns: completed · Line: completed by the planned date",

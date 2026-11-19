@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "_Measures.Lesson Incorporation Rate",
-              "nativeQueryRef": "Lesson Incorporation Rate"
+              "nativeQueryRef": "Lesson Incorporation Rate",
+              "displayName": "Incorporation Rate"
             },
             {
               "field": {
@@ -41,7 +42,8 @@
                 }
               },
               "queryRef": "_Measures.Lessons Pending Incorporation",
-              "nativeQueryRef": "Lessons Pending Incorporation"
+              "nativeQueryRef": "Lessons Pending Incorporation",
+              "displayName": "Pending Incorporation"
             }
           ]
         }

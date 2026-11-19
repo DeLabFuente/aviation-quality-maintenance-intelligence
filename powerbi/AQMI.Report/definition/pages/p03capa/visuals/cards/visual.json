@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "_Measures.Actions Pending Implementation",
-              "nativeQueryRef": "Actions Pending Implementation"
+              "nativeQueryRef": "Actions Pending Implementation",
+              "displayName": "Pending Implementation"
             },
             {
               "field": {

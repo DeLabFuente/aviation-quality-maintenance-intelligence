@@ -191,6 +191,26 @@ def test_saved_project_in_the_repository_passes_the_validator():
     assert result["stats"]["pages"] == 8
 
 
+def test_saved_project_keeps_the_power_bi_desktop_conventions():
+    """Files edited outside Desktop (Phase 9) must look exactly as Desktop writes them:
+    CRLF line endings everywhere, JSON without a final line break, TMDL ending in a blank line."""
+    from config import settings
+    if not (settings.POWERBI_DIR / "AQMI.pbip").exists():
+        pytest.skip("no Power BI project in the repository")
+    problems = []
+    for path in sorted(settings.POWERBI_DIR.rglob("*")):
+        if not path.is_file() or path.name in (".gitignore", ".gitkeep"):
+            continue
+        data = path.read_bytes()
+        if data.count(b"\n") != data.count(b"\r\n"):
+            problems.append(f"{path.name}: line endings are not all CRLF")
+        if path.suffix == ".tmdl" and not data.endswith(b"\r\n\r\n"):
+            problems.append(f"{path.name}: TMDL must end with a blank line")
+        if path.suffix != ".tmdl" and data.endswith(b"\n"):
+            problems.append(f"{path.name}: JSON must not end with a line break")
+    assert problems == []
+
+
 def test_date_and_aircraft_axes_hide_the_blank_member():
     """Charts by month or by aircraft must not show a "(Blank)" category (Phase 8 fix)."""
     from config import settings

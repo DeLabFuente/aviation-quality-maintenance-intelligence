@@ -2,13 +2,13 @@
 AQMI — Phase 7: export the analytical model (star schema) for Power BI.
 
 What it does:
-    1. QUALITY GATE: runs the 82 validations and the KPI checks first. If either
+    1. QUALITY GATE: runs the 89 validations and the KPI checks first. If either
        fails, nothing is exported, so Power BI never shows unchecked data.
     2. Runs every query in sql/analytics/ (one file per table of the star schema:
        Dim_* are the dimensions, Fact_* the facts) and writes one CSV per table.
     3. Adds the tables that come from the controls themselves:
-         Dim_KPI, Fact_KPI_Monthly             the 18 indicators as calculated in SQL
-         Fact_ValidationResults / Findings     the result of the 82 validation rules
+         Dim_KPI, Fact_KPI_Monthly             the 19 indicators as calculated in SQL
+         Fact_ValidationResults / Findings     the result of the 89 validation rules
          Model_Info                            cut-off date, gate status, disclaimer
     4. Writes data/processed/_schema.json: the columns and data type of every
        table. The Power BI project and the tests use it.

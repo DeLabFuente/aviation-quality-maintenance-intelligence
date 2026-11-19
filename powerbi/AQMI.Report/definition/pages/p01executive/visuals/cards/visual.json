@@ -83,7 +83,8 @@
                 }
               },
               "queryRef": "_Measures.Maintenance Order Completion Rate",
-              "nativeQueryRef": "Maintenance Order Completion Rate"
+              "nativeQueryRef": "Maintenance Order Completion Rate",
+              "displayName": "Order Completion Rate"
             }
           ]
         }

@@ -41,7 +41,8 @@
                 }
               },
               "queryRef": "_Measures.Maintenance Order Completion Rate",
-              "nativeQueryRef": "Maintenance Order Completion Rate"
+              "nativeQueryRef": "Maintenance Order Completion Rate",
+              "displayName": "Order Completion Rate"
             },
             {
               "field": {
@@ -69,7 +70,8 @@
                 }
               },
               "queryRef": "_Measures.Work Orders Blocked by Material",
-              "nativeQueryRef": "Work Orders Blocked by Material"
+              "nativeQueryRef": "Work Orders Blocked by Material",
+              "displayName": "Blocked by Material"
             },
             {
               "field": {
@@ -83,7 +85,8 @@
                 }
               },
               "queryRef": "_Measures.Work Orders Blocked by Documentation",
-              "nativeQueryRef": "Work Orders Blocked by Documentation"
+              "nativeQueryRef": "Work Orders Blocked by Documentation",
+              "displayName": "Blocked by Documentation"
             }
           ]
         }

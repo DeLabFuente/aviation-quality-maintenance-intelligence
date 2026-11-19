@@ -23,12 +23,12 @@
                       "Entity": "Dim_KPI"
                     }
                   },
-                  "Property": "Area"
+                  "Property": "KPI ID"
                 }
               },
-              "queryRef": "Dim_KPI.Area",
-              "nativeQueryRef": "Area",
-              "displayName": "Area"
+              "queryRef": "Dim_KPI.KPI ID",
+              "nativeQueryRef": "KPI ID",
+              "displayName": "KPI"
             },
             {
               "field": {

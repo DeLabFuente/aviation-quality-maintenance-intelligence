@@ -39,36 +39,36 @@ from scripts.generator.engine import add_workdays, fmt_d, fmt_dt, parse_d
 # (title, lesson_text, recommendation) by incident category. {action} is the action title.
 LESSON_TEXTS = {
     "DOC": ("Document errors reach the point of use",
-            "Errors in documents were only found when the document was used. The action ({action}) worked "
-            "because the check was moved to the moment of issue.",
+            "Errors in documents were only found when the document was used. The action ({action}) "
+            "was effective.",
             "Check new and revised documents against their source before they are released."),
     "REC": ("Records are more accurate when filled in at the time of the task",
             "Recording errors appeared when data was transcribed later from memory or notes. "
-            "The action ({action}) reduced them.",
+            "The action ({action}) was effective.",
             "Record data at the time of the task and make mandatory fields evident on every form."),
     "INV": ("Count differences come from open bins and unrecorded movements",
             "Stock differences were traced to movements not recorded at the time they happened. "
-            "The action ({action}) addressed the cause.",
+            "The action ({action}) was effective.",
             "Record every stock movement when it happens and keep standard parts in closed bins."),
     "MNC": ("Non-conforming material must be segregated at once",
             "Non-conforming items stayed mixed with serviceable stock until they were identified. "
-            "The action ({action}) closed the gap.",
+            "The action ({action}) was effective.",
             "Segregate and label suspect material immediately and record the decision in the system."),
     "PRC": ("Procedure changes need a briefing, not only a new revision",
             "Staff kept following the previous practice after the procedure changed. "
-            "The action ({action}) showed that a briefing with attendance record is needed.",
+            "The action ({action}) was effective.",
             "Brief affected staff on every procedure revision and keep the attendance record."),
     "TRC": ("Traceability depends on withdrawing obsolete copies",
             "Obsolete copies at the point of use broke the traceability of records. "
-            "The action ({action}) restored it.",
+            "The action ({action}) was effective.",
             "Withdraw obsolete copies when a revision comes into force and verify every point of use."),
     "MNT": ("Missing records are found late when orders are closed in a hurry",
             "Incomplete work order records were detected at closure, not during the work. "
-            "The action ({action}) reduced them.",
+            "The action ({action}) was effective.",
             "Review the work order records before the order is completed, not only at closure."),
     "SUP": ("Late deliveries must be escalated before they block work orders",
             "Supply problems became work order holds because late deliveries were not followed up early. "
-            "The action ({action}) improved the follow-up.",
+            "The action ({action}) was effective.",
             "Follow up urgent purchase orders before the promised date and escalate early."),
     "TREND": ("Trend reviews find problems before they become non-conformities",
               "The management review trend analysis detected a pattern before it produced findings. "

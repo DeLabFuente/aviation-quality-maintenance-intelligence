@@ -2,8 +2,8 @@
 AQMI — Complete pipeline with a single command.
 
     1. Build the database and generate the synthetic data   (generate_data.py)
-    2. Run the 82 validations — QUALITY GATE                 (run_validations.py)
-    3. Calculate and check the 18 KPIs                       (run_kpis.py)
+    2. Run the 89 validations — QUALITY GATE                 (run_validations.py)
+    3. Calculate and check the 19 KPIs                       (run_kpis.py)
     4. Export the star schema for Power BI                   (export_powerbi.py)
     5. Check the Power BI project, if it exists              (validate_powerbi.py)
 
