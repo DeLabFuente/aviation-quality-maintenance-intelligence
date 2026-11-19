@@ -7,7 +7,7 @@
 |---|---|
 | Period | 2024-11 to 2026-10 (24 months) |
 | Cut-off date | 2026-10-31 |
-| Report run | 2026-11-19 22:20 |
+| Report run | 2026-11-19 23:50 |
 | Indicators | 19 |
 | **KPI checks (K rules)** | **✅ PASSED** |
 
@@ -69,7 +69,7 @@ Traffic light: 🟢 target met · 🟡 between target and warning level · 🔴 
 | K02 | A zero denominator gives 'no data', never 0 % | ✅ PASS | 0 |
 | K04 | The parts add up to the total | ✅ PASS | 0 |
 | K05 | Each state-at-a-date KPI, rebuilt from history, equals the current state at the cut-off date | ✅ PASS | 0 |
-| K03 | Power BI shows the same value as the SQL reference query | Phase 9 | — |
+| K03 | Power BI shows the same value as the SQL reference query | ✅ Checked in Power BI Desktop (Audit & Traceability page, Phase 9): 19 of 19 match | — |
 
 ## Last 12 months
 

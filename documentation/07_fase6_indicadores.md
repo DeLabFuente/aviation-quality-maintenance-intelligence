@@ -404,7 +404,7 @@ Un indicador mal calculado es peor que no tener indicador. Por eso `run_kpis.py`
 |---|---|---|---|
 | **K01** | Todo porcentaje está entre 0 y 100; ningún valor es negativo | Se revisan los 450 valores (18 × 25) | ✅ |
 | **K02** | Un denominador cero da "sin datos", nunca 0 % | Para cada fila: denominador 0 ⇒ valor vacío; denominador > 0 ⇒ valor presente | ✅ |
-| **K03** | Power BI muestra el mismo valor que la consulta SQL | Prueba documentada en la **Fase 9** | Pendiente |
+| **K03** | Power BI muestra el mismo valor que la consulta SQL | Prueba documentada en la **Fase 9** | ✅ 19 de 19 coinciden (19/11/2026) |
 | **K04** | Las partes suman el total | La suma de los 24 meses = TOTAL (numerador y denominador) en todos los indicadores de flujo. Además, las no conformidades por categoría, por gravedad y por departamento suman el total | ✅ |
 | **K05** *(nueva)* | La foto reconstruida desde la historia coincide con el estado actual | Para los 8 indicadores de foto, el valor en la fecha de corte calculado desde la historia (y la auditoría) debe ser idéntico al que dan las vistas del estado actual | ✅ |
 

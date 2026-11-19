@@ -14,6 +14,7 @@ The technical documentation is written in Spanish, one document per phase of the
 | 07 | [Fase 6 — Indicadores](07_fase6_indicadores.md) | Definition of the 18 KPIs (plus LRN-01, Phase 9), fictitious targets and the KPI checks |
 | 08 | [Fase 7 — Power BI](08_fase7_power_bi.md) | Star schema, DAX measures, the eight pages, visual identity and how the project is checked |
 | 09 | [Fase 8 — Documentación y GitHub](09_fase8_documentacion_y_github.md) | README, case study, pre-publication check, continuous integration and how the repository is published |
+| 10 | [Fase 9 — Pruebas finales y revisión profesional](10_fase9_pruebas_y_revision.md) | Windows test, professional review, visual polish, K03 check in Power BI, new screenshots and PDF, release v1.0 |
 | 09b | [Fase 9 — Lecciones aprendidas](09b_fase9_lecciones_aprendidas.md) | The lessons-learned register: design, rules L01–L07, data generation, KPI LRN-01, Power BI block, tests and the decisions taken |
 
 Generated reports are in [`../reports`](../reports): validation report, KPI report and pre-publication check.

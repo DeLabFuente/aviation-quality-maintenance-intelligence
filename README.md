@@ -313,7 +313,7 @@ The project was built in nine phases, each closed with its own document, its tes
 | 6 | KPIs | [07](documentation/07_fase6_indicadores.md) |
 | 7 | Power BI model and dashboards | [08](documentation/08_fase7_power_bi.md) |
 | 8 | Documentation and GitHub presentation | [09](documentation/09_fase8_documentacion_y_github.md) |
-| 9 | Final tests, professional review and lessons-learned register | [09b](documentation/09b_fase9_lecciones_aprendidas.md) |
+| 9 | Final tests, professional review and lessons-learned register | [10](documentation/10_fase9_pruebas_y_revision.md) · [09b](documentation/09b_fase9_lecciones_aprendidas.md) |
 
 Principles applied throughout:
 

@@ -15,7 +15,7 @@ What it does:
               incidents by category, severity and department = total incidents)
          K05  each "state at a date" indicator, rebuilt from the history, gives at
               the cut-off date the same value as the current state of the data
-       (K03, Power BI = SQL, is checked in Phase 9.)
+       (K03, Power BI = SQL, is checked in Power BI itself: done in Phase 9, 19 of 19 match.)
     4. Writes three reports in reports/:
          kpi_report.md     readable summary with the traffic lights
          kpi_summary.csv   one row per KPI (headline value, target, status)
@@ -379,7 +379,8 @@ def _markdown(s: dict) -> str:
     for rule_id, text in K_RULES:
         findings = s["checks"][rule_id]
         lines.append(f"| {rule_id} | {text} | {'✅ PASS' if not findings else '❌ FAIL'} | {len(findings)} |")
-    lines.append("| K03 | Power BI shows the same value as the SQL reference query | Phase 9 | — |")
+    lines.append("| K03 | Power BI shows the same value as the SQL reference query | ✅ Checked in Power BI Desktop "
+                 "(Audit & Traceability page, Phase 9): 19 of 19 match | — |")
     failures = [(r, f) for r, items in s["checks"].items() for f in items]
     errors = [k for k in s["kpis"] if k.error]
     if failures or errors:

@@ -1,2 +1,2 @@
 as_of_date,period_start,generated_at,random_seed,rules_executed,rules_passed,rules_with_warnings,critical_failures,planted_expected,planted_detected,data_quality_score,quality_gate,kpi_checks,disclaimer
-2026-10-31,2024-11-01,2026-11-19 22:20:02,145,89,80,9,0,9,9,89.9,PASSED,PASSED,"AEROQ MRO is a fictitious company. All data is synthetic. Targets are fictitious internal targets, not regulatory thresholds. Not a certified system."
+2026-10-31,2024-11-01,2026-11-19 23:50:44,145,89,80,9,0,9,9,89.9,PASSED,PASSED,"AEROQ MRO is a fictitious company. All data is synthetic. Targets are fictitious internal targets, not regulatory thresholds. Not a certified system."

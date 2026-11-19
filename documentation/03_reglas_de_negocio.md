@@ -168,13 +168,13 @@ Las reglas generales también cubren la tabla nueva: formato y unicidad de `less
 
 ## 9. Reglas de los indicadores (K)
 
-Se registraron en la Fase 2 para que el diseño las tuviera en cuenta. **Desde la Fase 6** las ejecuta `scripts/run_kpis.py` (K01, K02, K04 y K05); K03 se comprueba en la Fase 9. Detalle en el documento `07_fase6_indicadores.md`.
+Se registraron en la Fase 2 para que el diseño las tuviera en cuenta. **Desde la Fase 6** las ejecuta `scripts/run_kpis.py` (K01, K02, K04 y K05). K03 se comprobó en Power BI Desktop el 19/11/2026 (Fase 9): los 19 indicadores coinciden. Detalle en el documento `07_fase6_indicadores.md`.
 
 | ID | Regla | Mecanismo | Gravedad |
 |---|---|---|---|
 | K01 | Todo porcentaje está entre 0 y 100 | VALIDACIÓN | CRITICAL |
 | K02 | Ningún KPI se calcula con denominador 0 sin tratamiento explícito (se muestra "sin datos", no 0 %) | VALIDACIÓN | CRITICAL |
-| K03 | El valor de cada KPI en Power BI coincide con su consulta SQL de referencia | Prueba manual documentada (Fase 9) | CRITICAL |
+| K03 | El valor de cada KPI en Power BI coincide con su consulta SQL de referencia | Prueba manual documentada (Fase 9: 19 de 19 coinciden) | CRITICAL |
 | K04 | La suma por categorías coincide con el total (p. ej. incidencias por categoría = total de incidencias) | VALIDACIÓN | CRITICAL |
 | K05 | Cada indicador de "foto a fecha", reconstruido desde la historia y la auditoría, coincide en la fecha de corte con el estado actual de los datos (añadida en la Fase 6) | VALIDACIÓN | CRITICAL |
 
