@@ -58,4 +58,16 @@ WHERE x.effectiveness_check_date < e.hire_date OR (e.termination_date IS NOT NUL
 UNION ALL
 SELECT 'CAPA_Progress_Updates #' || x.update_id AS record_ref, 'CAPA_Progress_Updates.created_by: ' || e.employee_code || ' was not employed on ' || x.update_date AS detail
 FROM CAPA_Progress_Updates x JOIN Employees e ON e.employee_id = x.created_by
-WHERE x.update_date < e.hire_date OR (e.termination_date IS NOT NULL AND x.update_date > e.termination_date);
+WHERE x.update_date < e.hire_date OR (e.termination_date IS NOT NULL AND x.update_date > e.termination_date)
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.proposed_by: ' || e.employee_code || ' was not employed on ' || x.proposed_date AS detail
+FROM Lessons_Learned x JOIN Employees e ON e.employee_id = x.proposed_by
+WHERE x.proposed_date < e.hire_date OR (e.termination_date IS NOT NULL AND x.proposed_date > e.termination_date)
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.approved_by: ' || e.employee_code || ' was not employed on ' || x.approved_date AS detail
+FROM Lessons_Learned x JOIN Employees e ON e.employee_id = x.approved_by
+WHERE x.approved_date < e.hire_date OR (e.termination_date IS NOT NULL AND x.approved_date > e.termination_date)
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.rejected_by: ' || e.employee_code || ' was not employed on ' || x.rejected_date AS detail
+FROM Lessons_Learned x JOIN Employees e ON e.employee_id = x.rejected_by
+WHERE x.rejected_date < e.hire_date OR (e.termination_date IS NOT NULL AND x.rejected_date > e.termination_date);

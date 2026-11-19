@@ -3,7 +3,7 @@
 **Proyecto:** Aviation Quality & Maintenance Intelligence (AQMI)
 **Documento:** `documentation/03_reglas_de_negocio.md`
 **Documento relacionado:** `documentation/02_diccionario_de_datos.md`
-**Estado:** Aprobado el 17/11/2026
+**Estado:** Aprobado el 17/11/2026 (ampliado en la Fase 9: grupo L, lecciones aprendidas, sección 7 bis)
 **Fecha:** 17/11/2026
 
 > Las reglas marcadas como **política interna ficticia** son decisiones inventadas para AEROQ MRO con fines demostrativos. **No son requisitos normativos.**
@@ -140,12 +140,28 @@
 | C10 | Acción abierta con la fecha límite superada (acción vencida) | N | VALIDACIÓN | WARNING |
 | C11 | Los avances están entre la creación y el cierre de la acción | N | VALIDACIÓN | CRITICAL |
 
+## 7 bis. Lecciones aprendidas (L) — Fase 9
+
+El registro de lecciones aprendidas (`Lessons_Learned`) cierra el ciclo de mejora: lo aprendido al tratar una acción se convierte en un cambio de un documento controlado. Es una **práctica general de gestión de la calidad** que AEROQ MRO aplica de forma voluntaria; **no se presenta como un requisito normativo**.
+
+| ID | Regla | Tipo | Mecanismo | Gravedad |
+|---|---|---|---|---|
+| L01 | Una lección solo se propone a partir de una acción **cerrada y con la eficacia verificada**, en su fecha de cierre o después. Las acciones NOT_EFFECTIVE también dejan lección | N | VALIDACIÓN | CRITICAL |
+| L02 | Quien aprueba o rechaza una lección no es quien la propuso | P | CHECK | CRITICAL |
+| L03 | El estado coincide con la decisión registrada: APPROVED e INCORPORATED tienen aprobación; REJECTED tiene rechazo **con motivo**; INCORPORATED tiene revisión y fecha de incorporación | N | CHECK | CRITICAL |
+| L04 | Orden de fechas: propuesta ≤ decisión ≤ incorporación | N | CHECK | CRITICAL |
+| L05 | La revisión incorporada pertenece a un documento **controlado** de tipo procedimiento, instrucción de trabajo o formulario | P | VALIDACIÓN | CRITICAL |
+| L06 | La revisión incorporada estaba **en vigor** en la fecha de incorporación y entró en vigor **después de la aprobación** de la lección. *Excepción provisional, pendiente de decisión:* la revisión que es el resultado de la propia acción (en vigor entre la creación y el cierre de la acción) | N | VALIDACIÓN | CRITICAL |
+| L07 | Lección aprobada sin incorporar a ningún documento más de 90 días después de su aprobación (**política interna ficticia**) | P | VALIDACIÓN | WARNING |
+
+Las reglas generales también cubren la tabla nueva: formato y unicidad de `lesson_number` (G02), fechas válidas (G03), ninguna fecha posterior al corte (G04) ni anterior al inicio del periodo (G05), personas de alta en la fecha en que actúan (G06), autor del registro (G10), auditoría de creación y de cambios de estado (A01, A02, A03) y eventos que apuntan a registros existentes (A05). El borrado físico está bloqueado por trigger (G09).
+
 ## 8. Auditoría y trazabilidad (A)
 
 | ID | Regla | Tipo | Mecanismo | Gravedad |
 |---|---|---|---|---|
 | A01 | Todo registro de operación tiene su evento INSERT en `Audit_Log` | N | VALIDACIÓN | WARNING |
-| A02 | Todo cambio de estado de incidencias, acciones y órdenes tiene su evento UPDATE | N | VALIDACIÓN | WARNING |
+| A02 | Todo cambio de estado de incidencias, acciones, órdenes y lecciones aprendidas tiene su evento UPDATE | N | VALIDACIÓN | WARNING |
 | A03 | La cadena de cambios de un campo es coherente: el valor nuevo de un evento es el valor anterior del siguiente, y el último coincide con el valor actual | N | VALIDACIÓN | CRITICAL |
 | A04 | No existe ningún evento DELETE | P | VALIDACIÓN | CRITICAL |
 | A05 | `Audit_Log.record_id` apunta a un registro existente de `table_name` | E | VALIDACIÓN | CRITICAL |
@@ -172,10 +188,13 @@ Se registraron en la Fase 2 para que el diseño las tuviera en cuenta. **Desde l
 | I — Materiales | 16 | 2 | 14 |
 | Q — No conformidades | 13 | 5 | 8 |
 | C — CAPA | 11 | 6 | 5 |
+| L — Lecciones aprendidas (Fase 9) | 7 | 4 | 3 |
 | A — Auditoría | 5 | 0 | 5 |
 | K — Indicadores | 5 | 0 | 5 |
-| **Total** | **87** | **33** | **54** |
+| **Total** | **94** | **37** | **57** |
 
 *(En algunas reglas actúan los dos mecanismos; se cuentan en el principal.)*
 
 **Estado tras la Fase 5.** Las 82 reglas de los grupos G a A tienen su propia consulta en `sql/validation/` (un archivo por regla) y aparecen en el informe de validación (`reports/validation_report.md`) con su identificador, su gravedad y los registros que la incumplen. Las reglas que ya impone la base de datos también se comprueban con una consulta: así el control no depende de que el mecanismo de la base de datos esté activo. Las reglas K se implementaron en la Fase 6, junto con los indicadores (K03 se comprobará en la Fase 9); en esa fase se añadió la regla K05. El funcionamiento se explica en el documento `06_fase5_consultas_y_validaciones.md`.
+
+**Estado tras la Fase 9.** Se añaden las 7 reglas del grupo L (lecciones aprendidas). El informe de validación ejecuta ahora **89 reglas** (grupos G a A). Ver `09b_fase9_lecciones_aprendidas.md`.

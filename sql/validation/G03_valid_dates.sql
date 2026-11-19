@@ -158,4 +158,16 @@ SELECT movement_number AS record_ref, 'Inventory_Movements.shelf_life_expiry_dat
 UNION ALL
 SELECT movement_number AS record_ref, 'Inventory_Movements.created_at is not a valid date-time: ' || created_at AS detail FROM Inventory_Movements WHERE created_at IS NOT NULL AND datetime(created_at) IS NOT created_at
 UNION ALL
-SELECT 'Audit_Log #' || audit_id AS record_ref, 'Audit_Log.event_datetime is not a valid date-time: ' || event_datetime AS detail FROM Audit_Log WHERE event_datetime IS NOT NULL AND datetime(event_datetime) IS NOT event_datetime;
+SELECT 'Audit_Log #' || audit_id AS record_ref, 'Audit_Log.event_datetime is not a valid date-time: ' || event_datetime AS detail FROM Audit_Log WHERE event_datetime IS NOT NULL AND datetime(event_datetime) IS NOT event_datetime
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.proposed_date is not a valid date: ' || proposed_date AS detail FROM Lessons_Learned WHERE proposed_date IS NOT NULL AND date(proposed_date) IS NOT proposed_date
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.approved_date is not a valid date: ' || approved_date AS detail FROM Lessons_Learned WHERE approved_date IS NOT NULL AND date(approved_date) IS NOT approved_date
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.rejected_date is not a valid date: ' || rejected_date AS detail FROM Lessons_Learned WHERE rejected_date IS NOT NULL AND date(rejected_date) IS NOT rejected_date
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.incorporated_date is not a valid date: ' || incorporated_date AS detail FROM Lessons_Learned WHERE incorporated_date IS NOT NULL AND date(incorporated_date) IS NOT incorporated_date
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.created_at is not a valid date-time: ' || created_at AS detail FROM Lessons_Learned WHERE created_at IS NOT NULL AND datetime(created_at) IS NOT created_at
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.updated_at is not a valid date-time: ' || updated_at AS detail FROM Lessons_Learned WHERE updated_at IS NOT NULL AND datetime(updated_at) IS NOT updated_at;

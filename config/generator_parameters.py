@@ -95,6 +95,19 @@ CAPA_NOT_EFFECTIVE_PROB = 0.08
 EFFECTIVENESS_CHECK_DAYS = (20, 50)
 
 # -----------------------------------------------------------------------------
+# Lessons learned (Phase 9). Generated AFTER the simulation with a separate random
+# generator, so they never change the data above. Fictitious internal practice.
+# -----------------------------------------------------------------------------
+LESSONS_RANDOM_SALT = "lessons-learned"   # the lessons generator uses the seed + this text
+LESSON_PROB_EFFECTIVE = 0.35              # effective actions that leave a lesson (NOT_EFFECTIVE: all)
+LESSON_PROPOSAL_DAYS = (1, 10)            # working days from the action closure to the proposal
+LESSON_DECISION_DAYS = (3, 15)            # working days from the proposal to the approval or rejection
+LESSON_REJECTION_PROB = 0.10            # only lessons from effective actions can be rejected
+LESSON_COMPANY_SCOPE_PROB = 0.25          # lessons that apply to the whole company
+LESSON_LEFT_PENDING_PROB = 0.15           # approved lessons nobody has incorporated yet
+LESSON_INCORPORATION_WINDOW_DAYS = 180    # a document revision later than this is not linked to the lesson
+
+# -----------------------------------------------------------------------------
 # Planted discrepancies (WARNING level) to prove that the controls detect them
 # -----------------------------------------------------------------------------
 PLANTED_OBSOLETE_REVISION_LINKS = 3

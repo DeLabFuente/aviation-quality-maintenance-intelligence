@@ -22,4 +22,7 @@ SELECT x.movement_number AS record_ref, 'Inventory_Movements.movement_datetime =
 FROM Inventory_Movements x CROSS JOIN p WHERE substr(x.movement_datetime, 1, 10) < p.period_start
 UNION ALL
 SELECT x.action_number AS record_ref, 'CAPA_Actions.created_date = ' || x.created_date || ' is before the start of the period' AS detail
-FROM CAPA_Actions x CROSS JOIN p WHERE substr(x.created_date, 1, 10) < p.period_start;
+FROM CAPA_Actions x CROSS JOIN p WHERE substr(x.created_date, 1, 10) < p.period_start
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.proposed_date = ' || x.proposed_date || ' is before the start of the period' AS detail
+FROM Lessons_Learned x CROSS JOIN p WHERE substr(x.proposed_date, 1, 10) < p.period_start;

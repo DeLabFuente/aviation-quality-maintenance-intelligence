@@ -65,4 +65,7 @@ SELECT x.count_number AS record_ref, 'Stock_Counts: creation not recorded in Aud
 WHERE NOT EXISTS (SELECT 1 FROM Audit_Log a WHERE a.table_name = 'Stock_Counts' AND a.record_id = x.count_id AND a.action = 'INSERT')
 UNION ALL
 SELECT x.supplier_code AS record_ref, 'Suppliers: creation not recorded in Audit_Log' AS detail FROM Suppliers x
-WHERE NOT EXISTS (SELECT 1 FROM Audit_Log a WHERE a.table_name = 'Suppliers' AND a.record_id = x.supplier_id AND a.action = 'INSERT');
+WHERE NOT EXISTS (SELECT 1 FROM Audit_Log a WHERE a.table_name = 'Suppliers' AND a.record_id = x.supplier_id AND a.action = 'INSERT')
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned: creation not recorded in Audit_Log' AS detail FROM Lessons_Learned x
+WHERE NOT EXISTS (SELECT 1 FROM Audit_Log a WHERE a.table_name = 'Lessons_Learned' AND a.record_id = x.lesson_id AND a.action = 'INSERT');

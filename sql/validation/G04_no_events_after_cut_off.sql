@@ -73,4 +73,16 @@ SELECT x.employee_code AS record_ref, 'Employees.hire_date = ' || x.hire_date ||
 FROM Employees x CROSS JOIN p WHERE substr(x.hire_date, 1, 10) > p.as_of
 UNION ALL
 SELECT 'Document_Revisions #' || x.revision_id, 'Revision in force from ' || x.effective_date || ', after the cut-off date'
-FROM Document_Revisions x CROSS JOIN p WHERE x.lifecycle_status IN ('CURRENT', 'SUPERSEDED') AND x.effective_date > p.as_of;
+FROM Document_Revisions x CROSS JOIN p WHERE x.lifecycle_status IN ('CURRENT', 'SUPERSEDED') AND x.effective_date > p.as_of
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.proposed_date = ' || x.proposed_date || ' is after the cut-off date' AS detail
+FROM Lessons_Learned x CROSS JOIN p WHERE substr(x.proposed_date, 1, 10) > p.as_of
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.approved_date = ' || x.approved_date || ' is after the cut-off date' AS detail
+FROM Lessons_Learned x CROSS JOIN p WHERE substr(x.approved_date, 1, 10) > p.as_of
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.rejected_date = ' || x.rejected_date || ' is after the cut-off date' AS detail
+FROM Lessons_Learned x CROSS JOIN p WHERE substr(x.rejected_date, 1, 10) > p.as_of
+UNION ALL
+SELECT x.lesson_number AS record_ref, 'Lessons_Learned.incorporated_date = ' || x.incorporated_date || ' is after the cut-off date' AS detail
+FROM Lessons_Learned x CROSS JOIN p WHERE substr(x.incorporated_date, 1, 10) > p.as_of;

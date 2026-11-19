@@ -32,4 +32,6 @@ SELECT 'CAPA_Progress_Updates #' || update_id AS record_ref, 'CAPA_Progress_Upda
 UNION ALL
 SELECT count_number AS record_ref, 'Stock_Counts: created_by is empty' AS detail FROM Stock_Counts WHERE created_by IS NULL
 UNION ALL
-SELECT movement_number AS record_ref, 'Inventory_Movements: created_by is empty' AS detail FROM Inventory_Movements WHERE created_by IS NULL;
+SELECT movement_number AS record_ref, 'Inventory_Movements: created_by is empty' AS detail FROM Inventory_Movements WHERE created_by IS NULL
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned: created_by is empty' AS detail FROM Lessons_Learned WHERE created_by IS NULL;

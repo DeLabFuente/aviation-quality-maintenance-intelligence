@@ -25,4 +25,8 @@ WHERE e.table_name = 'Quality_Incidents' AND e.field_name = 'status' AND e.rn_la
 UNION ALL
 SELECT x.action_number, 'Last recorded status ' || e.new_value || ' differs from current status ' || x.status
 FROM ev e JOIN CAPA_Actions x ON x.action_id = e.record_id
-WHERE e.table_name = 'CAPA_Actions' AND e.field_name = 'status' AND e.rn_last = 1 AND e.new_value IS NOT x.status;
+WHERE e.table_name = 'CAPA_Actions' AND e.field_name = 'status' AND e.rn_last = 1 AND e.new_value IS NOT x.status
+UNION ALL
+SELECT x.lesson_number, 'Last recorded status ' || e.new_value || ' differs from current status ' || x.status
+FROM ev e JOIN Lessons_Learned x ON x.lesson_id = e.record_id
+WHERE e.table_name = 'Lessons_Learned' AND e.field_name = 'status' AND e.rn_last = 1 AND e.new_value IS NOT x.status;

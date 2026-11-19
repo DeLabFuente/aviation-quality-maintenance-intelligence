@@ -54,4 +54,8 @@ SELECT count_number, 'Stock_Counts.count_number is duplicated (' || COUNT(*) || 
 UNION ALL
 SELECT movement_number AS record_ref, 'Inventory_Movements.movement_number does not follow the format MV-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]' AS detail FROM Inventory_Movements WHERE movement_number NOT GLOB 'MV-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]'
 UNION ALL
-SELECT movement_number, 'Inventory_Movements.movement_number is duplicated (' || COUNT(*) || ' records)' FROM Inventory_Movements GROUP BY movement_number HAVING COUNT(*) > 1;
+SELECT movement_number, 'Inventory_Movements.movement_number is duplicated (' || COUNT(*) || ' records)' FROM Inventory_Movements GROUP BY movement_number HAVING COUNT(*) > 1
+UNION ALL
+SELECT lesson_number AS record_ref, 'Lessons_Learned.lesson_number does not follow the format LL-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]' AS detail FROM Lessons_Learned WHERE lesson_number NOT GLOB 'LL-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+UNION ALL
+SELECT lesson_number, 'Lessons_Learned.lesson_number is duplicated (' || COUNT(*) || ' records)' FROM Lessons_Learned GROUP BY lesson_number HAVING COUNT(*) > 1;

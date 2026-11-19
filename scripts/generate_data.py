@@ -4,6 +4,8 @@ AQMI — Phase 4: generate the coherent synthetic data of AEROQ MRO.
 What it does, in order:
     1. Rebuilds the empty database (same as scripts/build_database.py).
     2. Runs the simulation of 24 months of activity (01/11/2024 – 31/10/2026).
+       Then, with a separate random generator, adds the lessons learned (Phase 9)
+       without changing any record created by the simulation.
     3. Runs SQLite's integrity and foreign-key checks.
     4. Exports every table to data/synthetic/<table>.csv (UTF-8, readable in Excel).
     5. Writes data/synthetic/planted_discrepancies.csv: the small number of
@@ -26,6 +28,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from config import settings  # noqa: E402
 from scripts.build_database import build_database  # noqa: E402
 from scripts.common import get_connection, setup_logging  # noqa: E402
+from scripts.generator.lessons import LessonsLearned  # noqa: E402
 from scripts.generator.world import World  # noqa: E402
 
 logger = setup_logging("generate_data")
@@ -38,7 +41,7 @@ TABLES = [
     "Maintenance_Order_Materials", "Maintenance_Order_Documents", "Maintenance_Order_Holds",
     "Purchase_Orders", "Purchase_Order_Lines", "Incident_Categories", "Quality_Incidents",
     "Document_Verifications", "Root_Cause_Analyses", "CAPA_Actions", "CAPA_Progress_Updates",
-    "Stock_Counts", "Inventory_Movements", "Audit_Log",
+    "Stock_Counts", "Inventory_Movements", "Lessons_Learned", "Audit_Log",
 ]
 
 
@@ -55,6 +58,9 @@ def generate(db_path: Path = settings.DATABASE_PATH, seed: int = settings.RANDOM
         conn.commit()
         logger.info("Simulation finished: %s events in %.1f s", world.engine.events_run,
                     time.perf_counter() - started)
+        lessons = LessonsLearned(conn, seed).generate()     # Phase 9: after the simulation, own random generator
+        conn.commit()
+        logger.info("Lessons learned generated: %d", lessons)
 
         if conn.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise RuntimeError("Integrity check failed")

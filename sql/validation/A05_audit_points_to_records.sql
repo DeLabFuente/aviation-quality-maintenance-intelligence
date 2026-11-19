@@ -65,4 +65,7 @@ SELECT 'Audit_Log #' || a.audit_id AS record_ref, 'Stock_Counts #' || a.record_i
 WHERE a.table_name = 'Stock_Counts' AND NOT EXISTS (SELECT 1 FROM Stock_Counts x WHERE x.count_id = a.record_id)
 UNION ALL
 SELECT 'Audit_Log #' || a.audit_id AS record_ref, 'Suppliers #' || a.record_id || ' does not exist' AS detail FROM Audit_Log a
-WHERE a.table_name = 'Suppliers' AND NOT EXISTS (SELECT 1 FROM Suppliers x WHERE x.supplier_id = a.record_id);
+WHERE a.table_name = 'Suppliers' AND NOT EXISTS (SELECT 1 FROM Suppliers x WHERE x.supplier_id = a.record_id)
+UNION ALL
+SELECT 'Audit_Log #' || a.audit_id AS record_ref, 'Lessons_Learned #' || a.record_id || ' does not exist' AS detail FROM Audit_Log a
+WHERE a.table_name = 'Lessons_Learned' AND NOT EXISTS (SELECT 1 FROM Lessons_Learned x WHERE x.lesson_id = a.record_id);

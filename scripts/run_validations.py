@@ -1,5 +1,7 @@
 """
-AQMI — Phase 5: run the 82 business-rule validations (the quality gate).
+AQMI — Phase 5: run the 89 business-rule validations (the quality gate).
+
+(82 rules in Phase 5; 7 rules for lessons learned, group L, added in Phase 9.)
 
 What it does:
     1. Reads every rule in sql/validation/ (one file per rule; the header of
@@ -46,7 +48,7 @@ PLANTED_RULE = {
     "INCIDENT_WITHOUT_LINKS": "Q08",
 }
 GROUPS = {"G": "General", "D": "Document control", "M": "Maintenance orders", "I": "Materials & inventory",
-          "Q": "Non-conformities", "C": "CAPA", "A": "Audit & traceability"}
+          "Q": "Non-conformities", "C": "CAPA", "L": "Lessons learned", "A": "Audit & traceability"}
 HEADER = re.compile(r"^-- (\w+): (.*)$")
 
 
