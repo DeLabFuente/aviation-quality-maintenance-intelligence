@@ -118,12 +118,16 @@ Además de los de las lecciones aprendidas (`09b`, sección 10):
    No se pierde nada: los únicos cambios locales de esa carpeta son los que ya están publicados.
 3. Opcional: `.venv\Scripts\activate`, `python scripts\run_pipeline.py` y `python -m pytest -q`. Debe dar `PIPELINE OK` y 179 pruebas superadas.
 
-## 11. Tareas opcionales que quedan para Dani
+## 11. Presentación del repositorio en GitHub (20/11/2026)
 
-- Imagen *Social preview* del repositorio (GitHub → Settings → General → Social preview). Puede servir `assets/screenshots/01_executive_overview.png`.
-- Fijar el repositorio en el perfil de GitHub.
-- Borrar los PDF sobrantes de `AQMI\assets` en Dropbox (`AQMIAQMI_report.pdf` y `AQMI_report_final.pdf`). La carpeta de Dropbox es la copia antigua; la de trabajo es `C:\Proyectos`.
-- Borrar de la carpeta `AQMI` de Dropbox los archivos de la prueba (`AQMI_fase9.bundle`, `prueba_windows_fase9.ps1` y `.log`), si ya no los quieres.
+| Tarea | Resultado |
+|---|---|
+| Release v1.0 | Publicada con `AQMI_report.pdf` adjunto. Etiqueta `v1.0` sobre `a4ffdab` |
+| Imagen *Social preview* | `assets/social_preview.png` (1280 × 640): título, módulos, tecnologías, aviso de datos sintéticos y la portada del informe |
+| Descripción del repositorio | Actualizada a 89 reglas y 19 KPI; ahora menciona las lecciones aprendidas |
+| Etiquetas (*topics*) | aviation, capa, data-quality, dax, mro, portfolio-project, power-bi, python, quality-management, sql, sqlite, synthetic-data, traceability |
+| Perfil de GitHub | Repositorio fijado (6.º de 6) |
+| Carpeta antigua de Dropbox | Enviados a la Papelera los 2 PDF sobrantes y los 3 archivos de la prueba de Windows |
 
 ## 12. Limitaciones conocidas
 
